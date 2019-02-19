@@ -1,0 +1,15 @@
+## ignore para las rutas de proyecto3
+
+#User Files
+*.user
+
+[Ii]nter/
+[Ee]xes/!plugins.cfg
+[Ee]xes/!plugins_d.cfg
+[Ee]xes/
+[Dd]ependencias/ogre-1.11.5/Build/
+
+##.vs generado de visual
+.vs/
+
+
