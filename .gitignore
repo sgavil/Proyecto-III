@@ -4,7 +4,7 @@
 *.user
 
 [Ii]nter/
-[Ee]xes/
+[Ee]xes/*
 ![Ee]xes/plugins.cfg
 ![Ee]xes/plugins_d.cfg
 [Dd]ependencias/ogre-1.11.5/Build/
