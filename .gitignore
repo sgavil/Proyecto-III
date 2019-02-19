@@ -7,6 +7,8 @@
 [Ee]xes/*
 ![Ee]xes/plugins.cfg
 ![Ee]xes/plugins_d.cfg
+![Ee]xes/resources.cfg
+![Ee]xes/resources_d.cfg
 [Dd]ependencias/ogre-1.11.5/Build/
 [Cc]make-3.14.0-rc1-win64-x64/
 [Ll]ibs/
