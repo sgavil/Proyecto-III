@@ -6,9 +6,9 @@
 [Ii]nter/
 [Ee]xes/!plugins.cfg
 [Ee]xes/!plugins_d.cfg
-[Ee]xes/
 [Dd]ependencias/ogre-1.11.5/Build/
 [Cc]make-3.14.0-rc1-win64-x64/
+[Ll]ibs/
 
 ##.vs generado de visual
 .vs/
