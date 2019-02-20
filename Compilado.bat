@@ -7,8 +7,6 @@ if exist "exes\" (
 	rmdir /s /q exes\
 )
 mkdir exes
-Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\plugins_d.cfg exes
-Xcopy Dependencias\ogre-1.11.5\Build\bin\release\plugins.cfg exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\OgreMain_d.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\release\OgreMain.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\RenderSystem_GL_d.dll exes
