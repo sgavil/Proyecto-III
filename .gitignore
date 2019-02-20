@@ -2,6 +2,7 @@
 
 #User Files
 *.user
+*.log
 
 [Ii]nter/
 [Ee]xes/*
@@ -9,11 +10,15 @@
 ![Ee]xes/plugins_d.cfg
 ![Ee]xes/resources.cfg
 ![Ee]xes/resources_d.cfg
+![Ee]xes/Assets/
 [Dd]ependencias/ogre-1.11.5/Build/
 [Cc]make-3.14.0-rc1-win64-x64/
 [Ll]ibs/
 
 ##.vs generado de visual
 .vs/
+
+## Por si se compila en x64 sin querer y no se borra
+x64/
 
 
