@@ -93,7 +93,7 @@ void initOgreApplication::initializeResources()
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
 	Ogre::FileInfoListPtr resources = Ogre::ResourceGroupManager::getSingleton().listResourceFileInfo("General");
-	Ogre::Log log_("log_");
+	Ogre::Log log_("ResourcesGeneral.log");
 	for (unsigned int i = 0; i < (*resources).size(); i++)
 		log_.logMessage((*resources)[i].filename);
 	

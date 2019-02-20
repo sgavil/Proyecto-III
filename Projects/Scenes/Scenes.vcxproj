@@ -173,7 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Scenes\GameState.cpp" />
-    <ClCompile Include="..\..\Src\Scenes\main.cpp" />
     <ClCompile Include="..\..\Src\Scenes\SceneManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
