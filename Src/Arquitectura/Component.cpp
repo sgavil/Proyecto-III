@@ -2,22 +2,9 @@
 
 
 
-Component::Component()
+Component::Component() : active_(true), entity_(nullptr)
 {
 }
-
-void Component::render(unsigned int time)
-{
-}
-
-void Component::update(unsigned int time)
-{
-}
-
-void Component::handleEvent()
-{
-}
-
 
 Component::~Component()
 {

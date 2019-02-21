@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include <vector>
 
 //En este mismo fichero están las clases de Listener y Emitter para que no haya que incluir 3 ficheros, con este sera
 //suficiente ya que todo su contenido tiene que ver con mensajes y su forma de envio
