@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Arquitectura\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

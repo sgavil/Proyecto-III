@@ -27,7 +27,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -73,7 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)Exes</OutDir>
+    <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <TargetName>$(ProjectName)_Deb</TargetName>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <LibraryPath>$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Debug;$(LibraryPath)</LibraryPath>
@@ -84,7 +84,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)Exes</OutDir>
+    <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <LibraryPath>$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -169,7 +169,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\Arquitectura\Component.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Entity.cpp" />
-    <ClCompile Include="..\..\Src\Arquitectura\Main.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp" />
   </ItemGroup>
   <ItemGroup>

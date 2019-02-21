@@ -16,11 +16,13 @@ public:
 	//Constructora con los componentes ya dados y el RigidBody
 	Entity(std::vector<Component*> comps); //, RigidBody* r = nullptr);
 
-										   //Añade un componente a la entidad
+	 //Añade un componente a la entidad
 	void addComponent(Component* comp);
 	//Elimina un componente de la entidad. Devuelve "true" si la entidad tenía ese componente, "false" e.o.c
 	bool delComponent(Component* comp);
 
+	//Métodos de Listener y Emitter
+	
 	//Devuelve el Rigidbody de la entidad
 	//RigidBody* getRigid(){return rigid_;};
 	//Establece el RigidBody de la entidad (si tenía ya uno, lo borra)
@@ -31,7 +33,6 @@ public:
 private:
 	//Vector de componentes genérico (no se diferencian por el tipo de componente)
 	std::vector<Component*> components_;
-	//Rigidbody
+	//TODO: Añadir Rigidbody
 	//RigidBody* rigid_;
-
 };

@@ -3,7 +3,7 @@
 
 Entity::Entity()
 {
-	//Poner el RigidBody a nullptr
+	//TODO: Poner el RigidBody a nullptr
 }
 
 Entity::Entity(std::vector<Component*> comps) //, RigidBody* r)

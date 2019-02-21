@@ -35,6 +35,7 @@ private:
 	bool active_;
 	//Puntero a la entidad
 	Entity* entity_;
+	//TODO: Los componentes tendrán un string con su nombre para poder identificarlos
 };
 
 
