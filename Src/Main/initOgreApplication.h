@@ -19,6 +19,7 @@
 #include <OgreViewport.h>
 #include <OgrePlane.h>
 #include <OgreVector3.h>
+#include "checkML.h"
 
 class initOgreApplication
 {
