@@ -81,7 +81,9 @@ void initOgreApplication::initializeResources()
 		for (i = settings.begin(); i != settings.end(); i++)
 		{
 			type = i->first;
-			arch = Ogre::FileSystemLayer::resolveBundlePath(i->second);
+			std::string auxPath = resourcesPath;
+			auxPath.erase(auxPath.find_last_of("\\") + 1, auxPath.size() - 1);
+			arch = auxPath + Ogre::FileSystemLayer::resolveBundlePath(i->second);
 
 			//Va agregando las ubicaciones definidas en el cfg
 			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec); 		
