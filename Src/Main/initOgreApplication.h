@@ -1,3 +1,5 @@
+
+
 #pragma once
 #include <OgreRoot.h>
 #include "OgreRenderWindow.h"
@@ -7,7 +9,16 @@
 #include <OgreLog.h>
 #include <OgreTextureManager.h>
 #include <OgreFileSystemLayer.h>
+#include <OgreLight.h>
 #include <iostream>
+#include <OgreSceneNode.h>
+#include <OgreCamera.h>
+#include <OgreRenderWindow.h>
+#include <OgreEntity.h>
+#include <OgreColourValue.h>
+#include <OgreViewport.h>
+#include <OgrePlane.h>
+#include <OgreVector3.h>
 
 class initOgreApplication
 {
@@ -19,7 +30,7 @@ public:
 	Ogre::SceneManager * getSceneManager();
 
 private:
-	
+
 	Ogre::Root *root_;
 	Ogre::RenderWindow *window_;
 	Ogre::SceneManager *sceneMgr_;
@@ -28,10 +39,17 @@ private:
 	const std::string APP_NAME = "ThemePark";
 	const int WINDOW_WIDTH = 800;
 	const int WINDOW_HEIGHT = 600;
-	
+
 	//Creando puerto de vista y camara
 	Ogre::Camera *camera_;
 	Ogre::Viewport *viewport_;
+
+	Ogre::Light* light_;
+	Ogre::SceneNode* lightNode_;
+	Ogre::SceneNode* camNode_;
+
+	Ogre::Entity* ogreEntity;
+	Ogre::SceneNode* ogreNode_;
 
 	/*Elementos para inicializar los recursos*/
 	Ogre::FileSystemLayer* mFSLayer;
@@ -44,4 +62,3 @@ private:
 	tener recursos. Despues de leerlas las inicializa en los respectivos grupos que definamos en los .cfg*/
 	void initializeResources();
 };
-

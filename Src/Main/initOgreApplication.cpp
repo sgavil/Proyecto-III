@@ -18,8 +18,9 @@ initOgreApplication::initOgreApplication(Ogre::Root *root) : root_(root)
 	sceneMgr_ = root_->createSceneManager();
 	mFSLayer = new Ogre::FileSystemLayer(APP_NAME);
 
-	initWindow();
 	initializeResources();
+	initWindow();
+	
 }
 
 
@@ -44,9 +45,30 @@ void initOgreApplication::initWindow()
 	window_->setAutoUpdated(true);
 	window_->setDeactivateOnFocusChange(false);
 
+	sceneMgr_->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
+
+	light_ = sceneMgr_->createLight("prueba");
+	lightNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
+	lightNode_->attachObject(light_);
+
+	lightNode_->setPosition(20, 80, 50);
+
+	camNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
 	camera_ = sceneMgr_->createCamera("cam");
+	camera_->setNearClipDistance(5);
+	camera_->setFarClipDistance(50000);
+	camera_->setAutoAspectRatio(true);
+	camNode_->attachObject(camera_);
+	camNode_->setPosition(0, 0, 140);
 	viewport_ = window_->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
+
+	ogreEntity = sceneMgr_->createEntity("ogrehead.mesh");
+	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
+	ogreNode_->attachObject(ogreEntity);
+
+	root_->startRendering();
+
 }
 
 void initOgreApplication::initializeResources()
