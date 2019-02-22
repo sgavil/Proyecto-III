@@ -1,0 +1,15 @@
+material SkyBox
+{
+	technique
+	{
+		pass
+		{
+			diffuse 1.0 1.0 1.0
+			texture_unit {
+				texture Water02.jpg
+				scroll_anim 0.1 0.0
+				colour_op modulate
+			}
+		}
+	}
+}

@@ -63,11 +63,17 @@ void initOgreApplication::initWindow()
 	viewport_ = window_->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
 
+	plane_.d = 1000;
+	plane_.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
+	sceneMgr_->setSkyPlane(
+		true, plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
+
 	ogreEntity = sceneMgr_->createEntity("ogrehead.mesh");
 	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
 	ogreNode_->attachObject(ogreEntity);
 
 	root_->startRendering();
+
 
 }
 
