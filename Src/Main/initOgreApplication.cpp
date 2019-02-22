@@ -54,6 +54,11 @@ void initOgreApplication::initWindow()
 	lightNode_->setPosition(20, 80, 50);
 
 	camNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
+
+	//AQUI ESTA EL FALLO, AL HACERLO DE LA MANERA DESCOMENTADA VA BIEN PERO SI LLAMO 
+	//AL METODO DE LA LIBRERIA ABAJO COMENTADO Y COMENTO LO QUE HACE AHORA DA ERROR 
+	//DE LINKADO
+	//____________________________________________________________
 	camera_ = sceneMgr_->createCamera("cam");
 	camera_->setNearClipDistance(5);
 	camera_->setFarClipDistance(50000);
@@ -62,6 +67,14 @@ void initOgreApplication::initWindow()
 	camNode_->setPosition(0, 0, 140);
 	viewport_ = window_->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
+	
+	//DESCOMENTAR ESTO PARA PROBAR Y COMENTAR LO DE ARRIBA 
+
+	/*camera_ = createCamera(sceneMgr_, "cam", 5, 50000, true);
+	camNode_->setPosition(0, 0, 140);
+	viewport_ = window_->addViewport(camera_);
+	viewport_->setClearEveryFrame(true);*/
+	//______________________________________________________________
 
 	plane_.d = 1000;
 	plane_.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;

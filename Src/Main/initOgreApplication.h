@@ -3,24 +3,19 @@
 #pragma once
 #include <OgreRoot.h>
 #include "OgreRenderWindow.h"
-#include <OgreViewport.h>
 #include <OgreConfigFile.h>
-#include <string>
 #include <OgreLog.h>
 #include <OgreTextureManager.h>
 #include <OgreFileSystemLayer.h>
 #include <OgreLight.h>
 #include <iostream>
-#include <OgreSceneNode.h>
-#include <OgreCamera.h>
 #include <OgreRenderWindow.h>
 #include <OgreEntity.h>
 #include <OgreColourValue.h>
-#include <OgreViewport.h>
 #include <OgrePlane.h>
-#include <OgreVector3.h>
 #include "checkML.h"
 #include <OgrePlane.h>
+#include <GestorRecursos/gestorDeRecursos.h>
 
 class initOgreApplication
 {
