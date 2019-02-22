@@ -20,6 +20,7 @@
 #include <OgrePlane.h>
 #include <OgreVector3.h>
 #include "checkML.h"
+#include <OgrePlane.h>
 
 class initOgreApplication
 {
@@ -51,6 +52,8 @@ private:
 
 	Ogre::Entity* ogreEntity;
 	Ogre::SceneNode* ogreNode_;
+
+	Ogre::Plane plane_;
 
 	/*Elementos para inicializar los recursos*/
 	Ogre::FileSystemLayer* mFSLayer;
