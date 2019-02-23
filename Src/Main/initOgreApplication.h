@@ -16,6 +16,8 @@
 #include "checkML.h"
 #include <OgrePlane.h>
 #include <GestorRecursos/gestorDeRecursos.h>
+#include <OgreMeshManager.h>
+#include <OgreResourceGroupManager.h>
 
 class initOgreApplication
 {
@@ -49,6 +51,8 @@ private:
 	Ogre::SceneNode* ogreNode_;
 
 	Ogre::Plane plane_;
+	Ogre::Entity* suelo_;
+	Ogre::SceneNode* sueloNodo_;
 
 	/*Elementos para inicializar los recursos*/
 	Ogre::FileSystemLayer* mFSLayer;

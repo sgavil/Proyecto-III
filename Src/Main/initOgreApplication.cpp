@@ -59,21 +59,24 @@ void initOgreApplication::initWindow()
 	//AL METODO DE LA LIBRERIA ABAJO COMENTADO Y COMENTO LO QUE HACE AHORA DA ERROR 
 	//DE LINKADO
 	//____________________________________________________________
+	
+	
+	//DESCOMENTAR ESTO PARA PROBAR Y COMENTAR LO DE DEBAJO
+
+	//camera_ = GestorRecursos::createCamera(sceneMgr_, "cam", camNode_, 5, 50000, true);
+	//camNode_->setPosition(0, 0, 140);
+	//viewport_ = window_->addViewport(camera_);
+	//viewport_->setClearEveryFrame(true);
+
 	camera_ = sceneMgr_->createCamera("cam");
 	camera_->setNearClipDistance(5);
 	camera_->setFarClipDistance(50000);
 	camera_->setAutoAspectRatio(true);
 	camNode_->attachObject(camera_);
-	camNode_->setPosition(0, 0, 140);
+	camNode_->setPosition(0, 0, 300);
+	camNode_->rotate(Ogre::Vector3::NEGATIVE_UNIT_X, Ogre::Degree(20));
 	viewport_ = window_->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
-	
-	//DESCOMENTAR ESTO PARA PROBAR Y COMENTAR LO DE ARRIBA 
-
-	/*camera_ = createCamera(sceneMgr_, "cam", 5, 50000, true);
-	camNode_->setPosition(0, 0, 140);
-	viewport_ = window_->addViewport(camera_);
-	viewport_->setClearEveryFrame(true);*/
 	//______________________________________________________________
 
 	plane_.d = 1000;
@@ -81,9 +84,18 @@ void initOgreApplication::initWindow()
 	sceneMgr_->setSkyPlane(
 		true, plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
 
+	Ogre::MeshManager::getSingleton().createPlane("Plano", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), 1000, 500,
+		100, 50, true, 1, 1.0, 1.0, Ogre::Vector3::NEGATIVE_UNIT_Z);
+	suelo_ = sceneMgr_->createEntity("Plano");
+	suelo_->setMaterialName("Tierra");
+	sueloNodo_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
+	sueloNodo_->attachObject(suelo_);
+	sueloNodo_->setPosition(0, -60, 0);
+
 	ogreEntity = sceneMgr_->createEntity("ogrehead.mesh");
 	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
 	ogreNode_->attachObject(ogreEntity);
+	ogreNode_->setPosition(0, -30, 0);
 
 	root_->startRendering();
 
