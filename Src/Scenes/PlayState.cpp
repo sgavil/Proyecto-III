@@ -1,7 +1,9 @@
-#include "PlayState.h"
+#include "SceneManager.h"
 
-PlayState::PlayState()
+
+PlayState::PlayState() : GameState()
 {
+	start();
 }
 
 PlayState::~PlayState()
@@ -9,19 +11,23 @@ PlayState::~PlayState()
 }
 
 
-void PlayState::update()
+void PlayState::start()
 {
-
-	GameState::update();
-
+	// Inicializar componentes de la propia escena, así como crear las escenas accesibles desde la misma (comprobar antes si está ya creada)
 }
 
-void PlayState::render()
+
+void PlayState::update(unsigned int time)
 {
-	GameState::render();
+	GameState::update(time);
+}
+
+void PlayState::render(unsigned int time)
+{
+	GameState::render(time);
 }
 
 void PlayState::handleInput()
 {
-
+	GameState::handleInput();
 }

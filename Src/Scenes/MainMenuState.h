@@ -1,14 +1,13 @@
 #pragma once
 
-
-class  PlayState : public GameState
+class MainMenuState : public GameState
 {
 protected:
 
 	virtual void start();
 public:
-	PlayState();
-	virtual ~PlayState();
+	MainMenuState();
+	~MainMenuState();
 
 	void update(unsigned int time);
 	void render(unsigned int time);

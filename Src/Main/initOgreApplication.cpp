@@ -1,6 +1,21 @@
 #include "initOgreApplication.h"
+#include "Scenes/SceneManager.h"
 
+void testScenas()
+{
+	SceneManager* sceneManager = SceneManager::instance();
 
+	MainMenuState* mainMenu = new MainMenuState();
+	sceneManager->addState(MAIN_MENU, mainMenu);
+	sceneManager->changeState(PLAY);
+
+	while (true)
+	{
+		sceneManager->currentState()->update(1);
+		sceneManager->currentState()->render(1);
+		sceneManager->currentState()->handleInput();
+	}
+}
 
 initOgreApplication::initOgreApplication(Ogre::Root *root) : root_(root)
 {
@@ -20,6 +35,7 @@ initOgreApplication::initOgreApplication(Ogre::Root *root) : root_(root)
 
 	initializeResources();
 	initWindow();
+
 	
 }
 
@@ -97,9 +113,10 @@ void initOgreApplication::initWindow()
 	ogreNode_->attachObject(ogreEntity);
 	ogreNode_->setPosition(0, -30, 0);
 
+
+	//testScenas();
+
 	root_->startRendering();
-
-
 }
 
 void initOgreApplication::initializeResources()

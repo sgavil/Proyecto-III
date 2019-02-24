@@ -2,14 +2,16 @@
 
 std::unique_ptr<SceneManager> SceneManager::instance_;
 
-SceneManager::~SceneManager()
-{
-	for (GameState* s : states) delete s;
-}
-
 SceneManager::SceneManager()
 {
 }
+
+SceneManager::~SceneManager()
+{
+	auto it = states.begin();
+	while (it != states.end()) it = states.erase(it);
+}
+			
 
 SceneManager* SceneManager::instance()
 {
@@ -21,9 +23,15 @@ SceneManager* SceneManager::instance()
 
 GameState* SceneManager::currentState()
 {
-	return nullptr;
+	return currentState_;
 }
 
-void SceneManager::changeState(GameState* state)
+void SceneManager::addState(int stateID, GameState* state)
 {
+	states.insert(std::pair<int, GameState*>(stateID, state));
+}
+
+void SceneManager::changeState(int stateID)
+{
+	currentState_ = states.find(stateID)->second;
 }

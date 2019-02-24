@@ -1,25 +1,32 @@
 #include "GameState.h"
 
+
+
 GameState::GameState()
+{
+}
+
+void GameState::start()
 {
 }
 
 GameState::~GameState()
 {
-	for (Entity* e : scene) delete e;
+	for (Component* c : scene) delete c;
 }
 
-void GameState::update()
+
+void GameState::update(unsigned int time)
 {
-	for (Entity* e : scene); //e->update();
+	for (Component* c : scene) c->update(time); 
 }
 
-void GameState::render()
+void GameState::render(unsigned int time)
 {
-	for (Entity* e : scene);//e->render();
+	for (Component* c : scene) c->render(time);
 }
 
 void GameState::handleInput()
 {
-	for (Entity* e : scene); //e->handleInput();
+	for (Component* c : scene) c->handleEvent();
 }
