@@ -18,15 +18,7 @@ void testScenas()
 }
 
 initOgreApplication::initOgreApplication(Ogre::Root *root) : root_(root)
-{
-#ifdef _DEBUG
-	root->loadPlugin("RenderSystem_GL_d");
-	root->loadPlugin("Codec_STBI_d");
-#else
-	root->loadPlugin("RenderSystem_GL");
-	root->loadPlugin("Codec_STBI");
-#endif
-	
+{	
 	root->setRenderSystem(*(root->getAvailableRenderers().begin()));
 	root->initialise(false);
 
