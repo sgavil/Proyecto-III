@@ -79,12 +79,12 @@ void initOgreApplication::initWindow()
 	
 	//DESCOMENTAR ESTO PARA PROBAR Y COMENTAR LO DE DEBAJO
 
-	//camera_ = GestorRecursos::createCamera(sceneMgr_, "cam", camNode_, 5, 50000, true);
-	//camNode_->setPosition(0, 0, 140);
-	//viewport_ = window_->addViewport(camera_);
-	//viewport_->setClearEveryFrame(true);
+	camera_ = GestorRecursos::createCamera(sceneMgr_, "cam", camNode_, 5, 50000, true);
+	camNode_->setPosition(0, 0, 140);
+	viewport_ = window_->addViewport(camera_);
+	viewport_->setClearEveryFrame(true);
 
-	camera_ = sceneMgr_->createCamera("cam");
+	/*camera_ = sceneMgr_->createCamera("cam");
 	camera_->setNearClipDistance(5);
 	camera_->setFarClipDistance(50000);
 	camera_->setAutoAspectRatio(true);
@@ -93,7 +93,7 @@ void initOgreApplication::initWindow()
 	camNode_->rotate(Ogre::Vector3::NEGATIVE_UNIT_X, Ogre::Degree(20));
 	viewport_ = window_->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
-	//______________________________________________________________
+	//______________________________________________________________*/
 
 	plane_.d = 1000;
 	plane_.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
