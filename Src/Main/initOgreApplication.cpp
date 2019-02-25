@@ -162,3 +162,19 @@ void initOgreApplication::initializeResources()
 		log_.logMessage((*resources)[i].filename);
 	
 }
+
+void initOgreApplication::defineTerrain(long x, long y)
+{
+}
+
+void initOgreApplication::initBlendMaps(Ogre::Terrain * terrain)
+{
+}
+
+void initOgreApplication::configureTerrainDefaults(Ogre::Light * light)
+{
+}
+
+void initOgreApplication::getTerrainImage(bool flipX, bool flipY, Ogre::Image & img)
+{
+}

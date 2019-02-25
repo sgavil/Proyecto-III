@@ -18,6 +18,8 @@
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
+#include <OgreTerrain.h>
+#include <OgreTerrainGroup.h>
 
 class initOgreApplication
 {
@@ -64,4 +66,15 @@ private:
 	/*Metodo encargado de leer desde el resources.cfg o resources_d.cfg las rutas en las cuales queremos
 	tener recursos. Despues de leerlas las inicializa en los respectivos grupos que definamos en los .cfg*/
 	void initializeResources();
+
+
+	//Métodos para la prueba del terreno
+	void defineTerrain(long x, long y);
+	void initBlendMaps(Ogre::Terrain* terrain);
+	void configureTerrainDefaults(Ogre::Light* light);
+	void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img);
+
+	bool mTerrainsImported;
+	Ogre::TerrainGroup* mTerrainGroup;
+	Ogre::TerrainGlobalOptions* mTerrainGlobals;
 };

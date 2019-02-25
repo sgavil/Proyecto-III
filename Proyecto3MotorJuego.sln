@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "Projects\Main\Main.vcxproj", "{A1700C0A-9839-4CBE-9482-0769E0F58935}"
+	ProjectSection(ProjectDependencies) = postProject
+		{50931119-C20A-4B0F-83FF-262E9EC4B675} = {50931119-C20A-4B0F-83FF-262E9EC4B675}
+		{C5FA6BBF-0282-48C4-9BE9-220106066169} = {C5FA6BBF-0282-48C4-9BE9-220106066169}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pruebalib", "Projects\Pruebalib\Pruebalib.vcxproj", "{9CDCD506-8D58-4F62-BD9B-A0988D7068F0}"
 EndProject
@@ -14,6 +18,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GestorRecursos", "Projects\GestorRecursos\GestorRecursos.vcxproj", "{C5FA6BBF-0282-48C4-9BE9-220106066169}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Arquitectura", "Projects\Arquitectura\Arquitectura.vcxproj", "{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TerrainTest", "Projects\TerrainTest\TerraintTest.vcxproj", "{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +77,14 @@ Global
 		{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}.Release|x64.Build.0 = Release|x64
 		{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}.Release|x86.ActiveCfg = Release|Win32
 		{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}.Release|x86.Build.0 = Release|Win32
+		{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}.Debug|x64.ActiveCfg = Debug|x64
+		{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}.Debug|x64.Build.0 = Debug|x64
+		{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}.Debug|x86.ActiveCfg = Debug|Win32
+		{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}.Debug|x86.Build.0 = Debug|Win32
+		{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}.Release|x64.ActiveCfg = Release|x64
+		{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}.Release|x64.Build.0 = Release|x64
+		{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}.Release|x86.ActiveCfg = Release|Win32
+		{4C4F088D-DFF7-47E6-A9C7-90FA83E3EC59}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

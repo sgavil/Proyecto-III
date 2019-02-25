@@ -1,4 +1,4 @@
-rem Ramón Arjona Quiñones, 2019
+﻿rem Ramón Arjona Quiñones, 2019
 rem Script de compilación para ProyectoIII que crea la solución de VS con CMake, compila Ogre y mueve los dll necesarios para la ejecución del mismo
 @echo on
 
@@ -13,6 +13,10 @@ Xcopy Dependencias\ogre-1.11.5\Build\bin\release\RenderSystem_GL.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\release\zlib.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\Codec_STBI_d.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\release\Codec_STBI.dll exes
+Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\OgreTerrain_d.dll exes
+Xcopy Dependencias\ogre-1.11.5\Build\bin\release\OgreTerrain.dll exes
+Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\OgrePaging_d.dll exes
+Xcopy Dependencias\ogre-1.11.5\Build\bin\release\OgrePaging.dll exes
 
 Xcopy tmp\* exes
 
