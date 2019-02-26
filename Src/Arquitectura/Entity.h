@@ -1,7 +1,5 @@
 #include "Component.h"
-#include "Messages.h"
 
-using namespace Architecture;
 /*
 Clase Entidad:
 -> Es un simple contenedor de omponentes, los cuales definen su comportamiento.
@@ -21,13 +19,10 @@ public:
 	//Elimina un componente de la entidad. Devuelve "true" si la entidad tenía ese componente, "false" e.o.c
 	bool delComponent(Component* comp);
 
-	//Métodos de Listener y Emitter
-	
-	//Devuelve el Rigidbody de la entidad
-	//RigidBody* getRigid(){return rigid_;};
-	//Establece el RigidBody de la entidad (si tenía ya uno, lo borra)
-	//void setRigid(RigidBody* r){if(rigid_ != nullptr) delete rigid_; rigid_ = r;}
+	std::vector<Component*> getComponents() { return components_; }
 
+	Component * getBrotherComponent(Name name);
+	
 	//Destructora
 	virtual ~Entity();
 private:

@@ -34,17 +34,21 @@ public:
 
 	//Getters y setters de la entidad
 	void setEntity(Entity* ent) { entity_ = ent; };
+	Entity* getEntity() { return entity_; }
+	
+	Name getName() { return name_; }
 
 	//Destructora
 	virtual ~Component();
-private:
+
+	
+protected:
 	//Flag de actividad
 	bool active_;
 	//Puntero a la entidad
 	Entity* entity_;
 	//TODO: Los componentes tendrán un string con su nombre para poder identificarlos
-
-	Name name_; //Nombre del componente para poder acceder a componenetes hermanos de la entidad
+	Name name_; //Nombre del componente para poder acceder a componenetes hermanos de la entidad	
 };
 
 
