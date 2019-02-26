@@ -1,16 +1,21 @@
 #pragma once
+#include "Messages.h"
 
 //No hacer #include "Entity.h" para evitar inclusión circular
 class Entity;
+
+enum  Name{NPC,GraphicComponent,LogicComponent,InputComponent,Building,PhysicsComponent}; //Algunos ejemplos de nombres
+//Cada vez que se cree un Componente , se tiene que añadir a la lista de nombres.
 
 /*
 Clase Componente:
 -> Define un comportamiento específico.
 -> Contiene métodos para pintarse, gestionar eventos y actualizar lógica.
 -> Tiene un flag de actividad y un puntero a la entidad a la que está asociado.
+-> Hereda de Listener y Emitter para que así los componentes hijos puedan redefinirlos
 * Esta clase padre es abstracta, ya que no define ningún comportamiento.
 */
-class Component
+class Component:public Listener, public Emitter
 {
 public:
 	//Constructora por defecto
@@ -36,6 +41,8 @@ private:
 	//Puntero a la entidad
 	Entity* entity_;
 	//TODO: Los componentes tendrán un string con su nombre para poder identificarlos
+
+	Name name_; //Nombre del componente para poder acceder a componenetes hermanos de la entidad
 };
 
 
