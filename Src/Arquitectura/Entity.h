@@ -18,10 +18,11 @@ public:
 	void addComponent(Component* comp);
 	//Elimina un componente de la entidad. Devuelve "true" si la entidad tenía ese componente, "false" e.o.c
 	bool delComponent(Component* comp);
-
+	
+	//Devueve la lista de componentes de la Entidad
 	std::vector<Component*> getComponents() { return components_; }
 
-	Component * getBrotherComponent(Name name);
+	Component * getComponent(Name name);
 	
 	//Destructora
 	virtual ~Entity();

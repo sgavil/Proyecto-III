@@ -35,7 +35,7 @@ bool Entity::delComponent(Component* comp)
 	}
 	return false;
 }
-Component * Entity::getBrotherComponent(Name name)
+Component * Entity::getComponent(Name name)
 {
 	//Recorre el vector de componentes buscando el nombre.Si lo encuentra lo devuelve, en caso contrario devuelve nullptr
 	auto it = components_.begin();
