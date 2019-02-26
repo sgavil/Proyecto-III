@@ -171,11 +171,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pruebalib\Pruebalib.vcxproj">
-      <Project>{9cdcd506-8d58-4f62-bd9b-a0988d7068f0}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\Src\Scenes\GameState.h" />
     <ClInclude Include="..\..\Src\Scenes\MainMenuState.h" />
     <ClInclude Include="..\..\Src\Scenes\PlayState.h" />

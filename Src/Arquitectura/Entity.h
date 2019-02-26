@@ -33,6 +33,4 @@ public:
 private:
 	//Vector de componentes genérico (no se diferencian por el tipo de componente)
 	std::vector<Component*> components_;
-	//TODO: Añadir Rigidbody
-	//RigidBody* rigid_;
 };

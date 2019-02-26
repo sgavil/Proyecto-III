@@ -48,7 +48,6 @@ namespace Architecture
 		
 		//Necesario guardar los posibles receptores de tus mensajes para así no tener que mandarselo a todos
 		virtual void registerListener(Listener* o){ listeners_.push_back(o); }
-
 		//Borrar a 
 		virtual void removeListener(Listener* o)
 		{
@@ -63,7 +62,7 @@ namespace Architecture
 				o->receive(msg);
 			}
 		}
-	private:
+	protected:
 		std::vector<Listener*> listeners_;
 	};
 }

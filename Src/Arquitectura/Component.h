@@ -1,6 +1,8 @@
 #pragma once
 #include "Messages.h"
 
+using namespace Architecture;
+
 //No hacer #include "Entity.h" para evitar inclusión circular
 class Entity;
 
