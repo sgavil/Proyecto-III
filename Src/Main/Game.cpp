@@ -8,11 +8,7 @@ Game::Game(std::string basicConfig)
 	root = new Ogre::Root("plugins.cfg");
 #endif
 
-	//aqui se inicia el stream de lectura con el archivo de json de los valores iniciales de la ventana
-	std::ifstream i(basicConfig);
-	json initFile;
-	i >> initFile;
-	Ogreinit_ = new initOgreApplication(root, initFile);
+	Ogreinit_ = new initOgreApplication(root, basicConfig);
 
 	//Inicialización de ventana de SDL que se una a la de Ogre
 	SDL_Init(SDL_INIT_EVERYTHING);

@@ -17,16 +17,20 @@ void testScenas()
 	}
 }
 
-initOgreApplication::initOgreApplication(Ogre::Root *root, const json& initFile) : root_(root)
+initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJson) : root_(root)
 {	
+	new JsonManager();
+
 	root->setRenderSystem(*(root->getAvailableRenderers().begin()));
 	root->initialise(false);
+
+	initFile = JsonManager::getSingleton().getJsonByKey(initFileJson);
 
 	sceneMgr_ = root_->createSceneManager();
 	mFSLayer = new Ogre::FileSystemLayer(initFile["WindowName"]);
 
 	initializeResources();
-	initWindow(initFile);
+	initWindow();
 
 	
 }
@@ -39,6 +43,7 @@ initOgreApplication::~initOgreApplication()
 	delete camera_;
 	delete viewport_;
 	delete mFSLayer;
+	
 }
 
 Ogre::SceneManager * initOgreApplication::getSceneManager()
@@ -46,7 +51,7 @@ Ogre::SceneManager * initOgreApplication::getSceneManager()
 	return sceneMgr_;
 }
 
-void initOgreApplication::initWindow(json initFile)
+void initOgreApplication::initWindow()
 {
 	window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false);
 	window_->setFullscreen(initFile["fullScreen"], initFile["Width"], initFile["Height"]);
