@@ -8,7 +8,7 @@ Clase Entidad:
 -> Hereda de Listener (para recibir mensajes) y de Emitter (para enviarlos).
 -> Tiene una referencia a su RigidBody (de physx) para el motor físico
 */
-class Entity : public Listener, public Emitter
+class Entity 
 {
 public:
 	//Constructora por defecto
