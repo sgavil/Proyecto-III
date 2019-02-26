@@ -32,6 +32,8 @@ public:
 	~initOgreApplication();
 
 	Ogre::SceneManager * getSceneManager();
+	//Metodos getter
+	Ogre::RenderWindow* getWindow() { return window_; };
 
 private:
 
@@ -71,6 +73,8 @@ private:
 	void initBlendMaps(Ogre::Terrain* terrain);
 	void configureTerrainDefaults(Ogre::Light* light);
 	void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img);
+
+
 
 	bool mTerrainsImported;
 	Ogre::TerrainGroup* mTerrainGroup;

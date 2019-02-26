@@ -20,4 +20,7 @@ public:
 private:
 	SceneManager* ScnMng_;
 	Ogre::Root* root;
+	initOgreApplication* Ogreinit_; //Información inicial de Ogre
+
+	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL
 };
