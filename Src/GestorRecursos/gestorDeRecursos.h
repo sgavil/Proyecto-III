@@ -10,6 +10,7 @@
 #include <OgreEntity.h>
 #include <OgreNode.h>
 
+
 namespace GestorRecursos {
 	Ogre::Camera* createCamera(Ogre::SceneManager* scnMgn, std::string name, Ogre::SceneNode* FatherNode, Ogre::Real NearClipDist, Ogre::Real FarClipDist, bool autoAspectRatio,  Ogre::Real AspectRatio = 1.3);
 

@@ -29,7 +29,7 @@
     <ProjectGuid>{9CDCD506-8D58-4F62-BD9B-A0988D7068F0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Pruebalib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
