@@ -5,6 +5,8 @@
 #include "Arquitectura/Entity.h"
 #include <Scenes/SceneManager.h>
 #include <string>
+#include <SDL.h>
+#include <SDL_video.h>
 
 using json = nlohmann::json;
 
