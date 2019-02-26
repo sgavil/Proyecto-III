@@ -17,16 +17,16 @@ void testScenas()
 	}
 }
 
-initOgreApplication::initOgreApplication(Ogre::Root *root) : root_(root)
+initOgreApplication::initOgreApplication(Ogre::Root *root, const json& initFile) : root_(root)
 {	
 	root->setRenderSystem(*(root->getAvailableRenderers().begin()));
 	root->initialise(false);
 
 	sceneMgr_ = root_->createSceneManager();
-	mFSLayer = new Ogre::FileSystemLayer(APP_NAME);
+	mFSLayer = new Ogre::FileSystemLayer(initFile["WindowName"]);
 
 	initializeResources();
-	initWindow();
+	initWindow(initFile);
 
 	
 }
@@ -46,9 +46,10 @@ Ogre::SceneManager * initOgreApplication::getSceneManager()
 	return sceneMgr_;
 }
 
-void initOgreApplication::initWindow()
+void initOgreApplication::initWindow(json initFile)
 {
-	window_ = root_->createRenderWindow(APP_NAME, WINDOW_WIDTH, WINDOW_HEIGHT, false);
+	window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false);
+	window_->setFullscreen(initFile["fullScreen"], initFile["Width"], initFile["Height"]);
 	window_->setActive(true);
 	window_->setAutoUpdated(true);
 	window_->setDeactivateOnFocusChange(false);

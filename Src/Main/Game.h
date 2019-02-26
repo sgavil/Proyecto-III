@@ -6,6 +6,8 @@
 #include <Scenes/SceneManager.h>
 #include <string>
 
+using json = nlohmann::json;
+
 class Game {
 public:
 	Game(std::string basicConfig);

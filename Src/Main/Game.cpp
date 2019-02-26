@@ -8,7 +8,11 @@ Game::Game(std::string basicConfig)
 	root = new Ogre::Root("plugins.cfg");
 #endif
 
-	initOgreApplication* Ogreinit = new initOgreApplication(root);
+	//aqui se inicia el stream de lectura con el archivo de json de los valores iniciales de la ventana
+	std::ifstream i(basicConfig);
+	json initFile;
+	i >> initFile;
+	initOgreApplication* Ogreinit = new initOgreApplication(root, initFile);
 	ScnMng_ = SceneManager::instance();
 }
 

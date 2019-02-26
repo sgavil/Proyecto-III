@@ -20,12 +20,15 @@
 #include <OgreResourceGroupManager.h>
 #include <OgreTerrain.h>
 #include <OgreTerrainGroup.h>
+#include <jsonParser.hpp>
+
+using json = nlohmann::json;
 
 class initOgreApplication
 {
 public:
 
-	initOgreApplication(Ogre::Root *root);
+	initOgreApplication(Ogre::Root *root, const json& initFile);
 	~initOgreApplication();
 
 	Ogre::SceneManager * getSceneManager();
@@ -35,11 +38,6 @@ private:
 	Ogre::Root *root_;
 	Ogre::RenderWindow *window_;
 	Ogre::SceneManager *sceneMgr_;
-
-	/*Elementos para definir la ventana*/
-	const std::string APP_NAME = "ThemePark";
-	const int WINDOW_WIDTH = 800;
-	const int WINDOW_HEIGHT = 600;
 
 	//Creando puerto de vista y camara
 	Ogre::Camera *camera_;
@@ -61,7 +59,7 @@ private:
 
 	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaño WINDOW_HEIGHT/WIDHT ademas de crear
 	una camara y asociarle un viewport a esta*/
-	void initWindow();
+	void initWindow(json initFile);
 
 	/*Metodo encargado de leer desde el resources.cfg o resources_d.cfg las rutas en las cuales queremos
 	tener recursos. Despues de leerlas las inicializa en los respectivos grupos que definamos en los .cfg*/
