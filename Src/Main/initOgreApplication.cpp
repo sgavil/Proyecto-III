@@ -143,8 +143,6 @@ void initOgreApplication::initWindow()
 	}
 
 	mTerrainGroup->freeTemporaryResources();
-
-	root_->startRendering();
 }
 
 void initOgreApplication::initializeResources()
