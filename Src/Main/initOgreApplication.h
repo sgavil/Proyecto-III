@@ -66,6 +66,7 @@ private:
 
 
 	//Métodos para la prueba del terreno
+	json mapsFile;
 	void defineTerrain(long x, long y);
 	void initBlendMaps(Ogre::Terrain* terrain);
 	void configureTerrainDefaults(Ogre::Light* light);

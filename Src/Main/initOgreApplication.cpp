@@ -25,6 +25,7 @@ initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJ
 	root->initialise(false);
 
 	initFile = JsonManager::getSingleton().getJsonByKey(initFileJson);
+	mapsFile = JsonManager::getSingleton().getJsonByKey("Maps.json");
 
 	sceneMgr_ = root_->createSceneManager();
 	mFSLayer = new Ogre::FileSystemLayer(initFile["WindowName"]);
@@ -125,7 +126,7 @@ void initOgreApplication::initWindow()
 	mTerrainGroup = OGRE_NEW Ogre::TerrainGroup(
 		sceneMgr_,
 		Ogre::Terrain::ALIGN_X_Z,
-		513, 12000.0);
+		mapsFile["maps"][0]["terrainSize"], mapsFile["maps"][0]["worldSize"]);
 	mTerrainGroup->setFilenameConvention(Ogre::String("terrain"), Ogre::String("dat"));
 	mTerrainGroup->setOrigin(Ogre::Vector3::ZERO);
 
@@ -225,10 +226,10 @@ void initOgreApplication::defineTerrain(long x, long y)
 
 void initOgreApplication::initBlendMaps(Ogre::Terrain * terrain)
 {
-	Ogre::Real minHeight0 = 70;
-	Ogre::Real fadeDist0 = 40;
-	Ogre::Real minHeight1 = 70;
-	Ogre::Real fadeDist1 = 15;
+	Ogre::Real minHeight0 = mapsFile["maps"][0]["minHeight0"];
+	Ogre::Real fadeDist0 = mapsFile["maps"][0]["fadeDist0"];
+	Ogre::Real minHeight1 = mapsFile["maps"][0]["minHeight1"];
+	Ogre::Real fadeDist1 = mapsFile["maps"][0]["fadeDist1"];
 
 	Ogre::TerrainLayerBlendMap* blendMap0 = terrain->getLayerBlendMap(1);
 	Ogre::TerrainLayerBlendMap* blendMap1 = terrain->getLayerBlendMap(2);
@@ -270,34 +271,27 @@ void initOgreApplication::configureTerrainDefaults(Ogre::Light * light)
 	mTerrainGlobals->setCompositeMapDiffuse(light->getDiffuseColour());
 
 	Ogre::Terrain::ImportData& importData = mTerrainGroup->getDefaultImportSettings();
-	importData.terrainSize = 513;
-	importData.worldSize = 12000.0;
-	importData.inputScale = 600;
-	importData.minBatchSize = 33;
-	importData.maxBatchSize = 65;
+	importData.terrainSize = mapsFile["maps"][0]["terrainSize"];
+	importData.worldSize = mapsFile["maps"][0]["worldSize"];
+	importData.inputScale = mapsFile["maps"][0]["inputScale"];
+	importData.minBatchSize = mapsFile["maps"][0]["minBatchSize"];
+	importData.maxBatchSize = mapsFile["maps"][0]["maxBatchSize"];
 
-	importData.layerList.resize(3);
+	importData.layerList.resize(mapsFile["maps"][0]["layerListSize"]);
 
-	importData.layerList[0].worldSize = 30;
-	importData.layerList[0].textureNames.push_back(
-		"dirt_grayrocky_diffusespecular.dds");
-	importData.layerList[0].textureNames.push_back(
-		"dirt_grayrocky_normalheight.dds");
-	importData.layerList[1].worldSize = 100;
-	importData.layerList[1].textureNames.push_back(
-		"grass_green-01_diffusespecular.dds");
-	importData.layerList[1].textureNames.push_back(
-		"grass_green-01_normalheight.dds");
-	importData.layerList[2].worldSize = 200;
-	importData.layerList[2].textureNames.push_back(
-		"growth_weirdfungus-03_diffusespecular.dds");
-	importData.layerList[2].textureNames.push_back(
-		"growth_weirdfungus-03_normalheight.dds");
+	for (int i = 0; i < importData.layerList.size(); i++)
+	{
+		importData.layerList[i].worldSize = mapsFile["maps"][0]["layerWorldSizeList"][i];
+		importData.layerList[i].textureNames.push_back(
+			mapsFile["maps"][0]["diffuseSpecularTexturesNames"][i]);
+		importData.layerList[i].textureNames.push_back(
+			mapsFile["maps"][0]["normalHeightTexturesNames"][i]);
+	}
 }
 
 void initOgreApplication::getTerrainImage(bool flipX, bool flipY, Ogre::Image & img)
 {
-	img.load("terrain.png", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	img.load(mapsFile["maps"][0]["terrainImage"], Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	if (flipX)
 		img.flipAroundY();
