@@ -19,18 +19,19 @@ void testScenas()
 
 initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJson) : root_(root)
 {	
-	new JsonManager();
+	GestorRecursos::initGestor();
 
 	root->setRenderSystem(*(root->getAvailableRenderers().begin()));
 	root->initialise(false);
 
-	initFile = JsonManager::getSingleton().getJsonByKey(initFileJson);
-	mapsFile = JsonManager::getSingleton().getJsonByKey("Maps.json");
+	GestorRecursos::initializeResources();
+
+	initFile = GestorRecursos::jsonManager()->getJsonByKey(initFileJson);
+	mapsFile = GestorRecursos::jsonManager()->getJsonByKey("Maps.json");
 
 	sceneMgr_ = root_->createSceneManager();
-	mFSLayer = new Ogre::FileSystemLayer(initFile["WindowName"]);
+	
 
-	initializeResources();
 	initWindow();
 
 	
@@ -152,57 +153,6 @@ void initOgreApplication::initWindow()
 	mTerrainGroup->freeTemporaryResources();
 }
 
-void initOgreApplication::initializeResources()
-{
-	Ogre::ConfigFile cf;
-
-	//Este metodo ya agrega '_d' si se compila en debug
-	Ogre::String resourcesPath = mFSLayer->getConfigFilePath("resources.cfg"); 
-
-	if (Ogre::FileSystemLayer::fileExists(resourcesPath))
-	{
-		cf.load(resourcesPath);
-	}
-	else
-	{
-		throw::std::invalid_argument("Archivo resources.cfg no encontrado");
-	}
-
-	Ogre::String sec, type, arch;
-
-	// Recorre todos los grupos de recursos definidos en el archivo
-	Ogre::ConfigFile::SettingsBySection_::const_iterator seci;
-
-	for (seci = cf.getSettingsBySection().begin(); seci != cf.getSettingsBySection().end(); ++seci) 
-	{
-		sec = seci->first;
-
-		const Ogre::ConfigFile::SettingsMultiMap& settings = seci->second;
-		Ogre::ConfigFile::SettingsMultiMap::const_iterator i;
-
-		// Recorre todos los path
-		for (i = settings.begin(); i != settings.end(); i++)
-		{
-			type = i->first;
-			std::string auxPath = resourcesPath;
-			auxPath.erase(auxPath.find_last_of("\\") + 1, auxPath.size() - 1);
-			arch = auxPath + Ogre::FileSystemLayer::resolveBundlePath(i->second);
-
-			//Va agregando las ubicaciones definidas en el cfg
-			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec); 		
-		}
-	}
-
-	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-
-	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-
-	Ogre::FileInfoListPtr resources = Ogre::ResourceGroupManager::getSingleton().listResourceFileInfo("General");
-	Ogre::Log log_("ResourcesGeneral.log");
-	for (unsigned int i = 0; i < (*resources).size(); i++)
-		log_.logMessage((*resources)[i].filename);
-	
-}
 
 void initOgreApplication::defineTerrain(long x, long y)
 {
