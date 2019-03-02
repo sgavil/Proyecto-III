@@ -60,7 +60,7 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 }
 
-// t: time passed since last call in milliseconds
+ //t: time passed since last call in milliseconds
 void stepPhysics(bool interactive, double t)
 {
 	PX_UNUSED(interactive);
