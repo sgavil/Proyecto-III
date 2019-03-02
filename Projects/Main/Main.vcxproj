@@ -126,12 +126,12 @@
       <PreprocessorDefinitions>$(Platform);_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain_d.lib;OgreTerrain_d.lib;OgrePaging_d.lib;Scenes_Deb.lib;GestorRecursos_Deb.lib;Arquitectura_Deb.lib;SDL2.lib;SDL2main.lib;Winmm.lib;OpenGL32.lib;glut32.lib;PhysX3CommonDEBUG_x64.lib;PhysX3DEBUG_x64.lib;PhysX3ExtensionsDEBUG.lib;PhysX3CookingDEBUG_x64.lib;PhysX3CharacterKinematicDEBUG_x64.lib;PxTaskDEBUG_x64.lib;PxFoundationDEBUG_x64.lib;PsFastXmlDEBUG_x64.lib;PxPvdSDKDEBUG_x64.lib;UtilsDEBUG.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;OgreTerrain_d.lib;OgrePaging_d.lib;Scenes_Deb.lib;GestorRecursos_Deb.lib;Arquitectura_Deb.lib;SDL2.lib;SDL2main.lib;Winmm.lib;OpenGL32.lib;glut32.lib;PhysX3CommonDEBUG_x64.lib;PhysX3DEBUG_x64.lib;PhysX3CookingDEBUG_x64.lib;PhysX3CharacterKinematicDEBUG_x64.lib;PxTaskDEBUG_x64.lib;PxFoundationDEBUG_x64.lib;PsFastXmlDEBUG_x64.lib;PxPvdSDKDEBUG_x64.lib;UtilsDEBUG.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -167,19 +167,18 @@
       <PreprocessorDefinitions>$(Platform);NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain.lib;OgreTerrain.lib;SDL2.lib;SDL2main.lib;OgrePaging.lib;Scenes.lib;GestorRecursos.lib;Arquitectura.lib;Winmm.lib;OpenGL32.lib;glut32.lib;PhysX3Common_x64.lib;PhysX3_x64.lib;PhysX3Cooking_x64.lib;PhysX3CharacterKinematic_x64.lib;PhysX3Extensions.lib;PxTask_x64.lib;PxFoundation_x64.lib;PsFastXml_x64.lib;PxPvdSDK_x64.lib;Utils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;OgreTerrain.lib;SDL2.lib;SDL2main.lib;OgrePaging.lib;Scenes.lib;GestorRecursos.lib;Arquitectura.lib;Winmm.lib;OpenGL32.lib;glut32.lib;PhysX3Common_x64.lib;PhysX3_x64.lib;PhysX3Cooking_x64.lib;PhysX3CharacterKinematic_x64.lib;PxTask_x64.lib;PxFoundation_x64.lib;PsFastXml_x64.lib;PxPvdSDK_x64.lib;Utils.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Main\callbacks.cpp" />
     <ClCompile Include="..\..\Src\Main\Camera.cpp" />
     <ClCompile Include="..\..\Src\Main\Game.cpp" />
     <ClCompile Include="..\..\Src\Main\initOgreApplication.cpp" />
@@ -190,7 +189,6 @@
     <ClCompile Include="..\..\Src\Main\RenderUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Main\callbacks.hpp" />
     <ClInclude Include="..\..\Src\Main\Camera.h" />
     <ClInclude Include="..\..\Src\Main\checkML.h" />
     <ClInclude Include="..\..\Src\Main\Game.h" />
