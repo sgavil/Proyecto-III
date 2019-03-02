@@ -20,17 +20,6 @@ Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\OgrePaging_d.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\release\OgrePaging.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\SDL2-build\RelWithDebInfo\SDL2.dll exes
 
-rem Librerías dinámicas para physX
-Xcopy Dependencias\physX-3.4\dll\glut32.dll exes
-Xcopy Dependencias\physX-3.4\dll\nvToolsExt64_1.dll exes
-Xcopy Dependencias\physX-3.4\dll\PhysX3DEBUG_x64.dll exes
-Xcopy Dependencias\physX-3.4\dll\PhysX3_x64.dll exes
-Xcopy Dependencias\physX-3.4\dll\PxFoundationDEBUG_x64.dll exes
-Xcopy Dependencias\physX-3.4\dll\PxFoundation_x64.dll exes
-Xcopy Dependencias\physX-3.4\dll\PxPvdSDKDEBUG_x64.dll exes
-Xcopy Dependencias\physX-3.4\dll\PxPvdSDK_x64.dll exes
-
-
 Xcopy tmp\* exes
 
 del /q tmp

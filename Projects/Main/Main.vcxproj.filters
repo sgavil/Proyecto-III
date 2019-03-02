@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="physX">
-      <UniqueIdentifier>{7c142d60-f6ee-4fdd-906b-02d306077dd9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Main\Main.cpp">
@@ -24,23 +21,11 @@
     <ClCompile Include="..\..\Src\Main\initOgreApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Main\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Main\JsonManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Main\physXSystem.cpp">
+    <ClCompile Include="..\..\Src\Main\Game.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Main\Camera.cpp">
-      <Filter>physX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Main\Render.cpp">
-      <Filter>physX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Main\RenderUtils.cpp">
-      <Filter>physX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,12 +40,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Main\JsonManager.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Main\physXSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Main\Camera.h">
-      <Filter>physX</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
