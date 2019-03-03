@@ -2,7 +2,7 @@
 #include <list>
 #include <OgreResourceGroupManager.h>
 #include <OgreStringVector.h>
-#include "Arquitectura/Entity.h"
+#include <Arquitectura/Entity.h>
 #include <Scenes/SceneManager.h>
 #include <string>
 #include <SDL.h>

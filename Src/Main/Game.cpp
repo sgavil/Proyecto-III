@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "CameraComponent.h"
 
 Game::Game(std::string basicConfig)
 {
@@ -29,39 +30,26 @@ Game::~Game()
 
 void Game::start()
 {
-	PlayState* playstate = new PlayState(Ogreinit_->getSceneManager(), Ogreinit_->getWindow()); 
+	PlayState* playstate = new PlayState(); 
 	ScnMng_->addState(PLAY, playstate);
 	ScnMng_->changeState(PLAY);
+
+	//--------------------------TEST DE COMPONENTE EN UNA ESCENA--------------------------//
+	Entity* camera = new Entity();
+	CameraComponent*  camComp = new CameraComponent(Ogreinit_->getSceneManager(), Ogreinit_->getWindow());
+	camera->addComponent(camComp);
+
+	ScnMng_->currentState()->addComponent(camComp);
+	//-----------------------------------------------------------------------------------//
 	
 	update(SDL_GetTicks());
 }
 
 void Game::update(int time)
 {
-	while (true) {
+	while (true) 
+	{
 		ScnMng_->currentState()->update(time);
 		root->renderOneFrame();
-
-		SDL_Event event;
-
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type == SDL_QUIT)
-			{
-				//EXIT = true;
-			}
-			else if (event.type == SDL_KEYDOWN)
-			{
-				//El control 0 estar parado, el 1 izda, el 2 dcha, el 3 arriba y el 4 abajo
-				if (event.key.keysym.sym == SDLK_UP)
-				{
-					std::cout << "Hola! Funciono" << std::endl;
-				}
-				else if (event.key.keysym.sym == SDLK_ESCAPE)
-				{
-					
-				}
-			}
-		}
 	}
 }
