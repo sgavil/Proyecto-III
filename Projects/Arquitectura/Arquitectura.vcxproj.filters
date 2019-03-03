@@ -24,6 +24,9 @@
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\CameraComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\Entity.h">
@@ -33,6 +36,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\CameraComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Components.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

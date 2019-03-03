@@ -180,14 +180,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Main\CameraComponent.cpp" />
     <ClCompile Include="..\..\Src\Main\Game.cpp" />
     <ClCompile Include="..\..\Src\Main\initOgreApplication.cpp" />
     <ClCompile Include="..\..\Src\Main\JsonManager.cpp" />
     <ClCompile Include="..\..\Src\Main\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Main\CameraComponent.h" />
     <ClInclude Include="..\..\Src\Main\checkML.h" />
     <ClInclude Include="..\..\Src\Main\Game.h" />
     <ClInclude Include="..\..\Src\Main\initOgreApplication.h" />

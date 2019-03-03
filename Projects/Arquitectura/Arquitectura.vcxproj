@@ -83,7 +83,7 @@
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_Deb</TargetName>
-    <IncludePath>$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,7 +97,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -173,12 +173,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Arquitectura\CameraComponent.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Component.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Entity.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Arquitectura\CameraComponent.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Component.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\Components.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Entity.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h" />
   </ItemGroup>

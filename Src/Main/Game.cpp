@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "CameraComponent.h"
+#include <Arquitectura/Components.h>
 
 Game::Game(std::string basicConfig)
 {
