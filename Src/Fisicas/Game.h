@@ -7,6 +7,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_video.h>
+#include "physicSystem.h"
 
 
 
@@ -21,6 +22,7 @@ public:
 private:
 	SceneManager* ScnMng_;
 	Ogre::Root* root;
+	physicSystem* pSystem_; //FÍSICAS
 	initOgreApplication* Ogreinit_; //Información inicial de Ogre
 
 	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL
