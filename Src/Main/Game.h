@@ -8,6 +8,9 @@
 #include <SDL.h>
 #include <SDL_video.h>
 
+
+
+
 class Game {
 public:
 	Game(std::string basicConfig);

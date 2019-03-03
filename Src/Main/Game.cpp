@@ -17,6 +17,8 @@ Game::Game(std::string basicConfig)
 	SDL_CreateWindowFrom((void*)hWnd);
 
 	ScnMng_ = SceneManager::instance();
+
+
 }
 
 Game::~Game()
