@@ -1,6 +1,5 @@
 #pragma once
 #include <OgreRoot.h>
-#include "OgreRenderWindow.h"
 #include <OgreConfigFile.h>
 #include <OgreLog.h>
 #include <OgreFileSystemLayer.h>
@@ -37,12 +36,12 @@ private:
 	Ogre::SceneManager *sceneMgr_;
 
 	//Creando puerto de vista y camara
-	Ogre::Camera *camera_;
-	Ogre::Viewport *viewport_;
+	//Ogre::Camera *camera_;
+	//Ogre::Viewport *viewport_;
 
 	Ogre::Light* light_;
 	Ogre::SceneNode* lightNode_;
-	Ogre::SceneNode* camNode_;
+	//Ogre::SceneNode* camNode_;
 
 	Ogre::Entity* ogreEntity;
 	Ogre::SceneNode* ogreNode_;

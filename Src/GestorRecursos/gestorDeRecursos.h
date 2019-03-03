@@ -1,3 +1,4 @@
+#pragma once
 #include <OgreViewport.h>
 #include <OgreCamera.h>
 #include <OgreSceneNode.h>

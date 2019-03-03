@@ -29,11 +29,11 @@ Game::~Game()
 
 void Game::start()
 {
-	MainMenuState* menu = new MainMenuState(); //DEBERA LEERSE DE JSON
-	ScnMng_->addState(MAIN_MENU, menu);
+	PlayState* playstate = new PlayState(Ogreinit_->getSceneManager(), Ogreinit_->getWindow()); 
+	ScnMng_->addState(PLAY, playstate);
 	ScnMng_->changeState(PLAY);
 	
-	update(2);
+	update(SDL_GetTicks());
 }
 
 void Game::update(int time)
@@ -41,7 +41,6 @@ void Game::update(int time)
 	while (true) {
 		ScnMng_->currentState()->update(time);
 		root->renderOneFrame();
-
 
 		SDL_Event event;
 

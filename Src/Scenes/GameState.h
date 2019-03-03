@@ -1,6 +1,6 @@
 #pragma once
 #include <list>
-#include "Arquitectura\Component.h"
+#include "Arquitectura\Entity.h"
 
 
 class GameState

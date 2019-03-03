@@ -12,8 +12,6 @@ MainMenuState::~MainMenuState()
 
 void MainMenuState::start()
 {
-	PlayState* play = new PlayState();
-	SceneManager::instance()->addState(PLAY, play);
 }
 
 void MainMenuState::update(unsigned int time)
