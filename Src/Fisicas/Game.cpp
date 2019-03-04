@@ -1,4 +1,7 @@
+
+
 #include "Game.h"
+#include <Arquitectura/Components.h>
 
 Game::Game(std::string basicConfig)
 {
@@ -25,7 +28,7 @@ Game::Game(std::string basicConfig)
 }
 
 Game::~Game()
-{	
+{
 	delete ScnMng_;
 	delete root;
 	pSystem_->clenaupPhysics();
@@ -34,44 +37,32 @@ Game::~Game()
 
 void Game::start()
 {
-	MainMenuState* menu = new MainMenuState(); //DEBERA LEERSE DE JSON
-	ScnMng_->addState(MAIN_MENU, menu);
+	PlayState* playstate = new PlayState();
+	ScnMng_->addState(PLAY, playstate);
 	ScnMng_->changeState(PLAY);
 
+	//--------------------------TEST DE COMPONENTE EN UNA ESCENA--------------------------//
+	Entity* camera = new Entity();
+	CameraComponent*  camComp = new CameraComponent(Ogreinit_->getSceneManager(), Ogreinit_->getWindow());
+	camera->addComponent(camComp);
+
+	ScnMng_->currentState()->addComponent(camComp);
+	//-----------------------------------------------------------------------------------//
+
 	//FISICAS
+	Ogre::Vector3 cameraPos = Ogreinit_->getSceneManager()->getSceneNode("camNode")->getPosition();
+	Ogreinit_->getSceneManager()->getSceneNode("simbadNode")->setPosition(cameraPos - Ogre::Vector3(10, 125, 0));
 	pSystem_->initPhysics();
-	
-	update(2);
+
+	update(SDL_GetTicks());
 }
 
 void Game::update(int time)
 {
-	while (true) {
+	while (true)
+	{
 		ScnMng_->currentState()->update(time);
 		pSystem_->stepSimulation(); //FÍSICAS
 		root->renderOneFrame();
-
-
-		SDL_Event event;
-
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type == SDL_QUIT)
-			{
-				//EXIT = true;
-			}
-			else if (event.type == SDL_KEYDOWN)
-			{
-				//El control 0 estar parado, el 1 izda, el 2 dcha, el 3 arriba y el 4 abajo
-				if (event.key.keysym.sym == SDLK_UP)
-				{
-					std::cout << "Hola! Funciono" << std::endl;
-				}
-				else if (event.key.keysym.sym == SDLK_ESCAPE)
-				{
-					
-				}
-			}
-		}
 	}
 }

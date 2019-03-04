@@ -19,6 +19,10 @@ public:
 	void clenaupPhysics();
 
 
+	void addShape(btCollisionShape* shape) { shapes.push_back(shape); };
+	void addRigidBody(btRigidBody* rigid){ dynamicsWorld->addRigidBody(rigid); }
+
+
 
 	//Destructora
 	~physicSystem();

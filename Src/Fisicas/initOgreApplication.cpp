@@ -1,24 +1,9 @@
 #include "initOgreApplication.h"
 #include "Scenes/SceneManager.h"
 
-void testScenas()
-{
-	SceneManager* sceneManager = SceneManager::instance();
-
-	MainMenuState* mainMenu = new MainMenuState();
-	sceneManager->addState(MAIN_MENU, mainMenu);
-	sceneManager->changeState(PLAY);
-
-	while (true)
-	{
-		sceneManager->currentState()->update(1);
-		sceneManager->currentState()->render(1);
-		sceneManager->currentState()->handleInput();
-	}
-}
 
 initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJson) : root_(root)
-{	
+{
 	GestorRecursos::initGestor();
 
 	root->setRenderSystem(*(root->getAvailableRenderers().begin()));
@@ -30,11 +15,8 @@ initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJ
 	mapsFile = GestorRecursos::jsonManager()->getJsonByKey("Maps.json");
 
 	sceneMgr_ = root_->createSceneManager();
-	
 
 	initWindow();
-
-	
 }
 
 
@@ -42,10 +24,8 @@ initOgreApplication::~initOgreApplication()
 {
 	delete sceneMgr_;
 	delete window_;
-	delete camera_;
-	delete viewport_;
 	delete mFSLayer;
-	
+
 }
 
 Ogre::SceneManager * initOgreApplication::getSceneManager()
@@ -72,54 +52,16 @@ void initOgreApplication::initWindow()
 	light->setDiffuseColour(Ogre::ColourValue::White);
 	light->setSpecularColour(Ogre::ColourValue(0.4, 0.4, 0.4));
 
-	camNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
-
-	//AQUI ESTA EL FALLO, AL HACERLO DE LA MANERA DESCOMENTADA VA BIEN PERO SI LLAMO 
-	//AL METODO DE LA LIBRERIA ABAJO COMENTADO Y COMENTO LO QUE HACE AHORA DA ERROR 
-	//DE LINKADO
-	//____________________________________________________________
-	
-	
-	//DESCOMENTAR ESTO PARA PROBAR Y COMENTAR LO DE DEBAJO
-
-	camera_ = GestorRecursos::createCamera(sceneMgr_, "cam", camNode_, 5, 50000, true);
-	camNode_->setPosition(1683, 50, 2116);
-	//camNode_->setPosition(0, 0, 140);
-	camNode_->lookAt(Ogre::Vector3(1963, 50, 1660), Ogre::Node::TS_WORLD);
-	viewport_ = window_->addViewport(camera_);
-	viewport_->setClearEveryFrame(true);
-
-	/*camera_ = sceneMgr_->createCamera("cam");
-	camera_->setNearClipDistance(5);
-	camera_->setFarClipDistance(50000);
-	camera_->setAutoAspectRatio(true);
-	camNode_->attachObject(camera_);
-	camNode_->setPosition(0, 0, 300);
-	camNode_->rotate(Ogre::Vector3::NEGATIVE_UNIT_X, Ogre::Degree(20));
-	viewport_ = window_->addViewport(camera_);
-	viewport_->setClearEveryFrame(true);
-	//______________________________________________________________*/
-
 	plane_.d = 1000;
 	plane_.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
 	sceneMgr_->setSkyPlane(
 		true, plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
 
-	/*Ogre::MeshManager::getSingleton().createPlane("Plano", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), 1000, 500,
-		100, 50, true, 1, 1.0, 1.0, Ogre::Vector3::NEGATIVE_UNIT_Z);
-	suelo_ = sceneMgr_->createEntity("Plano");
-	suelo_->setMaterialName("Tierra");
-	sueloNodo_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
-	sueloNodo_->attachObject(suelo_);
-	sueloNodo_->setPosition(0, -60, 0);*/
-
-	ogreEntity = sceneMgr_->createEntity("ogrehead.mesh");
-	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
+	ogreEntity = sceneMgr_->createEntity("Simbad", "ogrehead.mesh");
+	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode("simbadNode");
 	ogreNode_->attachObject(ogreEntity);
-	ogreNode_->setPosition(0, -30, 0);
-
-
-	//testScenas();
+	ogreNode_->setPosition(1683, 1990, 2116);
+	ogreNode_->showBoundingBox(true);
 
 	//Test del terreno
 	mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();
@@ -157,10 +99,10 @@ void initOgreApplication::initWindow()
 void initOgreApplication::defineTerrain(long x, long y)
 {
 	Ogre::String filename = mTerrainGroup->generateFilename(x, y);
-	
+
 	bool exists = Ogre::ResourceGroupManager::getSingleton().resourceExists(
-			mTerrainGroup->getResourceGroup(),
-			filename);
+		mTerrainGroup->getResourceGroup(),
+		filename);
 
 	if (exists)
 		mTerrainGroup->defineTerrain(x, y);

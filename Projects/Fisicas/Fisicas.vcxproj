@@ -23,14 +23,12 @@
     <ClInclude Include="..\..\Src\Fisicas\Game.h" />
     <ClInclude Include="..\..\Src\Fisicas\initOgreApplication.h" />
     <ClInclude Include="..\..\Src\Fisicas\JsonManager.h" />
-    <ClInclude Include="..\..\Src\Fisicas\physicSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Fisicas\Game.cpp" />
     <ClCompile Include="..\..\Src\Fisicas\initOgreApplication.cpp" />
     <ClCompile Include="..\..\Src\Fisicas\JsonManager.cpp" />
     <ClCompile Include="..\..\Src\Fisicas\Main.cpp" />
-    <ClCompile Include="..\..\Src\Fisicas\physicSystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
