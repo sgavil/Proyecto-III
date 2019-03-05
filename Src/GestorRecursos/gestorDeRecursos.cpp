@@ -22,6 +22,12 @@ Ogre::Entity * GestorRecursos::createPlane(Ogre::SceneManager * scnMgn, std::str
 	return plane;
 }
 
+TerrainManager * GestorRecursos::createTerrain(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
+{
+	TerrainManager* terrainManager = new TerrainManager(scnMgn, light, terrainFile);
+	return terrainManager;
+}
+
 void GestorRecursos::initGestor()
 {
 	new JsonManager();
