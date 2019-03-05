@@ -18,4 +18,5 @@ public:
 	virtual void handleInput();
 
 	void addComponent(Component* c) { scene.push_back(c); }
+	std::vector<Component*> getScene() { return scene; };
 };

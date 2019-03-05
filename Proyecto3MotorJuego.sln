@@ -17,6 +17,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Arquitectura", "Projects\Arquitectura\Arquitectura.vcxproj", "{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fisicas", "Projects\Fisicas\Fisicas.vcxproj", "{1AEEC96F-FE59-4B73-B4FB-4DAE5CD1B436}"
+	ProjectSection(ProjectDependencies) = postProject
+		{50931119-C20A-4B0F-83FF-262E9EC4B675} = {50931119-C20A-4B0F-83FF-262E9EC4B675}
+		{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99} = {9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}
+		{C5FA6BBF-0282-48C4-9BE9-220106066169} = {C5FA6BBF-0282-48C4-9BE9-220106066169}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

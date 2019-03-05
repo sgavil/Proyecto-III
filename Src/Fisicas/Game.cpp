@@ -54,6 +54,9 @@ void Game::start()
 	Ogreinit_->getSceneManager()->getSceneNode("simbadNode")->setPosition(cameraPos - Ogre::Vector3(10, 125, 0));
 	pSystem_->initPhysics();
 
+	RigidbodyComponent* rigidComp = new RigidbodyComponent(Ogreinit_->getSceneManager()->getSceneNode("simbadNode"));
+	ScnMng_->currentState()->addComponent(rigidComp);
+
 	update(SDL_GetTicks());
 }
 

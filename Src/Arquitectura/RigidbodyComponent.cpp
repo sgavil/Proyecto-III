@@ -2,21 +2,28 @@
 
 
 
-RigidbodyComponent::RigidbodyComponent()
+RigidbodyComponent::RigidbodyComponent(Ogre::SceneNode* node)
 {
-	//TODO: Método createRigidBody
+	name_ = Name::RigidComp;
 	//CAJA
 	btBoxShape* boxShape = new btBoxShape(btVector3(10, 10, 10));
 	physicSystem::instance()->addShape(boxShape);
 
+	Ogre::Vector3 pos = node->getPosition();
 	btTransform startTransform;
 	startTransform.setIdentity();
-	startTransform.setOrigin(btVector3(0, 30, 0));
+	startTransform.setOrigin(btVector3(pos.x, pos.y, pos.z));
 
 
-	btRigidBody* box = new btRigidBody(1, 0, boxShape, btVector3(0, 0, 0));
-	box->setWorldTransform(startTransform);
-	physicSystem::instance()->addRigidBody(box);
+
+	btDefaultMotionState *motionState = new btDefaultMotionState(startTransform);
+	rigid = new btRigidBody(1, motionState, boxShape, btVector3(0, 0, 0));
+	//box->setWorldTransform(startTransform);
+	rigid->setRestitution(1);
+	rigid->setUserPointer(node);
+
+
+	physicSystem::instance()->addRigidBody(rigid);
 }
 
 
@@ -26,24 +33,13 @@ RigidbodyComponent::~RigidbodyComponent()
 
 void RigidbodyComponent::update(unsigned int time)
 {
-	SDL_Event event;
-	while (SDL_PollEvent(&event))
+	if (hasNode())
 	{
-		if (event.type == SDL_QUIT)
-		{
-			//EXIT = true;
-		}
-		else if (event.type == SDL_KEYDOWN)
-		{
-			//El control 0 estar parado, el 1 izda, el 2 dcha, el 3 arriba y el 4 abajo
-			if (event.key.keysym.sym == SDLK_DOWN)
-			{
-				std::cout << "Hola! Soy Rigidbody" << std::endl;
-			}
-			else if (event.key.keysym.sym == SDLK_ESCAPE)
-			{
-
-			}
-		}
+		btTransform trans;
+		getTransform(&trans);
+		btQuaternion orientation = trans.getRotation();
+		Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(getNode());
+		sceneNode->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
+		sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
 	}
 }

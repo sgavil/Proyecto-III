@@ -54,18 +54,18 @@ void physicSystem::initPhysics()
 	dynamicsWorld->addRigidBody(ground);
 
 
-	//CAJA
-	btBoxShape* boxShape = new btBoxShape(btVector3(10, 10, 10));
-	shapes.push_back(boxShape);
+	////CAJA
+	//btBoxShape* boxShape = new btBoxShape(btVector3(10, 10, 10));
+	//shapes.push_back(boxShape);
 
-	btTransform startTransform;
-	startTransform.setIdentity();
-	startTransform.setOrigin(btVector3(0, 30, 0));
+	//btTransform startTransform;
+	//startTransform.setIdentity();
+	//startTransform.setOrigin(btVector3(0, 30, 0));
 
 
-	btRigidBody* box = new btRigidBody(1, 0, boxShape, btVector3(0, 0, 0));
-	box->setWorldTransform(startTransform);
-	dynamicsWorld->addRigidBody(box);
+	//btRigidBody* box = new btRigidBody(1, 0, boxShape, btVector3(0, 0, 0));
+	//box->setWorldTransform(startTransform);
+	//dynamicsWorld->addRigidBody(box);
 }
 
 void physicSystem::stepSimulation()

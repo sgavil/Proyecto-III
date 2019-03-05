@@ -4,6 +4,7 @@
 
 CameraComponent::CameraComponent(Ogre::SceneManager* scnMgn, Ogre::RenderWindow* wind)
 {
+	name_ = Name::CameraComp;
 	camNode_ = scnMgn->getRootSceneNode()->createChildSceneNode("camNode");
 	camera_ = GestorRecursos::createCamera(scnMgn, "cam", camNode_, 5, 50000, true);
 	camNode_->setPosition(1683, 2000, 2116);
