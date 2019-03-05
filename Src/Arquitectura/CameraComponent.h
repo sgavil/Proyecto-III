@@ -3,7 +3,6 @@
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreEntity.h>
 #include <OgreRenderWindow.h>
-#include <SDL.h>
 #include <SDL_video.h>
 #include <iostream>
 
@@ -15,7 +14,7 @@ public:
 
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);
-	virtual void handleEvent() {};
+	virtual void handleEvent(SDL_Event* e);
 	virtual void receive(Message* msg) {};
 
 	Ogre::SceneNode* camNode_;

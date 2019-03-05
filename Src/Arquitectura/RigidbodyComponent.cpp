@@ -50,3 +50,7 @@ void RigidbodyComponent::update(unsigned int time)
 		sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
 	}
 }
+
+void RigidbodyComponent::handleEvent(SDL_Event* e)
+{
+}

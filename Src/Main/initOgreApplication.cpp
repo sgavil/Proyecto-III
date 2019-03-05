@@ -57,10 +57,10 @@ void initOgreApplication::initWindow()
 	sceneMgr_->setSkyPlane(
 		true, plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
 
-	ogreEntity = sceneMgr_->createEntity("ogrehead.mesh");
-	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode();
+	ogreEntity = sceneMgr_->createEntity("Simbad", "ogrehead.mesh");
+	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode("simbadNode");
 	ogreNode_->attachObject(ogreEntity);
-	ogreNode_->setPosition(0, -30, 0);
+	ogreNode_->setPosition(1683, 1990, 2116);
 
 	//Test del terreno
 	mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();

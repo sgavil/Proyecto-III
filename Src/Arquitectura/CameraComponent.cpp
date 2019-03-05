@@ -20,24 +20,21 @@ CameraComponent::~CameraComponent()
 
 void CameraComponent::update(unsigned int time)
 {
-	SDL_Event event;
-	while (SDL_PollEvent(&event))
-	{
-		if (event.type == SDL_QUIT)
-		{
-			//EXIT = true;
-		}
-		else if (event.type == SDL_KEYDOWN)
-		{
-			//El control 0 estar parado, el 1 izda, el 2 dcha, el 3 arriba y el 4 abajo
-			if (event.key.keysym.sym == SDLK_UP)
-			{
-				std::cout << "Hola! Funciono Desde un componente" << std::endl;
-			}
-			else if (event.key.keysym.sym == SDLK_ESCAPE)
-			{
+	
+}
 
-			}
+void CameraComponent::handleEvent(SDL_Event* e)
+{
+	 if (e->type == SDL_KEYDOWN)
+	{
+		//El control 0 estar parado, el 1 izda, el 2 dcha, el 3 arriba y el 4 abajo
+		if (e->key.keysym.sym == SDLK_UP)
+		{
+			std::cout << "Hola! Funciono Desde un componente" << std::endl;
+		}
+		else if (e->key.keysym.sym == SDLK_ESCAPE)
+		{
+
 		}
 	}
 }
