@@ -50,12 +50,19 @@ void Game::start()
 	//-----------------------------------------------------------------------------------//
 
 	//FISICAS
-	Ogre::Vector3 cameraPos = Ogreinit_->getSceneManager()->getSceneNode("camNode")->getPosition();
-	Ogreinit_->getSceneManager()->getSceneNode("simbadNode")->setPosition(cameraPos - Ogre::Vector3(10, 125, 0));
 	pSystem_->initPhysics();
 
-	RigidbodyComponent* rigidComp = new RigidbodyComponent(Ogreinit_->getSceneManager()->getSceneNode("simbadNode"));
-	ScnMng_->currentState()->addComponent(rigidComp);
+	Ogre::SceneNode* simbadNode = Ogreinit_->getSceneManager()->getSceneNode("simbadNode");
+	Ogre::Vector3 cameraPos = Ogreinit_->getSceneManager()->getSceneNode("camNode")->getPosition();
+	simbadNode->setPosition(cameraPos - Ogre::Vector3(10, 125, 0));
+	
+	//Simbad
+	RigidbodyComponent* ogreRigidComp = new RigidbodyComponent(simbadNode, Shape::BoxShape, 1, 10);
+	ScnMng_->currentState()->addComponent(ogreRigidComp);
+
+	//Plano invisible
+	RigidbodyComponent* floorRigidComp = new RigidbodyComponent(Ogre::Vector3(1683, 1000, 2116), Shape::PlaneShape, 100, 0);
+	ScnMng_->currentState()->addComponent(floorRigidComp);
 
 	update(SDL_GetTicks());
 }

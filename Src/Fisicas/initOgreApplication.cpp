@@ -61,7 +61,7 @@ void initOgreApplication::initWindow()
 	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode("simbadNode");
 	ogreNode_->attachObject(ogreEntity);
 	ogreNode_->setPosition(1683, 1990, 2116);
-	ogreNode_->showBoundingBox(true);
+	//ogreNode_->showBoundingBox(true);
 
 	//Test del terreno
 	mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();

@@ -3,14 +3,17 @@
 #include <SDL.h>
 #include <iostream>
 #include "physicSystem.h"
-#include <OgreRoot.h>
 #include <OgreSceneNode.h>
 
 
 class RigidbodyComponent : public Component
 {
 public:
-	RigidbodyComponent(Ogre::SceneNode* node);
+	//Especifica el nodo (masa = 0 significa que el rigidbody es estático)
+	RigidbodyComponent(Ogre::SceneNode* node, Shape shape, btScalar dimensions, btScalar mass = 1);
+	//Rigidbody invisible (se especifica la posición)
+	RigidbodyComponent(Ogre::Vector3 position, Shape shape, btScalar dimensions, btScalar mass = 1);
+
 	~RigidbodyComponent();
 
 	virtual void render(unsigned int time) {};
@@ -18,12 +21,12 @@ public:
 	virtual void handleEvent() {};
 	virtual void receive(Message* msg) {};
 
-	virtual bool hasNode() { return (rigid->getUserPointer() != nullptr); };
-	virtual void* getNode() { return rigid->getUserPointer(); };
-	virtual void getTransform(btTransform* trans) { return rigid->getMotionState()->getWorldTransform(*trans); };
+	virtual bool hasNode() { return (rigid_->getUserPointer() != nullptr); };
+	virtual void* getNode() { return rigid_->getUserPointer(); };
+	virtual void getTransform(btTransform* trans) { return rigid_->getMotionState()->getWorldTransform(*trans); };
 
 protected:
-	btRigidBody* rigid;
+	btRigidBody* rigid_;
 
 };
 

@@ -1,6 +1,9 @@
 #include "physicSystem.h"
 
 physicSystem* physicSystem::instance_ = nullptr;
+btDiscreteDynamicsWorld * physicSystem::dynamicsWorld = nullptr;
+
+std::vector<btCollisionShape*> physicSystem::shapes = std::vector<btCollisionShape*>();
 
 
 physicSystem::physicSystem()
@@ -10,6 +13,7 @@ physicSystem::physicSystem()
 
 physicSystem * physicSystem::instance()
 {
+	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_ == nullptr)
 		instance_ = new physicSystem();
 	return instance_;
@@ -34,59 +38,27 @@ void physicSystem::initPhysics()
 
 	//Gravedad
 	dynamicsWorld->setGravity(btVector3(0, -10, 0));
-
-
-
-	//EJEMPLO: TENEMOS UN PLANO RECTANGULAR Y UN CUBO QUE CAERÁ SOBRE ÉL. EL PLANO ES ESTÁTICO(masa = 0)
-	//SUELO
-	//Creamos una forma y la añadimos al vector
-	btBoxShape* groundShape = new btBoxShape(btVector3(50, 1, 50));
-	shapes.push_back(groundShape);
-
-	btTransform groundTransform;
-	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0, 0, 0));
-
-	//Creamos el rigidbody a partir de la forma y lo añadimos al mundo en la posición (0,0,0)
-	//masa, 
-	btRigidBody* ground = new btRigidBody(0,0, groundShape, btVector3(0,0,0));
-	//body->setWorldTransform(groundTransform);
-	dynamicsWorld->addRigidBody(ground);
-
-
-	////CAJA
-	//btBoxShape* boxShape = new btBoxShape(btVector3(10, 10, 10));
-	//shapes.push_back(boxShape);
-
-	//btTransform startTransform;
-	//startTransform.setIdentity();
-	//startTransform.setOrigin(btVector3(0, 30, 0));
-
-
-	//btRigidBody* box = new btRigidBody(1, 0, boxShape, btVector3(0, 0, 0));
-	//box->setWorldTransform(startTransform);
-	//dynamicsWorld->addRigidBody(box);
 }
 
 void physicSystem::stepSimulation()
 {
+	//Actualiza la física
 	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
 
-	// print positions of all objects
+	//Información de Debug sobre los Rigidbodys
 	for (int j = dynamicsWorld->getNumCollisionObjects() - 1; j >= 0; j--)
 	{
 		btCollisionObject * obj = dynamicsWorld->getCollisionObjectArray()[j];
 		btRigidBody * body = btRigidBody::upcast(obj);
 		btTransform trans;
+		//Está en movimiento
 		if (body && body->getMotionState())
-		{
 			body->getMotionState()->getWorldTransform(trans);
-
-		}
+		//Está parado (cogemos la posición inicial)
 		else
-		{
 			trans = obj->getWorldTransform();
-		}
+
+		//Informa de la posición
 		printf(" world   pos  object  %d = %f ,%f ,%f\n", j, float(trans.getOrigin().getX()), float(
 			trans.getOrigin().getY()), float(trans.getOrigin().getZ()));
 	}
@@ -126,6 +98,57 @@ void physicSystem::clenaupPhysics()
 
 	// delete dispatcher
 	delete dispatcher;
+}
+
+btRigidBody * physicSystem::createRigidBody( Shape forma, btVector3 position, btScalar dimensions, btScalar mass)
+{
+	
+	btCollisionShape* shape;
+	switch (forma)
+	{
+	case Shape::EmptyShape:
+		shape = new btEmptyShape();
+		break;
+	case Shape::BoxShape:
+		shape = new btBoxShape(btVector3(dimensions, dimensions, dimensions));
+		break;
+	case Shape::SphereShape:
+		shape = new btSphereShape(dimensions);
+		break;
+	case Shape::CapsuleShape:
+		shape = new btCapsuleShape(dimensions, dimensions);
+		break;
+	case Shape::PlaneShape:
+		shape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
+		break;
+	case Shape::CylinderShape:
+		shape = new btCylinderShape(btVector3(dimensions, dimensions, dimensions));
+		break;
+	case Shape::ConeShape:
+		shape = new btConeShape(dimensions, dimensions);
+		break;
+	default:
+		break;
+	}
+	//Añadimos la forma al vector
+	shapes.push_back(shape);
+
+	//Posición del rigidbody
+	btTransform startTransform;
+	startTransform.setIdentity();
+	startTransform.setOrigin(position);
+
+	//Estado de movimiento empezando en la posición inicial del nodo
+	btDefaultMotionState *motionState = new btDefaultMotionState(startTransform);
+	//btVector3 localInertia(0, 0, 0);
+	
+	//Creamos el Rigidbody y lo  añadimos al mundo
+	btRigidBody* rigid = new btRigidBody(mass, motionState, shape); //, localInertia)
+	rigid->setRestitution(1);
+	dynamicsWorld->addRigidBody(rigid);
+
+	//Lo devolvemos
+	return rigid;
 }
 
 

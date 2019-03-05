@@ -2,28 +2,29 @@
 
 
 
-RigidbodyComponent::RigidbodyComponent(Ogre::SceneNode* node)
+RigidbodyComponent::RigidbodyComponent(Ogre::SceneNode* node, Shape shape, btScalar dimensions, btScalar mass)
 {
+	//TODO: que el tamaño del COllider se ajuste al tamaño de la malla de la entidad que tiene el nodo
+	//Nombre del componente
 	name_ = Name::RigidComp;
-	//CAJA
-	btBoxShape* boxShape = new btBoxShape(btVector3(10, 10, 10));
-	physicSystem::instance()->addShape(boxShape);
 
-	Ogre::Vector3 pos = node->getPosition();
-	btTransform startTransform;
-	startTransform.setIdentity();
-	startTransform.setOrigin(btVector3(pos.x, pos.y, pos.z));
+	//Creamos el Rigidbody
+	btVector3 pos = btVector3 ( node->getPosition().x, node->getPosition().y, node->getPosition().z );
+	rigid_ = physicSystem::createRigidBody(shape, pos, dimensions, mass);
 
+	//Lo asociamos al nodo en cuestión
+	if(node != nullptr)
+		rigid_->setUserPointer(node);
+}
 
+RigidbodyComponent::RigidbodyComponent(Ogre::Vector3 position, Shape shape, btScalar dimensions, btScalar mass)
+{
+	//Nombre del componente
+	name_ = Name::RigidComp;
 
-	btDefaultMotionState *motionState = new btDefaultMotionState(startTransform);
-	rigid = new btRigidBody(1, motionState, boxShape, btVector3(0, 0, 0));
-	//box->setWorldTransform(startTransform);
-	rigid->setRestitution(1);
-	rigid->setUserPointer(node);
-
-
-	physicSystem::instance()->addRigidBody(rigid);
+	//Creamos el Rigidbody
+	btVector3 pos = btVector3(position.x, position.y, position.z);
+	rigid_ = physicSystem::createRigidBody(shape, pos, dimensions, mass);
 }
 
 
@@ -33,12 +34,18 @@ RigidbodyComponent::~RigidbodyComponent()
 
 void RigidbodyComponent::update(unsigned int time)
 {
-	if (hasNode())
+	//Si está asociado a un nodo
+	if (rigid_->getUserPointer() != nullptr)
 	{
+		//Obtenemos su posición y orientación
 		btTransform trans;
-		getTransform(&trans);
+		rigid_->getMotionState()->getWorldTransform(trans);
 		btQuaternion orientation = trans.getRotation();
-		Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(getNode());
+
+		//Pillamos el nodo de Ogre
+		Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(rigid_->getUserPointer());
+
+		//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
 		sceneNode->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
 		sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
 	}
