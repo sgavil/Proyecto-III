@@ -1,66 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Componentes">
+      <UniqueIdentifier>{c861ca7e-e8cd-42df-acd7-4c97df049dbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{443d6813-87ab-49a4-b767-efdc23548ff6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Arquitectura\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\Src\Arquitectura\TerrainComponent.cpp">
+      <Filter>Componentes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\CameraComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Componentes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\RigidbodyComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\Component.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\Entity.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp">
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\TerrainComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Arquitectura\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\Messages.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\CameraComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\Components.h">
-      <Filter>Header Files</Filter>
+      <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\RigidbodyComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\TerrainComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Component.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Entity.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Messages.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Components.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
