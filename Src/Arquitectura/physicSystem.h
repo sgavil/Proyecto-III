@@ -17,7 +17,7 @@ public:
 	void initPhysics();
 
 	//Actualiza el sistema
-	void stepSimulation();
+	void stepSimulation(unsigned int time);
 
 	//Limpia la basura
 	void clenaupPhysics();

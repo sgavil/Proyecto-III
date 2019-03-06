@@ -51,6 +51,16 @@ void RigidbodyComponent::update(unsigned int time)
 	}
 }
 
-void RigidbodyComponent::handleEvent(SDL_Event* e)
+bool RigidbodyComponent::handleEvent(SDL_Event* e, unsigned int time)
 {
+	if (e->type == SDL_KEYDOWN)
+	{
+		//El control 0 estar parado, el 1 izda, el 2 dcha, el 3 arriba y el 4 abajo
+		if (e->key.keysym.sym == SDLK_SPACE)
+		{
+			rigid_->applyCentralImpulse(btVector3(500, 0, 0));
+			return true;
+		}
+	}
+	return false;
 }

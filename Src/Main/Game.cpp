@@ -68,12 +68,19 @@ void Game::start()
 
 void Game::run()
 {
-	int time = SDL_GetTicks();
+	//Tiempo entre frames y tiempo total transcurrido
+	unsigned int deltaTime, actualTime;
+	actualTime = deltaTime = SDL_GetTicks();
+
 	while (!exit)
 	{
-		ScnMng_->currentState()->update(time);
-		ScnMng_->currentState()->handleInput();
-		physicSystem::instance()->stepSimulation(); //FÍSICA
-		root->renderOneFrame();
+		//Llama al update, handleInput y render de la escena activa
+		ScnMng_->currentState()->update(deltaTime);
+		ScnMng_->currentState()->handleInput(deltaTime);
+		root->renderOneFrame((Ogre::Real)deltaTime / 1000);
+
+		//Actualiza el deltaTime
+		deltaTime = SDL_GetTicks() - actualTime;
+		actualTime = SDL_GetTicks();
 	}
 }

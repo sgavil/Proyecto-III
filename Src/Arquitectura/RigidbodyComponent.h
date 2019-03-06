@@ -18,7 +18,7 @@ public:
 
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);
-	virtual void handleEvent(SDL_Event* e);
+	virtual bool handleEvent(SDL_Event* e, unsigned int time);
 	virtual void receive(Message* msg) {};
 
 	virtual bool hasNode() { return (rigid_->getUserPointer() != nullptr); };

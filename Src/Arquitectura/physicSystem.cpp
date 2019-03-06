@@ -40,10 +40,10 @@ void physicSystem::initPhysics()
 	dynamicsWorld->setGravity(btVector3(0, -10, 0));
 }
 
-void physicSystem::stepSimulation()
+void physicSystem::stepSimulation(unsigned int time)
 {
 	//Actualiza la física
-	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
+	dynamicsWorld->stepSimulation((float)time / 1000);
 
 	//Información de Debug sobre los Rigidbodys
 	for (int j = dynamicsWorld->getNumCollisionObjects() - 1; j >= 0; j--)

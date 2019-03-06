@@ -1,4 +1,3 @@
-#include "Arquitectura/physicSystem.h"
 #include "initOgreApplication.h"
 #include <list>
 #include <OgreResourceGroupManager.h>

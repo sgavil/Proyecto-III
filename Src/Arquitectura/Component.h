@@ -27,7 +27,7 @@ public:
 	//Métodos principales (renderizado, lógica y eventos)
 	virtual void render(unsigned int time) = 0;
 	virtual void update(unsigned int time) = 0;
-	virtual void handleEvent(SDL_Event* e) = 0;
+	virtual bool handleEvent(SDL_Event* e, unsigned int time) = 0;
 
 	//Getters y setters del flag de actividad
 	bool isActive() { return active_; };

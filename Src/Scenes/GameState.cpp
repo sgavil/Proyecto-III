@@ -1,5 +1,5 @@
 #include "GameState.h"
-
+#include <iostream>
 
 
 GameState::GameState()
@@ -19,6 +19,8 @@ GameState::~GameState()
 
 void GameState::update(unsigned int time)
 {
+	physicSystem::instance()->stepSimulation(time); //FÍSICA
+
 	for (Component* c : scene)
 		if(c->isActive())
 			c->update(time); 
@@ -31,8 +33,9 @@ void GameState::render(unsigned int time)
 			c->render(time);
 }
 
-void GameState::handleInput()
+void GameState::handleInput(unsigned int time)
 {
+	bool handled = false;
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
@@ -40,12 +43,16 @@ void GameState::handleInput()
 		{
 			//EXIT = true;
 		}
+		//LLama al handleInput de todos los componentes 
 		else 
 		{
-			for (Component* c : scene)
-				if (c->isActive())
-					c->handleEvent(&event);
+			std::vector<Component*>::iterator it = scene.begin();
+			while (it != scene.end() && !handled)
+			{
+				if ((*it)->isActive())
+					handled = (*it)->handleEvent(&event, time);
+				it++;
+			}
 		}
 	}
-	
 }

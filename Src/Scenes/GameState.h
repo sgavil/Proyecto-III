@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include <Arquitectura/Component.h>
+#include <Arquitectura/physicSystem.h>
 
 
 class GameState
@@ -15,7 +16,7 @@ public:
 
 	virtual void update(unsigned int time);
 	virtual void render(unsigned int time);
-	virtual void handleInput();
+	virtual void handleInput(unsigned int time);
 
 	void addComponent(Component* c) { scene.push_back(c); }
 	std::vector<Component*> getScene() { return scene; };
