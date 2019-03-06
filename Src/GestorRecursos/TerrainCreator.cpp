@@ -117,6 +117,7 @@ void TerrainCreator::configureTerrainDefaults(Ogre::Light * light)
 	importData.inputScale = terrainJson_["maps"][0]["inputScale"];
 	importData.minBatchSize = terrainJson_["maps"][0]["minBatchSize"];
 	importData.maxBatchSize = terrainJson_["maps"][0]["maxBatchSize"];
+	importData.pos = Ogre::Vector3(0, 0, 0);
 
 	importData.layerList.resize(terrainJson_["maps"][0]["layerListSize"]);
 

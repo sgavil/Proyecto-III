@@ -8,7 +8,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_video.h>
-#include "checkML.h"
+//#include "checkML.h"
 
 
 class Game {

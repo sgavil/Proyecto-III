@@ -48,7 +48,7 @@ void initOgreApplication::initWindow()
 	light_->setType(Ogre::Light::LT_DIRECTIONAL);
 	light_->setDirection(lightdir);
 	light_->setDiffuseColour(Ogre::ColourValue::White);
-	light_->setSpecularColour(Ogre::ColourValue(0.4, 0.4, 0.4));
+	light_->setSpecularColour(Ogre::ColourValue(240 / 255, 240 / 255, 188 / 255));
 
 	plane_.d = 1000;
 	plane_.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;

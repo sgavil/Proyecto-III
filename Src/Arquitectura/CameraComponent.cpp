@@ -7,8 +7,8 @@ CameraComponent::CameraComponent(Ogre::SceneManager* scnMgn, Ogre::RenderWindow*
 	name_ = Name::CameraComp;
 	camNode_ = scnMgn->getRootSceneNode()->createChildSceneNode("camNode");
 	camera_ = GestorRecursos::createCamera(scnMgn, "cam", camNode_, 5, 50000, true);
-	camNode_->setPosition(1683, 2000, 2116);
-	camNode_->lookAt(Ogre::Vector3(1963, 50, 1660), Ogre::Node::TS_WORLD);
+	camNode_->setPosition(0, 2000, 1500);
+	camNode_->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 	viewport_ = wind->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
 }

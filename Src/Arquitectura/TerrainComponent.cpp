@@ -8,4 +8,5 @@ TerrainComponent::TerrainComponent(Ogre::SceneManager * scnMgn, Ogre::Light * li
 
 TerrainComponent::~TerrainComponent()
 {
+	delete terrainCreator_;
 }
