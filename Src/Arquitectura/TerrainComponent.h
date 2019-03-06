@@ -10,7 +10,7 @@ public:
 
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time) {};
-	virtual void handleEvent(SDL_Event* e) {};
+	virtual bool handleEvent(SDL_Event* e, unsigned int time) { return false; }; //En realidad no haría falta ponerlo
 	virtual void receive(Message* msg) {};
 
 	TerrainCreator* terrainCreator_;
