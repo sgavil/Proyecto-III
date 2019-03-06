@@ -33,6 +33,9 @@
     <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\TerrainComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\Entity.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\TerrainComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

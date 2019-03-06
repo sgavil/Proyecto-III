@@ -14,6 +14,7 @@
 #include <OgreFileSystemLayer.h>
 #include <OgreConfigFile.h>
 #include <OgreTextureManager.h>
+#include "TerrainCreator.h"
 
 namespace GestorRecursos {
 
@@ -26,6 +27,8 @@ namespace GestorRecursos {
 							Ogre::SceneNode* FatherNode, std::string groupName = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	void initGestor();
+	
+	TerrainCreator* createTerrain(Ogre::SceneManager* scnMgn, Ogre::Light* light, std::string terrainFile);
 
 	/*Metodo encargado de leer desde el resources.cfg o resources_d.cfg las rutas en las cuales queremos
 	tener recursos. Despues de leerlas las inicializa en los respectivos grupos que definamos en los .cfg*/

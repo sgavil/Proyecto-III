@@ -57,7 +57,12 @@ void Game::start()
 	//Plano invisible
 	RigidbodyComponent* floorRigidComp = new RigidbodyComponent(Ogre::Vector3(1683, 1000, 2116), Shape::PlaneShape, 100, 0);
 	ScnMng_->currentState()->addComponent(floorRigidComp);
-	
+
+	//TERRENO
+	Entity* terrain = new Entity();
+	TerrainComponent* terrainComp = new TerrainComponent(Ogreinit_->getSceneManager(), Ogreinit_->getLight(), "Maps.json");
+	terrain->addComponent(terrainComp);
+
 	run();
 }
 

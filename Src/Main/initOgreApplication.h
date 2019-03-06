@@ -14,8 +14,6 @@
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
-#include <OgreTerrain.h>
-#include <OgreTerrainGroup.h>
 
 
 class initOgreApplication
@@ -28,6 +26,7 @@ public:
 	Ogre::SceneManager * getSceneManager();
 	//Metodos getter
 	Ogre::RenderWindow* getWindow() { return window_; };
+	Ogre::Light* getLight() { return light_; };
 
 private:
 
@@ -57,18 +56,4 @@ private:
 	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaño WINDOW_HEIGHT/WIDHT ademas de crear
 	una camara y asociarle un viewport a esta*/
 	void initWindow();
-
-
-	//Métodos para la prueba del terreno
-	json mapsFile;
-	void defineTerrain(long x, long y);
-	void initBlendMaps(Ogre::Terrain* terrain);
-	void configureTerrainDefaults(Ogre::Light* light);
-	void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img);
-
-
-
-	bool mTerrainsImported;
-	Ogre::TerrainGroup* mTerrainGroup;
-	Ogre::TerrainGlobalOptions* mTerrainGlobals;
 };

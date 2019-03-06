@@ -23,7 +23,7 @@
     <ProjectGuid>{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -83,7 +83,7 @@
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_Deb</TargetName>
-    <IncludePath>$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Debug;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,7 +97,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Release;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -179,6 +179,7 @@
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\RigidbodyComponent.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\TerrainComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\CameraComponent.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h" />
     <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h" />
     <ClInclude Include="..\..\Src\Arquitectura\RigidbodyComponent.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\TerrainComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
