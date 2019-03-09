@@ -41,9 +41,6 @@ private:
 	Ogre::SceneNode* lightNode_;
 	//Ogre::SceneNode* camNode_;
 
-	Ogre::Entity* ogreEntity;
-	Ogre::SceneNode* ogreNode_;
-
 	Ogre::Plane plane_;
 	Ogre::Entity* suelo_;
 	Ogre::SceneNode* sueloNodo_;

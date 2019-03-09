@@ -54,9 +54,4 @@ void initOgreApplication::initWindow()
 	plane_.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
 	sceneMgr_->setSkyPlane(
 		true, plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
-
-	ogreEntity = sceneMgr_->createEntity("Simbad", "ogrehead.mesh");
-	ogreNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode("simbadNode");
-	ogreNode_->attachObject(ogreEntity);
-	ogreNode_->setPosition(1683, 1990, 2116);
 }

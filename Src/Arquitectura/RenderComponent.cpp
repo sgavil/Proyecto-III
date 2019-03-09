@@ -2,12 +2,15 @@
 
 
 
-RenderComponent::RenderComponent(Ogre::SceneNode* node): node_(node)
+RenderComponent::RenderComponent(Ogre::SceneManager* manager, std::string meshName, Ogre::Vector3 position)
 {
-	//TODO: que el tamaño del COllider se ajuste al tamaño de la malla de la entidad que tiene el nodo
 	//Nombre del componente
 	name_ = Name::RenderComp;
 
+	Ogre::Entity* ogreEntity = manager->createEntity(meshName);
+	node_ = manager->getRootSceneNode()->createChildSceneNode();
+	node_->attachObject(ogreEntity);
+	node_->setPosition(position);
 }
 
 

@@ -37,6 +37,7 @@ public:
 	void setEntity(Entity* ent) { entity_ = ent; };
 	Entity* getEntity() { return entity_; }
 	
+	//Devuelve el nombre del componente
 	Name getName() { return name_; }
 
 	//Destructora

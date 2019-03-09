@@ -18,7 +18,6 @@ Game::Game(std::string basicConfig):exit(false)
 	SDL_CreateWindowFrom((void*)hWnd);
 
 	ScnMng_ = SceneManager::instance();
-
 }
 
 Game::~Game()
@@ -42,18 +41,14 @@ void Game::start()
 	//1.Cámara
 	CameraComponent*  camComp = new CameraComponent(Ogreinit_->getSceneManager(), Ogreinit_->getWindow());
 	Entity* camera = new Entity(std::vector<Component*>{camComp}, "Camera");
-
 	ScnMng_->currentState()->addEntity(camera);
+
 	//-----------------------------------------------------------------------------------//
 	
 
-	//2.Cabeza de Simbad
-	Ogre::SceneNode* simbadNode = Ogreinit_->getSceneManager()->getSceneNode("simbadNode");
-	Ogre::Vector3 cameraPos = camComp->camNode_->getPosition();
-	simbadNode->setPosition(cameraPos - Ogre::Vector3(10, 125, 0));
-
-	RenderComponent* simbadRenderComp = new RenderComponent(simbadNode);
-	RigidbodyComponent* simbadRigidComp = new RigidbodyComponent(simbadNode, Shape::BoxShape, 1, 10);
+	//2.Cabeza de Simbad-> tiene un componente para renderizarlo (con su nodo, posición..) y un rigidbody que depende de este
+	RenderComponent* simbadRenderComp = new RenderComponent(Ogreinit_->getSceneManager(), "ogrehead.mesh", Ogre::Vector3{ 0, 2000, 1500 });
+	RigidbodyComponent* simbadRigidComp = new RigidbodyComponent(simbadRenderComp->getNode(), Shape::BoxShape, 1, 10);
 	Entity* simbad = new Entity(std::vector<Component*>{simbadRenderComp, simbadRigidComp}, "Simbad");
 	ScnMng_->currentState()->addEntity(simbad);
 

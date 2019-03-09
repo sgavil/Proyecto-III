@@ -36,11 +36,16 @@ bool Entity::delComponent(Component* comp)
 }
 Component * Entity::getComponent(Name name)
 {
-	//Recorre el vector de componentes buscando el nombre.Si lo encuentra lo devuelve, en caso contrario devuelve nullptr
+	//Recorre el vector de componentes buscando el nombre. Si lo encuentra lo devuelve, en caso contrario devuelve nullptr
 	auto it = components_.begin();
-	while (it != components_.end() && (*it)->getName() != name)it++;
-	if (it != components_.end())return *it;
-	else return nullptr;
+	while (it != components_.end() && (*it)->getName() != name)
+		it++;
+
+
+	if (it != components_.end())
+		return *it;
+	else 
+		return nullptr;
 }
 
 Entity::~Entity()
