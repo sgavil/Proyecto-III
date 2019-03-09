@@ -1,14 +1,10 @@
+#include <Scenes/SceneManager.h> //Esto tiene que ir lo primero porque tiene physicSystem
 #include "initOgreApplication.h"
-#include <list>
-#include <OgreResourceGroupManager.h>
 #include <OgreStringVector.h>
 #include <Arquitectura/Entity.h>
-#include <Arquitectura/TerrainComponent.h>
-#include <Scenes/SceneManager.h>
 #include <string>
 #include <SDL.h>
 #include <SDL_video.h>
-//#include "checkML.h"
 
 
 class Game {

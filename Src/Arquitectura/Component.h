@@ -7,7 +7,7 @@ using namespace Architecture;
 //No hacer #include "Entity.h" para evitar inclusión circular
 class Entity;
 
-enum  Name{ NPC, GraphicComponent, LogicComponent, InputComponent, Building, PhysicsComponent, CameraComp, RigidComp, TerrainComp }; //Algunos ejemplos de nombres
+enum  Name{ RenderComp, CameraComp, RigidComp, TerrainComp  }; //Algunos ejemplos de nombres
 //Cada vez que se cree un Componente , se tiene que añadir a la lista de nombres.
 
 /*

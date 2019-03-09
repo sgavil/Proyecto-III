@@ -12,8 +12,8 @@ class Entity
 public:
 	//Constructora por defecto
 	Entity();
-	//Constructora con los componentes ya dados y el RigidBody
-	Entity(std::vector<Component*> comps); //, RigidBody* r = nullptr);
+	//Constructora con los componentes ya dados en un vector
+	Entity(std::vector<Component*> comps, std::string name = "undefined"); 
 
 	 //Añade un componente a la entidad
 	void addComponent(Component* comp);
@@ -23,11 +23,16 @@ public:
 	//Devueve la lista de componentes de la Entidad
 	std::vector<Component*> getComponents() { return components_; }
 
+	//Devuelve un componente con un nombre específico
 	Component * getComponent(Name name);
+
+	//Devuelve el nombre de la propia entidad
+	std::string getName() { return name_; };
 	
 	//Destructora
 	virtual ~Entity();
 private:
 	//Vector de componentes genérico (no se diferencian por el tipo de componente)
 	std::vector<Component*> components_;
+	std::string name_;
 };

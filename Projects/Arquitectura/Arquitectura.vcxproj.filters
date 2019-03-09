@@ -34,6 +34,9 @@
     <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\RenderComponent.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\CameraComponent.h">
@@ -59,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\Components.h">
       <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\RenderComponent.h">
+      <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

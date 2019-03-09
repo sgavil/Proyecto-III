@@ -9,11 +9,10 @@
 #include <OgreEntity.h>
 #include <OgreColourValue.h>
 #include <OgrePlane.h>
-//#include "checkML.h"
-#include <OgrePlane.h>
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
+//#include "checkML.h"
 
 
 class initOgreApplication

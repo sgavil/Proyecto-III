@@ -20,9 +20,9 @@ public:
 	void stepSimulation(unsigned int time);
 
 	//Limpia la basura
-	void clenaupPhysics();
+	void clenanupPhysics();
 
-
+	//Crea un rigidbody con una forma, posición, masa y dimensiones dadas
 	static btRigidBody* createRigidBody(Shape forma, btVector3 position, btScalar dimensions, btScalar mass);
 
 	//Aáde una forma al vector 

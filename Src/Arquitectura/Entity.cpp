@@ -1,17 +1,16 @@
 #include "Entity.h"
 
 
-Entity::Entity()
+Entity::Entity():name_("undefined")
 {
-	//TODO: Poner el RigidBody a nullptr
+	
 }
 
-Entity::Entity(std::vector<Component*> comps) //, RigidBody* r)
+Entity::Entity(std::vector<Component*> comps, std::string name):name_(name)
 {
 	//Creamos la entidad con los componentes dados, llamando a addComponent
 	for (Component* c : comps)
 		addComponent(c);
-	//rigid_ = r;
 }
 
 

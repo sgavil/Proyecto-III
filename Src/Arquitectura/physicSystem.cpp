@@ -63,7 +63,7 @@ void physicSystem::stepSimulation(unsigned int time)
 	}
 }
 
-void physicSystem::clenaupPhysics()
+void physicSystem::clenanupPhysics()
 {
 	// remove the rigidbodies from the dynamics world and delete them
 	for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--)
@@ -87,16 +87,20 @@ void physicSystem::clenaupPhysics()
 	}
 
 	// delete dynamics world
-	delete dynamicsWorld;
+	if(dynamicsWorld!= nullptr)
+		delete dynamicsWorld;
 
-	// delete solver
-	delete solver;
+	// delete 
+	if(solver != nullptr)
+		delete solver;
 
 	// delete broadphase
-	delete overlappingPairCache;
+	if(overlappingPairCache != nullptr)
+		delete overlappingPairCache;
 
 	// delete dispatcher
-	delete dispatcher;
+	if(dispatcher != nullptr)
+		delete dispatcher;
 }
 
 btRigidBody * physicSystem::createRigidBody( Shape forma, btVector3 position, btScalar dimensions, btScalar mass)
@@ -155,6 +159,7 @@ btRigidBody * physicSystem::createRigidBody( Shape forma, btVector3 position, bt
 
 physicSystem::~physicSystem()
 {
-	
+	if (instance_ != nullptr)
+		delete instance_;
 }
 

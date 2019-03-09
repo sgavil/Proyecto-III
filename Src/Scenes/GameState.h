@@ -1,7 +1,7 @@
 #pragma once
-#include <list>
-#include <Arquitectura/Component.h>
 #include <Arquitectura/physicSystem.h>
+#include <list>
+#include <Arquitectura/Entity.h>
 
 
 class GameState
@@ -18,6 +18,15 @@ public:
 	virtual void render(unsigned int time);
 	virtual void handleInput(unsigned int time);
 
-	void addComponent(Component* c) { scene.push_back(c); }
-	std::vector<Component*> getScene() { return scene; };
+	//Añade una entidad a la escena
+	void addEntity(Entity* e);
+
+	//Elimina una entidad de la escena. Devuelve true si estaba en la escena, false e.o.c
+	bool removeEntity(std::string name);
+
+	//Devuelve una entidad de la escena
+	Entity* getEntity(std::string name);
+
+	//Devuelve la escena
+	std::vector<Component*> getScene() { return scene; }; //TODO: replantearse este método
 };

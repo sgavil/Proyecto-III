@@ -25,7 +25,7 @@ Game::~Game()
 {
 	delete ScnMng_;
 	delete root;
-	physicSystem::instance()->clenaupPhysics();
+	physicSystem::instance()->clenanupPhysics();
 	delete physicSystem::instance();
 }
 
@@ -35,33 +35,37 @@ void Game::start()
 	ScnMng_->addState(PLAY, playstate);
 	ScnMng_->changeState(PLAY);
 
-	//--------------------------TEST DE COMPONENTE EN UNA ESCENA--------------------------//
-	Entity* camera = new Entity();
-	CameraComponent*  camComp = new CameraComponent(Ogreinit_->getSceneManager(), Ogreinit_->getWindow());
-	camera->addComponent(camComp);
-
-	ScnMng_->currentState()->addComponent(camComp);
-	//-----------------------------------------------------------------------------------//
-
-	//FISICAS
 	physicSystem::instance()->initPhysics();
 
+	//--------------------------TEST DE COMPONENTE EN UNA ESCENA--------------------------//
+	
+	//1.Cámara
+	CameraComponent*  camComp = new CameraComponent(Ogreinit_->getSceneManager(), Ogreinit_->getWindow());
+	Entity* camera = new Entity(std::vector<Component*>{camComp}, "Camera");
+
+	ScnMng_->currentState()->addEntity(camera);
+	//-----------------------------------------------------------------------------------//
+	
+
+	//2.Cabeza de Simbad
 	Ogre::SceneNode* simbadNode = Ogreinit_->getSceneManager()->getSceneNode("simbadNode");
-	Ogre::Vector3 cameraPos = Ogreinit_->getSceneManager()->getSceneNode("camNode")->getPosition();
+	Ogre::Vector3 cameraPos = camComp->camNode_->getPosition();
 	simbadNode->setPosition(cameraPos - Ogre::Vector3(10, 125, 0));
 
-	//Simbad
-	RigidbodyComponent* ogreRigidComp = new RigidbodyComponent(simbadNode, Shape::BoxShape, 1, 10);
-	ScnMng_->currentState()->addComponent(ogreRigidComp);
+	RenderComponent* simbadRenderComp = new RenderComponent(simbadNode);
+	RigidbodyComponent* simbadRigidComp = new RigidbodyComponent(simbadNode, Shape::BoxShape, 1, 10);
+	Entity* simbad = new Entity(std::vector<Component*>{simbadRenderComp, simbadRigidComp}, "Simbad");
+	ScnMng_->currentState()->addEntity(simbad);
 
-	//Plano invisible
+	//3.Plano invisible
 	RigidbodyComponent* floorRigidComp = new RigidbodyComponent(Ogre::Vector3(1683, 1000, 2116), Shape::PlaneShape, 100, 0);
-	ScnMng_->currentState()->addComponent(floorRigidComp);
+	Entity* floor = new Entity(std::vector<Component*>{floorRigidComp}, "Floor");
+	ScnMng_->currentState()->addEntity(floor);
 
-	//TERRENO
-	Entity* terrain = new Entity();
+	//4.Terreno
 	TerrainComponent* terrainComp = new TerrainComponent(Ogreinit_->getSceneManager(), Ogreinit_->getLight(), "Maps.json");
-	terrain->addComponent(terrainComp);
+	Entity* terrain = new Entity(std::vector<Component*>{terrainComp}, "Terrain");
+	ScnMng_->currentState()->addEntity(terrain);
 
 	run();
 }

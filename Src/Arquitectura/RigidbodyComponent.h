@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.h""
-#include <SDL.h>
 #include <iostream>
 #include "physicSystem.h"
 #include <OgreSceneNode.h>
