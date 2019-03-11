@@ -19,6 +19,11 @@ Xcopy Dependencias\ogre-1.11.5\Build\bin\release\OgreTerrain.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\OgrePaging_d.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\release\OgrePaging.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\SDL2-build\RelWithDebInfo\SDL2.dll exes
+Xcopy Dependencias\fmod\lib\fmod.dll exes
+Xcopy Dependencias\fmod\lib\fmod64.dll exes
+Xcopy Dependencias\fmod\lib\fmodL.dll exes
+Xcopy Dependencias\fmod\lib\fmodL64.dll exes
+
 
 Xcopy tmp\* exes
 
