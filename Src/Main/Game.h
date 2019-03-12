@@ -1,3 +1,4 @@
+#pragma once
 #include <Scenes/SceneManager.h> //Esto tiene que ir lo primero porque tiene physicSystem
 #include "initOgreApplication.h"
 #include <OgreStringVector.h>
@@ -5,6 +6,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_video.h>
+#include <AudioSource/AudioSource.h>
 
 
 class Game {
@@ -18,6 +20,7 @@ private:
 	SceneManager* ScnMng_;
 	Ogre::Root* root;
 	initOgreApplication* Ogreinit_; //Información inicial de Ogre
+	AudioSource* audioSrc_;
 
 	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL
 	bool exit;

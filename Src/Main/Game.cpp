@@ -10,7 +10,8 @@ Game::Game(std::string basicConfig):exit(false)
 #endif
 
 	Ogreinit_ = new initOgreApplication(root, basicConfig);
-
+	audioSrc_ = new AudioSource();
+	
 	//Inicialización de ventana de SDL que se una a la de Ogre
 	SDL_Init(SDL_INIT_EVERYTHING);
 	hWnd = 0;
@@ -44,6 +45,13 @@ void Game::start()
 	ScnMng_->currentState()->addEntity(camera);
 
 	//-----------------------------------------------------------------------------------//
+	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
+
+	audioSrc_->ADD_SOUND("Assets\\Audio\\Cochecitos.mp3");
+	audioSrc_->PLAY_SOUND("Assets\\Audio\\Cochecitos.mp3");
+
+	//-----------------------------------------------------------------------------------//
+
 	
 
 	//2.Cabeza de Simbad-> tiene un componente para renderizarlo (con su nodo, posición..) y un rigidbody que depende de este

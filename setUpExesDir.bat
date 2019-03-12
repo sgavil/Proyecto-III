@@ -19,6 +19,7 @@ Xcopy Dependencias\ogre-1.11.5\Build\bin\release\OgreTerrain.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\debug\OgrePaging_d.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\bin\release\OgrePaging.dll exes
 Xcopy Dependencias\ogre-1.11.5\Build\SDL2-build\RelWithDebInfo\SDL2.dll exes
+Xcopy Dependencias\fmod\studio\lib\fmodstudioL64.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIBase-0.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIBase-0_d.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUICommonDialogs-0.dll exes
@@ -37,6 +38,20 @@ Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D9Renderer-0.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D9Renderer-0_d.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D10Renderer-0.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D10Renderer-0_d.dll exes
+Xcopy Dependencias\fmod\fsbank\lib\fsbank.dll exes
+Xcopy Dependencias\fmod\fsbank\lib\fsbank64.dll exes
+Xcopy Dependencias\fmod\fsbank\lib\libfsbvorbis.dll exes
+Xcopy Dependencias\fmod\fsbank\lib\libfsbvorbis64.dll exes
+Xcopy Dependencias\fmod\lowlevel\lib\fmod.dll exes
+Xcopy Dependencias\fmod\lowlevel\lib\fmod64.dll exes
+Xcopy Dependencias\fmod\lowlevel\lib\fmodL.dll exes
+Xcopy Dependencias\fmod\lowlevel\lib\fmodL64.dll exes
+Xcopy Dependencias\fmod\studio\lib\fmodstudio.dll exes
+Xcopy Dependencias\fmod\studio\lib\fmodstudio64.dll exes
+Xcopy Dependencias\fmod\studio\lib\fmodstudioL.dll exes
+Xcopy Dependencias\fmod\studio\lib\fmodstudioL64.dll exes
+
+
 
 Xcopy tmp\* exes
 

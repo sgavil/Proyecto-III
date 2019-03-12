@@ -24,10 +24,17 @@ void AudioSource::FMOD_OK_ERROR_CHECK()
 
 void AudioSource::ADD_SOUND(std::string fileName)
 {
-	FMOD_CREATESOUNDEXINFO* ErrInf;
-
+	FMOD::Sound* snd;
+	FMOD_CREATESOUNDEXINFO* ErrInf = 0;
+	result_ = system_->createSound(fileName.c_str(), FMOD_DEFAULT, ErrInf, &snd);
+	std::cout << ErrInf;
+	FMOD_OK_ERROR_CHECK();
+	soundList_.insert(std::make_pair(fileName, snd));
 }
 
-void AudioSource::PLAY_SOUND()
+void AudioSource::PLAY_SOUND(std::string AudioID)
 {
+	auto it = soundList_.find(AudioID);
+	result_ = system_->playSound((*it).second, 0, false, 0);
+	FMOD_OK_ERROR_CHECK();
 }
