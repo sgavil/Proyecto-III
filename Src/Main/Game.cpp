@@ -29,7 +29,7 @@ Game::~Game()
 	delete root;
 	physicSystem::instance()->clenanupPhysics();
 	delete physicSystem::instance();
-	CEGUI::System::destroy();
+	//CEGUI::System::destroy();
 	//CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>()//*d_renderer));
 }
 

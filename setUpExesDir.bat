@@ -38,6 +38,8 @@ Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D9Renderer-0.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D9Renderer-0_d.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D10Renderer-0.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D10Renderer-0_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\freetype_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\\bin\pcre_d.dll exes
 Xcopy Dependencias\fmod\fsbank\lib\fsbank.dll exes
 Xcopy Dependencias\fmod\fsbank\lib\fsbank64.dll exes
 Xcopy Dependencias\fmod\fsbank\lib\libfsbvorbis.dll exes

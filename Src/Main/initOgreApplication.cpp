@@ -4,7 +4,7 @@
 // Bootstrap CEGUI::System with an OgreRenderer object that uses the
 // default Ogre rendering window as the default output surface, an Ogre based
 // ResourceProvider, and an Ogre based ImageCodec.
-CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem();
+   //CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem();
 
 initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJson) : root_(root)
 {	
@@ -18,8 +18,10 @@ initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJ
 	initFile = GestorRecursos::jsonManager()->getJsonByKey(initFileJson);
 
 	sceneMgr_ = root_->createSceneManager();
-	
-	initWindow();	
+
+	initWindow();		
+
+	//CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem();
 }
 
 
