@@ -12,7 +12,6 @@
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
-//#include "checkML.h"
 
 
 class initOgreApplication
