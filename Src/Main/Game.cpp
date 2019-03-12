@@ -1,5 +1,7 @@
 #include "Game.h"
 #include <Arquitectura/Components.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 Game::Game(std::string basicConfig):exit(false)
 {
@@ -27,6 +29,8 @@ Game::~Game()
 	delete root;
 	physicSystem::instance()->clenanupPhysics();
 	delete physicSystem::instance();
+	CEGUI::System::destroy();
+	//CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>()//*d_renderer));
 }
 
 void Game::start()
