@@ -1,6 +1,11 @@
 #include "initOgreApplication.h"
 #include "Scenes/SceneManager.h"
 
+// Bootstrap CEGUI::System with an OgreRenderer object that uses the
+// default Ogre rendering window as the default output surface, an Ogre based
+// ResourceProvider, and an Ogre based ImageCodec.
+CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem();
+
 initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJson) : root_(root)
 {	
 	GestorRecursos::initGestor();

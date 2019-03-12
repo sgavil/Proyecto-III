@@ -13,6 +13,9 @@
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
 
+//CEGUI
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
+
 
 class initOgreApplication
 {
