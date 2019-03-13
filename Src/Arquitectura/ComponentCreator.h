@@ -8,6 +8,17 @@ public:
 	virtual ~BaseCreator() {}
 };
 
+class CameraComponentCreator : public BaseCreator
+{
+public:
+	Component* createComponent() const
+	{
+		Component* e = new CameraComponent();
+
+		return e;
+	}
+};
+
 class NPCComponentCreator : public BaseCreator
 {
 public:

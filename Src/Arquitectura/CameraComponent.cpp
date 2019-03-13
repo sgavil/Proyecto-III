@@ -2,6 +2,10 @@
 
 
 
+CameraComponent::CameraComponent()
+{
+}
+
 CameraComponent::CameraComponent(Ogre::SceneManager* scnMgn, Ogre::RenderWindow* wind)
 {
 	name_ = Name::CameraComp;

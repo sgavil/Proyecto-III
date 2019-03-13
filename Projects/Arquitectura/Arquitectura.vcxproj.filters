@@ -11,6 +11,9 @@
     <Filter Include="Base">
       <UniqueIdentifier>{443d6813-87ab-49a4-b767-efdc23548ff6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Factoría">
+      <UniqueIdentifier>{9cbda19c-f37a-4c22-9e64-7266cce1f2da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Arquitectura\TerrainComponent.cpp">
@@ -41,7 +44,7 @@
       <Filter>Componentes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\EntityFactory.cpp">
-      <Filter>Base</Filter>
+      <Filter>Factoría</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,9 +69,6 @@
     <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\Components.h">
-      <Filter>Base</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\RenderComponent.h">
       <Filter>Componentes</Filter>
     </ClInclude>
@@ -76,10 +76,13 @@
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\ComponentCreator.h">
-      <Filter>Base</Filter>
+      <Filter>Factoría</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Components.h">
+      <Filter>Factoría</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\EntityFactory.h">
-      <Filter>Base</Filter>
+      <Filter>Factoría</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

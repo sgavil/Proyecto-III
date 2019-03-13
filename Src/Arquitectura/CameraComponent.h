@@ -9,6 +9,7 @@
 class CameraComponent : public Component
 {
 public:
+	CameraComponent();
 	CameraComponent(Ogre::SceneManager* scnMgn, Ogre::RenderWindow* wind);
 	~CameraComponent();
 
@@ -21,4 +22,3 @@ public:
 	Ogre::Camera *camera_;
 	Ogre::Viewport *viewport_;
 };
-

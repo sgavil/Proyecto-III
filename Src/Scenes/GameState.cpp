@@ -6,7 +6,10 @@
 GameState::GameState(json file)
 {
 	for (json j : file["Entities"])
-		EntityFactory::Instance()->createEntity(j);
+	{
+		Entity* ent = EntityFactory::Instance()->createEntity(j);
+		addEntity(ent);
+	}
 }
 
 void GameState::start()
