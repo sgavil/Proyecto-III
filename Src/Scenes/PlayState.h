@@ -11,5 +11,5 @@ public:
 
 	void update(unsigned int time);
 	void render(unsigned int time);
-	void handleInput(unsigned int time);
+	bool handleInput(unsigned int time);
 };

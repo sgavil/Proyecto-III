@@ -33,15 +33,16 @@ void GameState::render(unsigned int time)
 			c->render(time);
 }
 
-void GameState::handleInput(unsigned int time)
+bool GameState::handleInput(unsigned int time)
 {
 	bool handled = false;
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
+		std::cout << event.type;
 		if (event.type == SDL_QUIT)
 		{
-			//EXIT = true;
+			return true;
 		}
 		//LLama al handleInput de todos los componentes 
 		else 

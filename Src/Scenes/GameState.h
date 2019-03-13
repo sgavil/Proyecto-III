@@ -16,7 +16,7 @@ public:
 
 	virtual void update(unsigned int time);
 	virtual void render(unsigned int time);
-	virtual void handleInput(unsigned int time);
+	virtual bool handleInput(unsigned int time);
 
 	//Añade una entidad a la escena
 	void addEntity(Entity* e);

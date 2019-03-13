@@ -24,7 +24,7 @@ void MainMenuState::render(unsigned int time)
 	GameState::render(time);
 }
 
-void MainMenuState::handleInput(unsigned int time)
+bool MainMenuState::handleInput(unsigned int time)
 {
-	GameState::handleInput(time);
+	return GameState::handleInput(time);
 }

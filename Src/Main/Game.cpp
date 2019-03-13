@@ -87,11 +87,12 @@ void Game::run()
 	{
 		//Llama al update, handleInput y render de la escena activa
 		ScnMng_->currentState()->update(deltaTime);
-		ScnMng_->currentState()->handleInput(deltaTime);
+		exit = ScnMng_->currentState()->handleInput(deltaTime);
 		root->renderOneFrame((Ogre::Real)deltaTime / 1000);
 
 		//Actualiza el deltaTime
 		deltaTime = SDL_GetTicks() - actualTime;
 		actualTime = SDL_GetTicks();
 	}
+
 }

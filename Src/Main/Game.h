@@ -7,7 +7,7 @@
 #include <SDL.h>
 #include <SDL_video.h>
 #include <AudioSource/AudioSource.h>
-
+#include "vld.h"
 
 class Game {
 public:

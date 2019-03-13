@@ -27,7 +27,7 @@ void PlayState::render(unsigned int time)
 	GameState::render(time);
 }
 
-void PlayState::handleInput(unsigned int time)
+bool PlayState::handleInput(unsigned int time)
 {
-	GameState::handleInput(time);
+	return GameState::handleInput(time);
 }
