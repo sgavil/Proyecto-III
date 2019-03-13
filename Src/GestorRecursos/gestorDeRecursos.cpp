@@ -1,4 +1,7 @@
 #include "gestorDeRecursos.h"
+#include "TerrainCreator.h"
+#include <OgreFileSystemLayer.h>
+
 
 Ogre::Camera*  GestorRecursos::createCamera(Ogre::SceneManager* scnMgn, std::string name, Ogre::SceneNode* FatherNode, Ogre::Real NearClipDist, Ogre::Real FarClipDist, bool autoAspectRatio, Ogre::Real AspectRatio)
 {
@@ -26,16 +29,6 @@ TerrainCreator * GestorRecursos::createTerrain(Ogre::SceneManager * scnMgn, Ogre
 {
 	TerrainCreator* terrainCreator_ = new TerrainCreator(scnMgn, light, terrainFile);
 	return terrainCreator_;
-}
-
-void GestorRecursos::initGestor()
-{
-	new JsonManager();
-}
-
-JsonManager * GestorRecursos::jsonManager(void)
-{
-	return JsonManager::getSingletonPtr();
 }
 
 void GestorRecursos::initializeResources()

@@ -10,6 +10,8 @@ SceneManager::~SceneManager()
 {
 	auto it = states.begin();
 	while (it != states.end()) it = states.erase(it);
+
+	instance_.release();
 }
 			
 

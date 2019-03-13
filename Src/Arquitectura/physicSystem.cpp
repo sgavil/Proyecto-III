@@ -1,6 +1,7 @@
 #include "physicSystem.h"
 
-physicSystem* physicSystem::instance_ = nullptr;
+std::unique_ptr<physicSystem> physicSystem::instance_;
+
 btDiscreteDynamicsWorld * physicSystem::dynamicsWorld = nullptr;
 
 std::vector<btCollisionShape*> physicSystem::shapes = std::vector<btCollisionShape*>();
@@ -14,9 +15,10 @@ physicSystem::physicSystem()
 physicSystem * physicSystem::instance()
 {
 	//Devuelve la instancia si exise, si no crea una nueva
-	if (instance_ == nullptr)
-		instance_ = new physicSystem();
-	return instance_;
+	if (instance_.get() == nullptr)
+		instance_.reset(new physicSystem());
+
+	return instance_.get();
 }
 
 void physicSystem::initPhysics()
@@ -101,6 +103,10 @@ void physicSystem::clenanupPhysics()
 	// delete dispatcher
 	if(dispatcher != nullptr)
 		delete dispatcher;
+
+	if (collisionConfiguration != nullptr) {
+		delete collisionConfiguration;
+	}
 }
 
 btRigidBody * physicSystem::createRigidBody( Shape forma, btVector3 position, btScalar dimensions, btScalar mass)
@@ -159,7 +165,11 @@ btRigidBody * physicSystem::createRigidBody( Shape forma, btVector3 position, bt
 
 physicSystem::~physicSystem()
 {
-	if (instance_ != nullptr)
-		delete instance_;
+	if (instance_ != nullptr) {
+		clenanupPhysics();
+
+		instance_.release();
+	}
+	
 }
 

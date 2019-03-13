@@ -8,14 +8,12 @@
 
 initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJson) : root_(root)
 {	
-	GestorRecursos::initGestor();
-
 	root->setRenderSystem(*(root->getAvailableRenderers().begin()));
 	root->initialise(false);
 
 	GestorRecursos::initializeResources();
 
-	initFile = GestorRecursos::jsonManager()->getJsonByKey(initFileJson);
+	initFile = JsonManager::instance()->getJsonByKey(initFileJson);
 
 	sceneMgr_ = root_->createSceneManager();
 
@@ -27,10 +25,8 @@ initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJ
 
 initOgreApplication::~initOgreApplication()
 {
-	delete sceneMgr_;
-	delete window_;
-	delete mFSLayer;
-	
+	/*delete light_;
+	delete window_;*/
 }
 
 Ogre::SceneManager * initOgreApplication::getSceneManager()

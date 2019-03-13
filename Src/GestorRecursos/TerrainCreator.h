@@ -1,7 +1,7 @@
 #pragma once
 #include <OgreTerrain.h>
 #include <OgreTerrainGroup.h>
-#include "JsonManager.h"
+#include <GestorRecursos/JsonManager.h>
 
 class TerrainCreator
 {

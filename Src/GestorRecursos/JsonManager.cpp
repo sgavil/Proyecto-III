@@ -1,16 +1,16 @@
 #include "JsonManager.h"
+#include <string>
+//#include <OgreFileSystemLayer.h>
 
-template<> JsonManager *Ogre::Singleton<JsonManager>::msSingleton = 0;
 
-JsonManager *JsonManager::getSingletonPtr(void)
+std::unique_ptr<JsonManager> JsonManager::instance_;
+
+JsonManager* JsonManager::instance()
 {
-	return msSingleton;
-}
+	if (instance_.get() == nullptr)
+		instance_.reset(new JsonManager());
 
-JsonManager &JsonManager::getSingleton(void)
-{
-	assert(msSingleton);
-	return(*msSingleton);
+	return instance_.get();
 }
 
 JsonManager::JsonManager()
@@ -23,16 +23,20 @@ JsonManager::JsonManager()
 	//Se limpia el string
 	resourcesPath.erase(resourcesPath.find_last_of("\\") + 1, resourcesPath.size() - 1);
 
+
 	loadJsonFiles();
 }
 
 JsonManager::~JsonManager()
 {
 	delete mFSLayer;
+
+	instance_.release();
 }
 
 void JsonManager::loadJsonFiles()
 {
+	
 	//Se le añade al path exes la carpeta Assets\\jsons
 	std::string filePath = resourcesPath + folderPath;
 	const char* filePathC = filePath.c_str();
@@ -56,6 +60,7 @@ void JsonManager::loadJsonFiles()
 		}
 		closedir(dir);
 	}
+	
 }
 
 json JsonManager::getJsonByKey(const std::string &key)
@@ -65,6 +70,7 @@ json JsonManager::getJsonByKey(const std::string &key)
 	//Si el puntero devuelve end() no ha encontrado ese archivo
 	if (it != jsonMap.end()) return (*it).second;
 	else return nullptr; 
+
 }
 
 void JsonManager::loadJson(const std::string &streamFilePath, const std::string &fileName)

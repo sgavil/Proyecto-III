@@ -2,7 +2,7 @@
 #include <OgreRoot.h>
 #include <OgreConfigFile.h>
 #include <OgreLog.h>
-#include <OgreFileSystemLayer.h>
+//#include <OgreFileSystemLayer.h>
 #include <OgreLight.h>
 #include <iostream>
 #include <OgreRenderWindow.h>
@@ -12,7 +12,7 @@
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
-
+#include <GestorRecursos/JsonManager.h>
 //CEGUI
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
@@ -40,15 +40,12 @@ private:
 	//Ogre::Viewport *viewport_;
 
 	Ogre::Light* light_;
-	Ogre::SceneNode* lightNode_;
+	//Ogre::SceneNode* lightNode_;
 	//Ogre::SceneNode* camNode_;
 
 	Ogre::Plane plane_;
-	Ogre::Entity* suelo_;
-	Ogre::SceneNode* sueloNodo_;
-
-	/*Elementos para inicializar los recursos*/
-	Ogre::FileSystemLayer* mFSLayer;
+	//Ogre::Entity* suelo_;
+	//Ogre::SceneNode* sueloNodo_;
 
 	json initFile;
 	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaño WINDOW_HEIGHT/WIDHT ademas de crear

@@ -4,7 +4,6 @@
 #include "physicSystem.h"
 #include <OgreSceneNode.h>
 
-
 class RigidbodyComponent : public Component
 {
 public:

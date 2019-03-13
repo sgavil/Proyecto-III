@@ -1,14 +1,15 @@
 #include "TerrainCreator.h"
-#include "gestorDeRecursos.h"
+
 
 TerrainCreator::TerrainCreator() : scnMgn_(nullptr), terrainJson_(NULL)
 {
+
 }
 
 TerrainCreator::TerrainCreator(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
 	: scnMgn_(scnMgn)
 {
-	terrainJson_ = GestorRecursos::jsonManager()->getJsonByKey(terrainFile);
+	terrainJson_ = JsonManager::instance()->getJsonByKey(terrainFile);
 
 	mTerrainGlobals_ = OGRE_NEW Ogre::TerrainGlobalOptions();
 
@@ -43,6 +44,8 @@ TerrainCreator::TerrainCreator(Ogre::SceneManager * scnMgn, Ogre::Light * light,
 
 TerrainCreator::~TerrainCreator()
 {
+	OGRE_DELETE mTerrainGroup_;
+	OGRE_DELETE	mTerrainGlobals_;
 }
 
 void TerrainCreator::defineTerrain(long x, long y)

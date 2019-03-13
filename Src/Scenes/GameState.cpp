@@ -1,6 +1,6 @@
 #include "GameState.h"
 #include <iostream>
-
+#include <Arquitectura/Entity.h>
 
 GameState::GameState()
 {

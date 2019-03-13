@@ -1,8 +1,9 @@
 #pragma once
 #include <Arquitectura/physicSystem.h>
 #include <list>
-#include <Arquitectura/Entity.h>
 
+class Entity;
+class Component;
 
 class GameState
 {

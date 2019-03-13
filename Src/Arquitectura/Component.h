@@ -1,6 +1,7 @@
 #pragma once
 #include "Messages.h"
 #include <SDL.h>
+#include <GestorRecursos/JsonManager.h>
 
 using namespace Architecture;
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "btBulletDynamicsCommon.h"
 #include <OgreRoot.h>
+#include <memory>
 #include <vector>
 
 //Tipo enumerado para los tipos de formas de los RigidBody
@@ -10,6 +11,7 @@ enum Shape{ EmptyShape, BoxShape, SphereShape, CapsuleShape, PlaneShape, Cylinde
 class physicSystem
 {
 public:
+
 	//Devuelve la instancia
 	static physicSystem* instance();
 
@@ -39,8 +41,7 @@ private:
 	//Constructora privada
 	physicSystem();
 	//Instancia
-	static physicSystem* instance_;
-
+	static std::unique_ptr<physicSystem> instance_;
 
 	//Atributos
 	//Config. de colisiones

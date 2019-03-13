@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h""
-#include <GestorRecursos/gestorDeRecursos.h>
+
 #include <OgreEntity.h>
 #include <OgreRenderWindow.h>
 #include <SDL_video.h>
@@ -8,17 +8,17 @@
 
 class CameraComponent : public Component
 {
-public:
-	CameraComponent(Ogre::SceneManager* scnMgn, Ogre::RenderWindow* wind);
-	~CameraComponent();
-
-	virtual void render(unsigned int time) {};
-	virtual void update(unsigned int time);
-	virtual bool handleEvent(SDL_Event* e, unsigned int time);
-	virtual void receive(Message* msg) {};
-
-	Ogre::SceneNode* camNode_;
-	Ogre::Camera *camera_;
-	Ogre::Viewport *viewport_;
+//public:
+//	CameraComponent(Ogre::SceneManager* scnMgn, Ogre::RenderWindow* wind);
+//	~CameraComponent();
+//
+//	virtual void render(unsigned int time) {};
+//	virtual void update(unsigned int time);
+//	virtual bool handleEvent(SDL_Event* e, unsigned int time);
+//	virtual void receive(Message* msg) {};
+//
+//	Ogre::SceneNode* camNode_;
+//	Ogre::Camera *camera_;
+//	Ogre::Viewport *viewport_;
 };
 
