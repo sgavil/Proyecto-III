@@ -1,9 +1,12 @@
 #include "GameState.h"
 #include <iostream>
 #include <Arquitectura/Entity.h>
+#include <Arquitectura/EntityFactory.h>
 
-GameState::GameState()
+GameState::GameState(json file)
 {
+	for (json j : file["Entities"])
+		EntityFactory::Instance()->createEntity(j);
 }
 
 void GameState::start()

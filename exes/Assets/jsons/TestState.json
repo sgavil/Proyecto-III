@@ -1,0 +1,16 @@
+{
+	"Entities":
+	[
+	  	{
+		  	"name": "NPC1",
+        "Components":
+        [
+          {
+            "name": "NPCComponent",
+            "hunger": 5,
+            "thirst": 10
+          }
+        ]
+		}
+	]
+}

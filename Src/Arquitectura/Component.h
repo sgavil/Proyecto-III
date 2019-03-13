@@ -25,6 +25,8 @@ public:
 	//Constructora por defecto
 	Component();
 
+	virtual void load(json file) {};
+
 	//Métodos principales (renderizado, lógica y eventos)
 	virtual void render(unsigned int time) = 0;
 	virtual void update(unsigned int time) = 0;

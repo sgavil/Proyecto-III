@@ -28,6 +28,9 @@ public:
 
 	//Devuelve el nombre de la propia entidad
 	std::string getName() { return name_; };
+
+	//Otorga un nombre a la entidad
+	void setName(std::string name) { name_ = name; };
 	
 	//Destructora
 	virtual ~Entity();

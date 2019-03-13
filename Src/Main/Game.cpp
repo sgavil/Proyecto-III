@@ -43,9 +43,12 @@ Game::~Game()
 
 void Game::start()
 {
-	PlayState* playstate = new PlayState(); 
-	ScnMng_->addState(PLAY, playstate);
-	ScnMng_->changeState(PLAY);
+
+	ScnMng_->addState("TestState");
+	ScnMng_->changeState("TestState");
+	//PlayState* playstate = new PlayState(); 
+	//ScnMng_->addState(PLAY, playstate);
+	//ScnMng_->changeState(PLAY);
 
 	physicSystem::instance()->initPhysics();
 

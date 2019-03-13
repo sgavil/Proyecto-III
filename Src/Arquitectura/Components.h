@@ -5,4 +5,6 @@
 #include "RigidBodyComponent.h"
 #include "TerrainComponent.h"
 #include "RenderComponent.h"
+#include "CameraComponent.h"
+#include "NPCComponent.h"
 

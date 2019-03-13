@@ -38,6 +38,4 @@ private:
 	std::map<std::string, json> jsonMap;
 	Ogre::FileSystemLayer* mFSLayer;
 	const std::string folderPath = "Assets\\jsons\\";
-
 };
-

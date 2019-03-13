@@ -1,4 +1,6 @@
 #include "SceneManager.h"
+#include <GestorRecursos/JsonManager.h>
+
 
 std::unique_ptr<SceneManager> SceneManager::instance_;
 
@@ -28,12 +30,16 @@ GameState* SceneManager::currentState()
 	return currentState_;
 }
 
-void SceneManager::addState(int stateID, GameState* state)
+void SceneManager::addState(std::string stateID)
 {
-	states.insert(std::pair<int, GameState*>(stateID, state));
+	json file = JsonManager::instance()->getJsonByKey(stateID + ".json");
+
+	GameState* state = new GameState(file);
+
+	states.insert(std::pair<std::string, GameState*>(stateID, state));
 }
 
-void SceneManager::changeState(int stateID)
+void SceneManager::changeState(std::string stateID)
 {
 	currentState_ = states.find(stateID)->second;
 }

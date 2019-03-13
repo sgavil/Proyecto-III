@@ -1,8 +1,8 @@
 #pragma once
 #include <Arquitectura/physicSystem.h>
+#include <Arquitectura/Entity.h>
 #include <list>
 
-class Entity;
 class Component;
 
 class GameState
@@ -10,9 +10,9 @@ class GameState
 protected:
 	std::vector<Component*> scene; // Componentes en la escena
 
-	virtual void start() = 0;
+	virtual void start();
 public:
-	GameState();
+	GameState(json file);
 	virtual ~GameState();
 
 	virtual void update(unsigned int time);

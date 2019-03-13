@@ -5,14 +5,6 @@
 
 std::unique_ptr<JsonManager> JsonManager::instance_;
 
-JsonManager* JsonManager::instance()
-{
-	if (instance_.get() == nullptr)
-		instance_.reset(new JsonManager());
-
-	return instance_.get();
-}
-
 JsonManager::JsonManager()
 {
 	/*Se busca la ruta del resources.cfg para poder encontrar la ruta relativa de la carpeta Assets*/
@@ -33,6 +25,17 @@ JsonManager::~JsonManager()
 
 	instance_.release();
 }
+
+
+
+JsonManager* JsonManager::instance()
+{
+	if (instance_.get() == nullptr)
+		instance_.reset(new JsonManager());
+
+	return instance_.get();
+}
+
 
 void JsonManager::loadJsonFiles()
 {

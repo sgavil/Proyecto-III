@@ -1,10 +1,8 @@
 #pragma once
 #include <map>
 #include <memory>
-
 #include "GameState.h"
-#include "MainMenuState.h"
-#include "PlayState.h"
+
 
 enum States { MAIN_MENU, PLAY, OPTIONS, CREDITS };
 
@@ -13,7 +11,7 @@ class SceneManager
 private:
 	static std::unique_ptr<SceneManager> instance_; // Singleton
 
-	std::map <int , GameState*> states;
+	std::map <std::string, GameState*> states;
 
 	GameState* currentState_;
 public:
@@ -23,6 +21,6 @@ public:
 
 
 	GameState* currentState();
-	void addState(int stateID, GameState* state);
-	void changeState(int stateID);
+	void addState(std::string stateID);
+	void changeState(std::string stateID);
 };
