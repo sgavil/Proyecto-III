@@ -49,10 +49,10 @@ public:
 	
 	void ADD_2D_SOUND(std::string fileName, int loopCount = 0, float volume = 1, float pan = 0); //Carga de un sonido 2D
 	void ADD_3D_SOUND(std::string fileName, int loopCount = 0, float volume = 1); //Carga de un sonido 2D
-	void PLAY_2D_SOUND(std::string AudioID); //Ejecución de un sonido 2D
-	void PLAY_3D_SOUND(std::string AudioID, float posX, float posY, float posZ); //Ejecución de un sonido 3D
+	void PLAY_2D_SOUND(std::string AudioID); //Ejecuciï¿½n de un sonido 2D
+	void PLAY_3D_SOUND(std::string AudioID, float posX, float posY, float posZ); //Ejecuciï¿½n de un sonido 3D
 
-	//Establece los parámetros del medio
+	//Establece los parï¿½metros del medio
 	void set3DFactors(float doppler, float rolloff);
 
 

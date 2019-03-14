@@ -1,6 +1,5 @@
 #include "GameState.h"
-#include <iostream>
-#include <Arquitectura/Entity.h>
+#include <Arquitectura/physicSystem.h>
 #include <Arquitectura/EntityFactory.h>
 
 GameState::GameState(json file)
@@ -12,9 +11,6 @@ GameState::GameState(json file)
 	}
 }
 
-void GameState::start()
-{
-}
 
 GameState::~GameState()
 {

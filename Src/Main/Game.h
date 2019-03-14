@@ -1,4 +1,5 @@
 #pragma once
+#include <Arquitectura/physicSystem.h>
 #include <Scenes/SceneManager.h> //Esto tiene que ir lo primero porque tiene physicSystem
 #include "initOgreApplication.h"
 #include <OgreStringVector.h>
@@ -21,7 +22,7 @@ private:
 	physicSystem* physSyst_;
 	SceneManager* ScnMng_;
 	Ogre::Root* root;
-	initOgreApplication* Ogreinit_; //Información inicial de Ogre
+	initOgreApplication* Ogreinit_; //Informaciï¿½n inicial de Ogre
 	AudioSource* audioSrc_;
 	RigidbodyComponent* floorRigidComp;
 
