@@ -39,6 +39,7 @@ public:
 	//Getters y setters de la entidad
 	void setEntity(Entity* ent) { entity_ = ent; };
 	Entity* getEntity() { return entity_; }
+	void releaseEntity() { delete entity_;  entity_ = nullptr; }
 	
 	//Devuelve el nombre del componente
 	Name getName() { return name_; }

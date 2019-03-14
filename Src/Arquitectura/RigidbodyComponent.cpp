@@ -30,7 +30,8 @@ RigidbodyComponent::RigidbodyComponent(Ogre::Vector3 position, Shape shape, btSc
 
 RigidbodyComponent::~RigidbodyComponent()
 {
-	delete rigid_;
+	/*if(rigid_ != nullptr)
+	delete rigid_;*/
 }
 
 void RigidbodyComponent::update(unsigned int time)

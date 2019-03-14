@@ -9,6 +9,7 @@
 #include <SDL_video.h>
 #include <AudioSource/AudioSource.h>
 #include "vld.h"
+#include <Arquitectura/Components.h>
 
 class RigidbodyComponent;
 class Game {
@@ -25,6 +26,7 @@ private:
 	initOgreApplication* Ogreinit_; //Informaci�n inicial de Ogre
 	AudioSource* audioSrc_;
 	RigidbodyComponent* floorRigidComp;
+
 
 	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL
 	bool exit;

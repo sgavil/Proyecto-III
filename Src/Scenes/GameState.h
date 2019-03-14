@@ -6,7 +6,7 @@ class Component;
 class GameState
 {
 protected:
-	std::vector<Component*> scene; // Componentes en la escena
+	std::list<Component*> scene; // Componentes en la escena
 
 public:
 	GameState(json file);
@@ -26,5 +26,5 @@ public:
 	Entity* getEntity(std::string name);
 
 	//Devuelve la escena
-	std::vector<Component*> getScene() { return scene; }; //TODO: replantearse este método
+	std::list<Component*> getScene() { return scene; }; //TODO: replantearse este método
 };

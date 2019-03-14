@@ -67,7 +67,8 @@ void physicSystem::stepSimulation(unsigned int time)
 
 void physicSystem::clenanupPhysics()
 {
-	// remove the rigidbodies from the dynamics world and delete them
+	
+	//// remove the rigidbodies from the dynamics world and delete them
 	for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--)
 	{
 		btCollisionObject * obj = dynamicsWorld->getCollisionObjectArray()[i];

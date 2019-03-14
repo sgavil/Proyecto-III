@@ -35,7 +35,7 @@ void GestorRecursos::initializeResources()
 {
 	Ogre::ConfigFile cf;
 
-	Ogre::FileSystemLayer* mFSLayer = new Ogre::FileSystemLayer("cfLayerSystem");
+	Ogre::FileSystemLayer* mFSLayer = OGRE_NEW Ogre::FileSystemLayer("cfLayerSystem");
 	//Este metodo ya agrega '_d' si se compila en debug
 	Ogre::String resourcesPath = mFSLayer->getConfigFilePath("resources.cfg");
 
@@ -74,5 +74,6 @@ void GestorRecursos::initializeResources()
 
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
+	OGRE_DELETE mFSLayer;
 }
 

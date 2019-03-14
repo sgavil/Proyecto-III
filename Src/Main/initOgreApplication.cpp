@@ -25,8 +25,7 @@ initOgreApplication::initOgreApplication(Ogre::Root *root, std::string initFileJ
 
 initOgreApplication::~initOgreApplication()
 {
-	/*delete light_;
-	delete window_;*/
+	
 }
 
 Ogre::SceneManager * initOgreApplication::getSceneManager()

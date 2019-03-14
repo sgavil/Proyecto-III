@@ -6,13 +6,22 @@ std::unique_ptr<SceneManager> SceneManager::instance_;
 
 SceneManager::SceneManager()
 {
+
 }
 
 SceneManager::~SceneManager()
 {
 	auto it = states.begin();
-	while (it != states.end()) it = states.erase(it);
-
+	while (it != states.end())
+	{
+		delete (*it).second;
+		(*it).second = nullptr;
+		++it;
+	}
+	
+	//it = states.erase(it);
+		
+	states.clear();
 	instance_.release();
 }
 			
@@ -37,6 +46,7 @@ void SceneManager::addState(std::string stateID)
 	GameState* state = new GameState(file);
 
 	states.insert(std::pair<std::string, GameState*>(stateID, state));
+
 }
 
 void SceneManager::changeState(std::string stateID)

@@ -15,7 +15,6 @@ JsonManager::JsonManager()
 	//Se limpia el string
 	resourcesPath.erase(resourcesPath.find_last_of("\\") + 1, resourcesPath.size() - 1);
 
-
 	loadJsonFiles();
 }
 

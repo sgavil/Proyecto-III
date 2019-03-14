@@ -50,4 +50,5 @@ Component * Entity::getComponent(Name name)
 
 Entity::~Entity()
 {
+	
 }

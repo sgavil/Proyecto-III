@@ -35,17 +35,9 @@ private:
 	Ogre::RenderWindow *window_;
 	Ogre::SceneManager *sceneMgr_;
 
-	//Creando puerto de vista y camara
-	//Ogre::Camera *camera_;
-	//Ogre::Viewport *viewport_;
-
 	Ogre::Light* light_;
-	//Ogre::SceneNode* lightNode_;
-	//Ogre::SceneNode* camNode_;
 
 	Ogre::Plane plane_;
-	//Ogre::Entity* suelo_;
-	//Ogre::SceneNode* sueloNodo_;
 
 	json initFile;
 	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaño WINDOW_HEIGHT/WIDHT ademas de crear

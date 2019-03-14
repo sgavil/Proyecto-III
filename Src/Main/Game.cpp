@@ -3,6 +3,10 @@
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
+//#include <CEGUI/CEGUI.h>
+//#include <CEGUI/RendererModules/Ogre/Renderer.h>
+
+
 Game::Game(std::string basicConfig):exit(false)
 {
 #if _DEBUG
@@ -26,16 +30,13 @@ Game::Game(std::string basicConfig):exit(false)
 
 Game::~Game()
 {
-	delete ScnMng_;
-	delete audioSrc_;
+
+
 	delete physSyst_;
-
-	delete Ogreinit_;
-	
-	delete floorRigidComp;
-	delete Ogreinit_;
-
+	delete audioSrc_;
 	delete ScnMng_;
+	delete Ogreinit_;
+
 	delete root;
 	//CEGUI::System::destroy();
 	//CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>()//*d_renderer));
@@ -54,7 +55,8 @@ void Game::start()
 
 	////--------------------------TEST DE COMPONENTE EN UNA ESCENA--------------------------//
 	//
-	//1.Cámara
+	////1.Cámara
+
 	CameraComponent*  camComp = new CameraComponent(Ogreinit_->getSceneManager(), Ogreinit_->getWindow());
 	Entity* camera = new Entity(std::vector<Component*>{camComp}, "Camera");
 	ScnMng_->currentState()->addEntity(camera);
@@ -66,8 +68,6 @@ void Game::start()
 	audioSrc_->PLAY_2D_SOUND("Assets\\Audio\\Cochecitos.mp3");
 
 	//-----------------------------------------------------------------------------------//
-
-	
 
 	//2.Cabeza de Simbad-> tiene un componente para renderizarlo (con su nodo, posición..) y un rigidbody que depende de este
 	RenderComponent* simbadRenderComp = new RenderComponent(Ogreinit_->getSceneManager(), "ogrehead.mesh", Ogre::Vector3{ 0, 2000, 1500 });
@@ -83,6 +83,7 @@ void Game::start()
 	////4.Terreno
 	TerrainComponent* terrainComp = new TerrainComponent(Ogreinit_->getSceneManager(), Ogreinit_->getLight(), "Maps.json");
 	Entity* terrain = new Entity(std::vector<Component*>{terrainComp}, "Terrain");
+
 	ScnMng_->currentState()->addEntity(terrain);
 
 	run();

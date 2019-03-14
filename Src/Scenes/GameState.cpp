@@ -14,8 +14,22 @@ GameState::GameState(json file)
 
 GameState::~GameState()
 {
-	for (Component* c : scene) 
-		delete c;
+	auto it = scene.begin();
+	while (it != scene.end())
+	{
+		Entity* e = (*it)->getEntity();
+		Entity* aux = (*it)->getEntity();
+
+		while (it != scene.end() && &e != nullptr && e == aux) {
+			delete (*it);
+			++it;
+			if(it != scene.end())
+				aux = (*it)->getEntity();
+		}
+		delete e;
+		e = nullptr;
+	}
+	
 }
 
 
@@ -49,7 +63,7 @@ bool GameState::handleInput(unsigned int time)
 		//LLama al handleInput de todos los componentes 
 		else 
 		{
-			std::vector<Component*>::iterator it = scene.begin();
+			std::list<Component*>::iterator it = scene.begin();
 			while (it != scene.end() && !handled)
 			{
 				if ((*it)->isActive())
@@ -70,7 +84,7 @@ bool GameState::removeEntity(std::string name)
 {
 	bool found = false;
 
-	std::vector<Component*>::iterator it = scene.begin();
+	std::list<Component*>::iterator it = scene.begin();
 	//Eliminamos todos los componentes con esa entidad
 	while (it != scene.end())
 	{
@@ -89,7 +103,7 @@ bool GameState::removeEntity(std::string name)
 Entity* GameState::getEntity(std::string name)
 {
 	Entity* e = nullptr;
-	std::vector<Component*>::iterator it = scene.begin();
+	std::list<Component*>::iterator it = scene.begin();
 	//Buscamos al primer componente que tenga esa entidad
 	while (it != scene.end() && e == nullptr)
 	{
