@@ -1,8 +1,8 @@
 #pragma once
+#include <Arquitectura/physicSystem.h>
 #include <Scenes/SceneManager.h> //Esto tiene que ir lo primero porque tiene physicSystem
 #include "initOgreApplication.h"
 #include <OgreStringVector.h>
-//#include <Arquitectura/Entity.h>
 #include <string>
 #include <SDL.h>
 #include <SDL_video.h>

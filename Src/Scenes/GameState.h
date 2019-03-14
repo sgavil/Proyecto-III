@@ -1,7 +1,5 @@
 #pragma once
-#include <Arquitectura/physicSystem.h>
 #include <Arquitectura/Entity.h>
-#include <list>
 
 class Component;
 
@@ -10,7 +8,6 @@ class GameState
 protected:
 	std::vector<Component*> scene; // Componentes en la escena
 
-	virtual void start();
 public:
 	GameState(json file);
 	virtual ~GameState();

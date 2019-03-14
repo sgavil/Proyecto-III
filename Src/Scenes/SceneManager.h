@@ -3,9 +3,6 @@
 #include <memory>
 #include "GameState.h"
 
-
-enum States { MAIN_MENU, PLAY, OPTIONS, CREDITS };
-
 class SceneManager
 {	
 private:
