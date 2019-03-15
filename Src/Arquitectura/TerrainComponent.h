@@ -2,11 +2,12 @@
 #include "Component.h"
 #include <iostream>
 #include <GestorRecursos/gestorDeRecursos.h>
+#include "OgreSystem.h"
 
 class TerrainComponent : public Component
 {
 public:
-	TerrainComponent(Ogre::SceneManager* scnMgn, Ogre::Light* light, std::string terrainFile);
+	TerrainComponent(std::string terrainFile);
 	~TerrainComponent();
 
 	virtual void render(unsigned int time) {};

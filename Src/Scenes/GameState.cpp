@@ -55,7 +55,6 @@ bool GameState::handleInput(unsigned int time)
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
-		std::cout << event.type;
 		if (event.type == SDL_QUIT)
 		{
 			return true;

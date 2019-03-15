@@ -1,7 +1,7 @@
 #pragma once
 #include <Arquitectura/physicSystem.h>
-#include <Scenes/SceneManager.h> //Esto tiene que ir lo primero porque tiene physicSystem
-#include "initOgreApplication.h"
+#include <Scenes/SceneManager.h> 
+#include <Arquitectura\OgreSystem.h>
 #include <OgreStringVector.h>
 #include <Arquitectura/Entity.h>
 #include <string>
@@ -22,12 +22,9 @@ public:
 private:
 	physicSystem* physSyst_;
 	SceneManager* ScnMng_;
-	Ogre::Root* root;
-	initOgreApplication* Ogreinit_; //Informaci�n inicial de Ogre
+	OgreSystem* ogreSyst_; //Informaci�n inicial de Ogre
 	AudioSource* audioSrc_;
 	Rigidbody* floorRigidComp;
 
-
-	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL
 	bool exit;
 };

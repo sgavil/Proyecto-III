@@ -83,8 +83,8 @@
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_Deb</TargetName>
-    <IncludePath>$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Debug;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Debug;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -97,8 +97,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Release;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Release;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -179,6 +179,7 @@
     <ClCompile Include="..\..\Src\Arquitectura\EntityFactory.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\NPCComponent.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\OgreSystem.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\MeshRenderer.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Rigidbody.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="..\..\Src\Arquitectura\EntityFactory.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h" />
     <ClInclude Include="..\..\Src\Arquitectura\NPCComponent.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\OgreSystem.h" />
     <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h" />
     <ClInclude Include="..\..\Src\Arquitectura\MeshRenderer.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Rigidbody.h" />

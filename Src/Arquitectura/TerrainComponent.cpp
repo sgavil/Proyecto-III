@@ -1,9 +1,9 @@
 #include "TerrainComponent.h"
 
-TerrainComponent::TerrainComponent(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
+TerrainComponent::TerrainComponent(std::string terrainFile)
 {
 	name_ = Name::TerrainComp;
-	terrainCreator_ = GestorRecursos::createTerrain(scnMgn, light, terrainFile);
+	terrainCreator_ = GestorRecursos::createTerrain(OgreSystem::instance()->getSM(), OgreSystem::instance()->getLight(), terrainFile);
 }
 
 TerrainComponent::~TerrainComponent()

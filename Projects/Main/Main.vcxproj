@@ -181,12 +181,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Main\Game.cpp" />
-    <ClCompile Include="..\..\Src\Main\initOgreApplication.cpp" />
     <ClCompile Include="..\..\Src\Main\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Main\Game.h" />
-    <ClInclude Include="..\..\Src\Main\initOgreApplication.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AudioSource\AudioSource.vcxproj">

@@ -9,35 +9,22 @@
 
 Game::Game(std::string basicConfig):exit(false)
 {
-#if _DEBUG
-	root = new Ogre::Root("plugins_d.cfg");
-#else 	
-	root = new Ogre::Root("plugins.cfg");
-#endif
-
-	Ogreinit_ = new initOgreApplication(root, basicConfig);
+	ogreSyst_ = OgreSystem::instance(basicConfig);
 	audioSrc_ = new AudioSource();
-	
-	//Inicialización de ventana de SDL que se una a la de Ogre
-	SDL_Init(SDL_INIT_EVERYTHING);
-	hWnd = 0;
-	Ogreinit_->getWindow()->getCustomAttribute("WINDOW", &hWnd);
-	SDL_CreateWindowFrom((void*)hWnd);
-
 	ScnMng_ = SceneManager::instance();
 	physSyst_ = physicSystem::instance();
 }
 
 Game::~Game()
 {
-
-
-	delete physSyst_;
-	delete audioSrc_;
-	delete ScnMng_;
-	delete Ogreinit_;
-
-	delete root;
+	if (physSyst_ != nullptr)
+		delete physSyst_;
+	if (audioSrc_ != nullptr)
+		delete audioSrc_;
+	if (ScnMng_ != nullptr)
+		delete ScnMng_;
+	if (ogreSyst_ != nullptr)
+		delete ogreSyst_;
 	//CEGUI::System::destroy();
 	//CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>()//*d_renderer));
 }
@@ -57,9 +44,9 @@ void Game::start()
 	//
 	////1.Cámara
 
-	CameraComponent*  camComp = new CameraComponent(Ogreinit_->getSceneManager(), Ogreinit_->getWindow());
+	/*CameraComponent*  camComp = new CameraComponent();
 	Entity* camera = new Entity(std::vector<Component*>{camComp}, "Camera");
-	ScnMng_->currentState()->addEntity(camera);
+	ScnMng_->currentState()->addEntity(camera);*/
 
 	//-----------------------------------------------------------------------------------//
 	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
@@ -70,7 +57,7 @@ void Game::start()
 	//-----------------------------------------------------------------------------------//
 
 	//2.Cabeza de Simbad-> tiene un componente para renderizarlo (con su nodo, posición..) y un rigidbody que depende de este
-	MeshRenderer* simbadRenderComp = new MeshRenderer(Ogreinit_->getSceneManager(), "ogrehead.mesh", Ogre::Vector3{ 0, 2000, 1500 });
+	MeshRenderer* simbadRenderComp = new MeshRenderer("ogrehead.mesh", Ogre::Vector3{ 0, 2000, 1500 });
 	Rigidbody* simbadRigidComp = new Rigidbody(simbadRenderComp->getNode(), Shape::BoxShape, 1, 10);
 	Entity* simbad = new Entity(std::vector<Component*>{simbadRenderComp, simbadRigidComp}, "Simbad");
 	ScnMng_->currentState()->addEntity(simbad);
@@ -81,7 +68,7 @@ void Game::start()
 	ScnMng_->currentState()->addEntity(floor);
 
 	////4.Terreno
-	TerrainComponent* terrainComp = new TerrainComponent(Ogreinit_->getSceneManager(), Ogreinit_->getLight(), "Maps.json");
+	TerrainComponent* terrainComp = new TerrainComponent("Maps.json");
 	Entity* terrain = new Entity(std::vector<Component*>{terrainComp}, "Terrain");
 
 	ScnMng_->currentState()->addEntity(terrain);
@@ -100,7 +87,7 @@ void Game::run()
 		//Llama al update, handleInput y render de la escena activa
 		ScnMng_->currentState()->update(deltaTime);
 		exit = ScnMng_->currentState()->handleInput(deltaTime);
-		root->renderOneFrame((Ogre::Real)deltaTime / 1000);
+		ogreSyst_->render(deltaTime);
 
 		//Actualiza el deltaTime
 		deltaTime = SDL_GetTicks() - actualTime;

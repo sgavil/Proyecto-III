@@ -5,12 +5,12 @@
 #include <OgreRenderWindow.h>
 #include <SDL_video.h>
 #include <iostream>
+#include "OgreSystem.h"
 
 class CameraComponent : public Component
 {
 public:
 	CameraComponent();
-	CameraComponent(Ogre::SceneManager* scnMgn, Ogre::RenderWindow* wind);
 	~CameraComponent();
 
 	virtual void render(unsigned int time) {};

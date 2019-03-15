@@ -2,13 +2,13 @@
 
 
 
-MeshRenderer::MeshRenderer(Ogre::SceneManager* manager, std::string meshName, Ogre::Vector3 position)
+MeshRenderer::MeshRenderer(std::string meshName, Ogre::Vector3 position)
 {
 	//Nombre del componente
 	name_ = Name::MeshRendererComp;
 
-	Ogre::Entity* ogreEntity = manager->createEntity(meshName);
-	node_ = manager->getRootSceneNode()->createChildSceneNode();
+	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSM()->createEntity(meshName);
+	node_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setPosition(position);
 }
