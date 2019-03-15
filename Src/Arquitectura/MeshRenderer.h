@@ -4,14 +4,14 @@
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 
-class RenderComponent : public Component
+class MeshRenderer : public Component
 {
 public:
 
 	//Crea una entidad renderizable a partir del nombre de su malla y una posición inicial
-	RenderComponent(Ogre::SceneManager* manager, std::string meshName, Ogre::Vector3 position = { 0,0,0 });
+	MeshRenderer(Ogre::SceneManager* manager, std::string meshName, Ogre::Vector3 position = { 0,0,0 });
 
-	~RenderComponent();
+	~MeshRenderer();
 
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);

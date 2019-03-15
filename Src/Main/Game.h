@@ -11,7 +11,7 @@
 #include "vld.h"
 #include <Arquitectura/Components.h>
 
-class RigidbodyComponent;
+class Rigidbody;
 class Game {
 public:
 	Game(std::string basicConfig);
@@ -25,7 +25,7 @@ private:
 	Ogre::Root* root;
 	initOgreApplication* Ogreinit_; //Informaci�n inicial de Ogre
 	AudioSource* audioSrc_;
-	RigidbodyComponent* floorRigidComp;
+	Rigidbody* floorRigidComp;
 
 
 	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL

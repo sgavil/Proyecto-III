@@ -22,9 +22,6 @@
     <ClCompile Include="..\..\Src\Arquitectura\CameraComponent.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\RigidbodyComponent.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\Component.cpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -37,21 +34,24 @@
     <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\RenderComponent.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\NPCComponent.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\EntityFactory.cpp">
       <Filter>Factoría</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\Rigidbody.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\MeshRenderer.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\Transform.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\CameraComponent.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\RigidbodyComponent.h">
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\TerrainComponent.h">
@@ -69,9 +69,6 @@
     <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\RenderComponent.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\NPCComponent.h">
       <Filter>Componentes</Filter>
     </ClInclude>
@@ -83,6 +80,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\EntityFactory.h">
       <Filter>Factoría</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Rigidbody.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\MeshRenderer.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Transform.h">
+      <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,15 +4,15 @@
 #include "physicSystem.h"
 #include <OgreSceneNode.h>
 
-class RigidbodyComponent : public Component
+class Rigidbody : public Component
 {
 public:
 	//Especifica el nodo (masa = 0 significa que el rigidbody es estático)
-	RigidbodyComponent(Ogre::SceneNode* node, Shape shape, btScalar dimensions, btScalar mass = 1);
+	Rigidbody(Ogre::SceneNode* node, Shape shape, btScalar dimensions, btScalar mass = 1);
 	//Rigidbody invisible (se especifica la posición)
-	RigidbodyComponent(Ogre::Vector3 position, Shape shape, btScalar dimensions, btScalar mass = 1);
+	Rigidbody(Ogre::Vector3 position, Shape shape, btScalar dimensions, btScalar mass = 1);
 
-	~RigidbodyComponent();
+	~Rigidbody();
 
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);

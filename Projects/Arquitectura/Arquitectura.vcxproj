@@ -180,9 +180,10 @@
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\NPCComponent.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp" />
-    <ClCompile Include="..\..\Src\Arquitectura\RenderComponent.cpp" />
-    <ClCompile Include="..\..\Src\Arquitectura\RigidbodyComponent.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\MeshRenderer.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\Rigidbody.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\TerrainComponent.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\CameraComponent.h" />
@@ -194,9 +195,10 @@
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h" />
     <ClInclude Include="..\..\Src\Arquitectura\NPCComponent.h" />
     <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h" />
-    <ClInclude Include="..\..\Src\Arquitectura\RenderComponent.h" />
-    <ClInclude Include="..\..\Src\Arquitectura\RigidbodyComponent.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\MeshRenderer.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\Rigidbody.h" />
     <ClInclude Include="..\..\Src\Arquitectura\TerrainComponent.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,11 +1,11 @@
-#include "RenderComponent.h"
+#include "MeshRenderer.h"
 
 
 
-RenderComponent::RenderComponent(Ogre::SceneManager* manager, std::string meshName, Ogre::Vector3 position)
+MeshRenderer::MeshRenderer(Ogre::SceneManager* manager, std::string meshName, Ogre::Vector3 position)
 {
 	//Nombre del componente
-	name_ = Name::RenderComp;
+	name_ = Name::MeshRendererComp;
 
 	Ogre::Entity* ogreEntity = manager->createEntity(meshName);
 	node_ = manager->getRootSceneNode()->createChildSceneNode();
@@ -14,16 +14,16 @@ RenderComponent::RenderComponent(Ogre::SceneManager* manager, std::string meshNa
 }
 
 
-RenderComponent::~RenderComponent()
+MeshRenderer::~MeshRenderer()
 {
 }
 
-void RenderComponent::update(unsigned int time)
+void MeshRenderer::update(unsigned int time)
 {
 
 }
 
-bool RenderComponent::handleEvent(SDL_Event* e, unsigned int time)
+bool MeshRenderer::handleEvent(SDL_Event* e, unsigned int time)
 {
 	if (e->type == SDL_KEYDOWN)
 	{

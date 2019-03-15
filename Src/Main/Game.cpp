@@ -70,13 +70,13 @@ void Game::start()
 	//-----------------------------------------------------------------------------------//
 
 	//2.Cabeza de Simbad-> tiene un componente para renderizarlo (con su nodo, posición..) y un rigidbody que depende de este
-	RenderComponent* simbadRenderComp = new RenderComponent(Ogreinit_->getSceneManager(), "ogrehead.mesh", Ogre::Vector3{ 0, 2000, 1500 });
-	RigidbodyComponent* simbadRigidComp = new RigidbodyComponent(simbadRenderComp->getNode(), Shape::BoxShape, 1, 10);
+	MeshRenderer* simbadRenderComp = new MeshRenderer(Ogreinit_->getSceneManager(), "ogrehead.mesh", Ogre::Vector3{ 0, 2000, 1500 });
+	Rigidbody* simbadRigidComp = new Rigidbody(simbadRenderComp->getNode(), Shape::BoxShape, 1, 10);
 	Entity* simbad = new Entity(std::vector<Component*>{simbadRenderComp, simbadRigidComp}, "Simbad");
 	ScnMng_->currentState()->addEntity(simbad);
 
 	////3.Plano invisible
-	floorRigidComp = new RigidbodyComponent(Ogre::Vector3(1683, 1000, 2116), Shape::PlaneShape, 100, 0);
+	floorRigidComp = new Rigidbody(Ogre::Vector3(1683, 1000, 2116), Shape::PlaneShape, 100, 0);
 	Entity* floor = new Entity(std::vector<Component*>{floorRigidComp}, "Floor");
 	ScnMng_->currentState()->addEntity(floor);
 

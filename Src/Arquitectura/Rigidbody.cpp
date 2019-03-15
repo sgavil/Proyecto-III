@@ -1,12 +1,12 @@
-#include "RigidbodyComponent.h"
+#include "Rigidbody.h"
 
 
 
-RigidbodyComponent::RigidbodyComponent(Ogre::SceneNode* node, Shape shape, btScalar dimensions, btScalar mass)
+Rigidbody::Rigidbody(Ogre::SceneNode* node, Shape shape, btScalar dimensions, btScalar mass)
 {
 	//TODO: que el tamaño del COllider se ajuste al tamaño de la malla de la entidad que tiene el nodo
 	//Nombre del componente
-	name_ = Name::RigidComp;
+	name_ = Name::RigidbodyComp;
 
 	//Creamos el Rigidbody
 	btVector3 pos = btVector3 ( node->getPosition().x, node->getPosition().y, node->getPosition().z );
@@ -17,10 +17,10 @@ RigidbodyComponent::RigidbodyComponent(Ogre::SceneNode* node, Shape shape, btSca
 		rigid_->setUserPointer(node);
 }
 
-RigidbodyComponent::RigidbodyComponent(Ogre::Vector3 position, Shape shape, btScalar dimensions, btScalar mass)
+Rigidbody::Rigidbody(Ogre::Vector3 position, Shape shape, btScalar dimensions, btScalar mass)
 {
 	//Nombre del componente
-	name_ = Name::RigidComp;
+	name_ = Name::RigidbodyComp;
 
 	//Creamos el Rigidbody
 	btVector3 pos = btVector3(position.x, position.y, position.z);
@@ -28,13 +28,13 @@ RigidbodyComponent::RigidbodyComponent(Ogre::Vector3 position, Shape shape, btSc
 }
 
 
-RigidbodyComponent::~RigidbodyComponent()
+Rigidbody::~Rigidbody()
 {
 	/*if(rigid_ != nullptr)
 	delete rigid_;*/
 }
 
-void RigidbodyComponent::update(unsigned int time)
+void Rigidbody::update(unsigned int time)
 {
 	//Si está asociado a un nodo
 	if (rigid_->getUserPointer() != nullptr)
@@ -53,7 +53,7 @@ void RigidbodyComponent::update(unsigned int time)
 	}
 }
 
-bool RigidbodyComponent::handleEvent(SDL_Event* e, unsigned int time)
+bool Rigidbody::handleEvent(SDL_Event* e, unsigned int time)
 {
 	if (e->type == SDL_KEYDOWN)
 	{
