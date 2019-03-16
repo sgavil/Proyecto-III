@@ -1,55 +1,55 @@
 #include "Rigidbody.h"
+#include "Entity.h"
 
 
 
-Rigidbody::Rigidbody(Ogre::SceneNode* node, Shape shape, btScalar dimensions, btScalar mass)
+Rigidbody::Rigidbody(Shape shape, btScalar dimensions, btScalar mass): transform_(nullptr)
 {
 	//TODO: que el tamaño del COllider se ajuste al tamaño de la malla de la entidad que tiene el nodo
 	//Nombre del componente
 	name_ = Name::RigidbodyComp;
 
 	//Creamos el Rigidbody
-	btVector3 pos = btVector3 ( node->getPosition().x, node->getPosition().y, node->getPosition().z );
-	rigid_ = physicSystem::createRigidBody(shape, pos, dimensions, mass);
+	rigid_ = physicSystem::createRigidBody(shape, dimensions, mass);
 
-	//Lo asociamos al nodo en cuestión
-	if(node != nullptr)
-		rigid_->setUserPointer(node);
 }
-
-Rigidbody::Rigidbody(Ogre::Vector3 position, Shape shape, btScalar dimensions, btScalar mass)
-{
-	//Nombre del componente
-	name_ = Name::RigidbodyComp;
-
-	//Creamos el Rigidbody
-	btVector3 pos = btVector3(position.x, position.y, position.z);
-	rigid_ = physicSystem::createRigidBody(shape, pos, dimensions, mass);
-}
-
 
 Rigidbody::~Rigidbody()
 {
-	/*if(rigid_ != nullptr)
-	delete rigid_;*/
+
 }
 
 void Rigidbody::update(unsigned int time)
 {
-	//Si está asociado a un nodo
-	if (rigid_->getUserPointer() != nullptr)
+	//Transform no inicializado (o le falta el componente a la entidad)
+	if (transform_ == nullptr)
+	{
+		transform_ = (Transform*)entity_->getComponent(Name::TransformComp);
+		if (transform_ == nullptr)
+			std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
+		else
+		{
+			rigid_->setUserPointer(transform_);
+
+			//Colocamos en un inicio al rigidbody en el lugar del Transform de la entidad
+			btTransform trans;
+			trans.setIdentity();
+			trans.setOrigin(btVector3(transform_->getPosition().x, transform_->getPosition().y, transform_->getPosition().z));
+			rigid_->setWorldTransform(trans);
+		}
+	}
+		
+	//Si está asociado a un transform
+	else
 	{
 		//Obtenemos su posición y orientación
 		btTransform trans;
 		rigid_->getMotionState()->getWorldTransform(trans);
 		btQuaternion orientation = trans.getRotation();
 
-		//Pillamos el nodo de Ogre
-		Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(rigid_->getUserPointer());
-
 		//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
-		sceneNode->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
-		sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
+		transform_->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
+		transform_->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
 	}
 }
 
@@ -60,7 +60,8 @@ bool Rigidbody::handleEvent(SDL_Event* e, unsigned int time)
 		//El control 0 estar parado, el 1 izda, el 2 dcha, el 3 arriba y el 4 abajo
 		if (e->key.keysym.sym == SDLK_SPACE)
 		{
-			rigid_->applyCentralImpulse(btVector3(0, 500, 0));
+			//rigid_->applyImpulse(btVector3(0, 20, 0), btVector3(100, 0, 0));
+			rigid_->applyCentralImpulse(btVector3(0, 100, 0));
 			return true;
 		}
 	}

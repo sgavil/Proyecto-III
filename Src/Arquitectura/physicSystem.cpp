@@ -61,7 +61,7 @@ void physicSystem::stepSimulation(unsigned int time)
 			trans = obj->getWorldTransform();
 
 		//Informa de la posición
-		//printf(" world   pos  object  %d = %f ,%f ,%f\n", j, float(trans.getOrigin().getX()), float(trans.getOrigin().getY()), float(trans.getOrigin().getZ()));
+		printf(" world   pos  object  %d = %f ,%f ,%f\n", j, float(trans.getOrigin().getX()), float(trans.getOrigin().getY()), float(trans.getOrigin().getZ()));
 	}
 }
 
@@ -110,10 +110,10 @@ void physicSystem::clenanupPhysics()
 	}
 }
 
-btRigidBody * physicSystem::createRigidBody( Shape forma, btVector3 position, btScalar dimensions, btScalar mass)
+btRigidBody * physicSystem::createRigidBody( Shape forma, btScalar dimensions, btScalar mass)
 {
 	
-	btCollisionShape* shape;
+	btCollisionShape* shape = nullptr;
 	switch (forma)
 	{
 	case Shape::EmptyShape:
@@ -140,17 +140,20 @@ btRigidBody * physicSystem::createRigidBody( Shape forma, btVector3 position, bt
 	default:
 		break;
 	}
+
 	//Añadimos la forma al vector
 	shapes.push_back(shape);
 
 	//Posición del rigidbody
 	btTransform startTransform;
 	startTransform.setIdentity();
-	startTransform.setOrigin(position);
+	startTransform.setOrigin(btVector3(0,0,0));
 
 	//Estado de movimiento empezando en la posición inicial del nodo
 	btDefaultMotionState *motionState = new btDefaultMotionState(startTransform);
-	//btVector3 localInertia(0, 0, 0);
+	//Inercia de la forma
+	btVector3 localInertia(0, 0, 0);
+	shape->calculateLocalInertia(mass, localInertia);
 	
 	//Creamos el Rigidbody y lo  añadimos al mundo
 	btRigidBody* rigid = new btRigidBody(mass, motionState, shape); //, localInertia)

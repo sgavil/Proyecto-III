@@ -1,8 +1,8 @@
 #include "MeshRenderer.h"
+#include "Entity.h"
 
 
-
-MeshRenderer::MeshRenderer(std::string meshName, Ogre::Vector3 position)
+MeshRenderer::MeshRenderer(std::string meshName)
 {
 	//Nombre del componente
 	name_ = Name::MeshRendererComp;
@@ -10,7 +10,6 @@ MeshRenderer::MeshRenderer(std::string meshName, Ogre::Vector3 position)
 	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSM()->createEntity(meshName);
 	node_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
-	node_->setPosition(position);
 }
 
 
@@ -20,7 +19,20 @@ MeshRenderer::~MeshRenderer()
 
 void MeshRenderer::update(unsigned int time)
 {
-
+	//Transform no inicializado (o le falta el componente a la entidad)
+	if (transform_ == nullptr)
+	{
+		transform_ = (Transform*)entity_->getComponent(Name::TransformComp);
+		if (transform_ == nullptr)
+			std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
+	}
+	else
+	{
+		node_->setPosition(transform_->getPosition());
+		node_->setOrientation(transform_->getOrientation());
+		node_->setScale(transform_->getScale());
+	}
+		
 }
 
 bool MeshRenderer::handleEvent(SDL_Event* e, unsigned int time)

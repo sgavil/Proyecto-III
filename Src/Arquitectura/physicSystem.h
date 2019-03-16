@@ -25,7 +25,7 @@ public:
 	void clenanupPhysics();
 
 	//Crea un rigidbody con una forma, posición, masa y dimensiones dadas
-	static btRigidBody* createRigidBody(Shape forma, btVector3 position, btScalar dimensions, btScalar mass);
+	static btRigidBody* createRigidBody(Shape forma, btScalar dimensions, btScalar mass);
 
 	//Aáde una forma al vector 
 	void addShape(btCollisionShape* shape) { shapes.push_back(shape); };

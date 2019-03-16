@@ -24,7 +24,7 @@ private:
 	SceneManager* ScnMng_;
 	OgreSystem* ogreSyst_; //Informaci�n inicial de Ogre
 	AudioSource* audioSrc_;
-	Rigidbody* floorRigidComp;
+	Rigidbody* floorRigidbody;
 
 	bool exit;
 };

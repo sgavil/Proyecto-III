@@ -3,28 +3,27 @@
 #include <iostream>
 #include "physicSystem.h"
 #include <OgreSceneNode.h>
+#include "Transform.h"
 
 class Rigidbody : public Component
 {
 public:
 	//Especifica el nodo (masa = 0 significa que el rigidbody es estático)
-	Rigidbody(Ogre::SceneNode* node, Shape shape, btScalar dimensions, btScalar mass = 1);
-	//Rigidbody invisible (se especifica la posición)
-	Rigidbody(Ogre::Vector3 position, Shape shape, btScalar dimensions, btScalar mass = 1);
+	Rigidbody(Shape shape, btScalar dimensions, btScalar mass = 1);
 
 	~Rigidbody();
 
+	//Generic methods
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);
 	virtual bool handleEvent(SDL_Event* e, unsigned int time);
 	virtual void receive(Message* msg) {};
 
-	virtual bool hasNode() { return (rigid_->getUserPointer() != nullptr); };
-	virtual void* getNode() { return rigid_->getUserPointer(); };
-	virtual void getTransform(btTransform* trans) { return rigid_->getMotionState()->getWorldTransform(*trans); };
+	//Add a force to the rigidBody
+	virtual void addForce(btVector3 force) { rigid_->applyCentralImpulse(force); };
 
 protected:
 	btRigidBody* rigid_;
-
+	Transform* transform_;
 };
 
