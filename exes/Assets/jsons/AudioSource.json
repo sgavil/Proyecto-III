@@ -1,0 +1,27 @@
+{
+	"2DSounds":
+	[
+		{
+			"Id": "cochecitos",
+			"rute": "Assets\\Audio\\Cochecitos.mp3",
+			"loopCount": 0,
+			"Volume": 1,
+			"Pan": 0
+		},
+		{
+			"Id": "expl",
+			"rute": "Assets\\Audio\\Expl.mp3",
+			"loopCount": 0,
+			"Volume": 1,
+			"Pan": 0
+		}
+	],
+	"3DSounds":
+	[
+
+	],
+	"Songs":
+	[
+
+	]
+}

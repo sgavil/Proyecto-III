@@ -10,7 +10,7 @@
 Game::Game(std::string basicConfig):exit(false)
 {
 	ogreSyst_ = OgreSystem::instance(basicConfig);
-	audioSrc_ = new AudioSource();
+	audioSrc_ = AudioSource::instance();
 	ScnMng_ = SceneManager::instance();
 	physSyst_ = physicSystem::instance();
 }
@@ -34,25 +34,13 @@ void Game::start()
 
 	ScnMng_->addState("TestState");
 	ScnMng_->changeState("TestState");
-	//PlayState* playstate = new PlayState(); 
-	//ScnMng_->addState(PLAY, playstate);
-	//ScnMng_->changeState(PLAY);
 
 	physicSystem::instance()->initPhysics();
 
-	////--------------------------TEST DE COMPONENTE EN UNA ESCENA--------------------------//
-	//
-	////1.Cámara
-
-	/*CameraComponent*  camComp = new CameraComponent();
-	Entity* camera = new Entity(std::vector<Component*>{camComp}, "Camera");
-	ScnMng_->currentState()->addEntity(camera);*/
-
-	//-----------------------------------------------------------------------------------//
 	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
 
-	audioSrc_->ADD_2D_SOUND("Assets\\Audio\\Cochecitos.mp3");
-	audioSrc_->PLAY_2D_SOUND("Assets\\Audio\\Cochecitos.mp3");
+	AudioSource::instance()->READ_JSON_SOUNDS("AudioSource.json");
+	AudioSource::instance()->PLAY_2D_SOUND("cochecitos");
 
 	//-----------------------------------------------------------------------------------//
 
