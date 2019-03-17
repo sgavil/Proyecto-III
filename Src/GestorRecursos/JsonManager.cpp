@@ -83,6 +83,3 @@ void JsonManager::loadJson(const std::string &streamFilePath, const std::string 
 	//Se inserta los json que se van encontrando en el dir al diccionario
 	jsonMap.insert(std::pair<std::string, json>(fileName, j));
 }
-
-
-

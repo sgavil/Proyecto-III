@@ -4,12 +4,23 @@ std::unique_ptr<EntityFactory> EntityFactory::instance_;
 
 EntityFactory::EntityFactory()
 {
+	blueprints = JsonManager::instance()->getJsonByKey("Entities.json");
 	BaseCreator* bs;
-	bs = new CameraComponentCreator();
-	registerType("CameraComponent", bs);
 
-    bs = new NPCComponentCreator();
-	registerType("NPCComponent", bs);
+	bs = new TransformCreator();
+	registerType("Transform", bs);
+
+	bs = new MeshRendererCreator();
+	registerType("MeshRenderer", bs);
+
+	bs = new RigidBodyCreator();
+	registerType("Rigidbody", bs);
+
+	bs = new CameraCreator();
+	registerType("Camera", bs);
+
+    bs = new NPCCreator();
+	registerType("NPC", bs);
 }
 
 
@@ -46,7 +57,7 @@ bool EntityFactory::registerType(std::string typeID, BaseCreator * pCreator)
 	return true;
 }
 
-Entity * EntityFactory::createEntity(json file)
+Entity* EntityFactory::createEntity(json file)
 {
 	Entity* entity = new Entity();
 	entity->setName(file["name"]);
@@ -61,7 +72,21 @@ Entity * EntityFactory::createEntity(json file)
 	return entity;
 }
 
-Component * EntityFactory::createComponent(std::string name)
+Entity* EntityFactory::createEntityFromBlueprint(std::string name)
+{
+	Entity* entity = new Entity();
+	entity->setName(name);
+
+	for (std::string comp : blueprints[name])
+	{
+		Component* c = createComponent(comp);
+		entity->addComponent(c);
+	}
+
+	return entity;
+}
+
+Component* EntityFactory::createComponent(std::string name)
 {
 	auto it = creators_.find(name);
 

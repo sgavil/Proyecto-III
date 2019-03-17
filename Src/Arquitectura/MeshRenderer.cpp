@@ -2,6 +2,10 @@
 #include "Entity.h"
 
 
+MeshRenderer::MeshRenderer()
+{
+}
+
 MeshRenderer::MeshRenderer(std::string meshName)
 {
 	//Nombre del componente

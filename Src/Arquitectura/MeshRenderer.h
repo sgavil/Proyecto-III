@@ -9,6 +9,7 @@
 class MeshRenderer : public Component
 {
 public:
+	MeshRenderer();
 
 	//Crea una entidad renderizable a partir del nombre de su malla y una posición inicial
 	MeshRenderer(std::string meshName);

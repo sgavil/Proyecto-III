@@ -3,6 +3,10 @@
 
 
 
+Rigidbody::Rigidbody()
+{
+}
+
 Rigidbody::Rigidbody(Shape shape, btScalar dimensions, btScalar mass): transform_(nullptr)
 {
 	//TODO: que el tamaño del COllider se ajuste al tamaño de la malla de la entidad que tiene el nodo

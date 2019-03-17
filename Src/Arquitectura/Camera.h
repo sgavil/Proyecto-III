@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h""
+#include "Component.h"
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreEntity.h>
 #include <OgreRenderWindow.h>
@@ -7,11 +7,11 @@
 #include <iostream>
 #include "OgreSystem.h"
 
-class CameraComponent : public Component
+class Camera : public Component
 {
 public:
-	CameraComponent();
-	~CameraComponent();
+	Camera();
+	~Camera();
 
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);

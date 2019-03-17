@@ -6,12 +6,12 @@
         "Components":
         [
           {
-            "name": "NPCComponent",
+            "name": "NPC",
             "hunger": 5,
             "thirst": 10
           },
 					{
-						"name": "NPCComponent",
+						"name": "NPC",
 						"hunger": 20,
 						"thirst": 30
 					}
@@ -24,7 +24,7 @@
 			"Components":
 			[
 				{
-					"name": "CameraComponent"
+					"name": "Camera"
 				}
 			]
 	}

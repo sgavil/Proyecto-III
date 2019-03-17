@@ -1,12 +1,12 @@
-#include "TerrainComponent.h"
+#include "Terrain.h"
 
-TerrainComponent::TerrainComponent(std::string terrainFile)
+Terrain::Terrain(std::string terrainFile)
 {
 	name_ = Name::TerrainComp;
 	terrainCreator_ = GestorRecursos::createTerrain(OgreSystem::instance()->getSM(), OgreSystem::instance()->getLight(), terrainFile);
 }
 
-TerrainComponent::~TerrainComponent()
+Terrain::~Terrain()
 {
 	delete terrainCreator_;
 }

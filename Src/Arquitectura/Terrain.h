@@ -4,11 +4,11 @@
 #include <GestorRecursos/gestorDeRecursos.h>
 #include "OgreSystem.h"
 
-class TerrainComponent : public Component
+class Terrain : public Component
 {
 public:
-	TerrainComponent(std::string terrainFile);
-	~TerrainComponent();
+	Terrain(std::string terrainFile);
+	~Terrain();
 
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time) {};

@@ -1,8 +1,8 @@
-#include "CameraComponent.h"
+#include "Camera.h"
 
 
 
-CameraComponent::CameraComponent()
+Camera::Camera()
 {
 	name_ = Name::CameraComp;
 
@@ -15,16 +15,16 @@ CameraComponent::CameraComponent()
 }
 
 
-CameraComponent::~CameraComponent()
+Camera::~Camera()
 {
 }
 
-void CameraComponent::update(unsigned int time)
+void Camera::update(unsigned int time)
 {
 	
 }
 
-bool CameraComponent::handleEvent(SDL_Event* e, unsigned int time)
+bool Camera::handleEvent(SDL_Event* e, unsigned int time)
 {
 	if (e->type == SDL_KEYDOWN)
 	{

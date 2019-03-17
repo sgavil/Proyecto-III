@@ -8,6 +8,8 @@
 class Rigidbody : public Component
 {
 public:
+	Rigidbody();
+
 	//Especifica el nodo (masa = 0 significa que el rigidbody es estático)
 	Rigidbody(Shape shape, btScalar dimensions, btScalar mass = 1);
 

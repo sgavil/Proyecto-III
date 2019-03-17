@@ -58,7 +58,7 @@ void Game::start()
 	ScnMng_->currentState()->addEntity(floor);
 
 	////4.Terreno
-	TerrainComponent* terrainComp = new TerrainComponent("Maps.json");
+	Terrain* terrainComp = new Terrain("Maps.json");
 	Entity* terrain = new Entity(std::vector<Component*>{terrainComp}, "Terrain");
 	ScnMng_->currentState()->addEntity(terrain);
 

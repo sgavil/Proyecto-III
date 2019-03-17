@@ -1,11 +1,11 @@
 #pragma once
 #include "Component.h"
 
-class NPCComponent : public Component
+class NPC : public Component
 {
 public:
-	NPCComponent();
-	~NPCComponent();
+	NPC();
+	~NPC();
 
 	void load(json file);
 	virtual void render(unsigned int time) {};
