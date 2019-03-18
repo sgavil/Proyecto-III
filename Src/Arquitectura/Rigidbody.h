@@ -10,10 +10,12 @@ class Rigidbody : public Component
 public:
 	Rigidbody();
 
-	//Especifica el nodo (masa = 0 significa que el rigidbody es estático)
-	Rigidbody(Shape shape, btScalar dimensions, btScalar mass = 1);
+	//Constructoras para Rigidbodys asociados a una malla
+	Rigidbody(Transform* transform, Shape shape, btScalar mass = 1);
 
 	~Rigidbody();
+
+	virtual void start();
 
 	//Generic methods
 	virtual void render(unsigned int time) {};

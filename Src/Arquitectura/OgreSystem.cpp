@@ -94,4 +94,7 @@ void OgreSystem::initWindow()
 	plane_.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
 	sceneMgr_->setSkyPlane(
 		true, plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
+#if _DEBUG
+	sceneMgr_->showBoundingBoxes(true); //Para debuggear las aabb
+#endif
 }

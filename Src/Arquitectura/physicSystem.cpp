@@ -9,6 +9,7 @@ std::vector<btCollisionShape*> physicSystem::shapes = std::vector<btCollisionSha
 
 physicSystem::physicSystem()
 {
+	initPhysics();
 }
 
 
@@ -39,7 +40,7 @@ void physicSystem::initPhysics()
 	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
 	//Gravedad
-	dynamicsWorld->setGravity(btVector3(0, -10, 0));
+	dynamicsWorld->setGravity(DEFAULT_GRAVITY);
 }
 
 void physicSystem::stepSimulation(unsigned int time)
@@ -61,7 +62,7 @@ void physicSystem::stepSimulation(unsigned int time)
 			trans = obj->getWorldTransform();
 
 		//Informa de la posición
-		printf(" world   pos  object  %d = %f ,%f ,%f\n", j, float(trans.getOrigin().getX()), float(trans.getOrigin().getY()), float(trans.getOrigin().getZ()));
+		//printf(" world   pos  object  %d = %f ,%f ,%f\n", j, float(trans.getOrigin().getX()), float(trans.getOrigin().getY()), float(trans.getOrigin().getZ()));
 	}
 }
 
@@ -110,7 +111,7 @@ void physicSystem::clenanupPhysics()
 	}
 }
 
-btRigidBody * physicSystem::createRigidBody( Shape forma, btScalar dimensions, btScalar mass)
+btRigidBody * physicSystem::createRigidBody( Shape forma, Vector3 dimensions, btScalar mass)
 {
 	
 	btCollisionShape* shape = nullptr;
@@ -120,22 +121,22 @@ btRigidBody * physicSystem::createRigidBody( Shape forma, btScalar dimensions, b
 		shape = new btEmptyShape();
 		break;
 	case Shape::BoxShape:
-		shape = new btBoxShape(btVector3(dimensions, dimensions, dimensions));
+		shape = new btBoxShape(btVector3(dimensions.x, dimensions.y, dimensions.z));
 		break;
 	case Shape::SphereShape:
-		shape = new btSphereShape(dimensions);
+		shape = new btSphereShape(dimensions.x);
 		break;
 	case Shape::CapsuleShape:
-		shape = new btCapsuleShape(dimensions, dimensions);
+		shape = new btCapsuleShape(dimensions.x, dimensions.y);
 		break;
 	case Shape::PlaneShape:
 		shape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
 		break;
 	case Shape::CylinderShape:
-		shape = new btCylinderShape(btVector3(dimensions, dimensions, dimensions));
+		shape = new btCylinderShape(btVector3(dimensions.x, dimensions.y, dimensions.z));
 		break;
 	case Shape::ConeShape:
-		shape = new btConeShape(dimensions, dimensions);
+		shape = new btConeShape(dimensions.x, dimensions.y);
 		break;
 	default:
 		break;
@@ -156,7 +157,11 @@ btRigidBody * physicSystem::createRigidBody( Shape forma, btScalar dimensions, b
 	shape->calculateLocalInertia(mass, localInertia);
 	
 	//Creamos el Rigidbody y lo  añadimos al mundo
-	btRigidBody* rigid = new btRigidBody(mass, motionState, shape); //, localInertia)
+	btRigidBody* rigid;
+	if(mass != 0)
+		rigid = new btRigidBody(mass, motionState, shape, localInertia); //, localInertia)
+	else
+		rigid = new btRigidBody(mass, nullptr, shape, localInertia);
 	rigid->setRestitution(1);
 	dynamicsWorld->addRigidBody(rigid);
 

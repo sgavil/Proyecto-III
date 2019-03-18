@@ -12,6 +12,8 @@ public:
 	GameState(json file);
 	virtual ~GameState();
 
+	virtual void start();
+
 	virtual void update(unsigned int time);
 	virtual void render(unsigned int time);
 	virtual bool handleInput(unsigned int time);

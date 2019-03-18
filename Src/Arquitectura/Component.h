@@ -27,6 +27,9 @@ public:
 
 	virtual void load(json file) {};
 
+	//Método para que los componentes e inicialicen con información de sus componentes hermanos
+	virtual void start() {};
+
 	//Métodos principales (renderizado, lógica y eventos)
 	virtual void render(unsigned int time) = 0;
 	virtual void update(unsigned int time) = 0;

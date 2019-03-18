@@ -12,9 +12,11 @@ public:
 	MeshRenderer();
 
 	//Crea una entidad renderizable a partir del nombre de su malla y una posición inicial
-	MeshRenderer(std::string meshName);
+	MeshRenderer(std::string meshName, bool visible = true);
 
 	~MeshRenderer();
+
+	virtual void start();
 
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);

@@ -35,8 +35,6 @@ void Game::start()
 	ScnMng_->addState("TestState");
 	ScnMng_->changeState("TestState");
 
-	physicSystem::instance()->initPhysics();
-
 	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
 
 	AudioSource::instance()->READ_JSON_SOUNDS("AudioSource.json");
@@ -45,17 +43,24 @@ void Game::start()
 	//-----------------------------------------------------------------------------------//
 
 	//2.Cabeza de Simbad-> tiene un componente para renderizarlo (con su nodo, posición..) y un rigidbody que depende de este
-	Transform* simbadTransform = new Transform(Ogre::Vector3{ 0, 1500, 1000 });
-	MeshRenderer* simbadMeshRenderer = new MeshRenderer("ogrehead.mesh");
-	Rigidbody* simbadRigidbody = new Rigidbody(Shape::BoxShape, 1, 10);
-	Entity* simbad = new Entity(std::vector<Component*>{simbadTransform, simbadMeshRenderer, simbadRigidbody}, "Simbad");
+	Transform* simbadTransform = new Transform(Vector3( 0, 1500, 1000 ), Quaternion::IDENTITY, Vector3(3, 3, 3));
+	MeshRenderer* simbadRenderer = new MeshRenderer("ogrehead.mesh");
+	Rigidbody* simbadRigidbody = new Rigidbody(simbadTransform, Shape::BoxShape, 10);
+	Entity* simbad = new Entity(std::vector<Component*>{simbadTransform, simbadRenderer, simbadRigidbody}, "Simbad");
 	ScnMng_->currentState()->addEntity(simbad);
 
-	////3.Plano invisible
-	Transform* floorTransform = new Transform(Ogre::Vector3(1683, 1000, 2116));
-	floorRigidbody = new Rigidbody(Shape::PlaneShape, 100, 0);
-	Entity* floor = new Entity(std::vector<Component*>{floorTransform, floorRigidbody}, "Floor");
+	////3.Suelo y techo
+	Transform* florTransform = new Transform(Vector3(0, 1400, 1000), Quaternion::IDENTITY, Vector3(5, 0.5, 5));
+	MeshRenderer* floorRenderer = new MeshRenderer("ogrehead.mesh");
+	floorRigidbody = new Rigidbody(florTransform, Shape::BoxShape, 0); //Estático
+	Entity* floor = new Entity(std::vector<Component*>{ florTransform, floorRenderer, floorRigidbody}, "Floor");
 	ScnMng_->currentState()->addEntity(floor);
+
+	Transform* ceilTransform = new Transform(Vector3(0, 1700, 1000), Quaternion::IDENTITY, Vector3(5, 0.5, 5));
+	MeshRenderer* ceilRenderer = new MeshRenderer("ogrehead.mesh");
+	Rigidbody* ceilRigidbody = new Rigidbody(ceilTransform, Shape::BoxShape, 0); //Estático
+	Entity* ceil = new Entity(std::vector<Component*>{ ceilTransform, ceilRenderer, ceilRigidbody}, "Ceil");
+	ScnMng_->currentState()->addEntity(ceil);
 
 	////4.Terreno
 	Terrain* terrainComp = new Terrain("Maps.json");
@@ -67,10 +72,13 @@ void Game::start()
 
 void Game::run()
 {
+	//Start
+	ScnMng_->currentState()->start();
+
 	//Tiempo entre frames y tiempo total transcurrido
 	unsigned int deltaTime, actualTime;
 	actualTime = deltaTime = SDL_GetTicks();
-
+	//Bucle principal
 	while (!exit)
 	{
 		//Llama al update, handleInput y render de la escena activa

@@ -32,6 +32,12 @@ GameState::~GameState()
 	
 }
 
+void GameState::start()
+{
+	for (Component* c : scene)
+		if (c->isActive())
+			c->start();
+}
 
 void GameState::update(unsigned int time)
 {
