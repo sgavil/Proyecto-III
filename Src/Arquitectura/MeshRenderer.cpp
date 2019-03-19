@@ -9,7 +9,7 @@ MeshRenderer::MeshRenderer()
 MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 {
 	//Nombre del componente
-	name_ = Name::MeshRendererComp;
+	//name_ = Name::MeshRendererComp;
 
 	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSM()->createEntity(meshName);
 	node_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode();
@@ -25,7 +25,7 @@ MeshRenderer::~MeshRenderer()
 
 void MeshRenderer::start()
 {
-	transform_ = (Transform*)entity_->getComponent(Name::TransformComp);
+	transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
 		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
 }

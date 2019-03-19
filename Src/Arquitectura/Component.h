@@ -8,7 +8,7 @@ using namespace Architecture;
 //No hacer #include "Entity.h" para evitar inclusión circular
 class Entity;
 
-enum  Name{ TransformComp, MeshRendererComp, RigidbodyComp, CameraComp, TerrainComp  }; 
+//enum  Name{ TransformComp, MeshRendererComp, RigidbodyComp, CameraComp, TerrainComp  }; 
 //Cada vez que se cree un Componente , se tiene que añadir a la lista de nombres.
 
 /*
@@ -45,7 +45,7 @@ public:
 	void releaseEntity() { delete entity_;  entity_ = nullptr; }
 	
 	//Devuelve el nombre del componente
-	Name getName() { return name_; }
+	//Name getName() { return name_; }
 
 	//Destructora
 	virtual ~Component();
@@ -57,7 +57,7 @@ protected:
 	//Puntero a la entidad
 	Entity* entity_;
 	//TODO: Los componentes tendrán un string con su nombre para poder identificarlos
-	Name name_; //Nombre del componente para poder acceder a componenetes hermanos de la entidad	
+	//Name name_; //Nombre del componente para poder acceder a componenetes hermanos de la entidad	
 };
 
 

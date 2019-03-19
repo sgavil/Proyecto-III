@@ -19,12 +19,23 @@ public:
 	void addComponent(Component* comp);
 	//Elimina un componente de la entidad. Devuelve "true" si la entidad tenía ese componente, "false" e.o.c
 	bool delComponent(Component* comp);
+
+	//Devuelve el componente del tipo especificado
+	template<typename T>
+	T* getComponent()
+	{
+		//Busca el componente
+		for (Component* c : components_) {
+			T* component = dynamic_cast<T*>(c);
+			if (component != nullptr)
+				return component;
+		}
+		//Si no lo encuentra, devuelve nullptr
+		return nullptr;
+	};
 	
 	//Devueve la lista de componentes de la Entidad
 	std::vector<Component*> getComponents() { return components_; }
-
-	//Devuelve un componente con un nombre específico
-	Component * getComponent(Name name);
 
 	//Devuelve el nombre de la propia entidad
 	std::string getName() { return name_; };

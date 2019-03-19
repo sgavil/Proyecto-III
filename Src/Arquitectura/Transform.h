@@ -12,6 +12,8 @@ public:
 
 	~Transform();
 
+	void load(json file);
+
 	//Métodos principales
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);

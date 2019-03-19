@@ -1,15 +1,13 @@
 #include "Camera.h"
-
+#include "Entity.h"
 
 
 Camera::Camera()
 {
-	name_ = Name::CameraComp;
+	//name_ = Name::CameraComp;
 
 	camNode_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode("camNode");
 	camera_ = GestorRecursos::createCamera(OgreSystem::instance()->getSM(), "cam", camNode_, 5, 50000, true);
-	camNode_->setPosition(0, 2000, 1500);
-	camNode_->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 	viewport_ = OgreSystem::instance()->getWindow()->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
 }
@@ -17,6 +15,19 @@ Camera::Camera()
 
 Camera::~Camera()
 {
+}
+
+void Camera::start()
+{
+	transform_ = entity_->getComponent<Transform>();
+	if (transform_ == nullptr)
+		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
+	else
+	{
+		Ogre::Vector3 pos = transform_->getPosition();
+		camNode_->setPosition(pos);
+		camNode_->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+	}
 }
 
 void Camera::update(unsigned int time)

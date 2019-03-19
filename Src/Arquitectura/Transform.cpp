@@ -5,16 +5,23 @@
 Transform::Transform()
 {
 	//Nombre del componente
-	name_ = Name::TransformComp;
+	//name_ = Name::TransformComp;
 }
 
 Transform::Transform(Ogre::Vector3 position, Ogre::Quaternion orientation, Ogre::Vector3 scale)
 	:position_(position), orientation_(orientation), scale_(scale)
 {
 	//Nombre del componente
-	name_ = Name::TransformComp;
+	//name_ = Name::TransformComp;
 }
 
+void Transform::load(json file)
+{
+	json pos = file["position"];
+	position_.x = pos["x"];
+	position_.y = pos["y"];
+	position_.z = pos["z"];
+}
 
 Transform::~Transform()
 {

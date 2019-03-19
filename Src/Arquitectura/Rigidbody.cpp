@@ -12,7 +12,7 @@ Rigidbody::Rigidbody(Transform* transform, Shape shape, btScalar mass) : transfo
 {
 	//TODO: que el tamaño del COllider se ajuste al tamaño de la malla de la entidad que tiene el nodo
 	//Nombre del componente
-	name_ = Name::RigidbodyComp;
+	//name_ = Name::RigidbodyComp;
 
 	//Creamos el rigidbody
 	rigid_ = physicSystem::createRigidBody(shape, transform_->getScale(), mass);
