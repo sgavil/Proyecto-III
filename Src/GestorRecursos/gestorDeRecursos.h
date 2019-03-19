@@ -12,23 +12,47 @@
 #include <OgreNode.h>
 #include <OgreConfigFile.h>
 #include <OgreTextureManager.h>
+#include <dirent.h>
+#include <jsonParser.hpp>
 
+
+using json = nlohmann::json;
 
 class TerrainCreator;
 
-namespace GestorRecursos {
+class GestorRecursos 
+{
+public:
+	~GestorRecursos();
+
+	static GestorRecursos* instance();
+
 	Ogre::Camera* createCamera(Ogre::SceneManager* scnMgn, std::string name, Ogre::SceneNode* FatherNode,
-		Ogre::Real NearClipDist, Ogre::Real FarClipDist,
-		bool autoAspectRatio,  Ogre::Real AspectRatio = 1.3);
+				Ogre::Real NearClipDist, Ogre::Real FarClipDist,
+				bool autoAspectRatio,  Ogre::Real AspectRatio = 1.3);
 
 	Ogre::Entity* createPlane(Ogre::SceneManager* scnMgn, std::string name, std::string MaterialName,
-							Ogre::Real width, Ogre::Real height, int Xsegments, int Ysegments,
-							Ogre::SceneNode* FatherNode, std::string groupName = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+									Ogre::Real width, Ogre::Real height, int Xsegments, int Ysegments,
+									Ogre::SceneNode* FatherNode, std::string groupName = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	TerrainCreator* createTerrain(Ogre::SceneManager* scnMgn, Ogre::Light* light, std::string terrainFile);
 
-	/*Metodo encargado de leer desde el resources.cfg o resources_d.cfg las rutas en las cuales queremos
-	tener recursos. Despues de leerlas las inicializa en los respectivos grupos que definamos en los .cfg*/
-	void initializeResources();	 
-	
-}
+	void initializeResources();
+
+	json getJsonByKey(const std::string &key);
+
+private:
+	GestorRecursos();
+
+	static std::unique_ptr<GestorRecursos> instance_;
+
+	void loadJsonsFiles(const std::string resourcesPath);
+	void loadJson(const std::string &streamFilePath, const std::string &fileName);
+
+	const std::string FOLDER_PATH = "Assets\\jsons\\";
+
+
+	//Contenedores de los recursos
+	std::map<std::string, json> jsonMap;
+
+};

@@ -42,9 +42,9 @@ OgreSystem::OgreSystem(std::string initFileJson)
 	root_->setRenderSystem(*(root_->getAvailableRenderers().begin()));
 	root_->initialise(false);
 
-	GestorRecursos::initializeResources();
+	GestorRecursos::instance()->initializeResources();
 
-	initFile = JsonManager::instance()->getJsonByKey(initFileJson);
+	initFile = GestorRecursos::instance()->getJsonByKey(initFileJson);
 
 	sceneMgr_ = root_->createSceneManager();
 

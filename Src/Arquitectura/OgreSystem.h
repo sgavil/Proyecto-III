@@ -12,7 +12,6 @@
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
-#include <GestorRecursos/JsonManager.h>
 //CEGUI
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 

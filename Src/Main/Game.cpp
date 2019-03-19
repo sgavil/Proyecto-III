@@ -62,7 +62,7 @@ void Game::start()
 	Entity* ceil = new Entity(std::vector<Component*>{ ceilTransform, ceilRenderer, ceilRigidbody}, "Ceil");
 	ScnMng_->currentState()->addEntity(ceil);
 
-	////4.Terreno
+	//////4.Terreno
 	Terrain* terrainComp = new Terrain("Maps.json");
 	Entity* terrain = new Entity(std::vector<Component*>{terrainComp}, "Terrain");
 	ScnMng_->currentState()->addEntity(terrain);

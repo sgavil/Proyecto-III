@@ -4,7 +4,7 @@ std::unique_ptr<EntityFactory> EntityFactory::instance_;
 
 EntityFactory::EntityFactory()
 {
-	blueprints = JsonManager::instance()->getJsonByKey("Entities.json");
+	blueprints = GestorRecursos::instance()->getJsonByKey("Entities.json");
 	BaseCreator* bs;
 
 	bs = new TransformCreator();
