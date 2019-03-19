@@ -1,6 +1,5 @@
 #include "SceneManager.h"
-#include <GestorRecursos/JsonManager.h>
-
+#include <GestorRecursos/gestorDeRecursos.h>
 
 std::unique_ptr<SceneManager> SceneManager::instance_;
 
@@ -41,7 +40,7 @@ GameState* SceneManager::currentState()
 
 void SceneManager::addState(std::string stateID)
 {
-	json file = JsonManager::instance()->getJsonByKey(stateID + ".json");
+	json file = GestorRecursos::instance()->getJsonByKey(stateID + ".json");
 
 	GameState* state = new GameState(file);
 

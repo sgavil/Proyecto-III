@@ -7,7 +7,7 @@ Camera::Camera()
 	//name_ = Name::CameraComp;
 
 	camNode_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode("camNode");
-	camera_ = GestorRecursos::createCamera(OgreSystem::instance()->getSM(), "cam", camNode_, 5, 50000, true);
+	camera_ = GestorRecursos::instance()->createCamera(OgreSystem::instance()->getSM(), "cam", camNode_, 5, 50000, true);
 	viewport_ = OgreSystem::instance()->getWindow()->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
 }

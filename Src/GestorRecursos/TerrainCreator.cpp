@@ -9,7 +9,7 @@ TerrainCreator::TerrainCreator() : scnMgn_(nullptr), terrainJson_(NULL)
 TerrainCreator::TerrainCreator(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
 	: scnMgn_(scnMgn)
 {
-	terrainJson_ = JsonManager::instance()->getJsonByKey(terrainFile);
+	terrainJson_ = GestorRecursos::instance()->getJsonByKey(terrainFile);
 
 	mTerrainGlobals_ = OGRE_NEW Ogre::TerrainGlobalOptions();
 
