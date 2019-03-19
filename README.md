@@ -32,7 +32,7 @@ Somos un grupo de 7 estudiantes la Universidad Complutense de Madrid
 
 _Videojuego creado utilizando este motor_
 
-![PARKLogo](https://ibb.co/0G2bWkK)
+![PARKLogo](https://i.ibb.co/CH8GXq6/PARK-logo.jpg)
 
 P.A.R.K es un videojuego que tiene como objetivo crear un parque de atracciones para niños, cuidando tanto el aspecto económico de su gestión, como la satisfacción de sus visitantes permitiendo la creación de elementos tales como atracciones, caminos, estaciones de servicio...
 
