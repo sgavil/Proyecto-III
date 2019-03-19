@@ -43,13 +43,13 @@
     <ClCompile Include="..\..\Src\Arquitectura\OgreSystem.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\NPC.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\Camera.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\Terrain.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\NPC.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,13 +87,13 @@
     <ClInclude Include="..\..\Src\Arquitectura\OgreSystem.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\NPC.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\Camera.h">
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\Terrain.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\NPC.h">
       <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>
