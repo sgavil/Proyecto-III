@@ -50,20 +50,31 @@ OgreSystem::OgreSystem(std::string initFileJson)
 
 	initWindow();		
 
-	//CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem();
+	ceguiInit();
 
 	//Inicialización de ventana de SDL que se una a la de Ogre
 	SDL_Init(SDL_INIT_EVERYTHING);
 	hWnd = 0;
 	window_->getCustomAttribute("WINDOW", &hWnd);
 	SDL_CreateWindowFrom((void*)hWnd);
+
+
+}
+
+void OgreSystem::ceguiInit() {
+	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>(getWindow()));
+	
 }
 
 
 OgreSystem::~OgreSystem()
 {
+	CEGUI::System::destroy();
+	//CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>(*myRenderer));
+	
 	if (root_ != nullptr)
 		delete root_;
+	
 }
 
 Ogre::SceneManager * OgreSystem::getSM()

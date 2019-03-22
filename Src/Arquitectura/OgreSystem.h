@@ -13,6 +13,7 @@
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
 //CEGUI
+#include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 
@@ -53,6 +54,7 @@ private:
 	Ogre::Plane plane_;
 
 	json initFile;
+	void ceguiInit();
 	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaño WINDOW_HEIGHT/WIDHT ademas de crear
 	una camara y asociarle un viewport a esta*/
 
