@@ -78,6 +78,8 @@ OgreSystem::~OgreSystem()
 	
 	if (root_ != nullptr)
 		delete root_;
+
+	instance_.release();
 	
 }
 

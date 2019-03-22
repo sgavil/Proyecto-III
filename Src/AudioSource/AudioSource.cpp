@@ -27,6 +27,8 @@ AudioSource::~AudioSource()
 {
 	result_ = system_->release();
 	FMOD_OK_ERROR_CHECK();
+
+	instance_.release();
 }
 
 void AudioSource::FMOD_OK_ERROR_CHECK()

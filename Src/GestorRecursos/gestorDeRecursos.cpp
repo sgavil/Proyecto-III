@@ -108,7 +108,6 @@ void GestorRecursos::initializeResources()
 void GestorRecursos::ceguiInit() {
 	//Carga de CEGUI y configurado automatico con elementos de OGRE
 	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>( OgreSystem::instance()->getWindow()));
-
 }
 
 json GestorRecursos::getJsonByKey(const std::string & key)
