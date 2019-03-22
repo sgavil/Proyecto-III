@@ -14,6 +14,9 @@
 #include <OgreTextureManager.h>
 #include <dirent.h>
 #include <jsonParser.hpp>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
+
 
 
 using json = nlohmann::json;
@@ -38,6 +41,8 @@ public:
 	TerrainCreator* createTerrain(Ogre::SceneManager* scnMgn, Ogre::Light* light, std::string terrainFile);
 
 	void initializeResources();
+	void ceguiInit();
+
 
 	json getJsonByKey(const std::string &key);
 
@@ -51,6 +56,7 @@ private:
 
 	const std::string FOLDER_PATH = "Assets\\jsons\\";
 
+	
 
 	//Contenedores de los recursos
 	std::map<std::string, json> jsonMap;
