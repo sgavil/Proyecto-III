@@ -54,7 +54,7 @@ private:
 	Ogre::Plane plane_;
 
 	json initFile;
-	void ceguiInit();
+	//void ceguiInit();
 	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaño WINDOW_HEIGHT/WIDHT ademas de crear
 	una camara y asociarle un viewport a esta*/
 

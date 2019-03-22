@@ -50,7 +50,8 @@ OgreSystem::OgreSystem(std::string initFileJson)
 
 	initWindow();		
 
-	ceguiInit();
+	
+	//ceguiInit();
 
 	//Inicialización de ventana de SDL que se una a la de Ogre
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -61,16 +62,19 @@ OgreSystem::OgreSystem(std::string initFileJson)
 
 }
 
+/*
 void OgreSystem::ceguiInit() {
+	//Carga de CEGUI y configurado automatico con elementos de OGRE
 	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>(getWindow()));
-	
+
+
 }
 
+*/
 
 OgreSystem::~OgreSystem()
 {
 	CEGUI::System::destroy();
-	//CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>(*myRenderer));
 	
 	if (root_ != nullptr)
 		delete root_;
