@@ -16,7 +16,7 @@ public:
 	virtual ~SceneManager();
 
 	// ·> Devuelve un puntero al SceneManager, o lo crea si no lo estaba ya
-	static SceneManager* Instance(); 
+	static SceneManager* instance(); 
 
 	// ·> Devuelve el estado activo actualmente
 	GameState* currentState();

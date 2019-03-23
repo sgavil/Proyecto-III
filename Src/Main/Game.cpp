@@ -1,11 +1,16 @@
 #include "Game.h"
-#include <Arquitectura/Components.h>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 #include "BureaucracyManager.h"
 //#include <CEGUI/CEGUI.h>
 //#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
+// INCLUDES TEMPORALES PARA LAS ENTIDADES
+#include <Arquitectura/Transform.h>
+#include <Arquitectura/Rigidbody.h>
+#include <Arquitectura/MeshRenderer.h>
+#include <Arquitectura/Terrain.h>
+//#include <Arquitectura/Camera.h>
 
 Game::Game(std::string basicConfig):exit(false)
 {

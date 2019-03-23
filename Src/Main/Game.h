@@ -9,7 +9,6 @@
 #include <SDL_video.h>
 #include <AudioSource/AudioSource.h>
 #include "vld.h"
-#include <Arquitectura/Components.h>
 
 class Rigidbody;
 class Game {
