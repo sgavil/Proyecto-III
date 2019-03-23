@@ -52,6 +52,9 @@
     <ClCompile Include="..\..\Src\Arquitectura\Terrain.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\Button.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\Component.h">
@@ -94,6 +97,9 @@
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\Terrain.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Button.h">
       <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>

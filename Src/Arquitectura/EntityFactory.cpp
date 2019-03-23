@@ -7,6 +7,7 @@ EntityFactory::EntityFactory()
 	blueprints = GestorRecursos::instance()->getJsonByKey("Entities.json");
 	BaseCreator* bs;
 
+	// En los archivos Json, al añadir un componente hay que usar el nombre que aquí se utilice
 	bs = new TransformCreator();
 	registerType("Transform", bs);
 
@@ -21,6 +22,9 @@ EntityFactory::EntityFactory()
 
     bs = new NPCCreator();
 	registerType("NPC", bs);
+
+	bs = new ButtonCreator();
+	registerType("Button", bs);
 }
 
 

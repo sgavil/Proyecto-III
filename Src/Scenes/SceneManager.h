@@ -18,6 +18,6 @@ public:
 
 
 	GameState* currentState();
-	void addState(std::string stateID);
+	GameState* addState(std::string stateID);
 	void changeState(std::string stateID);
 };

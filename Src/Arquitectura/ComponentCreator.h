@@ -62,3 +62,14 @@ public:
 		return e;
 	}
 };
+
+class ButtonCreator : public BaseCreator
+{
+public:
+	Component* createComponent() const
+	{
+		Component* e = new Button();
+
+		return e;
+	}
+};
