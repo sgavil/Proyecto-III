@@ -1,0 +1,15 @@
+{
+  "Entities": 
+  [
+    {
+      "name": "PlayStateButton",
+      "Components": 
+      [
+        {
+          "name": "Button",
+          "nextState": "StateMainMenu"
+        }
+      ]
+    }
+  ]
+}

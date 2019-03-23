@@ -33,8 +33,8 @@ Game::~Game()
 void Game::start()
 {
 
-	ScnMng_->addState("TestState");
-	ScnMng_->changeState("TestState");
+	ScnMng_->addState("StateTest");
+	ScnMng_->changeState("StateTest");
 
 	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
 
