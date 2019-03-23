@@ -1,42 +1,19 @@
 #include "EntityFactory.h"
-
+#include "Entity.h"
 std::unique_ptr<EntityFactory> EntityFactory::instance_;
+//std::map<std::string, BaseCreator*> EntityFactory::creators_;
 
 EntityFactory::EntityFactory()
 {
-	blueprints = GestorRecursos::instance()->getJsonByKey("Entities.json");
-	BaseCreator* bs;
-
-	// En los archivos Json, al añadir un componente hay que usar el nombre que aquí se utilice
-	bs = new TransformCreator();
-	registerType("Transform", bs);
-
-	bs = new MeshRendererCreator();
-	registerType("MeshRenderer", bs);
-
-	bs = new RigidBodyCreator();
-	registerType("Rigidbody", bs);
-
-	bs = new CameraCreator();
-	registerType("Camera", bs);
-
-    bs = new NPCCreator();
-	registerType("NPC", bs);
-
-	bs = new ButtonCreator();
-	registerType("Button", bs);
 }
-
-
-
 
 
 EntityFactory::~EntityFactory()
 {
-	for (auto&& m : creators_)
+	/*for (auto&& m : creators_)
 		delete m.second;
 
-	creators_.clear();
+	creators_.clear();*/
 }
 
 EntityFactory* EntityFactory::Instance()
@@ -47,21 +24,12 @@ EntityFactory* EntityFactory::Instance()
 }
 
 
-bool EntityFactory::registerType(std::string typeID, BaseCreator * pCreator)
+void EntityFactory::registerType(std::string creatorName, BaseCreator* pCreator)
 {
-	std::map<std::string, BaseCreator*>::iterator it = creators_.find(typeID);
-
-	if (it != creators_.end())
-	{
-		delete pCreator;
-		return false;
-	}
-
-	creators_[typeID] = pCreator;
-	return true;
+	creators()[creatorName] = pCreator;
 }
 
-Entity* EntityFactory::createEntity(json file)
+/*Entity* EntityFactory::createEntity(json file)
 {
 	Entity* entity = new Entity();
 	entity->setName(file["name"]);
@@ -74,12 +42,39 @@ Entity* EntityFactory::createEntity(json file)
 	}
 
 	return entity;
+}*/
+
+std::vector<Entity*> EntityFactory::createEntities(std::string stateID)
+{
+	json file = GestorRecursos::instance()->getJsonByKey(stateID + ".json");
+
+	std::vector<Entity*> entities;
+
+	for (json ent : file["Entities"])
+	{
+		Entity* entity = new Entity();
+		entity->setName(ent["name"]);
+
+		for (json comp : ent["Components"])
+		{
+			Component* c = createComponent(comp["name"]);
+			entity->addComponent(c);
+			c->load(comp);
+		}
+
+		entities.push_back(entity);
+	}
+
+	return entities;
 }
+
 
 Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 {
 	Entity* entity = new Entity();
 	entity->setName(name);
+
+	json blueprints = GestorRecursos::instance()->getJsonByKey("Entities.json");
 
 	for (std::string comp : blueprints[name])
 	{
@@ -92,9 +87,16 @@ Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 
 Component* EntityFactory::createComponent(std::string name)
 {
-	auto it = creators_.find(name);
+	auto it = creators().find(name);
 
 	BaseCreator* compCreator = it->second;
 
 	return compCreator->createComponent();
+}
+
+std::map<std::string, BaseCreator*>& EntityFactory::creators()
+{
+	static std::map<std::string, BaseCreator*>* map = new std::map<std::string, BaseCreator*>();
+		   
+	return *map;
 }

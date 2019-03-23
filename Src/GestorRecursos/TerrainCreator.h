@@ -3,12 +3,12 @@
 #include <OgreTerrainGroup.h>
 #include <GestorRecursos/gestorDeRecursos.h>
 
-class TerrainCreator
+class TerrainGenerator
 {
 public:
-	TerrainCreator();
-	TerrainCreator(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile);
-	~TerrainCreator();
+	TerrainGenerator();
+	TerrainGenerator(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile);
+	~TerrainGenerator();
 	Ogre::SceneManager * scnMgn_;
 
 	//Métodos para la prueba del terreno

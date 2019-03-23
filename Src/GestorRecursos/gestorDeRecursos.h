@@ -21,7 +21,7 @@
 
 using json = nlohmann::json;
 
-class TerrainCreator;
+class TerrainGenerator;
 
 class GestorRecursos 
 {
@@ -38,7 +38,7 @@ public:
 									Ogre::Real width, Ogre::Real height, int Xsegments, int Ysegments,
 									Ogre::SceneNode* FatherNode, std::string groupName = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-	TerrainCreator* createTerrain(Ogre::SceneManager* scnMgn, Ogre::Light* light, std::string terrainFile);
+	TerrainGenerator* createTerrain(Ogre::SceneManager* scnMgn, Ogre::Light* light, std::string terrainFile);
 
 	void initializeResources();
 	void ceguiInit();

@@ -1,29 +1,37 @@
 #pragma once
-#include "Entity.h"
-#include "ComponentCreator.h"
+
 #include <map>
+#include <vector>
 #include <memory>
 
+class Entity;
+class Component;
+
+class BaseCreator
+{
+public:
+	virtual Component* createComponent() const = 0;
+};
 
 
 class EntityFactory
 {
-
 private:
 	EntityFactory();
 
 	static std::unique_ptr<EntityFactory> instance_;
 
-	std::map<std::string, BaseCreator*> creators_;
-
-	json blueprints;
+	//static std::map<std::string, BaseCreator*> creators_;
 
 	Component* createComponent(std::string name);
+	static std::map<std::string, BaseCreator*>& creators();
+
 public:
 	static EntityFactory* Instance();
 	~EntityFactory();
 
-	bool registerType(std::string typeID, BaseCreator* pCreator);
-	Entity* createEntity(json file);
+	static void registerType(std::string typeID, BaseCreator* pCreator);
+	std::vector<Entity*> createEntities(std::string stateID);
+	//Entity* createEntity(json file);
 	Entity* createEntityFromBlueprint(std::string name);
 };

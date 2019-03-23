@@ -27,9 +27,9 @@ Ogre::Entity * GestorRecursos::createPlane(Ogre::SceneManager * scnMgn, std::str
 	return plane;
 }
 
-TerrainCreator * GestorRecursos::createTerrain(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
+TerrainGenerator * GestorRecursos::createTerrain(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
 {
-	TerrainCreator* terrainCreator_ = new TerrainCreator(scnMgn, light, terrainFile);
+	TerrainGenerator* terrainCreator_ = new TerrainGenerator(scnMgn, light, terrainFile);
 	return terrainCreator_;
 }
 

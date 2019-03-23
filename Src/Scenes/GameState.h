@@ -9,7 +9,7 @@ protected:
 	std::list<Component*> scene; // Componentes en la escena
 
 public:
-	GameState(json file);
+	GameState(std::string stateID);
 	virtual ~GameState();
 
 	virtual void start();
@@ -20,6 +20,8 @@ public:
 
 	//Añade una entidad a la escena
 	void addEntity(Entity* e);
+
+	void addEntities(std::vector<Entity*> ent);
 
 	//Elimina una entidad de la escena. Devuelve true si estaba en la escena, false e.o.c
 	bool removeEntity(std::string name);

@@ -2,7 +2,6 @@
 #include "Entity.h"
 
 
-
 Rigidbody::Rigidbody()
 {
 }

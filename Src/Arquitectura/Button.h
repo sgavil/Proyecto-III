@@ -21,3 +21,5 @@ public:
 
 	virtual void receive(Message* msg) {};
 };
+
+REGISTER_TYPE(Button)

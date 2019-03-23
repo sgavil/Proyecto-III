@@ -7,6 +7,7 @@
 class Terrain : public Component
 {
 public:
+	Terrain();
 	Terrain(std::string terrainFile);
 	~Terrain();
 
@@ -15,5 +16,7 @@ public:
 	virtual bool handleEvent(SDL_Event* e, unsigned int time) { return false; }; //En realidad no haría falta ponerlo
 	virtual void receive(Message* msg) {};
 
-	TerrainCreator* terrainCreator_;
+	TerrainGenerator* terrainCreator_;
 };
+
+REGISTER_TYPE(Terrain)

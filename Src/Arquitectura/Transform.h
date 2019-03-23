@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h""
+#include "Component.h"
 #include <OgreSceneNode.h>
 
 class Transform : public Component
@@ -41,3 +41,4 @@ protected:
 	Ogre::Vector3 scale_;
 };
 
+REGISTER_TYPE(Transform)

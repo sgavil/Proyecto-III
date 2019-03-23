@@ -1,7 +1,6 @@
 #include "Transform.h"
 
 
-
 Transform::Transform()
 {
 	//Nombre del componente

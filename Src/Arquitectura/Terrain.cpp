@@ -1,5 +1,9 @@
 #include "Terrain.h"
 
+Terrain::Terrain()
+{
+}
+
 Terrain::Terrain(std::string terrainFile)
 {
 	//name_ = Name::TerrainComp;

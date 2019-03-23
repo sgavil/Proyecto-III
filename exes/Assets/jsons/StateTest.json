@@ -1,24 +1,6 @@
 {
 	"Entities":
 	[
-	  	{
-		  	"name": "NPC1",
-        "Components":
-        [
-          {
-            "name": "NPC",
-            "hunger": 5,
-            "thirst": 10
-          },
-					{
-						"name": "NPC",
-						"hunger": 20,
-						"thirst": 30
-					}
-        ]
-		},
-
-
 		{
 			"name": "Camera",
 			"Components":

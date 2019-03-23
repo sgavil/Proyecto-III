@@ -40,9 +40,7 @@ GameState* SceneManager::currentState()
 
 GameState* SceneManager::addState(std::string stateID)
 {
-	json file = GestorRecursos::instance()->getJsonByKey(stateID + ".json");
-
-	GameState* state = new GameState(file);
+	GameState* state = new GameState(stateID);
 
 	states.insert(std::pair<std::string, GameState*>(stateID, state));
 

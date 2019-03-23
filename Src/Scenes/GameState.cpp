@@ -2,13 +2,9 @@
 #include <Arquitectura/physicSystem.h>
 #include <Arquitectura/EntityFactory.h>
 
-GameState::GameState(json file)
+GameState::GameState(std::string stateID)
 {
-	for (json j : file["Entities"])
-	{
-		Entity* ent = EntityFactory::Instance()->createEntity(j);
-		addEntity(ent);
-	}
+	addEntities(EntityFactory::Instance()->createEntities(stateID));
 }
 
 
@@ -83,6 +79,12 @@ void GameState::addEntity(Entity* e)
 {
 	for (Component* c : e->getComponents()) 
 		scene.push_back(c);
+}
+
+void GameState::addEntities(std::vector<Entity*> ent)
+{
+	for (Entity* e : ent)
+		addEntity(e);
 }
 
 bool GameState::removeEntity(std::string name)
