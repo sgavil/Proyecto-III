@@ -1,20 +1,16 @@
 #include "EntityFactory.h"
 #include "Entity.h"
 std::unique_ptr<EntityFactory> EntityFactory::instance_;
-//std::map<std::string, BaseCreator*> EntityFactory::creators_;
 
 EntityFactory::EntityFactory()
 {
 }
 
-
 EntityFactory::~EntityFactory()
 {
-	/*for (auto&& m : creators_)
-		delete m.second;
-
-	creators_.clear();*/
 }
+
+
 
 EntityFactory* EntityFactory::Instance()
 {
@@ -29,20 +25,6 @@ void EntityFactory::registerType(std::string creatorName, BaseCreator* pCreator)
 	creators()[creatorName] = pCreator;
 }
 
-/*Entity* EntityFactory::createEntity(json file)
-{
-	Entity* entity = new Entity();
-	entity->setName(file["name"]);
-
-	for (json comp : file["Components"])
-	{
-		Component* c = createComponent(comp["name"]);
-		entity->addComponent(c);
-		c->load(comp);
-	}
-
-	return entity;
-}*/
 
 std::vector<Entity*> EntityFactory::createEntities(std::string stateID)
 {

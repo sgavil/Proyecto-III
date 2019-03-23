@@ -1,6 +1,7 @@
 #pragma once
 #include "EntityFactory.h"
 
+// ·> Macro para el registro de factorías de componentes
 #define REGISTER_TYPE(klass) \
     class klass##Creator : public BaseCreator { \
     public: \

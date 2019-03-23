@@ -6,7 +6,7 @@ class Component;
 class GameState
 {
 protected:
-	std::list<Component*> scene; // Componentes en la escena
+	std::list<Component*> scene; // Componentes de la escena
 
 public:
 	GameState(std::string stateID);
@@ -18,17 +18,18 @@ public:
 	virtual void render(unsigned int time);
 	virtual bool handleInput(unsigned int time);
 
-	//Añade una entidad a la escena
+	// ·> Añade una entidad a la escena
 	void addEntity(Entity* e);
 
+	// ·> Añade un grupo de entidades a la escena 
 	void addEntities(std::vector<Entity*> ent);
 
-	//Elimina una entidad de la escena. Devuelve true si estaba en la escena, false e.o.c
+	// ·> Elimina una entidad de la escena. Devuelve 'true' si estaba en la escena, 'false' e.o.c
 	bool removeEntity(std::string name);
 
-	//Devuelve una entidad de la escena
+	// ·> Devuelve una entidad de la escena
 	Entity* getEntity(std::string name);
 
-	//Devuelve la escena
-	std::list<Component*> getScene() { return scene; }; //TODO: replantearse este método
+	// ·> Devuelve la escena
+	std::list<Component*> getScene() { return scene; }; //TO-DO: replantearse este método
 };

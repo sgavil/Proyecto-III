@@ -25,7 +25,7 @@ SceneManager::~SceneManager()
 }
 			
 
-SceneManager* SceneManager::instance()
+SceneManager* SceneManager::Instance()
 {
 	if (instance_.get() == nullptr)
 		instance_.reset(new SceneManager());

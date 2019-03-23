@@ -18,20 +18,24 @@ class EntityFactory
 {
 private:
 	EntityFactory();
-
 	static std::unique_ptr<EntityFactory> instance_;
 
-	//static std::map<std::string, BaseCreator*> creators_;
+	static std::map<std::string, BaseCreator*>& creators(); // Diccionario de las factorías de componentes
 
+	// ·> Crea un componente según su nombre
 	Component* createComponent(std::string name);
-	static std::map<std::string, BaseCreator*>& creators();
-
+	
 public:
+	// ·> Devuelve un puntero a la factoría, o la crea si no lo estaba ya
 	static EntityFactory* Instance();
 	~EntityFactory();
 
-	static void registerType(std::string typeID, BaseCreator* pCreator);
+	// ·> Registra una factoría de componentes en el diccionario
+	static void registerType(std::string creatorName, BaseCreator* pCreator);
+
+	// ·> Crea las entidades de una escena leyendo de su archivo json correspondiente
 	std::vector<Entity*> createEntities(std::string stateID);
-	//Entity* createEntity(json file);
+
+	// ·> Crea una entidad con los componentes correspondientes de su prefab
 	Entity* createEntityFromBlueprint(std::string name);
 };
