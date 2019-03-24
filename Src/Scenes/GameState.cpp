@@ -2,13 +2,9 @@
 #include <Arquitectura/physicSystem.h>
 #include <Arquitectura/EntityFactory.h>
 
-GameState::GameState(json file)
+GameState::GameState(std::string stateID)
 {
-	for (json j : file["Entities"])
-	{
-		Entity* ent = EntityFactory::Instance()->createEntity(j);
-		addEntity(ent);
-	}
+	addEntities(EntityFactory::Instance()->createEntities(stateID));
 }
 
 
@@ -65,7 +61,7 @@ bool GameState::handleInput(unsigned int time)
 		{
 			return true;
 		}
-		//LLama al handleInput de todos los componentes 
+		// LLama al handleInput de todos los componentes 
 		else 
 		{
 			std::list<Component*>::iterator it = scene.begin();
@@ -85,12 +81,18 @@ void GameState::addEntity(Entity* e)
 		scene.push_back(c);
 }
 
+void GameState::addEntities(std::vector<Entity*> ent)
+{
+	for (Entity* e : ent)
+		addEntity(e);
+}
+
 bool GameState::removeEntity(std::string name)
 {
 	bool found = false;
 
 	std::list<Component*>::iterator it = scene.begin();
-	//Eliminamos todos los componentes con esa entidad
+	// Eliminamos todos los componentes con esa entidad
 	while (it != scene.end())
 	{
 		if ((*it)->getEntity()->getName() == name)
@@ -109,7 +111,8 @@ Entity* GameState::getEntity(std::string name)
 {
 	Entity* e = nullptr;
 	std::list<Component*>::iterator it = scene.begin();
-	//Buscamos al primer componente que tenga esa entidad
+
+	// Buscamos al primer componente que tenga esa entidad
 	while (it != scene.end() && e == nullptr)
 	{
 		if ((*it)->getEntity()->getName() == name)

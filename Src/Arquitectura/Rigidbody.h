@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h""
+#include "Component.h"
 #include <iostream>
 #include "physicSystem.h"
 #include <OgreSceneNode.h>
@@ -31,3 +31,4 @@ protected:
 	Transform* transform_;
 };
 
+REGISTER_TYPE(Rigidbody)

@@ -32,3 +32,4 @@ protected:
 
 };
 
+REGISTER_TYPE(MeshRenderer)

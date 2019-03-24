@@ -27,3 +27,5 @@ public:
 
 	Transform* transform_;
 };
+
+REGISTER_TYPE(Camera)

@@ -17,3 +17,5 @@ private:
 	int hunger;
 	int thirst;
 };
+
+REGISTER_TYPE(NPC)

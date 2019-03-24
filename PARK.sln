@@ -12,6 +12,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "Projects\Main\Main.
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scenes", "Projects\Scenes\Scenes.vcxproj", "{50931119-C20A-4B0F-83FF-262E9EC4B675}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99} = {9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GestorRecursos", "Projects\GestorRecursos\GestorRecursos.vcxproj", "{C5FA6BBF-0282-48C4-9BE9-220106066169}"
 EndProject
@@ -21,6 +24,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Arquitectura", "Projects\Ar
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioSource", "Projects\AudioSource\AudioSource.vcxproj", "{CC79EDD1-F5B3-4781-94A9-F9CC4E93295A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C5FA6BBF-0282-48C4-9BE9-220106066169} = {C5FA6BBF-0282-48C4-9BE9-220106066169}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{78489378-669B-4BC9-A369-C74F451870B3}"
 EndProject

@@ -49,7 +49,7 @@
     <ClCompile Include="..\..\Src\Arquitectura\Terrain.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\NPC.cpp">
+    <ClCompile Include="..\..\Src\Arquitectura\Button.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -67,9 +67,6 @@
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\ComponentCreator.h">
-      <Filter>Factoría</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\Components.h">
       <Filter>Factoría</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\EntityFactory.h">
@@ -93,7 +90,7 @@
     <ClInclude Include="..\..\Src\Arquitectura\Terrain.h">
       <Filter>Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\NPC.h">
+    <ClInclude Include="..\..\Src\Arquitectura\Button.h">
       <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>

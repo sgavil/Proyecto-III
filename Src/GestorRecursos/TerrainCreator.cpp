@@ -1,12 +1,12 @@
 #include "TerrainCreator.h"
 
 
-TerrainCreator::TerrainCreator() : scnMgn_(nullptr), terrainJson_(NULL)
+TerrainGenerator::TerrainGenerator() : scnMgn_(nullptr), terrainJson_(NULL)
 {
 
 }
 
-TerrainCreator::TerrainCreator(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
+TerrainGenerator::TerrainGenerator(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
 	: scnMgn_(scnMgn)
 {
 	terrainJson_ = GestorRecursos::instance()->getJsonByKey(terrainFile);
@@ -42,13 +42,13 @@ TerrainCreator::TerrainCreator(Ogre::SceneManager * scnMgn, Ogre::Light * light,
 }
 
 
-TerrainCreator::~TerrainCreator()
+TerrainGenerator::~TerrainGenerator()
 {
 	OGRE_DELETE mTerrainGroup_;
 	OGRE_DELETE	mTerrainGlobals_;
 }
 
-void TerrainCreator::defineTerrain(long x, long y)
+void TerrainGenerator::defineTerrain(long x, long y)
 {
 	Ogre::String filename = mTerrainGroup_->generateFilename(x, y);
 
@@ -68,7 +68,7 @@ void TerrainCreator::defineTerrain(long x, long y)
 	}
 }
 
-void TerrainCreator::initBlendMaps(Ogre::Terrain * terrain)
+void TerrainGenerator::initBlendMaps(Ogre::Terrain * terrain)
 {
 	Ogre::Real minHeight0 = terrainJson_["maps"][0]["minHeight0"];
 	Ogre::Real fadeDist0 = terrainJson_["maps"][0]["fadeDist0"];
@@ -105,7 +105,7 @@ void TerrainCreator::initBlendMaps(Ogre::Terrain * terrain)
 	blendMap1->update();
 }
 
-void TerrainCreator::configureTerrainDefaults(Ogre::Light * light)
+void TerrainGenerator::configureTerrainDefaults(Ogre::Light * light)
 {
 	mTerrainGlobals_->setMaxPixelError(8);
 	mTerrainGlobals_->setCompositeMapDistance(3000);
@@ -134,7 +134,7 @@ void TerrainCreator::configureTerrainDefaults(Ogre::Light * light)
 	}
 }
 
-void TerrainCreator::getTerrainImage(bool flipX, bool flipY, Ogre::Image & img)
+void TerrainGenerator::getTerrainImage(bool flipX, bool flipY, Ogre::Image & img)
 {
 	img.load(terrainJson_["maps"][0]["terrainImage"], Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 

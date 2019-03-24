@@ -2,6 +2,7 @@
 #include "Messages.h"
 #include <SDL.h>
 #include <GestorRecursos/gestorDeRecursos.h>
+#include "ComponentCreator.h"
 
 using namespace Architecture;
 

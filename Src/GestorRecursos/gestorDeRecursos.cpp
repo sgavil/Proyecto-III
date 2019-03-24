@@ -1,6 +1,7 @@
 #include "gestorDeRecursos.h"
 #include "TerrainCreator.h"
 #include <OgreFileSystemLayer.h>
+#include <Arquitectura/OgreSystem.h>
 
 std::unique_ptr<GestorRecursos> GestorRecursos::instance_;
 
@@ -26,9 +27,9 @@ Ogre::Entity * GestorRecursos::createPlane(Ogre::SceneManager * scnMgn, std::str
 	return plane;
 }
 
-TerrainCreator * GestorRecursos::createTerrain(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
+TerrainGenerator * GestorRecursos::createTerrain(Ogre::SceneManager * scnMgn, Ogre::Light * light, std::string terrainFile)
 {
-	TerrainCreator* terrainCreator_ = new TerrainCreator(scnMgn, light, terrainFile);
+	TerrainGenerator* terrainCreator_ = new TerrainGenerator(scnMgn, light, terrainFile);
 	return terrainCreator_;
 }
 
@@ -101,6 +102,12 @@ void GestorRecursos::initializeResources()
 		OGRE_DELETE mFSLayer;
 
 		loadJsonsFiles(jsonPath);
+
+}
+
+void GestorRecursos::ceguiInit() {
+	//Carga de CEGUI y configurado automatico con elementos de OGRE
+	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>( OgreSystem::instance()->getWindow()));
 }
 
 json GestorRecursos::getJsonByKey(const std::string & key)

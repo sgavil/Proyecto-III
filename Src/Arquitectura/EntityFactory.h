@@ -1,29 +1,41 @@
 #pragma once
-#include "Entity.h"
-#include "ComponentCreator.h"
+
 #include <map>
+#include <vector>
 #include <memory>
 
+class Entity;
+class Component;
+
+class BaseCreator
+{
+public:
+	virtual Component* createComponent() const = 0;
+};
 
 
 class EntityFactory
 {
-
 private:
 	EntityFactory();
-
 	static std::unique_ptr<EntityFactory> instance_;
 
-	std::map<std::string, BaseCreator*> creators_;
+	static std::map<std::string, BaseCreator*>& creators(); // Diccionario de las factorías de componentes
 
-	json blueprints;
-
+	// ·> Crea un componente según su nombre
 	Component* createComponent(std::string name);
+	
 public:
+	// ·> Devuelve un puntero a la factoría, o la crea si no lo estaba ya
 	static EntityFactory* Instance();
 	~EntityFactory();
 
-	bool registerType(std::string typeID, BaseCreator* pCreator);
-	Entity* createEntity(json file);
+	// ·> Registra una factoría de componentes en el diccionario
+	static void registerType(std::string creatorName, BaseCreator* pCreator);
+
+	// ·> Crea las entidades de una escena leyendo de su archivo json correspondiente
+	std::vector<Entity*> createEntities(std::string stateID);
+
+	// ·> Crea una entidad con los componentes correspondientes de su prefab
 	Entity* createEntityFromBlueprint(std::string name);
 };

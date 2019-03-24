@@ -40,7 +40,15 @@ Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D9Renderer-0_d.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D10Renderer-0.dll exes
 Xcopy Dependencias\cegui-0.8.7\Build\bin\CEGUIDirect3D10Renderer-0_d.dll exes
 Xcopy Dependencias\cegui-0.8.7\dependencies\bin\freetype_d.dll exes
-Xcopy Dependencias\cegui-0.8.7\dependencies\\bin\pcre_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\pcre_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\glew_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\glfw_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\jpeg_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\libexpat_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\libpng_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\pcre_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\SILLY_d.dll exes
+Xcopy Dependencias\cegui-0.8.7\dependencies\bin\zlib_d.dll exes
 
 rem Librerías dinámicas para FMOD
 Xcopy Dependencias\fmod\fsbank\lib\fsbank.dll exes

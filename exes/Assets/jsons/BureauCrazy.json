@@ -1,0 +1,25 @@
+{
+  "Taxes":
+  [
+    {
+      "Type": "ELECTRIC",
+      "Id": 0,
+      "Amount" : 7
+    },
+    {
+      "Type": "MAINTEINANCE",
+      "Id": 1,
+      "Amount" : 15
+    }
+
+  ],
+  "BankRuptcy":
+  {
+    "ruptcyMaxTime": 12,
+    "floorRuptcyMoney": -40,
+    "InitialTime2Tax": 180
+  }
+}
+
+
+
