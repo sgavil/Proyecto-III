@@ -2,21 +2,26 @@
 #include "Entity.h"
 
 
-MeshRenderer::MeshRenderer()
+MeshRenderer::MeshRenderer(): node_(nullptr), transform_(nullptr)
 {
 }
 
 MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 {
-	//Nombre del componente
-	//name_ = Name::MeshRendererComp;
-
 	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSM()->createEntity(meshName);
 	node_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setVisible(visible);
 }
 
+void MeshRenderer::load(json file)
+{
+	std::string meshName = file["mesh"];
+	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSM()->createEntity(meshName);
+	node_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode();
+	node_->attachObject(ogreEntity);
+	node_->setVisible(file["visible"]);
+}
 
 MeshRenderer::~MeshRenderer()
 {

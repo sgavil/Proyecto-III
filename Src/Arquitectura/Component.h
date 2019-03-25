@@ -45,9 +45,6 @@ public:
 	Entity* getEntity() { return entity_; }
 	void releaseEntity() { delete entity_;  entity_ = nullptr; }
 	
-	//Devuelve el nombre del componente
-	//Name getName() { return name_; }
-
 	//Destructora
 	virtual ~Component();
 
@@ -57,8 +54,6 @@ protected:
 	bool active_;
 	//Puntero a la entidad
 	Entity* entity_;
-	//TODO: Los componentes tendrán un string con su nombre para poder identificarlos
-	//Name name_; //Nombre del componente para poder acceder a componenetes hermanos de la entidad	
 };
 
 

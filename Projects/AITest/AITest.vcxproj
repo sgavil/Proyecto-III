@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{29524E72-2E5A-45F6-A012-6FEDEB28A2D2}</ProjectGuid>
+    <ProjectGuid>{9AD7015A-86D1-4304-A22B-4DA0ACE7BFB5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
@@ -109,7 +109,7 @@
       <PreprocessorDefinitions>$(Platform);_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +134,7 @@
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OgreMain_d.lib;OgreTerrain_d.lib;OgrePaging_d.lib;Scenes_Deb.lib;GestorRecursos_Deb.lib;Arquitectura_Deb.lib;SDL2.lib;SDL2main.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;fmodL_vc.lib;fmodL64_vc.lib;fsbank_vc.lib;fsbank64_vc.lib;fmodstudioL_vc.lib;fmodstudioL64_vc.lib;CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIOgreRenderer-0_d.lib;CEGUIDirect3D9Renderer-0_d.lib;CEGUIDirect3D10Renderer-0_d.lib;CEGUIDirect3D11Renderer-0_d.lib;CEGUIExpatParser_d.lib;CEGUIOpenGLRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/WHOLEARCHIVE:Arquitectura_Deb.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -147,7 +148,7 @@
       <PreprocessorDefinitions>$(Platform);NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -177,13 +178,16 @@
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OgreMain.lib;OgreTerrain.lib;SDL2.lib;SDL2main.lib;OgrePaging.lib;Scenes.lib;GestorRecursos.lib;Arquitectura.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;fmod_vc.lib;fmod64_vc.lib;fsbank_vc.lib;fsbank64_vc.lib;fmodstudio_vc.lib;fmodstudio64_vc.lib;CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIDirect3D9Renderer-0.lib;CEGUIDirect3D10Renderer-0.lib;CEGUIDirect3D11Renderer-0.lib;CEGUIExpatParser.lib;CEGUIOgreRenderer-0.lib;CEGUIOpenGLRenderer-0.lib;CEGUISILLYImageCodec.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/WHOLEARCHIVE:Arquitectura.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Main\BureaucracyManager.cpp" />
     <ClCompile Include="..\..\Src\Main\Game.cpp" />
     <ClCompile Include="..\..\Src\Main\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Main\BureaucracyManager.h" />
     <ClInclude Include="..\..\Src\Main\Game.h" />
   </ItemGroup>
   <ItemGroup>

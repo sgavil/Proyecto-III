@@ -6,13 +6,12 @@ class Transform : public Component
 {
 public:
 
-	//Crea una entidad renderizable a partir del nombre de su malla y una posición inicial
 	Transform();
 	Transform(Ogre::Vector3 position, Ogre::Quaternion orientation = Ogre::Quaternion::IDENTITY, Ogre::Vector3 scale = Ogre::Vector3(1,1,1));
 
 	~Transform();
 
-	void load(json file);
+	virtual void load(json file);
 
 	//Métodos principales
 	virtual void render(unsigned int time) {};

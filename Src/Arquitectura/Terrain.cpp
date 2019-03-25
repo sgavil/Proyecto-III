@@ -1,14 +1,19 @@
 #include "Terrain.h"
 
 
-Terrain::Terrain()
+Terrain::Terrain():terrainCreator_(nullptr)
 {
 }
 
 Terrain::Terrain(std::string terrainFile)
 {
-	//name_ = Name::TerrainComp;
 	terrainCreator_ = GestorRecursos::instance()->createTerrain(OgreSystem::instance()->getSM(), OgreSystem::instance()->getLight(), terrainFile);
+}
+
+void Terrain::load(json file)
+{
+	terrainCreator_ = GestorRecursos::instance()->createTerrain(OgreSystem::instance()->getSM(),
+		OgreSystem::instance()->getLight(), file["file"]);
 }
 
 Terrain::~Terrain()

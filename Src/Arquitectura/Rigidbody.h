@@ -16,6 +16,8 @@ public:
 	~Rigidbody();
 
 	virtual void start();
+	
+	virtual void load(json file);
 
 	//Generic methods
 	virtual void render(unsigned int time) {};

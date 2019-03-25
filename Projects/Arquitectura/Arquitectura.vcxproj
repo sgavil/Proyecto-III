@@ -23,7 +23,7 @@
     <ProjectGuid>{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -179,7 +179,6 @@
     <ClCompile Include="..\..\Src\Arquitectura\Entity.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\EntityFactory.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp" />
-    <ClCompile Include="..\..\Src\Arquitectura\NPC.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\OgreSystem.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\MeshRenderer.cpp" />
@@ -195,7 +194,6 @@
     <ClInclude Include="..\..\Src\Arquitectura\Entity.h" />
     <ClInclude Include="..\..\Src\Arquitectura\EntityFactory.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h" />
-    <ClInclude Include="..\..\Src\Arquitectura\NPC.h" />
     <ClInclude Include="..\..\Src\Arquitectura\OgreSystem.h" />
     <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h" />
     <ClInclude Include="..\..\Src\Arquitectura\MeshRenderer.h" />

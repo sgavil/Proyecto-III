@@ -8,5 +8,15 @@
   [
     "Camera",
 	"Transform"
+  ],
+  "OgreHead":
+  [
+    "Transform",
+	"MeshRenderer", 
+	"Rigidbody"
+  ],
+  "Terrain":
+  [
+	"Terrain"
   ]
 }

@@ -2,23 +2,32 @@
 #include "Entity.h"
 
 
-Rigidbody::Rigidbody()
+Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr)
 {
 }
 
 
 Rigidbody::Rigidbody(Transform* transform, Shape shape, btScalar mass) : transform_(transform)
 {
-	//TODO: que el tamaño del COllider se ajuste al tamaño de la malla de la entidad que tiene el nodo
-	//Nombre del componente
-	//name_ = Name::RigidbodyComp;
-
 	//Creamos el rigidbody
 	rigid_ = physicSystem::createRigidBody(shape, transform_->getScale(), mass);
 }
 
+
+void Rigidbody::load(json file)
+{
+	json dimensions = file["dimensions"];
+	Vector3 dims;
+	dims.x = dimensions["x"];
+	dims.y = dimensions["y"];
+	dims.z = dimensions["z"];
+
+	rigid_ = physicSystem::createRigidBody(BoxShape, dims, file["mass"]);
+}
+
 void Rigidbody::start()
 {
+	transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
 		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
 	else
@@ -44,9 +53,6 @@ void Rigidbody::update(unsigned int time)
 	//Si está asociado a un transform
 	if(transform_ != nullptr)
 	{
-		/*btVector3 min, max;
-		 rigid_->getAabb(min, max);
-		 std::cout << "[" << (max - min).getX() << ", " << (max - min).getY() << ", " << (max - min).getZ() << "]" << std::endl;*/
 
 		//Obtenemos su posición y orientación
 		btTransform trans;
