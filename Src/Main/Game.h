@@ -10,6 +10,11 @@
 #include <AudioSource/AudioSource.h>
 #include "vld.h"
 
+#include <OISMouse.h>
+#include <OISKeyboard.h>
+#include <OISJoyStick.h>
+#include <OISInputManager.h>
+
 class Rigidbody;
 class Game {
 public:

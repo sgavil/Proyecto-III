@@ -52,6 +52,7 @@
     <ClCompile Include="..\..\Src\Arquitectura\Button.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\Component.h">
@@ -93,5 +94,6 @@
     <ClInclude Include="..\..\Src\Arquitectura\Button.h">
       <Filter>Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="InputManager.h" />
   </ItemGroup>
 </Project>

@@ -15,6 +15,11 @@
 //CEGUI
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
+//OIS
+#include <OIS.h>
+#include <OISKeyboard.h>
+#include <OISMouse.h>
+#include <OISInputManager.h>
 
 
 class OgreSystem
@@ -37,6 +42,8 @@ public:
 	Ogre::SceneManager * getSM();
 	Ogre::RenderWindow* getWindow() { return window_; };
 	Ogre::Light* getLight() { return light_; };
+	OIS::Mouse* getMouse() { return mouse_; }
+	OIS::Keyboard* getKeyboard() { return keyboard_; }
 
 private:
 
@@ -44,6 +51,11 @@ private:
 	OgreSystem(std::string initFileJson);
 	//Instancia
 	static std::unique_ptr<OgreSystem> instance_;
+
+	OIS::Mouse* mouse_;
+	OIS::Keyboard* keyboard_;
+	OIS::InputManager* inputManager_;
+
 
 	Ogre::Root *root_;
 	Ogre::RenderWindow *window_;

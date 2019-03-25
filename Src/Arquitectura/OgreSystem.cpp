@@ -59,6 +59,9 @@ OgreSystem::OgreSystem(std::string initFileJson)
 	window_->getCustomAttribute("WINDOW", &hWnd);
 	SDL_CreateWindowFrom((void*)hWnd);
 
+	inputManager_ = OIS::InputManager::createInputSystem(hWnd);
+	mouse_ = static_cast<OIS::Mouse*>(inputManager_->createInputObject(OIS::OISMouse, false));
+	keyboard_ = static_cast<OIS::Keyboard*>(inputManager_->createInputObject(OIS::OISKeyboard, false));
 
 }
 

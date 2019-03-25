@@ -83,8 +83,8 @@
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_Deb</TargetName>
-    <IncludePath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Debug;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencias\ois-1.5\includes;$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencias\ois-1.5\Build\Debug;$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Debug;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -97,8 +97,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Release;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencias\ois-1.5\includes;$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\bullet3-2.88\src;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\Dependencies\include\SDL2;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencias\ois-1.5\Build\Release;$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\bullet3-2.88\build3\lib\Release;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -185,6 +185,7 @@
     <ClCompile Include="..\..\Src\Arquitectura\Rigidbody.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Terrain.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Transform.cpp" />
+    <ClCompile Include="InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\Button.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="..\..\Src\Arquitectura\Rigidbody.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Terrain.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Transform.h" />
+    <ClInclude Include="InputManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

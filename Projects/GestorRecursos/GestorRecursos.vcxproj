@@ -81,8 +81,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath);$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencias\ois-1.5\includes;$(IncludePath);$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencias\ois-1.5\Build\Debug;$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_Deb</TargetName>
@@ -96,10 +96,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath);$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencias\ois-1.5\includes;$(IncludePath);$(SolutionDir)Src;$(SolutionDir)Dependencias\ogre-1.11.5\Build\include;$(SolutionDir)Dependencias\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencias\ogre-1.11.5\Components\Terrain\include;$(SolutionDir)Dependencias\jsonParser;$(SolutionDir)Dependencias\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencias\cegui-0.8.7\Build\cegui\include</IncludePath>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)</IntDir>
     <OutDir>$(SolutionDir)Libs\$(Configuration)</OutDir>
+    <LibraryPath>$(SolutionDir)Dependencias\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencias\cegui-0.8.7\Build\lib;$(SolutionDir)Dependencias\ois-1.5\Build\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
