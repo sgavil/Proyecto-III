@@ -1,22 +1,52 @@
 {
-  "NPC":
+  "NPC": 
   [
-    "Transform",
-    "Rigidbody"
+    {
+      "name": "Transform"  
+    },
+    {
+      "name": "Rigidbody",
+      "parameters": 
+      {
+        "dimensions": 
+        {
+          "x": 10,
+          "y": 10,
+          "z": 10
+        },
+        "mass": 10
+      }
+    }
   ],
-  "Camera":
+
+  "Camera": 
   [
-    "Camera",
-	"Transform"
+    {
+      "name": "Camera"
+    },
+    {
+      "name": "Transform"
+    }
   ],
-  "OgreHead":
+
+
+  "OgreHead": 
   [
-    "Transform",
-	"MeshRenderer", 
-	"Rigidbody"
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer"
+    },
+    {
+      "name": "Rigidbody"
+    }
   ],
-  "Terrain":
+
+  "Terrain": 
   [
-	"Terrain"
+    {
+      "name": "Transform"
+    }
   ]
 }

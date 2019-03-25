@@ -58,14 +58,18 @@ Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 
 	json blueprints = GestorRecursos::instance()->getJsonByKey("Entities.json");
 
-	for (std::string comp : blueprints[name])
+	for (json comp : blueprints[name])
 	{
-		Component* c = createComponent(comp);
+		Component* c = createComponent(comp["name"]);
 		entity->addComponent(c);
-	}
 
+		if (comp.find("parameters") != comp.end())
+			c->load(comp["parameters"]);
+	}
+	
 	return entity;
 }
+
 
 Component* EntityFactory::createComponent(std::string name)
 {
