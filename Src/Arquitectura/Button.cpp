@@ -15,7 +15,7 @@ void Button::load(json file)
 	nextState = file["nextState"];
 }
 
-bool Button::handleEvent(SDL_Event* e, unsigned int time)
+bool Button::handleEvent(Event e, unsigned int time)
 {
 
 	// On button click:

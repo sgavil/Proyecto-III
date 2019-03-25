@@ -42,8 +42,7 @@ public:
 	Ogre::SceneManager * getSM();
 	Ogre::RenderWindow* getWindow() { return window_; };
 	Ogre::Light* getLight() { return light_; };
-	OIS::Mouse* getMouse() { return mouse_; }
-	OIS::Keyboard* getKeyboard() { return keyboard_; }
+	unsigned long gethWnd() { return hWnd; }
 
 private:
 
@@ -51,10 +50,6 @@ private:
 	OgreSystem(std::string initFileJson);
 	//Instancia
 	static std::unique_ptr<OgreSystem> instance_;
-
-	OIS::Mouse* mouse_;
-	OIS::Keyboard* keyboard_;
-	OIS::InputManager* inputManager_;
 
 
 	Ogre::Root *root_;

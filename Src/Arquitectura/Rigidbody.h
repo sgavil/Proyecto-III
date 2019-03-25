@@ -22,7 +22,7 @@ public:
 	//Generic methods
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);
-	virtual bool handleEvent(SDL_Event* e, unsigned int time);
+	virtual bool handleEvent(Event e, unsigned int time);
 	virtual void receive(Message* msg) {};
 
 	//Add a force to the rigidBody

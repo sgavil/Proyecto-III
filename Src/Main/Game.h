@@ -15,6 +15,8 @@
 #include <OISJoyStick.h>
 #include <OISInputManager.h>
 
+#include <Arquitectura/InputManager.h>
+
 class Rigidbody;
 class Game {
 public:
@@ -29,6 +31,7 @@ private:
 	OgreSystem* ogreSyst_; //Informaci�n inicial de Ogre
 	AudioSource* audioSrc_;
 	Rigidbody* floorRigidbody;
+	InputManager* inputManager_;
 
 	bool exit;
 };

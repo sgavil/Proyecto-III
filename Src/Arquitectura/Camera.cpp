@@ -33,16 +33,12 @@ void Camera::update(unsigned int time)
 	
 }
 
-bool Camera::handleEvent(SDL_Event* e, unsigned int time)
+bool Camera::handleEvent(Event e, unsigned int time)
 {
-	if (e->type == SDL_KEYDOWN)
-	{
-		//El control 0 estar parado, el 1 izda, el 2 dcha, el 3 arriba y el 4 abajo
-		if (e->key.keysym.sym == SDLK_UP)
-		{
-			std::cout << "Hola! Funciono Desde un componente" << std::endl;
-			return true;
-		}
+	if (e.keyboard_->isKeyDown(OIS::KC_W)) {
+		camNode_->translate({ 0, 0, -10 }, Ogre::Node::TS_LOCAL);
 	}
+
+	InputManager::instance()->attacheCameraToMouse(camNode_);
 	return false;
 }

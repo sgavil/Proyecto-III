@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include <Arquitectura/physicSystem.h>
 #include <Arquitectura/EntityFactory.h>
+#include <Arquitectura/InputManager.h>
 
 GameState::GameState(std::string stateID)
 {
@@ -54,25 +55,36 @@ void GameState::render(unsigned int time)
 bool GameState::handleInput(unsigned int time)
 {
 	bool handled = false;
-	SDL_Event event;
-	while (SDL_PollEvent(&event))
-	{
-		if (event.type == SDL_QUIT)
+
+	//while (SDL_PollEvent(&event))
+	//{
+	//	if (event.type == SDL_QUIT)
+	//	{
+	//		return true;
+	//	}
+	//	// LLama al handleInput de todos los componentes 
+	//	else 
+	//	{
+	//		std::list<Component*>::iterator it = scene.begin();
+	//		while (it != scene.end() && !handled)
+	//		{
+	//			if ((*it)->isActive())
+	//				handled = (*it)->handleEvent(&event, time);
+	//			it++;
+	//		}
+	//	}
+	//}
+	
+	Event e = InputManager::instance()->CheckInput();
+	std::list<Component*>::iterator it = scene.begin();
+	if (e.keyboard_->isKeyDown(OIS::KC_ESCAPE)) return true;
+	while (it != scene.end() && !handled)
 		{
-			return true;
+			if ((*it)->isActive())
+			handled = (*it)->handleEvent(e, time);
+			it++;
 		}
-		// LLama al handleInput de todos los componentes 
-		else 
-		{
-			std::list<Component*>::iterator it = scene.begin();
-			while (it != scene.end() && !handled)
-			{
-				if ((*it)->isActive())
-					handled = (*it)->handleEvent(&event, time);
-				it++;
-			}
-		}
-	}
+			return false;
 }
 
 void GameState::addEntity(Entity* e)
