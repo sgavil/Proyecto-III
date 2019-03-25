@@ -27,6 +27,7 @@ Somos un grupo de 7 estudiantes la Universidad Complutense de Madrid
 * Factoría de entidades ( a través de lectura de json).
 * Gestión de terrenos a través de json.
 * Gestor de Recursos a través de OGRE3D.
+* Entrada-Salida mediante OIS.
 
 # P.A.R.K (Pure Accurate Roaller Koaster)
 
