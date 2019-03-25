@@ -50,6 +50,10 @@ Xcopy Dependencias\cegui-0.8.7\dependencies\bin\pcre_d.dll exes
 Xcopy Dependencias\cegui-0.8.7\dependencies\bin\SILLY_d.dll exes
 Xcopy Dependencias\cegui-0.8.7\dependencies\bin\zlib_d.dll exes
 
+rem Librerías dinámicas para OIS
+Xcopy Dependencias\OIS-1.5\Build\Debug\OIS_d.dll exes
+Xcopy Dependencias\OIS-1.5\Build\Release\OIS.dll exes
+
 rem Librerías dinámicas para FMOD
 Xcopy Dependencias\fmod\fsbank\lib\fsbank.dll exes
 Xcopy Dependencias\fmod\fsbank\lib\fsbank64.dll exes
