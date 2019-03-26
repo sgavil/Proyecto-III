@@ -35,7 +35,7 @@ public:
 	//Métodos principales (renderizado, lógica y eventos)
 	virtual void render(unsigned int time) = 0;
 	virtual void update(unsigned int time) = 0;
-	virtual bool handleEvent(Event inputEvent, unsigned int time) { return false; };
+	virtual bool handleEvent(unsigned int time) { return false; };
 
 	//Getters y setters del flag de actividad
 	bool isActive() { return active_; };

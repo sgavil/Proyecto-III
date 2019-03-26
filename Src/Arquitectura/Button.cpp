@@ -15,11 +15,7 @@ void Button::load(json file)
 	nextState = file["nextState"];
 }
 
-bool Button::handleEvent(Event e, unsigned int time)
+bool Button::handleEvent(unsigned int time)
 {
-
-	// On button click:
-	SceneManager::instance()->changeState(nextState);
-	
-	return false;
+	return true;
 }

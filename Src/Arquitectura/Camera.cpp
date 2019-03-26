@@ -8,6 +8,8 @@ Camera::Camera()
 	camera_ = GestorRecursos::instance()->createCamera(OgreSystem::instance()->getSM(), "cam", camNode_, 5, 50000, true);
 	viewport_ = OgreSystem::instance()->getWindow()->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
+
+	InputManager::getSingletonPtr()->addKeyListener(this, "Camera");
 }
 
 
@@ -33,12 +35,17 @@ void Camera::update(unsigned int time)
 	
 }
 
-bool Camera::handleEvent(Event e, unsigned int time)
+bool Camera::handleEvent(unsigned int time)
 {
-	if (e.keyboard_->isKeyDown(OIS::KC_W)) {
-		camNode_->translate({ 0, 0, -10 }, Ogre::Node::TS_LOCAL);
-	}
-
-	InputManager::instance()->attacheCameraToMouse(camNode_);
 	return false;
+}
+
+bool Camera::keyPressed(const OIS::KeyEvent & arg)
+{
+	switch (arg.key)
+	{
+	case OIS::KC_W:
+		camNode_->translate({ 0,0,-10 }, Ogre::Node::TS_WORLD);
+	}
+	return true;
 }

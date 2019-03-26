@@ -6,21 +6,18 @@
 //#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 // INCLUDES TEMPORALES PARA LAS ENTIDADES
-#include <Arquitectura/Transform.h>
-#include <Arquitectura/Rigidbody.h>
-#include <Arquitectura/MeshRenderer.h>
-#include <Arquitectura/Terrain.h>
-#include <Arquitectura/Camera.h>
+
 //#include <Arquitectura/Camera.h>
 
 Game::Game(std::string basicConfig):exit(false)
 {
+	
 	ogreSyst_ = OgreSystem::instance(basicConfig);
+	InputManager::getSingletonPtr()->initialise(OgreSystem::instance()->getWindow());
 	GestorRecursos::instance()->ceguiInit();
 	audioSrc_ = AudioSource::instance();
 	ScnMng_ = SceneManager::instance();
 	physSyst_ = physicSystem::instance();
-	inputManager_ = InputManager::instance();
 }
 
 Game::~Game()

@@ -68,7 +68,7 @@ void Rigidbody::update(unsigned int time)
 	}
 }
 
-bool Rigidbody::handleEvent(Event e, unsigned int time)
+bool Rigidbody::handleEvent(unsigned int time)
 {
 	
 	return false;

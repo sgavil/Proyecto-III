@@ -45,7 +45,7 @@ void MeshRenderer::update(unsigned int time)
 	}
 }
 
-bool MeshRenderer::handleEvent(Event e, unsigned int time)
+bool MeshRenderer::handleEvent(unsigned int time)
 {
 	
 	return false;
