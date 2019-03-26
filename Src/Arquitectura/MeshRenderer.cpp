@@ -1,5 +1,15 @@
 #include "MeshRenderer.h"
+
 #include "Entity.h"
+#include "Transform.h"
+
+
+#include <OgreSceneNode.h>
+#include <OgreSceneManager.h>
+#include <OgreEntity.h>
+#include "OgreSystem.h"
+
+
 
 
 MeshRenderer::MeshRenderer(): node_(nullptr), transform_(nullptr)

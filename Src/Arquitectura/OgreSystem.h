@@ -12,14 +12,7 @@
 #include <GestorRecursos/gestorDeRecursos.h>
 #include <OgreMeshManager.h>
 #include <OgreResourceGroupManager.h>
-//CEGUI
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/RendererModules/Ogre/Renderer.h>
-//OIS
-#include <OIS.h>
-#include <OISKeyboard.h>
-#include <OISMouse.h>
-#include <OISInputManager.h>
+
 
 
 class OgreSystem

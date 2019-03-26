@@ -10,7 +10,7 @@
 #include <Arquitectura/AudioSource.h>
 #include <Arquitectura/OgreSystem.h>
 #include <Scenes/SceneManager.h> 
-#include <Arquitectura/Entity.h>
+//#include <Arquitectura/Entity.h>
 
 #include <OISMouse.h>
 #include <OISKeyboard.h>

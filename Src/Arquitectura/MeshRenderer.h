@@ -1,10 +1,9 @@
 #pragma once
-#include "Component.h""
-#include "Transform.h"
-#include <OgreSceneNode.h>
-#include <OgreSceneManager.h>
-#include <OgreEntity.h>
-#include "OgreSystem.h"
+#include "Component.h"
+
+class Transform;
+class Ogre::SceneNode;
+class Message;
 
 class MeshRenderer : public Component
 {

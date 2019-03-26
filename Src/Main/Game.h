@@ -1,7 +1,7 @@
 #pragma once
 #include <OgreStringVector.h>
-#include <Arquitectura/Entity.h>
 #include <string>
+#include <Arquitectura/Entity.h>
 
 class OgreSystem;
 class SceneManager;

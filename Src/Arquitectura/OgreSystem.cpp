@@ -1,5 +1,20 @@
 #include "OgreSystem.h"
+
+//NUESTRO
+#include <GestorRecursos/gestorDeRecursos.h>
 #include "Scenes/SceneManager.h"
+
+//CEGUI
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
+
+//OIS
+#include <OIS.h>
+#include <OISKeyboard.h>
+#include <OISMouse.h>
+#include <OISInputManager.h>
+
+
 
 // Bootstrap CEGUI::System with an OgreRenderer object that uses the
 // default Ogre rendering window as the default output surface, an Ogre based
