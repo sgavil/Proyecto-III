@@ -133,7 +133,13 @@
 			[
 				{
 					"name": "Terrain",
-					"file": "Maps.json"
+					"file": "Maps.json",
+					"Listeners":
+					[
+						{
+							"name":"Camera"
+						}
+					]
 				}
 			]
 		}
