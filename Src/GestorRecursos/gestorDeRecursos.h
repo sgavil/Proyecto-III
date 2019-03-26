@@ -5,7 +5,6 @@
 #include <OgreSceneManager.h>
 #include <string>
 #include <OgreMeshManager.h>
-#include <OgreResourceGroupManager.h>
 #include <OgreVector3.h>
 #include <OgrePlane.h>
 #include <OgreEntity.h>

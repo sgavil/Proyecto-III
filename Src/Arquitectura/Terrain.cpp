@@ -1,5 +1,6 @@
 #include "Terrain.h"
-
+#include <iostream>
+#include "OgreSystem.h"
 
 Terrain::Terrain():terrainCreator_(nullptr)
 {

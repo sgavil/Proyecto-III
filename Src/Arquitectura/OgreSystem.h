@@ -3,17 +3,17 @@
 #include <OgreConfigFile.h>
 #include <OgreLog.h>
 //#include <OgreFileSystemLayer.h>
-#include <OgreLight.h>
-#include <iostream>
+
+
 #include <OgreRenderWindow.h>
 #include <OgreEntity.h>
-#include <OgreColourValue.h>
-#include <OgrePlane.h>
 #include <GestorRecursos/gestorDeRecursos.h>
-#include <OgreMeshManager.h>
-#include <OgreResourceGroupManager.h>
 
 
+
+class Ogre::Light;
+class Ogre::Plane;
+class Ogre::RenderWindow;
 
 class OgreSystem
 {
@@ -43,7 +43,7 @@ private:
 	OgreSystem(std::string initFileJson);
 	//Instancia
 	static std::unique_ptr<OgreSystem> instance_;
-
+	
 
 	Ogre::Root *root_;
 	Ogre::RenderWindow *window_;

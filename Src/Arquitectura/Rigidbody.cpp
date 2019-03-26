@@ -1,5 +1,10 @@
 #include "Rigidbody.h"
+
 #include "Entity.h"
+#include "Transform.h"
+#include "physicSystem.h"
+#include <iostream>
+
 
 
 Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr)
@@ -7,7 +12,7 @@ Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr)
 }
 
 
-Rigidbody::Rigidbody(Transform* transform, Shape shape, btScalar mass) : transform_(transform)
+Rigidbody::Rigidbody(Transform* transform, Shape shape, float mass) : transform_(transform)
 {
 	//Creamos el rigidbody
 	rigid_ = physicSystem::createRigidBody(shape, transform_->getScale(), mass);
@@ -68,8 +73,7 @@ void Rigidbody::update(unsigned int time)
 	}
 }
 
-bool Rigidbody::handleEvent(unsigned int time)
+void Rigidbody::addForce(btVector3 force)
 {
-	
-	return false;
+	rigid_->applyCentralImpulse(force);
 }

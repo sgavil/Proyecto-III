@@ -8,6 +8,7 @@
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 #include "OgreSystem.h"
+#include <iostream>
 
 
 

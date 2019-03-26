@@ -15,6 +15,11 @@
 #include <OISInputManager.h>
 
 #include "SDL.h"
+//OGRE
+#include <iostream>
+#include <OgreLight.h>
+#include <OgrePlane.h>
+#include <OgreColourValue.h>
 
 
 
