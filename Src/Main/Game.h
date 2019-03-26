@@ -3,7 +3,7 @@
 #include <Arquitectura/Entity.h>
 #include <string>
 
-
+class OgreSystem;
 class SceneManager;
 class AudioSource;
 class physicSystem;
