@@ -14,6 +14,7 @@ public:
 	virtual void receive(Message* msg) {};
 
 private:
+	//Necesidades
 	int hunger;
 	int thirst;
 };

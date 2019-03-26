@@ -31,7 +31,7 @@ std::vector<Entity*> EntityFactory::createEntities(std::string stateID)
 	json file = GestorRecursos::instance()->getJsonByKey(stateID + ".json");
 
 	std::vector<Entity*> entities;
-
+	std::map<std::string, Component*> dic;
 	for (json ent : file["Entities"])
 	{
 		Entity* entity = new Entity();
@@ -42,6 +42,11 @@ std::vector<Entity*> EntityFactory::createEntities(std::string stateID)
 			Component* c = createComponent(comp["name"]);
 			entity->addComponent(c);
 			c->load(comp);
+			dic[comp["name"]] = c;
+			for (json j : comp["Listeners"])
+			{
+				c->registerListener(dic[j["name"]]);
+			}
 		}
 
 		entities.push_back(entity);

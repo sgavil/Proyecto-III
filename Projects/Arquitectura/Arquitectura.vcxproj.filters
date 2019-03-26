@@ -55,6 +55,9 @@
     <ClCompile Include="..\..\Src\Arquitectura\InputManager.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\AudioSource.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\Component.h">
@@ -97,6 +100,9 @@
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\InputManager.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\AudioSource.h">
       <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
