@@ -19,9 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Lógica\Matrix\Matrix.cpp" />
+    <ClCompile Include="..\..\Src\Lógica\Matrix\Node.cpp" />
     <ClCompile Include="..\..\Src\Lógica\NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Lógica\Matrix\Matrix.h" />
+    <ClInclude Include="..\..\Src\Lógica\Matrix\Node.h" />
     <ClInclude Include="..\..\Src\Lógica\NPC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -29,7 +33,7 @@
     <ProjectGuid>{E8F42C5E-E9A0-4735-BBDB-B405FDF65574}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
