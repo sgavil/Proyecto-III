@@ -1,23 +1,15 @@
 #pragma once
-#include <Arquitectura/physicSystem.h>
-#include <Scenes/SceneManager.h> 
-#include <Arquitectura\OgreSystem.h>
 #include <OgreStringVector.h>
 #include <Arquitectura/Entity.h>
 #include <string>
-#include <SDL.h>
-#include <SDL_video.h>
-#include <AudioSource/AudioSource.h>
-#include "vld.h"
 
-#include <OISMouse.h>
-#include <OISKeyboard.h>
-#include <OISJoyStick.h>
-#include <OISInputManager.h>
 
-#include <Arquitectura/InputManager.h>
+class SceneManager;
+class AudioSource;
+class physicSystem;
+class InputManager;
 
-class Rigidbody;
+
 class Game {
 public:
 	Game(std::string basicConfig);
@@ -28,9 +20,8 @@ public:
 private:
 	physicSystem* physSyst_;
 	SceneManager* ScnMng_;
-	OgreSystem* ogreSyst_; //Informaci�n inicial de Ogre
+	OgreSystem* ogreSyst_;
 	AudioSource* audioSrc_;
-	Rigidbody* floorRigidbody;
 	InputManager* inputManager_;
 
 	bool exit;

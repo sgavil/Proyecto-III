@@ -23,7 +23,7 @@
     <ProjectGuid>{A1700C0A-9839-4CBE-9482-0769E0F58935}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -191,8 +191,8 @@
     <ClInclude Include="..\..\Src\Main\Game.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioSource\AudioSource.vcxproj">
-      <Project>{cc79edd1-f5b3-4781-94a9-f9cc4e93295a}</Project>
+    <ProjectReference Include="..\Arquitectura\Arquitectura.vcxproj">
+      <Project>{9b5952b6-d23f-47c5-ad8d-22dee9e04b99}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

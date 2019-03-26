@@ -191,8 +191,8 @@
     <ClInclude Include="..\..\Src\Main\Game.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioSource\AudioSource.vcxproj">
-      <Project>{cc79edd1-f5b3-4781-94a9-f9cc4e93295a}</Project>
+    <ProjectReference Include="..\Arquitectura\Arquitectura.vcxproj">
+      <Project>{9b5952b6-d23f-47c5-ad8d-22dee9e04b99}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

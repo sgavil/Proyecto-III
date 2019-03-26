@@ -5,13 +5,18 @@
 //#include <CEGUI/CEGUI.h>
 //#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
-// INCLUDES TEMPORALES PARA LAS ENTIDADES
-#include <Arquitectura/Transform.h>
-#include <Arquitectura/Rigidbody.h>
-#include <Arquitectura/MeshRenderer.h>
-#include <Arquitectura/Terrain.h>
-#include <Arquitectura/Camera.h>
-//#include <Arquitectura/Camera.h>
+#include <Arquitectura/physicSystem.h>
+#include <Arquitectura/AudioSource.h>
+#include <Arquitectura/OgreSystem.h>
+#include <Scenes/SceneManager.h> 
+#include <Arquitectura/Entity.h>
+
+#include <OISMouse.h>
+#include <OISKeyboard.h>
+#include <OISJoyStick.h>
+#include <OISInputManager.h>
+
+
 
 Game::Game(std::string basicConfig):exit(false)
 {
