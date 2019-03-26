@@ -26,14 +26,3 @@ void Transform::load(json file)
 Transform::~Transform()
 {
 }
-
-void Transform::update(unsigned int time)
-{
-
-}
-
-bool Transform::handleEvent(unsigned int time)
-{
-	
-	return false;
-}

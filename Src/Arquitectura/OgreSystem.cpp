@@ -14,6 +14,8 @@
 #include <OISMouse.h>
 #include <OISInputManager.h>
 
+#include "SDL.h"
+
 
 
 // Bootstrap CEGUI::System with an OgreRenderer object that uses the

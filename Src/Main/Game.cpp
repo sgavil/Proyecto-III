@@ -17,6 +17,8 @@
 #include <OISJoyStick.h>
 #include <OISInputManager.h>
 
+#include "SDL.h"
+
 
 
 

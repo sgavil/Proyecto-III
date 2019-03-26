@@ -38,7 +38,7 @@ namespace Architecture
 	public:
 		Listener() {}
 		virtual ~Listener() {};
-		virtual void receive(Message* msg) = 0;
+		virtual void receive(Message* msg) {};
 	};
 
 	class Emitter {

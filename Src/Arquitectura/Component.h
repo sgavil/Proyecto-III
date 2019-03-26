@@ -1,6 +1,5 @@
 #pragma once
 #include "Messages.h"
-#include <SDL.h>
 #include <GestorRecursos/gestorDeRecursos.h>
 #include "ComponentCreator.h"
 #include "InputManager.h"
@@ -33,8 +32,8 @@ public:
 	virtual void start() {};
 
 	//Métodos principales (renderizado, lógica y eventos)
-	virtual void render(unsigned int time) = 0;
-	virtual void update(unsigned int time) = 0;
+	virtual void render(unsigned int time) {};
+	virtual void update(unsigned int time) {};
 	virtual bool handleEvent(unsigned int time) { return false; };
 
 	//Getters y setters del flag de actividad

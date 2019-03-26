@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.h"
-#include <OgreSceneNode.h>
 
 class Transform : public Component
 {
@@ -12,12 +11,6 @@ public:
 	~Transform();
 
 	virtual void load(json file);
-
-	//Métodos principales
-	virtual void render(unsigned int time) {};
-	virtual void update(unsigned int time);
-	virtual bool handleEvent(unsigned int time);
-	virtual void receive(Message* msg) {};
 
 	//Position getter
 	Ogre::Vector3 getPosition() { return position_; };
