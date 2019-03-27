@@ -4,17 +4,14 @@
 #include <OgreSceneNode.h>
 #include <OgreSceneManager.h>
 #include <string>
-#include <OgreMeshManager.h>
 #include <OgreVector3.h>
-#include <OgrePlane.h>
-#include <OgreEntity.h>
-#include <OgreNode.h>
-#include <OgreConfigFile.h>
-#include <OgreTextureManager.h>
 #include <dirent.h>
 #include <jsonParser.hpp>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
+
+class Ogre::SceneNode;
+class Ogre::Entity;
 
 using json = nlohmann::json;
 

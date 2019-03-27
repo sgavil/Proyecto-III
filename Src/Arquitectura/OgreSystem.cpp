@@ -20,6 +20,11 @@
 #include <OgreLight.h>
 #include <OgrePlane.h>
 #include <OgreColourValue.h>
+#include <OgreRoot.h>
+#include <OgreEntity.h>
+#include <OgreRenderWindow.h>
+#include <OgreLog.h>
+#include <OgreConfigFile.h>
 
 
 
@@ -101,6 +106,11 @@ OgreSystem::~OgreSystem()
 
 	instance_.release();
 	
+}
+
+void OgreSystem::render(unsigned int deltaTime)
+{
+	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);
 }
 
 Ogre::SceneManager * OgreSystem::getSM()

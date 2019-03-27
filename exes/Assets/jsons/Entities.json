@@ -48,5 +48,42 @@
     {
       "name": "Transform"
     }
+  ],
+
+  "Node": 
+  [
+    {
+      "name": "Transform",
+      "parameters":
+      {
+          "position":
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+      } 
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "ogrehead.mesh",
+        "visible" : false
+      }
+    },
+    {
+    "name": "Node",
+    "parameters": 
+      {
+        "dimensions": 
+        {
+          "x": 80,
+          "y": 80,
+          "z": 80
+        },
+        "nodeType": "EMPTY"
+      }
+    }
   ]
 }

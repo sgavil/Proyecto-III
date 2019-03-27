@@ -27,6 +27,7 @@ public:
 	//Add a force to the rigidBody
 	virtual void addForce(btVector3 force);
 
+
 protected:
 	btRigidBody* rigid_;
 	Transform* transform_;

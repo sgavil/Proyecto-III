@@ -8,15 +8,30 @@
     <Filter Include="Componentes">
       <UniqueIdentifier>{c861ca7e-e8cd-42df-acd7-4c97df049dbb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Componentes\Matrix">
+      <UniqueIdentifier>{3d01f28b-45e2-4425-9ec3-6bf52228dfea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Lógica\NPC.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\Matrix\Matrix.cpp">
+      <Filter>Componentes\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\Matrix\Node.cpp">
+      <Filter>Componentes\Matrix</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\NPC.h">
       <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\Matrix\Matrix.h">
+      <Filter>Componentes\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\Matrix\Node.h">
+      <Filter>Componentes\Matrix</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

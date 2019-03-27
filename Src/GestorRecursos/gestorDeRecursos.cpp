@@ -1,7 +1,22 @@
 #include "gestorDeRecursos.h"
-#include "TerrainCreator.h"
+
+//OGRE
+#include <OgreRenderWindow.h>
 #include <OgreFileSystemLayer.h>
+#include <OgreTextureManager.h>
+#include <OgreConfigFile.h>
+#include <OgreNode.h>
+#include <OgreEntity.h>
+#include <OgrePlane.h>
+#include <OgreMeshManager.h>
+#include <OgreCamera.h>
+
+//NUESTRO
+#include "TerrainCreator.h"
 #include <Arquitectura/OgreSystem.h>
+
+
+
 
 std::unique_ptr<GestorRecursos> GestorRecursos::instance_;
 

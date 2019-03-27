@@ -1,12 +1,5 @@
 #pragma once
-#include <OgreRoot.h>
-#include <OgreConfigFile.h>
-#include <OgreLog.h>
-//#include <OgreFileSystemLayer.h>
 
-
-#include <OgreRenderWindow.h>
-#include <OgreEntity.h>
 #include <GestorRecursos/gestorDeRecursos.h>
 
 class Ogre::Light;
@@ -25,7 +18,7 @@ public:
 	~OgreSystem();
 
 	//Renderiza la escena (deltaTime debe estar en segundos)
-	void render(unsigned int deltaTime) { root_->renderOneFrame((Ogre::Real)deltaTime / 1000); };
+	void render(unsigned int deltaTime);
 
 	
 
@@ -53,7 +46,7 @@ private:
 
 	json initFile;
 	//void ceguiInit();
-	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaño WINDOW_HEIGHT/WIDHT ademas de crear
+	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaï¿½o WINDOW_HEIGHT/WIDHT ademas de crear
 	una camara y asociarle un viewport a esta*/
 
 	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL

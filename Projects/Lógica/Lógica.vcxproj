@@ -19,9 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Lógica\Matrix\Matrix.cpp" />
+    <ClCompile Include="..\..\Src\Lógica\Matrix\Node.cpp" />
     <ClCompile Include="..\..\Src\Lógica\NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Lógica\Matrix\Matrix.h" />
+    <ClInclude Include="..\..\Src\Lógica\Matrix\Node.h" />
     <ClInclude Include="..\..\Src\Lógica\NPC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
