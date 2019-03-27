@@ -2,7 +2,7 @@
 #include <iostream>
 #include "OgreSystem.h"
 
-#include <GestorRecursos/gestorDeRecursos.h>
+#include <GestorRecursos/ResourceManager.h>
 
 Terrain::Terrain():terrainCreator_(nullptr)
 {
@@ -10,12 +10,12 @@ Terrain::Terrain():terrainCreator_(nullptr)
 
 Terrain::Terrain(std::string terrainFile)
 {
-	terrainCreator_ = GestorRecursos::instance()->createTerrain(OgreSystem::instance()->getSM(), OgreSystem::instance()->getLight(), terrainFile);
+	terrainCreator_ = ResourceManager::instance()->createTerrain(OgreSystem::instance()->getSM(), OgreSystem::instance()->getLight(), terrainFile);
 }
 
 void Terrain::load(json file)
 {
-	terrainCreator_ = GestorRecursos::instance()->createTerrain(OgreSystem::instance()->getSM(),
+	terrainCreator_ = ResourceManager::instance()->createTerrain(OgreSystem::instance()->getSM(),
 		OgreSystem::instance()->getLight(), file["file"]);
 }
 

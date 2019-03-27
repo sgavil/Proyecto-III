@@ -176,11 +176,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\GestorRecursos\gestorDeRecursos.cpp" />
+    <ClCompile Include="..\..\Src\GestorRecursos\ResourceManager.cpp" />
     <ClCompile Include="..\..\Src\GestorRecursos\TerrainCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\GestorRecursos\gestorDeRecursos.h" />
+    <ClInclude Include="..\..\Src\GestorRecursos\ResourceManager.h" />
     <ClInclude Include="..\..\Src\GestorRecursos\TerrainCreator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

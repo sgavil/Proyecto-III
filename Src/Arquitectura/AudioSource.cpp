@@ -143,7 +143,7 @@ void AudioSource::PLAY_SONG(std::string AudioID)
 
 void AudioSource::READ_JSON_SOUNDS(std::string file)
 {
-	json js = GestorRecursos::instance()->getJsonByKey(file);
+	json js = ResourceManager::instance()->getJsonByKey(file);
 	for(json d2 : js["2DSounds"])
 	ADD_2D_SOUND(d2["rute"], d2["Id"], d2["loopCount"], d2["Volume"], d2["Pan"]);
 	for (json d3 : js["3DSounds"])//Sonidos 3D

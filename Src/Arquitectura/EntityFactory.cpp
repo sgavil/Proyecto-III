@@ -1,6 +1,6 @@
 #include "EntityFactory.h"
 #include "Entity.h"
-#include <GestorRecursos/gestorDeRecursos.h>
+#include <GestorRecursos/ResourceManager.h>
 std::unique_ptr<EntityFactory> EntityFactory::instance_;
 
 EntityFactory::EntityFactory()
@@ -29,7 +29,7 @@ void EntityFactory::registerType(std::string creatorName, BaseCreator* pCreator)
 
 std::vector<Entity*> EntityFactory::createEntities(std::string stateID)
 {
-	json file = GestorRecursos::instance()->getJsonByKey(stateID + ".json");
+	json file = ResourceManager::instance()->getJsonByKey(stateID + ".json");
 
 	std::vector<Entity*> entities;
 	std::map<std::string, Component*> dic;
@@ -62,7 +62,7 @@ Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 	Entity* entity = new Entity();
 	entity->setName(name);
 
-	json blueprints = GestorRecursos::instance()->getJsonByKey("Entities.json");
+	json blueprints = ResourceManager::instance()->getJsonByKey("Entities.json");
 
 	for (json comp : blueprints[name])
 	{

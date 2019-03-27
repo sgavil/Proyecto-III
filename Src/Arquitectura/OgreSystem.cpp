@@ -1,7 +1,7 @@
 #include "OgreSystem.h"
 
 //NUESTRO
-#include <GestorRecursos/gestorDeRecursos.h>
+#include <GestorRecursos/ResourceManager.h>
 #include "Scenes/SceneManager.h"
 
 //CEGUI
@@ -57,7 +57,7 @@ OgreSystem * OgreSystem::instance()
 }
 
 
-OgreSystem::OgreSystem(std::string initFileJson)
+OgreSystem::OgreSystem(std::string initFileJson):plane_(nullptr)
 {	
 
 #if _DEBUG
@@ -69,7 +69,7 @@ OgreSystem::OgreSystem(std::string initFileJson)
 	root_->setRenderSystem(*(root_->getAvailableRenderers().begin()));
 	root_->initialise(false);
 
-	GestorRecursos::instance()->initializeResources();
+	ResourceManager::instance()->initializeResources();
 
 	sceneMgr_ = root_->createSceneManager();
 
@@ -101,9 +101,10 @@ OgreSystem::~OgreSystem()
 	
 	if (root_ != nullptr)
 		delete root_;
+	if (plane_ != nullptr)
+		delete plane_;
 
 	instance_.release();
-	
 }
 
 void OgreSystem::render(unsigned int deltaTime)
@@ -118,7 +119,7 @@ Ogre::SceneManager * OgreSystem::getSM()
 
 void OgreSystem::initWindow(std::string initFileJson)
 {
-	json initFile = GestorRecursos::instance()->getJsonByKey(initFileJson);
+	json initFile = ResourceManager::instance()->getJsonByKey(initFileJson);
 	window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false);
 	window_->setFullscreen(initFile["fullScreen"], initFile["Width"], initFile["Height"]);
 	window_->setActive(true);
@@ -136,6 +137,7 @@ void OgreSystem::initWindow(std::string initFileJson)
 	light_->setDiffuseColour(Ogre::ColourValue::White);
 	light_->setSpecularColour(Ogre::ColourValue(240 / 255, 240 / 255, 188 / 255));
 
+	plane_ = new Ogre::Plane();
 	plane_->d = 1000;
 	plane_->normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
 	sceneMgr_->setSkyPlane(

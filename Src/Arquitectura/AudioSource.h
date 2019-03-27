@@ -6,7 +6,7 @@
 #include <fmod.h>
 #include <fmod.hpp>
 #include <fmod_errors.h>
-#include <GestorRecursos/gestorDeRecursos.h>
+#include <GestorRecursos/ResourceManager.h>
 #include <OgreVector3.h>
 
 

@@ -6,13 +6,13 @@
 #include <SDL_video.h>
 #include "OgreSystem.h"
 #include <iostream>
-#include <GestorRecursos/gestorDeRecursos.h>
+#include <GestorRecursos/ResourceManager.h>
 #include "InputManager.h"
 
 Camera::Camera()
 {
 	camNode_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode("camNode");
-	camera_ = GestorRecursos::instance()->createCamera(OgreSystem::instance()->getSM(), "cam", camNode_, 5, 50000, true);
+	camera_ = ResourceManager::instance()->createCamera(OgreSystem::instance()->getSM(), "cam", camNode_, 5, 50000, true);
 	viewport_ = OgreSystem::instance()->getWindow()->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
 

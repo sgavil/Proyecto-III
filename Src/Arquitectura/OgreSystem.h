@@ -2,7 +2,7 @@
 #include <string>
 #include <memory>
 
-//Predeclaraciones
+//Espacio de nombres de Ogre
 namespace Ogre
 {
 	class Light;
@@ -10,9 +10,8 @@ namespace Ogre
 	class RenderWindow;
 	class SceneManager;
 	class Root;
+	class SceneNode;
 };
-
-
 class OgreSystem
 {
 public:

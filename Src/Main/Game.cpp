@@ -20,7 +20,7 @@ Game::Game(std::string basicConfig):exit(false)
 	
 	ogreSyst_ = OgreSystem::instance(basicConfig);
 	InputManager::getSingletonPtr()->initialise(OgreSystem::instance()->getWindow());
-	GestorRecursos::instance()->ceguiInit();
+	ResourceManager::instance()->ceguiInit();
 	audioSrc_ = AudioSource::instance();
 	ScnMng_ = SceneManager::instance();
 	physSyst_ = PhysicSystem::instance();

@@ -1,7 +1,7 @@
 #pragma once
 #include <OgreTerrain.h>
 #include <OgreTerrainGroup.h>
-#include <GestorRecursos/gestorDeRecursos.h>
+#include <GestorRecursos/ResourceManager.h>
 
 class TerrainGenerator
 {
