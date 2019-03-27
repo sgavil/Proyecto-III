@@ -1,5 +1,4 @@
 #include "Matrix.h"
-
 Matrix::Matrix()
 	: mSize_({ 0 ,0 }), nSize_({0, 0, 0}), matrix_(mSize_.y, vector<Entity*>(mSize_.x, nullptr))
 {

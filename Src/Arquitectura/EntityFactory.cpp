@@ -1,5 +1,6 @@
 #include "EntityFactory.h"
 #include "Entity.h"
+#include <GestorRecursos/gestorDeRecursos.h>
 std::unique_ptr<EntityFactory> EntityFactory::instance_;
 
 EntityFactory::EntityFactory()

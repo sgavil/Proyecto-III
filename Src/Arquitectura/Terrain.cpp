@@ -2,6 +2,8 @@
 #include <iostream>
 #include "OgreSystem.h"
 
+#include <GestorRecursos/gestorDeRecursos.h>
+
 Terrain::Terrain():terrainCreator_(nullptr)
 {
 }

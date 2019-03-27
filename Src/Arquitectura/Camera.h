@@ -1,12 +1,12 @@
 #pragma once
 #include "Component.h"
-#include <GestorRecursos/gestorDeRecursos.h>
-#include <OgreEntity.h>
-#include <OgreRenderWindow.h>
-#include <SDL_video.h>
-#include <iostream>
-#include "OgreSystem.h"
-#include "Transform.h"
+#include <OISKeyboard.h>
+#include <OISMouse.h>
+
+class Transform;
+class Ogre::Camera;
+class Ogre::Viewport;
+class Ogre::SceneNode;
 
 class Camera : public Component, public OIS::KeyListener, public OIS::MouseListener
 {

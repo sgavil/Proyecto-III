@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+class TerrainGenerator;
 
 class Terrain : public Component
 {

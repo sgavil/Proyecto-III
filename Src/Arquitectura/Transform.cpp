@@ -1,6 +1,5 @@
 #include "Transform.h"
 
-
 Transform::Transform():position_(Ogre::Vector3(0,0,0)), orientation_(Ogre::Quaternion::IDENTITY), scale_(Ogre::Vector3(1,1,1))
 {
 }

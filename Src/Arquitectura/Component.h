@@ -1,13 +1,10 @@
 #pragma once
 #include "Messages.h"
-#include <GestorRecursos/gestorDeRecursos.h>
 #include "ComponentCreator.h"
-#include "InputManager.h"
+#include <jsonParser.hpp>
+#include <OgreVector3.h>
 
 using namespace Architecture;
-
-//No hacer #include "Entity.h" para evitar inclusión circular
-class Entity;
 
 //enum  Name{ TransformComp, MeshRendererComp, RigidbodyComp, CameraComp, TerrainComp  }; 
 //Cada vez que se cree un Componente , se tiene que añadir a la lista de nombres.
@@ -20,6 +17,10 @@ Clase Componente:
 -> Hereda de Listener y Emitter para que así los componentes hijos puedan redefinirlos
 * Esta clase padre es abstracta, ya que no define ningún comportamiento.
 */
+
+class Entity;
+using json = nlohmann::json;
+
 class Component:public Listener, public Emitter
 {
 public:
@@ -43,7 +44,7 @@ public:
 	//Getters y setters de la entidad
 	void setEntity(Entity* ent) { entity_ = ent; };
 	Entity* getEntity() { return entity_; }
-	void releaseEntity() { delete entity_;  entity_ = nullptr; }
+	void releaseEntity();
 	
 	//Destructora
 	virtual ~Component();
