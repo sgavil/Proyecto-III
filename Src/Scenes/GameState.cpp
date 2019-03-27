@@ -3,6 +3,8 @@
 #include <Arquitectura/EntityFactory.h>
 #include <Arquitectura/InputManager.h>
 #include <Arquitectura/OgreSystem.h>
+#include <Arquitectura/Entity.h>
+#include <Arquitectura/Component.h>
 
 GameState::GameState(std::string stateID)
 {
@@ -114,4 +116,9 @@ Entity* GameState::getEntity(std::string name)
 	}
 
 	return e;
+}
+
+std::list<Component*> GameState::getScene()
+{
+	return scene;
 }

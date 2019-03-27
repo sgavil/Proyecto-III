@@ -189,3 +189,8 @@ TerrainGenerator * OgreSystem::createTerrain(std::string terrainFile)
 	return terrainCreator_;
 }
 
+void OgreSystem::deleteFileSystemLayer(Ogre::FileSystemLayer * fsLayer)
+{
+	OGRE_DELETE fsLayer;
+}
+

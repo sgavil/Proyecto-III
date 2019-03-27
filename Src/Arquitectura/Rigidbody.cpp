@@ -2,8 +2,9 @@
 
 #include "Entity.h"
 #include "Transform.h"
-#include "physicSystem.h"
+#include "PhysicSystem.h"
 #include <iostream>
+#include "btBulletDynamicsCommon.h"
 
 
 

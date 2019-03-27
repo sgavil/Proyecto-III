@@ -1,4 +1,6 @@
-#include "physicSystem.h"
+#include "PhysicSystem.h"
+
+#include "btBulletDynamicsCommon.h"
 
 std::unique_ptr<PhysicSystem> PhysicSystem::instance_;
 
@@ -40,7 +42,7 @@ void PhysicSystem::initPhysics()
 	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
 	//Gravedad
-	dynamicsWorld->setGravity(DEFAULT_GRAVITY);
+	dynamicsWorld->setGravity(btVector3(DEFAULT_GRAVITY.x, DEFAULT_GRAVITY.y, DEFAULT_GRAVITY.z));
 }
 
 void PhysicSystem::stepSimulation(unsigned int time)
@@ -111,7 +113,7 @@ void PhysicSystem::clenanupPhysics()
 	}
 }
 
-btRigidBody * PhysicSystem::createRigidBody( Shape forma, Vector3 dimensions, btScalar mass)
+btRigidBody * PhysicSystem::createRigidBody( Shape forma, Vector3 dimensions, float mass)
 {
 	
 	btCollisionShape* shape = nullptr;
@@ -169,8 +171,18 @@ btRigidBody * PhysicSystem::createRigidBody( Shape forma, Vector3 dimensions, bt
 	return rigid;
 }
 
+void PhysicSystem::addShape(btCollisionShape * shape)
+{
+	shapes.push_back(shape);
+}
 
 
+
+
+void PhysicSystem::addRigidBody(btRigidBody * rigid)
+{
+	dynamicsWorld->addRigidBody(rigid);
+}
 
 PhysicSystem::~PhysicSystem()
 {

@@ -1,19 +1,8 @@
 #pragma once
-
-#include <Arquitectura/OgreIncludes.h>
 #include <string>
-#include <dirent.h>
 #include <jsonParser.hpp>
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/RendererModules/Ogre/Renderer.h>
-
-class Ogre::SceneManager;
-class Ogre::SceneNode;
-class Ogre::Entity;
 
 using json = nlohmann::json;
-
-class TerrainGenerator;
 
 class ResourceManager 
 {

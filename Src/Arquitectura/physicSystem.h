@@ -1,14 +1,23 @@
 #pragma once
-#include "btBulletDynamicsCommon.h"
 #include <OgreRoot.h>
 #include <memory>
 #include <vector>
 
 //Tipo enumerado para los tipos de formas de los RigidBody
 enum Shape{ EmptyShape, BoxShape, SphereShape, CapsuleShape, PlaneShape, CylinderShape, ConeShape};
-const btVector3 DEFAULT_GRAVITY = { 0, -10, 0 };
 using Vector3 = Ogre::Vector3;
 using Quaternion = Ogre::Quaternion;
+const Vector3 DEFAULT_GRAVITY = { 0, -10, 0 };
+
+//Forward-declarations
+class btRigidBody;
+class btCollisionShape;
+
+class btDefaultCollisionConfiguration;
+class btCollisionDispatcher;
+class btBroadphaseInterface;
+class btSequentialImpulseConstraintSolver;
+class btDiscreteDynamicsWorld;
 
 //Clase physXSytem: Singleton para gestionar el sistema de físicas
 class PhysicSystem
@@ -28,13 +37,13 @@ public:
 	void clenanupPhysics();
 
 	//Crea un rigidbody con una forma, posición, masa y dimensiones dadas
-	static btRigidBody* createRigidBody(Shape forma, Vector3 dimensions, btScalar mass);
+	static btRigidBody* createRigidBody(Shape forma, Vector3 dimensions, float mass);
 
 	//Aáde una forma al vector 
-	void addShape(btCollisionShape* shape) { shapes.push_back(shape); };
+	void addShape(btCollisionShape* shape);
 
 	//Añade un rigidbody al mundo físico
-	void addRigidBody(btRigidBody* rigid){ dynamicsWorld->addRigidBody(rigid); }
+	void addRigidBody(btRigidBody* rigid);
 
 
 

@@ -1,7 +1,9 @@
 #pragma once
-#include <Arquitectura/Entity.h>
+#include <vector>
+#include <list>
 
 class Component;
+class Entity;
 
 class GameState
 {
@@ -31,5 +33,5 @@ public:
 	Entity* getEntity(std::string name);
 
 	// ·> Devuelve la escena
-	std::list<Component*> getScene() { return scene; }; //TO-DO: replantearse este método
+	std::list<Component*> getScene();
 };

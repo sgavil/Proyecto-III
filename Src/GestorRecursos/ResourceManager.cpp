@@ -1,10 +1,15 @@
 #include "ResourceManager.h"
 
+//CEGUI
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
+
 //OGRE
 #include <Arquitectura/OgreIncludes.h>
 
 //NUESTRO
 #include <Arquitectura/OgreSystem.h>
+
 
 
 std::unique_ptr<ResourceManager> ResourceManager::instance_;
@@ -32,12 +37,12 @@ void ResourceManager::initializeResources()
 {
 	Ogre::ConfigFile cf;
 
-	Ogre::FileSystemLayer* mFSLayer = OGRE_NEW Ogre::FileSystemLayer("cfLayerSystem");
+	Ogre::FileSystemLayer* mFSLayer = OgreSystem::instance()->createFileSystemLayer("cfLayerSystem");
 	//Este metodo ya agrega '_d' si se compila en debug
 	Ogre::String resourcesPath = mFSLayer->getConfigFilePath("resources.cfg");
 
 	std::string jsonPath;
-
+	
 	if (Ogre::FileSystemLayer::fileExists(resourcesPath))
 		cf.load(resourcesPath);
 
@@ -74,7 +79,7 @@ void ResourceManager::initializeResources()
 
 	OgreSystem::instance()->getResourceGroupManager()->initialiseAllResourceGroups();
 
-	OGRE_DELETE mFSLayer;
+	OgreSystem::instance()->deleteFileSystemLayer(mFSLayer);
 
 	loadJsonsFiles(jsonPath);
 

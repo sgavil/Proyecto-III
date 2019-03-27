@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <memory>
+#include <dirent.h>
 
 //Espacio de nombres de Ogre
 namespace Ogre
@@ -49,11 +50,12 @@ public:
 	Ogre::FileSystemLayer* createFileSystemLayer(std::string cfLayerSystem);
 	Ogre::Camera* createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist, 
 		bool autoAspectRatio, float AspectRatio = 1.3);
-
 	Ogre::Entity* createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments,
 		Ogre::SceneNode* FatherNode);
-
 	TerrainGenerator* createTerrain(std::string terrainFile);
+
+	//Eliminación de recursos
+	void deleteFileSystemLayer(Ogre::FileSystemLayer* fsLayer);
 	
 	//Getters
 	Ogre::Light* getLight() { return light_; };

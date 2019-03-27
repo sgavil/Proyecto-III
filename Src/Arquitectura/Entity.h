@@ -1,14 +1,13 @@
 #pragma once
-#include "Component.h"
 #include <vector>
 #include <string>
-
 /*
 Clase Entidad:
 -> Es un simple contenedor de omponentes, los cuales definen su comportamiento.
 -> Hereda de Listener (para recibir mensajes) y de Emitter (para enviarlos).
 -> Tiene una referencia a su RigidBody (de physx) para el motor físico
 */
+class Component;
 class Entity 
 {
 public:

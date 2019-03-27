@@ -8,6 +8,7 @@
 #include <Arquitectura/Entity.h>
 #include <Scenes/SceneManager.h> 
 #include "BureaucracyManager.h"
+#include <Arquitectura/EntityFactory.h>
 
 //CEGUI/OIS
 #include <CEGUI/CEGUI.h>
