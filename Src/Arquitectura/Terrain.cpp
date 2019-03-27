@@ -10,13 +10,12 @@ Terrain::Terrain():terrainCreator_(nullptr)
 
 Terrain::Terrain(std::string terrainFile)
 {
-	terrainCreator_ = ResourceManager::instance()->createTerrain(OgreSystem::instance()->getSM(), OgreSystem::instance()->getLight(), terrainFile);
+	terrainCreator_ = OgreSystem::instance()->createTerrain(terrainFile);
 }
 
 void Terrain::load(json file)
 {
-	terrainCreator_ = ResourceManager::instance()->createTerrain(OgreSystem::instance()->getSM(),
-		OgreSystem::instance()->getLight(), file["file"]);
+	terrainCreator_ = OgreSystem::instance()->createTerrain(file["file"]);
 }
 
 Terrain::~Terrain()

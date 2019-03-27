@@ -4,13 +4,9 @@
 #include "Transform.h"
 
 
-#include <OgreSceneNode.h>
-#include <OgreSceneManager.h>
-#include <OgreEntity.h>
+#include "OgreIncludes.h"
 #include "OgreSystem.h"
 #include <iostream>
-
-
 
 
 MeshRenderer::MeshRenderer(): node_(nullptr), transform_(nullptr)
@@ -19,8 +15,8 @@ MeshRenderer::MeshRenderer(): node_(nullptr), transform_(nullptr)
 
 MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 {
-	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSM()->createEntity(meshName);
-	node_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode();
+	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSceneManager()->createEntity(meshName);
+	node_ = OgreSystem::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setVisible(visible);
 }
@@ -28,8 +24,8 @@ MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 void MeshRenderer::load(json file)
 {
 	std::string meshName = file["mesh"];
-	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSM()->createEntity(meshName);
-	node_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode();
+	Ogre::Entity* ogreEntity = OgreSystem::instance()->getSceneManager()->createEntity(meshName);
+	node_ = OgreSystem::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setVisible(file["visible"]);
 }

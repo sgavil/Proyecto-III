@@ -1,5 +1,6 @@
 #include "AudioSource.h"
 
+#include <GestorRecursos/ResourceManager.h>
 
 std::unique_ptr<AudioSource> AudioSource::instance_;
 

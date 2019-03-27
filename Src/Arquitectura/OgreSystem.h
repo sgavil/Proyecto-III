@@ -7,11 +7,20 @@ namespace Ogre
 {
 	class Light;
 	class Plane;
+	class Camera;
+	class Entity;
 	class RenderWindow;
 	class SceneManager;
 	class Root;
 	class SceneNode;
+	class MeshManager;
+	class ResourceGroupManager;
+	class TextureManager;
+	class FileSystemLayer;
 };
+
+class TerrainGenerator;
+
 class OgreSystem
 {
 public:
@@ -28,9 +37,25 @@ public:
 
 	
 
-	//Metodos getter
-	Ogre::SceneManager * getSM();
+	//Getters de los managers
+	Ogre::SceneManager * getSceneManager();
+	Ogre::MeshManager * getMeshManager();
+	Ogre::ResourceGroupManager* getResourceGroupManager();
+	Ogre::TextureManager* getTextureManager();
 	Ogre::RenderWindow* getWindow() { return window_; };
+
+
+	//Cración de recursos
+	Ogre::FileSystemLayer* createFileSystemLayer(std::string cfLayerSystem);
+	Ogre::Camera* createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist, 
+		bool autoAspectRatio, float AspectRatio = 1.3);
+
+	Ogre::Entity* createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments,
+		Ogre::SceneNode* FatherNode);
+
+	TerrainGenerator* createTerrain(std::string terrainFile);
+	
+	//Getters
 	Ogre::Light* getLight() { return light_; };
 	unsigned long gethWnd() { return hWnd; }
 

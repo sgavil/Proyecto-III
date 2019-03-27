@@ -48,7 +48,7 @@ void Game::start()
 	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
 
 	AudioSource::instance()->READ_JSON_SOUNDS("AudioSource.json");
-	AudioSource::instance()->PLAY_2D_SOUND("cochecitos");
+	//AudioSource::instance()->PLAY_2D_SOUND("cochecitos");
 
 	//Start
 	ScnMng_->currentState()->start();

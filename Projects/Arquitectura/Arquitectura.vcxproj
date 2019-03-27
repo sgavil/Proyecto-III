@@ -198,6 +198,7 @@
     <ClInclude Include="..\..\Src\Arquitectura\EntityFactory.h" />
     <ClInclude Include="..\..\Src\Arquitectura\InputManager.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\OgreIncludes.h" />
     <ClInclude Include="..\..\Src\Arquitectura\OgreSystem.h" />
     <ClInclude Include="..\..\Src\Arquitectura\MeshRenderer.h" />
     <ClInclude Include="..\..\Src\Arquitectura\PhysicSystem.h" />

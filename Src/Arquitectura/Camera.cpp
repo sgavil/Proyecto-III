@@ -1,18 +1,19 @@
 #include "Camera.h"
 #include "Entity.h"
 #include "Transform.h"
-#include <OgreRenderWindow.h>
-#include <OgreEntity.h>
 #include <SDL_video.h>
-#include "OgreSystem.h"
 #include <iostream>
 #include <GestorRecursos/ResourceManager.h>
 #include "InputManager.h"
 
+#include "OgreIncludes.h"
+#include "OgreSystem.h"
+
+
 Camera::Camera()
 {
-	camNode_ = OgreSystem::instance()->getSM()->getRootSceneNode()->createChildSceneNode("camNode");
-	camera_ = ResourceManager::instance()->createCamera(OgreSystem::instance()->getSM(), "cam", camNode_, 5, 50000, true);
+	camNode_ = OgreSystem::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("camNode");
+	camera_ = OgreSystem::instance()->createCamera("cam", camNode_, 5, 50000, true);
 	viewport_ = OgreSystem::instance()->getWindow()->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
 

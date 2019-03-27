@@ -3,6 +3,7 @@
 //NUESTRO
 #include <GestorRecursos/ResourceManager.h>
 #include "Scenes/SceneManager.h"
+#include <GestorRecursos/TerrainCreator.h>
 
 //CEGUI
 #include <CEGUI/CEGUI.h>
@@ -16,17 +17,8 @@
 
 #include "SDL.h"
 //OGRE
+#include "OgreIncludes.h"
 #include <iostream>
-#include <OgreLight.h>
-#include <OgrePlane.h>
-#include <OgreColourValue.h>
-#include <OgreRoot.h>
-#include <OgreEntity.h>
-#include <OgreRenderWindow.h>
-#include <OgreLog.h>
-#include <OgreConfigFile.h>
-
-
 
 // Bootstrap CEGUI::System with an OgreRenderer object that uses the
 // default Ogre rendering window as the default output surface, an Ogre based
@@ -112,9 +104,29 @@ void OgreSystem::render(unsigned int deltaTime)
 	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);
 }
 
-Ogre::SceneManager * OgreSystem::getSM()
+Ogre::SceneManager * OgreSystem::getSceneManager()
 {
 	return sceneMgr_;
+}
+
+Ogre::MeshManager * OgreSystem::getMeshManager()
+{
+	return &Ogre::MeshManager::getSingleton();
+}
+
+Ogre::ResourceGroupManager * OgreSystem::getResourceGroupManager()
+{
+	return &Ogre::ResourceGroupManager::getSingleton();
+}
+
+Ogre::TextureManager * OgreSystem::getTextureManager()
+{
+	return &Ogre::TextureManager::getSingleton();
+}
+
+Ogre::FileSystemLayer * OgreSystem::createFileSystemLayer(std::string cfLayerSystem)
+{
+	return OGRE_NEW Ogre::FileSystemLayer("cfLayerSystem");
 }
 
 void OgreSystem::initWindow(std::string initFileJson)
@@ -146,3 +158,34 @@ void OgreSystem::initWindow(std::string initFileJson)
 	sceneMgr_->showBoundingBoxes(true); //Para debuggear las aabb
 #endif
 }
+
+
+Ogre::Camera* OgreSystem::createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist, bool autoAspectRatio, float AspectRatio)
+{
+	Ogre::Camera* cam_ = getSceneManager()->createCamera(name);
+	cam_->setNearClipDistance(NearClipDist);
+	cam_->setFarClipDistance(FarClipDist);
+	FatherNode->attachObject(cam_);
+	if (autoAspectRatio)cam_->setAutoAspectRatio(autoAspectRatio);
+	else cam_->setAspectRatio(AspectRatio);
+	return cam_;
+}
+
+Ogre::Entity * OgreSystem::createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments, Ogre::SceneNode* FatherNode)
+{
+	Ogre::Entity* plane;
+	getMeshManager()->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+		Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), width, height,
+		Xsegments, Ysegments, true, 1, 1.0, 1.0, Ogre::Vector3::NEGATIVE_UNIT_Z);
+	plane = getSceneManager()->createEntity(name);
+	plane->setMaterialName(MaterialName);
+	FatherNode->attachObject(plane);
+	return plane;
+}
+
+TerrainGenerator * OgreSystem::createTerrain(std::string terrainFile)
+{
+	TerrainGenerator* terrainCreator_ = new TerrainGenerator(getSceneManager(), getLight(), terrainFile);
+	return terrainCreator_;
+}
+

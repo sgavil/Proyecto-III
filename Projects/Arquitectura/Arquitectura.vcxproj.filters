@@ -105,5 +105,8 @@
     <ClInclude Include="..\..\Src\Arquitectura\PhysicSystem.h">
       <Filter>Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\OgreIncludes.h">
+      <Filter>Base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
