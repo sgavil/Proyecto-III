@@ -1,5 +1,5 @@
 #include "TerrainCreator.h"
-
+#include <Arquitectura/Utils.h>
 
 TerrainGenerator::TerrainGenerator() : scnMgn_(nullptr), terrainJson_(NULL)
 {
@@ -17,7 +17,7 @@ TerrainGenerator::TerrainGenerator(Ogre::SceneManager * scnMgn, Ogre::Light * li
 		terrainJson_["maps"][0]["terrainSize"], terrainJson_["maps"][0]["worldSize"]);
 
 	mTerrainGroup_->setFilenameConvention(Ogre::String("terrain"), Ogre::String("dat"));
-	mTerrainGroup_->setOrigin(Ogre::Vector3::ZERO);
+	mTerrainGroup_->setOrigin(Vector3::ZERO);
 
 	configureTerrainDefaults(light);
 
@@ -120,7 +120,7 @@ void TerrainGenerator::configureTerrainDefaults(Ogre::Light * light)
 	importData.inputScale = terrainJson_["maps"][0]["inputScale"];
 	importData.minBatchSize = terrainJson_["maps"][0]["minBatchSize"];
 	importData.maxBatchSize = terrainJson_["maps"][0]["maxBatchSize"];
-	importData.pos = Ogre::Vector3(0, 0, 0);
+	importData.pos = Vector3(0, 0, 0);
 
 	importData.layerList.resize(terrainJson_["maps"][0]["layerListSize"]);
 

@@ -1,10 +1,10 @@
 #include "Transform.h"
 
-Transform::Transform():position_(Ogre::Vector3(0,0,0)), orientation_(Ogre::Quaternion::IDENTITY), scale_(Ogre::Vector3(1,1,1))
+Transform::Transform():position_(Vector3(0,0,0)), orientation_(Ogre::Quaternion::IDENTITY), scale_(Vector3(1,1,1))
 {
 }
 
-Transform::Transform(Ogre::Vector3 position, Ogre::Quaternion orientation, Ogre::Vector3 scale)
+Transform::Transform(Vector3 position, Ogre::Quaternion orientation, Vector3 scale)
 	:position_(position), orientation_(orientation), scale_(scale)
 {
 }

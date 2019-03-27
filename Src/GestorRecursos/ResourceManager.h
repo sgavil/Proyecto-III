@@ -1,8 +1,5 @@
 #pragma once
-#include <string>
-#include <jsonParser.hpp>
-
-using json = nlohmann::json;
+#include <Arquitectura/Utils.h>
 
 class ResourceManager 
 {

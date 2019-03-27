@@ -1,8 +1,7 @@
 #pragma once
+#include "Utils.h"
 #include "Messages.h"
 #include "ComponentCreator.h"
-#include <jsonParser.hpp>
-#include <OgreVector3.h>
 
 using namespace Architecture;
 
@@ -19,7 +18,7 @@ Clase Componente:
 */
 
 class Entity;
-using json = nlohmann::json;
+
 
 class Component:public Listener, public Emitter
 {

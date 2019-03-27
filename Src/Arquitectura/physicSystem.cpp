@@ -68,7 +68,7 @@ void PhysicSystem::stepSimulation(unsigned int time)
 	}
 }
 
-void PhysicSystem::clenanupPhysics()
+void PhysicSystem::cleanupPhysics()
 {
 	
 	//// remove the rigidbodies from the dynamics world and delete them
@@ -187,7 +187,7 @@ void PhysicSystem::addRigidBody(btRigidBody * rigid)
 PhysicSystem::~PhysicSystem()
 {
 	if (instance_ != nullptr) {
-		clenanupPhysics();
+		cleanupPhysics();
 
 		instance_.release();
 	}

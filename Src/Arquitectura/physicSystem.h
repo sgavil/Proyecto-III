@@ -1,12 +1,8 @@
 #pragma once
-#include <OgreRoot.h>
-#include <memory>
-#include <vector>
+#include "Utils.h"
 
 //Tipo enumerado para los tipos de formas de los RigidBody
 enum Shape{ EmptyShape, BoxShape, SphereShape, CapsuleShape, PlaneShape, CylinderShape, ConeShape};
-using Vector3 = Ogre::Vector3;
-using Quaternion = Ogre::Quaternion;
 const Vector3 DEFAULT_GRAVITY = { 0, -10, 0 };
 
 //Forward-declarations
@@ -33,9 +29,6 @@ public:
 	//Actualiza el sistema
 	void stepSimulation(unsigned int time);
 
-	//Limpia la basura
-	void clenanupPhysics();
-
 	//Crea un rigidbody con una forma, posición, masa y dimensiones dadas
 	static btRigidBody* createRigidBody(Shape forma, Vector3 dimensions, float mass);
 
@@ -52,6 +45,8 @@ public:
 private:
 	//Constructora privada
 	PhysicSystem();
+	//Limpia la basura
+	void cleanupPhysics();
 	//Instancia
 	static std::unique_ptr<PhysicSystem> instance_;
 

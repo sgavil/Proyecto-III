@@ -107,7 +107,7 @@ void AudioSource::PLAY_2D_SOUND(std::string AudioID)
 	}
 }
 
-void AudioSource::PLAY_3D_SOUND(std::string AudioID, Ogre::Vector3 pos_)
+void AudioSource::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 {
 	FMOD::Channel* chn;
 	auto it = soundList3D_.find(AudioID);

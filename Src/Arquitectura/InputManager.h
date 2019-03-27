@@ -1,12 +1,8 @@
 #ifndef InputManager_H
 #define InputManager_H
 
-#include <OISMouse.h>
-#include <OISKeyboard.h>
-#include <OISJoyStick.h>
-#include <OISInputManager.h>
-
-#include <OgreRenderWindow.h>
+#include "OISIncludes.h"
+#include "OgreIncludes.h"
 
 class InputManager : public OIS::KeyListener, public OIS::MouseListener, public OIS::JoyStickListener {
 public:

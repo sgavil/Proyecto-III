@@ -53,7 +53,7 @@ void Matrix::update(unsigned int time)
 
 void Matrix::createMatrix()
 {
-	Ogre::Vector3 posIni = getPosIni();
+	Vector3 posIni = getPosIni();
 	for (int j = 0; j < mSize_.y; j++) {
 		for (int i = 0; i < mSize_.x; i++) {
 			Entity* e = EntityFactory::Instance()->createEntityFromBlueprint("Node");
@@ -67,13 +67,13 @@ void Matrix::createMatrix()
 	}
 }
 
-Ogre::Vector3 Matrix::getPosIni()
+Vector3 Matrix::getPosIni()
 {
-	Ogre::Vector3 v;
+	Vector3 v;
 	float midX = mSize_.x / 2;
 	float midY = mSize_.y / 2;
 
-	v = Ogre::Vector3(-midX * nSize_.x, 0.0f, -midY * nSize_.z);
+	v = Vector3(-midX * nSize_.x, 0.0f, -midY * nSize_.z);
 	return v;
 }
 
@@ -90,7 +90,7 @@ Entity * Matrix::getEntityNode(int i, int j)
 list<Entity*> Matrix::getAdj(Entity* e)
 {
 	list<Entity*> list;
-	Ogre::Vector2 nPos = e->getComponent<Node>()->getMatrixPos();
+	Vector2 nPos = e->getComponent<Node>()->getMatrixPos();
 	for (pair<int, int> p : dirs_) {
 		if (limits(nPos.x + p.first, nPos.y + p.second))
 			list.push_back(getEntityNode(nPos.x + p.first, nPos.y + p.second));

@@ -6,7 +6,7 @@
 #include <fmod.h>
 #include <fmod.hpp>
 #include <fmod_errors.h>
-#include <OgreVector3.h>
+#include "Utils.h"
 
 
 
@@ -64,7 +64,7 @@ public:
 	void ADD_SONG(std::string fileName, std::string id, int loopCount = 0, float volume = 1, float pan = 0); //Carga de una canción como stream
 	void ADD_3D_SOUND(std::string fileName, std::string id, int loopCount = 0, float volume = 1); //Carga de un sonido 2D
 	void PLAY_2D_SOUND(std::string AudioID); //Ejecuci�n de un sonido 2D
-	void PLAY_3D_SOUND(std::string AudioID, Ogre::Vector3 pos); //Ejecuci�n de un sonido 3D
+	void PLAY_3D_SOUND(std::string AudioID, Vector3 pos); //Ejecuci�n de un sonido 3D
 	void PLAY_SONG(std::string AudioID); //Ejecuci�n de un sonido 2D
 
 	void READ_JSON_SOUNDS(std::string file);

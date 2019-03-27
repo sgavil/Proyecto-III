@@ -2,13 +2,12 @@
 #include "Entity.h"
 #include "Transform.h"
 #include <SDL_video.h>
-#include <iostream>
+
 #include <GestorRecursos/ResourceManager.h>
 #include "InputManager.h"
 
 #include "OgreIncludes.h"
 #include "OgreSystem.h"
-
 
 Camera::Camera()
 {
@@ -32,9 +31,9 @@ void Camera::start()
 		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
 	else
 	{
-		Ogre::Vector3 pos = transform_->getPosition();
+		Vector3 pos = transform_->getPosition();
 		camNode_->setPosition(pos);
-		camNode_->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+		camNode_->lookAt(Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 	}
 }
 

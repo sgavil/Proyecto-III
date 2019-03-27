@@ -201,10 +201,12 @@
     <ClInclude Include="..\..\Src\Arquitectura\OgreIncludes.h" />
     <ClInclude Include="..\..\Src\Arquitectura\OgreSystem.h" />
     <ClInclude Include="..\..\Src\Arquitectura\MeshRenderer.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\OISIncludes.h" />
     <ClInclude Include="..\..\Src\Arquitectura\PhysicSystem.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Rigidbody.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Terrain.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Transform.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

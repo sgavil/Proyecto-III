@@ -19,15 +19,15 @@ public:
 	virtual void receive(Message* msg) {};
 
 
-	Ogre::Vector2 getMatrixPos();
-	Ogre::Vector3 getNodeSize();
+	Vector2 getMatrixPos();
+	Vector3 getNodeSize();
 
 	NodeType getType();
 	void setType(NodeType t);
 
 private:
-	Ogre::Vector3 size_;
-	Ogre::Vector2 posMatrix_;
+	Vector3 size_;
+	Vector2 posMatrix_;
 	NodeType nodeType_;
 
 	//Componente asociado al edificio

@@ -4,6 +4,7 @@
 #include <GestorRecursos/ResourceManager.h>
 #include "Scenes/SceneManager.h"
 #include <GestorRecursos/TerrainCreator.h>
+#include "Utils.h"
 
 //CEGUI
 #include <CEGUI/CEGUI.h>
@@ -140,7 +141,7 @@ void OgreSystem::initWindow(std::string initFileJson)
 
 	sceneMgr_->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
 
-	Ogre::Vector3 lightdir(0.55, -0.3, 0.75);
+	Vector3 lightdir(0.55, -0.3, 0.75);
 	lightdir.normalise();
 
 	light_ = sceneMgr_->createLight("TestLight");
@@ -151,7 +152,7 @@ void OgreSystem::initWindow(std::string initFileJson)
 
 	plane_ = new Ogre::Plane();
 	plane_->d = 1000;
-	plane_->normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
+	plane_->normal = Vector3::NEGATIVE_UNIT_Y;
 	sceneMgr_->setSkyPlane(
 		true, *plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
 #if _DEBUG
@@ -175,8 +176,8 @@ Ogre::Entity * OgreSystem::createPlane(std::string name, std::string MaterialNam
 {
 	Ogre::Entity* plane;
 	getMeshManager()->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-		Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), width, height,
-		Xsegments, Ysegments, true, 1, 1.0, 1.0, Ogre::Vector3::NEGATIVE_UNIT_Z);
+		Ogre::Plane(Vector3::UNIT_Y, 0), width, height,
+		Xsegments, Ysegments, true, 1, 1.0, 1.0, Vector3::NEGATIVE_UNIT_Z);
 	plane = getSceneManager()->createEntity(name);
 	plane->setMaterialName(MaterialName);
 	FatherNode->attachObject(plane);

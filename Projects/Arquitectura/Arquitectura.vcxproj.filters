@@ -14,6 +14,12 @@
     <Filter Include="Factoría">
       <UniqueIdentifier>{9cbda19c-f37a-4c22-9e64-7266cce1f2da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{b4e66e04-f4c4-4635-9676-f79b94a10f38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{2aabd952-7335-4e19-a1a9-a35fa92ec8f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Arquitectura\Component.cpp">
@@ -37,9 +43,6 @@
     <ClCompile Include="..\..\Src\Arquitectura\Transform.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\OgreSystem.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\Camera.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
@@ -49,14 +52,17 @@
     <ClCompile Include="..\..\Src\Arquitectura\Button.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\InputManager.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\AudioSource.cpp">
-      <Filter>Base</Filter>
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\InputManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\OgreSystem.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\PhysicSystem.cpp">
-      <Filter>Base</Filter>
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,9 +90,6 @@
     <ClInclude Include="..\..\Src\Arquitectura\Transform.h">
       <Filter>Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\OgreSystem.h">
-      <Filter>Base</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\Camera.h">
       <Filter>Componentes</Filter>
     </ClInclude>
@@ -96,17 +99,26 @@
     <ClInclude Include="..\..\Src\Arquitectura\Button.h">
       <Filter>Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\InputManager.h">
-      <Filter>Base</Filter>
+    <ClInclude Include="..\..\Src\Arquitectura\OgreIncludes.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\OISIncludes.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\Utils.h">
+      <Filter>Includes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\AudioSource.h">
-      <Filter>Base</Filter>
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\InputManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\OgreSystem.h">
+      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\PhysicSystem.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\OgreIncludes.h">
-      <Filter>Base</Filter>
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

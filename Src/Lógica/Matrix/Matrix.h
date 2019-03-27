@@ -5,9 +5,6 @@
 #include "Scenes/SceneManager.h"
 #include "Node.h"
 
-#include <vector>
-#include <list>
-
 using namespace std;
 using M = vector<vector<Entity*>>;
 using dirs = vector<pair<int, int>>;
@@ -34,13 +31,13 @@ public:
 
 private:
 	dirs dirs_;
-	Ogre::Vector2 mSize_;
-	Ogre::Vector3 nSize_;
+	Vector2 mSize_;
+	Vector3 nSize_;
 	M matrix_;
 	std::list<Component*> comps;
 	
 	void createMatrix();
-	Ogre::Vector3 getPosIni();
+	Vector3 getPosIni();
 	bool limits(int i, int j);
 };
 

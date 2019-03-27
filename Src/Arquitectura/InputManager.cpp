@@ -1,4 +1,5 @@
 #include "InputManager.h"
+#include "OgreIncludes.h"
 
 InputManager *InputManager::mInputManager;
 

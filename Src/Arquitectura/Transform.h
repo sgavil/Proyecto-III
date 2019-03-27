@@ -6,16 +6,16 @@ class Transform : public Component
 public:
 
 	Transform();
-	Transform(Ogre::Vector3 position, Ogre::Quaternion orientation = Ogre::Quaternion::IDENTITY, Ogre::Vector3 scale = Ogre::Vector3(1,1,1));
+	Transform(Vector3 position, Ogre::Quaternion orientation = Ogre::Quaternion::IDENTITY, Vector3 scale = Vector3(1,1,1));
 
 	~Transform();
 
 	virtual void load(json file);
 
 	//Position getter
-	Ogre::Vector3 getPosition() { return position_; };
+	Vector3 getPosition() { return position_; };
 	//Position setter
-	void setPosition(Ogre::Vector3 pos) { this->position_ = pos; };
+	void setPosition(Vector3 pos) { this->position_ = pos; };
 
 	//Orientation getter
 	Ogre::Quaternion getOrientation() { return orientation_; };
@@ -23,14 +23,14 @@ public:
 	void setOrientation(Ogre::Quaternion orientation) { this->orientation_ = orientation; };
 	
 	//Scale getter
-	Ogre::Vector3 getScale() { return scale_; };
+	Vector3 getScale() { return scale_; };
 	//Scale setter
-	void setScale(Ogre::Vector3 scale) { this->scale_ = scale; };
+	void setScale(Vector3 scale) { this->scale_ = scale; };
 
 protected:
-	Ogre::Vector3 position_;
+	Vector3 position_;
 	Ogre::Quaternion orientation_;
-	Ogre::Vector3 scale_;
+	Vector3 scale_;
 };
 
 REGISTER_TYPE(Transform)

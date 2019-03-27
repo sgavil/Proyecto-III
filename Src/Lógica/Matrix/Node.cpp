@@ -19,12 +19,12 @@ void Node::load(json file)
 	nodeType_ = EMPTY;
 }
 
-Ogre::Vector2 Node::getMatrixPos()
+Vector2 Node::getMatrixPos()
 {
 	return posMatrix_;
 }
 
-Ogre::Vector3 Node::getNodeSize()
+Vector3 Node::getNodeSize()
 {
 	return size_;
 }
