@@ -15,7 +15,7 @@ Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr)
 Rigidbody::Rigidbody(Transform* transform, Shape shape, float mass) : transform_(transform)
 {
 	//Creamos el rigidbody
-	rigid_ = physicSystem::createRigidBody(shape, transform_->getScale(), mass);
+	rigid_ = PhysicSystem::createRigidBody(shape, transform_->getScale(), mass);
 }
 
 
@@ -27,7 +27,7 @@ void Rigidbody::load(json file)
 	dims.y = dimensions["y"];
 	dims.z = dimensions["z"];
 
-	rigid_ = physicSystem::createRigidBody(BoxShape, dims, file["mass"]);
+	rigid_ = PhysicSystem::createRigidBody(BoxShape, dims, file["mass"]);
 }
 
 void Rigidbody::start()

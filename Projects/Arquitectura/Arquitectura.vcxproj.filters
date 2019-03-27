@@ -25,9 +25,6 @@
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Arquitectura\physicSystem.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Arquitectura\EntityFactory.cpp">
       <Filter>Factoría</Filter>
     </ClCompile>
@@ -58,6 +55,9 @@
     <ClCompile Include="..\..\Src\Arquitectura\AudioSource.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Arquitectura\PhysicSystem.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Arquitectura\Component.h">
@@ -67,9 +67,6 @@
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Arquitectura\physicSystem.h">
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\ComponentCreator.h">
@@ -103,6 +100,9 @@
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Arquitectura\AudioSource.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Arquitectura\PhysicSystem.h">
       <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>

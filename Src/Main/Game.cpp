@@ -4,17 +4,14 @@
 #include <Arquitectura/physicSystem.h>
 #include <Arquitectura/AudioSource.h>
 #include <Arquitectura/OgreSystem.h>
-#include <Scenes/SceneManager.h> 
 #include <Arquitectura/InputManager.h>
+#include <Arquitectura/Entity.h>
+#include <Scenes/SceneManager.h> 
 #include "BureaucracyManager.h"
 
 //CEGUI/OIS
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
-#include <OISMouse.h>
-#include <OISKeyboard.h>
-#include <OISJoyStick.h>
-#include <OISInputManager.h>
 #include "SDL.h"
 
 
@@ -26,7 +23,7 @@ Game::Game(std::string basicConfig):exit(false)
 	GestorRecursos::instance()->ceguiInit();
 	audioSrc_ = AudioSource::instance();
 	ScnMng_ = SceneManager::instance();
-	physSyst_ = physicSystem::instance();
+	physSyst_ = PhysicSystem::instance();
 }
 
 Game::~Game()

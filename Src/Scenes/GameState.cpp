@@ -39,7 +39,7 @@ void GameState::start()
 
 void GameState::update(unsigned int time)
 {
-	physicSystem::instance()->stepSimulation(time); //FÍSICA
+	PhysicSystem::instance()->stepSimulation(time); //FÍSICA
 
 	for (Component* c : scene)
 		if(c->isActive())

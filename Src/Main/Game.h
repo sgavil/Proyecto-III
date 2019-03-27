@@ -1,12 +1,10 @@
 #pragma once
-#include <OgreStringVector.h>
 #include <string>
-#include <Arquitectura/Entity.h>
 
 class OgreSystem;
 class SceneManager;
 class AudioSource;
-class physicSystem;
+class PhysicSystem;
 class InputManager;
 
 
@@ -18,7 +16,7 @@ public:
 	void start();
 	void run();
 private:
-	physicSystem* physSyst_;
+	PhysicSystem* physSyst_;
 	SceneManager* ScnMng_;
 	OgreSystem* ogreSyst_;
 	AudioSource* audioSrc_;

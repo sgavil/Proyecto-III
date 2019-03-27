@@ -71,11 +71,9 @@ OgreSystem::OgreSystem(std::string initFileJson)
 
 	GestorRecursos::instance()->initializeResources();
 
-	initFile = GestorRecursos::instance()->getJsonByKey(initFileJson);
-
 	sceneMgr_ = root_->createSceneManager();
 
-	initWindow();		
+	initWindow(initFileJson);		
 
 	
 	//ceguiInit();
@@ -118,8 +116,9 @@ Ogre::SceneManager * OgreSystem::getSM()
 	return sceneMgr_;
 }
 
-void OgreSystem::initWindow()
+void OgreSystem::initWindow(std::string initFileJson)
 {
+	json initFile = GestorRecursos::instance()->getJsonByKey(initFileJson);
 	window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false);
 	window_->setFullscreen(initFile["fullScreen"], initFile["Width"], initFile["Height"]);
 	window_->setActive(true);
@@ -137,10 +136,10 @@ void OgreSystem::initWindow()
 	light_->setDiffuseColour(Ogre::ColourValue::White);
 	light_->setSpecularColour(Ogre::ColourValue(240 / 255, 240 / 255, 188 / 255));
 
-	plane_.d = 1000;
-	plane_.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
+	plane_->d = 1000;
+	plane_->normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
 	sceneMgr_->setSkyPlane(
-		true, plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
+		true, *plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
 #if _DEBUG
 	sceneMgr_->showBoundingBoxes(true); //Para debuggear las aabb
 #endif

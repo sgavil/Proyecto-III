@@ -1,10 +1,17 @@
 #pragma once
+#include <string>
+#include <memory>
 
-#include <GestorRecursos/gestorDeRecursos.h>
+//Predeclaraciones
+namespace Ogre
+{
+	class Light;
+	class Plane;
+	class RenderWindow;
+	class SceneManager;
+	class Root;
+};
 
-class Ogre::Light;
-class Ogre::Plane;
-class Ogre::RenderWindow;
 
 class OgreSystem
 {
@@ -42,14 +49,13 @@ private:
 
 	Ogre::Light* light_;
 
-	Ogre::Plane plane_;
+	Ogre::Plane* plane_;
 
-	json initFile;
 	//void ceguiInit();
 	/*Utiliza el root para crear una ventana de nombre APP_NAME , tama�o WINDOW_HEIGHT/WIDHT ademas de crear
 	una camara y asociarle un viewport a esta*/
 
 	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL
 
-	void initWindow();
+	void initWindow(std::string initFileJson);
 };

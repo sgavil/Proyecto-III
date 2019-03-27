@@ -11,12 +11,12 @@ using Vector3 = Ogre::Vector3;
 using Quaternion = Ogre::Quaternion;
 
 //Clase physXSytem: Singleton para gestionar el sistema de físicas
-class physicSystem
+class PhysicSystem
 {
 public:
 
 	//Devuelve la instancia
-	static physicSystem* instance();
+	static PhysicSystem* instance();
 
 	//Inicializa el sistema de físicas
 	void initPhysics();
@@ -39,12 +39,12 @@ public:
 
 
 	//Destructora
-	~physicSystem();
+	~PhysicSystem();
 private:
 	//Constructora privada
-	physicSystem();
+	PhysicSystem();
 	//Instancia
-	static std::unique_ptr<physicSystem> instance_;
+	static std::unique_ptr<PhysicSystem> instance_;
 
 	//Atributos
 	//Config. de colisiones

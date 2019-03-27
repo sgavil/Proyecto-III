@@ -1,28 +1,28 @@
 #include "physicSystem.h"
 
-std::unique_ptr<physicSystem> physicSystem::instance_;
+std::unique_ptr<PhysicSystem> PhysicSystem::instance_;
 
-btDiscreteDynamicsWorld * physicSystem::dynamicsWorld = nullptr;
+btDiscreteDynamicsWorld * PhysicSystem::dynamicsWorld = nullptr;
 
-std::vector<btCollisionShape*> physicSystem::shapes = std::vector<btCollisionShape*>();
+std::vector<btCollisionShape*> PhysicSystem::shapes = std::vector<btCollisionShape*>();
 
 
-physicSystem::physicSystem()
+PhysicSystem::PhysicSystem()
 {
 	initPhysics();
 }
 
 
-physicSystem * physicSystem::instance()
+PhysicSystem * PhysicSystem::instance()
 {
 	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_.get() == nullptr)
-		instance_.reset(new physicSystem());
+		instance_.reset(new PhysicSystem());
 
 	return instance_.get();
 }
 
-void physicSystem::initPhysics()
+void PhysicSystem::initPhysics()
 {
 	// collision configuration contains default setup for memory , collision setup . Advanced users can create their own configuration
 	collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -43,7 +43,7 @@ void physicSystem::initPhysics()
 	dynamicsWorld->setGravity(DEFAULT_GRAVITY);
 }
 
-void physicSystem::stepSimulation(unsigned int time)
+void PhysicSystem::stepSimulation(unsigned int time)
 {
 	//Actualiza la física
 	dynamicsWorld->stepSimulation((float)time / 1000);
@@ -66,7 +66,7 @@ void physicSystem::stepSimulation(unsigned int time)
 	}
 }
 
-void physicSystem::clenanupPhysics()
+void PhysicSystem::clenanupPhysics()
 {
 	
 	//// remove the rigidbodies from the dynamics world and delete them
@@ -111,7 +111,7 @@ void physicSystem::clenanupPhysics()
 	}
 }
 
-btRigidBody * physicSystem::createRigidBody( Shape forma, Vector3 dimensions, btScalar mass)
+btRigidBody * PhysicSystem::createRigidBody( Shape forma, Vector3 dimensions, btScalar mass)
 {
 	
 	btCollisionShape* shape = nullptr;
@@ -172,7 +172,7 @@ btRigidBody * physicSystem::createRigidBody( Shape forma, Vector3 dimensions, bt
 
 
 
-physicSystem::~physicSystem()
+PhysicSystem::~PhysicSystem()
 {
 	if (instance_ != nullptr) {
 		clenanupPhysics();
