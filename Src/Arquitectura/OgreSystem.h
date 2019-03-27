@@ -9,8 +9,6 @@
 #include <OgreEntity.h>
 #include <GestorRecursos/gestorDeRecursos.h>
 
-
-
 class Ogre::Light;
 class Ogre::Plane;
 class Ogre::RenderWindow;

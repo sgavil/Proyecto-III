@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include "Entity.h"
+#include <iostream>
 
 
 Camera::Camera()
@@ -9,7 +10,7 @@ Camera::Camera()
 	viewport_ = OgreSystem::instance()->getWindow()->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
 
-	InputManager::getSingletonPtr()->addKeyListener(this, "Camera");
+	//InputManager::getSingletonPtr()->addKeyListener(this, "Camera");
 }
 
 
@@ -37,15 +38,20 @@ void Camera::update(unsigned int time)
 
 bool Camera::handleEvent(unsigned int time)
 {
+	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_W))
+		camNode_->translate({ 0, 0, -10 }, Ogre::Node::TS_WORLD);
+	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_S))
+		camNode_->translate({ 0, 0, 10 }, Ogre::Node::TS_WORLD);
+	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_A))
+		camNode_->translate({ -10, 0, 0 }, Ogre::Node::TS_WORLD);
+	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_D))
+		camNode_->translate({ 10, 0, 0 }, Ogre::Node::TS_WORLD);
+	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_E))
+		camNode_->translate({ 0, -10, 0 }, Ogre::Node::TS_WORLD);
+	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_Q))
+		camNode_->translate({ 0, 10, 0 }, Ogre::Node::TS_WORLD);
 	return false;
 }
 
-bool Camera::keyPressed(const OIS::KeyEvent & arg)
-{
-	switch (arg.key)
-	{
-	case OIS::KC_W:
-		camNode_->translate({ 0,0,-10 }, Ogre::Node::TS_WORLD);
-	}
-	return true;
-}
+
+

@@ -55,8 +55,16 @@ void GameState::render(unsigned int time)
 
 bool GameState::handleInput(unsigned int time)
 {
-	
+	bool handled = false;
+
 	InputManager::getSingletonPtr()->capture();
+	std::list<Component*>::iterator it = scene.begin();
+	while (it != scene.end() && !handled) {
+		if ((*it)->isActive())
+			handled = (*it)->handleEvent(time);
+		it++;
+	}
+
 	return false;
 }
 

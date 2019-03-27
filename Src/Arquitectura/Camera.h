@@ -19,7 +19,7 @@ public:
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);
 	virtual bool handleEvent(unsigned int time);
-	virtual bool keyPressed(const OIS::KeyEvent& arg);
+	virtual bool keyPressed(const OIS::KeyEvent& arg) { return true; };
 	virtual bool keyReleased(const OIS::KeyEvent& arg) { return true; };
 	virtual bool mouseMoved(const OIS::MouseEvent& arg) { return true; };
 	virtual bool mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id) { return true; };
