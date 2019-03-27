@@ -1,16 +1,9 @@
 #pragma once
-#include <OgreRoot.h>
-#include <OgreConfigFile.h>
-#include <OgreLog.h>
-//#include <OgreFileSystemLayer.h>
 
-
-#include <OgreRenderWindow.h>
-#include <OgreEntity.h>
 #include <GestorRecursos/gestorDeRecursos.h>
 
-
-
+class Ogre::RenderWindow;
+class Ogre::Root;
 class Ogre::Light;
 class Ogre::Plane;
 class Ogre::RenderWindow;
@@ -27,7 +20,7 @@ public:
 	~OgreSystem();
 
 	//Renderiza la escena (deltaTime debe estar en segundos)
-	void render(unsigned int deltaTime) { root_->renderOneFrame((Ogre::Real)deltaTime / 1000); };
+	void render(unsigned int deltaTime);
 
 	
 
