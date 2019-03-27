@@ -1,6 +1,13 @@
 #include "Camera.h"
 #include "Entity.h"
+#include "Transform.h"
+#include <OgreRenderWindow.h>
+#include <OgreEntity.h>
+#include <SDL_video.h>
+#include "OgreSystem.h"
 #include <iostream>
+#include <GestorRecursos/gestorDeRecursos.h>
+#include "InputManager.h"
 
 Camera::Camera()
 {

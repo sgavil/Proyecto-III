@@ -2,8 +2,6 @@
 
 #include <GestorRecursos/gestorDeRecursos.h>
 
-class Ogre::RenderWindow;
-class Ogre::Root;
 class Ogre::Light;
 class Ogre::Plane;
 class Ogre::RenderWindow;
@@ -48,7 +46,7 @@ private:
 
 	json initFile;
 	//void ceguiInit();
-	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaño WINDOW_HEIGHT/WIDHT ademas de crear
+	/*Utiliza el root para crear una ventana de nombre APP_NAME , tamaï¿½o WINDOW_HEIGHT/WIDHT ademas de crear
 	una camara y asociarle un viewport a esta*/
 
 	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL
