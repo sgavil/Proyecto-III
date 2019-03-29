@@ -16,10 +16,10 @@ public:
 	void start();
 	void run();
 private:
-	PhysicsManager* physSyst_;
-	SceneManager* ScnMng_;
-	OgreManager* ogreSyst_;
-	AudioManager* audioSrc_;
+	PhysicsManager* physicsManager_;
+	SceneManager* sceneManager_;
+	OgreManager* ogreManager_;
+	AudioManager* audioManager_;
 	InputManager* inputManager_;
 
 	bool exit;

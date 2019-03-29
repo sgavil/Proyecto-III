@@ -18,33 +18,33 @@
 
 Game::Game(std::string basicConfig):exit(false)
 {
-	
-	ogreSyst_ = OgreManager::instance(basicConfig);
+	ogreManager_ = OgreManager::instance(basicConfig);
 	InputManager::getSingletonPtr()->initialise(OgreManager::instance()->getWindow());
 	ResourceManager::instance()->ceguiInit();
-	audioSrc_ = AudioManager::instance();
-	ScnMng_ = SceneManager::instance();
-	physSyst_ = PhysicsManager::instance();
+	audioManager_ = AudioManager::instance();
+	sceneManager_ = SceneManager::instance();
+	physicsManager_ = PhysicsManager::instance();
 }
 
 Game::~Game()
 {
-	if (physSyst_ != nullptr)
-		delete physSyst_;
-	if (audioSrc_ != nullptr)
-		delete audioSrc_;
-	if (ScnMng_ != nullptr)
-		delete ScnMng_;
-	if (ogreSyst_ != nullptr)
-		delete ogreSyst_;
+	if (physicsManager_ != nullptr)
+		delete physicsManager_;
+	if (sceneManager_ != nullptr)
+		delete sceneManager_;
+	if (audioManager_ != nullptr)
+		delete audioManager_;
+
+	if (ogreManager_ != nullptr)
+		delete ogreManager_;
 	//CEGUI::System::destroy();
 	//CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>()//*d_renderer));
 }
 
 void Game::start()
 {
-	ScnMng_->addState("StateTest");
-	ScnMng_->changeState("StateTest");
+	sceneManager_->addState("StateTest");
+	sceneManager_->changeState("StateTest");
 
 	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
 
@@ -52,7 +52,7 @@ void Game::start()
 	//AudioSource::instance()->PLAY_2D_SOUND("cochecitos");
 
 	//Start
-	ScnMng_->currentState()->start();
+	sceneManager_->currentState()->start();
 
 
 	// TEST DE LOS BLUEPRINTS CON PARÁMETROS (SALE BIEN)
@@ -68,9 +68,9 @@ void Game::run()
 	while (!exit)
 	{
 		//Llama al update, handleInput y render de la escena activa
-		ScnMng_->currentState()->update(deltaTime);
-		exit = ScnMng_->currentState()->handleInput(deltaTime);
-		ogreSyst_->render(deltaTime);
+		sceneManager_->currentState()->update(deltaTime);
+		exit = sceneManager_->currentState()->handleInput(deltaTime);
+		ogreManager_->render(deltaTime);
 
 		//Actualiza el deltaTime
 		deltaTime = SDL_GetTicks() - actualTime;
