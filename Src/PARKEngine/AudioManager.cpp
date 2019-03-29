@@ -1,21 +1,21 @@
-#include "AudioSource.h"
+#include "AudioManager.h"
 
 #include "ResourceManager.h"
 
-std::unique_ptr<AudioSource> AudioSource::instance_;
+std::unique_ptr<AudioManager> AudioManager::instance_;
 
-AudioSource * AudioSource::instance(float doppler, float rolloff)
+AudioManager * AudioManager::instance(float doppler, float rolloff)
 {
 	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_.get() == nullptr)
-		instance_.reset(new AudioSource(doppler, rolloff));
+		instance_.reset(new AudioManager(doppler, rolloff));
 
 	return instance_.get();
 }
 
 
 //Constructora, le llegan los parametros del mundo que afecta a cualquier entidad con sonido 3D
-AudioSource::AudioSource(float doppler, float rolloff) : doppler_(doppler), rolloff_(rolloff)
+AudioManager::AudioManager(float doppler, float rolloff) : doppler_(doppler), rolloff_(rolloff)
 {
 	result_ = FMOD::System_Create(&system_);
 	FMOD_OK_ERROR_CHECK();
@@ -24,7 +24,7 @@ AudioSource::AudioSource(float doppler, float rolloff) : doppler_(doppler), roll
 	system_->set3DSettings(doppler_, 1.0, rolloff_);
 }
 
-AudioSource::~AudioSource()
+AudioManager::~AudioManager()
 {
 	result_ = system_->release();
 	FMOD_OK_ERROR_CHECK();
@@ -32,7 +32,7 @@ AudioSource::~AudioSource()
 	instance_.release();
 }
 
-void AudioSource::FMOD_OK_ERROR_CHECK()
+void AudioManager::FMOD_OK_ERROR_CHECK()
 {
 	if (result_ != FMOD_OK)
 	{
@@ -41,7 +41,7 @@ void AudioSource::FMOD_OK_ERROR_CHECK()
 	}
 }
 
-void AudioSource::ADD_2D_SOUND(std::string fileName, std::string id, int loopCount, float volume, float pan)
+void AudioManager::ADD_2D_SOUND(std::string fileName, std::string id, int loopCount, float volume, float pan)
 {
 	FMOD::Sound* snd;
 	FMOD_CREATESOUNDEXINFO* ErrInf = 0;
@@ -58,7 +58,7 @@ void AudioSource::ADD_2D_SOUND(std::string fileName, std::string id, int loopCou
 	soundList_.insert(std::make_pair(id, aux));
 }
 
-void AudioSource::ADD_SONG(std::string fileName, std::string id, int loopCount, float volume, float pan)
+void AudioManager::ADD_SONG(std::string fileName, std::string id, int loopCount, float volume, float pan)
 {
 	FMOD::Sound* snd;
 	FMOD_CREATESOUNDEXINFO* ErrInf = 0;
@@ -75,7 +75,7 @@ void AudioSource::ADD_SONG(std::string fileName, std::string id, int loopCount, 
 	Songs_.insert(std::make_pair(id, aux));
 }
 
-void AudioSource::ADD_3D_SOUND(std::string fileName, std::string id, int loopCount, float volume)
+void AudioManager::ADD_3D_SOUND(std::string fileName, std::string id, int loopCount, float volume)
 {
 	FMOD::Sound* snd;
 	FMOD_CREATESOUNDEXINFO* ErrInf = 0;
@@ -92,7 +92,7 @@ void AudioSource::ADD_3D_SOUND(std::string fileName, std::string id, int loopCou
 	soundList3D_.insert(std::make_pair(id, aux));
 }
 
-void AudioSource::PLAY_2D_SOUND(std::string AudioID)
+void AudioManager::PLAY_2D_SOUND(std::string AudioID)
 {
 	FMOD::Channel* chn;
 	auto it = soundList_.find(AudioID);
@@ -107,7 +107,7 @@ void AudioSource::PLAY_2D_SOUND(std::string AudioID)
 	}
 }
 
-void AudioSource::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
+void AudioManager::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 {
 	FMOD::Channel* chn;
 	auto it = soundList3D_.find(AudioID);
@@ -127,7 +127,7 @@ void AudioSource::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 	}
 }
 
-void AudioSource::PLAY_SONG(std::string AudioID)
+void AudioManager::PLAY_SONG(std::string AudioID)
 {
 	FMOD::Channel* chn;
 	auto it = Songs_.find(AudioID);
@@ -142,7 +142,7 @@ void AudioSource::PLAY_SONG(std::string AudioID)
 	}
 }
 
-void AudioSource::READ_JSON_SOUNDS(std::string file)
+void AudioManager::READ_JSON_SOUNDS(std::string file)
 {
 	json js = ResourceManager::instance()->getJsonByKey(file);
 	for(json d2 : js["2DSounds"])
@@ -154,7 +154,7 @@ void AudioSource::READ_JSON_SOUNDS(std::string file)
 }
 
 
-void AudioSource::set3DFactors(float doppler, float rolloff)
+void AudioManager::set3DFactors(float doppler, float rolloff)
 {
 	doppler_ = doppler;
 	rolloff_ = rolloff;

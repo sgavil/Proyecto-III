@@ -22,16 +22,16 @@ namespace Ogre
 
 class TerrainGenerator;
 
-class OgreSystem
+class OgreManager
 {
 public:
 	//"Constructora" de la instancia
-	static OgreSystem* instance(std::string initFileJson);
+	static OgreManager* instance(std::string initFileJson);
 
 	//Devuelve la instancia
-	static OgreSystem* instance();
+	static OgreManager* instance();
 
-	~OgreSystem();
+	~OgreManager();
 
 	//Renderiza la escena (deltaTime debe estar en segundos)
 	void render(unsigned int deltaTime);
@@ -64,9 +64,9 @@ public:
 private:
 
 	//Constructora privada
-	OgreSystem(std::string initFileJson);
+	OgreManager(std::string initFileJson);
 	//Instancia
-	static std::unique_ptr<OgreSystem> instance_;
+	static std::unique_ptr<OgreManager> instance_;
 	
 
 	Ogre::Root *root_;

@@ -8,7 +8,7 @@
 #include <PARKEngine/OgreIncludes.h>
 
 //NUESTRO
-#include <PARKEngine/OgreSystem.h>
+#include <PARKEngine/OgreManager.h>
 
 
 
@@ -37,7 +37,7 @@ void ResourceManager::initializeResources()
 {
 	Ogre::ConfigFile cf;
 
-	Ogre::FileSystemLayer* mFSLayer = OgreSystem::instance()->createFileSystemLayer("cfLayerSystem");
+	Ogre::FileSystemLayer* mFSLayer = OgreManager::instance()->createFileSystemLayer("cfLayerSystem");
 	//Este metodo ya agrega '_d' si se compila en debug
 	Ogre::String resourcesPath = mFSLayer->getConfigFilePath("resources.cfg");
 
@@ -71,15 +71,15 @@ void ResourceManager::initializeResources()
 			arch = auxPath + Ogre::FileSystemLayer::resolveBundlePath(i->second);
 
 			//Va agregando las ubicaciones definidas en el cfg
-			OgreSystem::instance()->getResourceGroupManager()->addResourceLocation(arch, type, sec);
+			OgreManager::instance()->getResourceGroupManager()->addResourceLocation(arch, type, sec);
 		}
 	}
 
-	OgreSystem::instance()->getTextureManager()->setDefaultNumMipmaps(5);
+	OgreManager::instance()->getTextureManager()->setDefaultNumMipmaps(5);
 
-	OgreSystem::instance()->getResourceGroupManager()->initialiseAllResourceGroups();
+	OgreManager::instance()->getResourceGroupManager()->initialiseAllResourceGroups();
 
-	OgreSystem::instance()->deleteFileSystemLayer(mFSLayer);
+	OgreManager::instance()->deleteFileSystemLayer(mFSLayer);
 
 	loadJsonsFiles(jsonPath);
 
@@ -87,7 +87,7 @@ void ResourceManager::initializeResources()
 
 void ResourceManager::ceguiInit() {
 	//Carga de CEGUI y configurado automatico con elementos de OGRE
-	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>(OgreSystem::instance()->getWindow()));
+	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>(OgreManager::instance()->getWindow()));
 }
 
 json ResourceManager::getJsonByKey(const std::string & key)

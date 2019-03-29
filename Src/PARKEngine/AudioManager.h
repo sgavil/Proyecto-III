@@ -10,7 +10,7 @@
 
 
 
-class AudioSource 
+class AudioManager 
 {
 	typedef struct {
 		float* x;
@@ -49,16 +49,16 @@ class AudioSource
 public:
 
 	//"Constructora" de la instancia
-	static AudioSource* instance(float doppler = 1.0f, float rolloff = 1.0f);
+	static AudioManager* instance(float doppler = 1.0f, float rolloff = 1.0f);
 
 private:
 	//Constructora, le llegan los parametros del mundo que afecta a cualquier entidad con sonido 3D
-	AudioSource(float doppler = 1.0f, float rolloff = 1.0f);
+	AudioManager(float doppler = 1.0f, float rolloff = 1.0f);
 	
 
-	static std::unique_ptr<AudioSource> instance_;
+	static std::unique_ptr<AudioManager> instance_;
 public:
-	~AudioSource();
+	~AudioManager();
 	
 	void ADD_2D_SOUND(std::string fileName, std::string id, int loopCount = 0, float volume = 1, float pan = 0); //Carga de un sonido 2D
 	void ADD_SONG(std::string fileName, std::string id, int loopCount = 0, float volume = 1, float pan = 0); //Carga de una canción como stream

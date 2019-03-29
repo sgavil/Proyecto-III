@@ -1,6 +1,6 @@
 #include "Terrain.h"
 #include <iostream>
-#include "OgreSystem.h"
+#include "OgreManager.h"
 
 #include "ResourceManager.h"
 
@@ -10,12 +10,12 @@ Terrain::Terrain():terrainCreator_(nullptr)
 
 Terrain::Terrain(std::string terrainFile)
 {
-	terrainCreator_ = OgreSystem::instance()->createTerrain(terrainFile);
+	terrainCreator_ = OgreManager::instance()->createTerrain(terrainFile);
 }
 
 void Terrain::load(json file)
 {
-	terrainCreator_ = OgreSystem::instance()->createTerrain(file["file"]);
+	terrainCreator_ = OgreManager::instance()->createTerrain(file["file"]);
 }
 
 Terrain::~Terrain()

@@ -174,7 +174,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\PARKEngine\AudioSource.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\AudioManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Button.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Camera.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Component.cpp" />
@@ -184,8 +184,8 @@
     <ClCompile Include="..\..\Src\PARKEngine\InputManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\MeshRenderer.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Messages.cpp" />
-    <ClCompile Include="..\..\Src\PARKEngine\OgreSystem.cpp" />
-    <ClCompile Include="..\..\Src\PARKEngine\PhysicSystem.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\OgreManager.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\PhysicsManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\ResourceManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Rigidbody.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\SceneManager.cpp" />
@@ -194,7 +194,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\PARKEngine\AudioSource.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\AudioManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Button.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Camera.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Component.h" />
@@ -206,9 +206,9 @@
     <ClInclude Include="..\..\Src\PARKEngine\MeshRenderer.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Messages.h" />
     <ClInclude Include="..\..\Src\PARKEngine\OgreIncludes.h" />
-    <ClInclude Include="..\..\Src\PARKEngine\OgreSystem.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\OgreManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\OISIncludes.h" />
-    <ClInclude Include="..\..\Src\PARKEngine\PhysicSystem.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\PhysicsManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\ResourceManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Rigidbody.h" />
     <ClInclude Include="..\..\Src\PARKEngine\SceneManager.h" />

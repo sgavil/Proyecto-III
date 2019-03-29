@@ -1,4 +1,4 @@
-#include "OgreSystem.h"
+#include "OgreManager.h"
 
 //NUESTRO
 #include "ResourceManager.h""
@@ -26,21 +26,21 @@
 // ResourceProvider, and an Ogre based ImageCodec.
    //CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem();
 
-std::unique_ptr<OgreSystem> OgreSystem::instance_;
+std::unique_ptr<OgreManager> OgreManager::instance_;
 
 
 
 
-OgreSystem * OgreSystem::instance(std::string initFileJson)
+OgreManager * OgreManager::instance(std::string initFileJson)
 {
 	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_.get() == nullptr)
-		instance_.reset(new OgreSystem(initFileJson));
+		instance_.reset(new OgreManager(initFileJson));
 
 	return instance_.get();
 }
 
-OgreSystem * OgreSystem::instance()
+OgreManager * OgreManager::instance()
 {
 	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_.get() == nullptr)
@@ -50,7 +50,7 @@ OgreSystem * OgreSystem::instance()
 }
 
 
-OgreSystem::OgreSystem(std::string initFileJson):plane_(nullptr)
+OgreManager::OgreManager(std::string initFileJson):plane_(nullptr)
 {	
 
 #if _DEBUG
@@ -88,7 +88,7 @@ void OgreSystem::ceguiInit() {
 
 */
 
-OgreSystem::~OgreSystem()
+OgreManager::~OgreManager()
 {
 	CEGUI::System::destroy();
 	
@@ -100,37 +100,37 @@ OgreSystem::~OgreSystem()
 	instance_.release();
 }
 
-void OgreSystem::render(unsigned int deltaTime)
+void OgreManager::render(unsigned int deltaTime)
 {
 	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);
 }
 
-Ogre::SceneManager * OgreSystem::getSceneManager()
+Ogre::SceneManager * OgreManager::getSceneManager()
 {
 	return sceneMgr_;
 }
 
-Ogre::MeshManager * OgreSystem::getMeshManager()
+Ogre::MeshManager * OgreManager::getMeshManager()
 {
 	return &Ogre::MeshManager::getSingleton();
 }
 
-Ogre::ResourceGroupManager * OgreSystem::getResourceGroupManager()
+Ogre::ResourceGroupManager * OgreManager::getResourceGroupManager()
 {
 	return &Ogre::ResourceGroupManager::getSingleton();
 }
 
-Ogre::TextureManager * OgreSystem::getTextureManager()
+Ogre::TextureManager * OgreManager::getTextureManager()
 {
 	return &Ogre::TextureManager::getSingleton();
 }
 
-Ogre::FileSystemLayer * OgreSystem::createFileSystemLayer(std::string cfLayerSystem)
+Ogre::FileSystemLayer * OgreManager::createFileSystemLayer(std::string cfLayerSystem)
 {
 	return OGRE_NEW Ogre::FileSystemLayer("cfLayerSystem");
 }
 
-void OgreSystem::initWindow(std::string initFileJson)
+void OgreManager::initWindow(std::string initFileJson)
 {
 	json initFile = ResourceManager::instance()->getJsonByKey(initFileJson);
 	window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false);
@@ -161,7 +161,7 @@ void OgreSystem::initWindow(std::string initFileJson)
 }
 
 
-Ogre::Camera* OgreSystem::createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist, bool autoAspectRatio, float AspectRatio)
+Ogre::Camera* OgreManager::createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist, bool autoAspectRatio, float AspectRatio)
 {
 	Ogre::Camera* cam_ = getSceneManager()->createCamera(name);
 	cam_->setNearClipDistance(NearClipDist);
@@ -172,7 +172,7 @@ Ogre::Camera* OgreSystem::createCamera(std::string name, Ogre::SceneNode* Father
 	return cam_;
 }
 
-Ogre::Entity * OgreSystem::createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments, Ogre::SceneNode* FatherNode)
+Ogre::Entity * OgreManager::createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments, Ogre::SceneNode* FatherNode)
 {
 	Ogre::Entity* plane;
 	getMeshManager()->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -184,13 +184,13 @@ Ogre::Entity * OgreSystem::createPlane(std::string name, std::string MaterialNam
 	return plane;
 }
 
-TerrainGenerator * OgreSystem::createTerrain(std::string terrainFile)
+TerrainGenerator * OgreManager::createTerrain(std::string terrainFile)
 {
 	TerrainGenerator* terrainCreator_ = new TerrainGenerator(getSceneManager(), getLight(), terrainFile);
 	return terrainCreator_;
 }
 
-void OgreSystem::deleteFileSystemLayer(Ogre::FileSystemLayer * fsLayer)
+void OgreManager::deleteFileSystemLayer(Ogre::FileSystemLayer * fsLayer)
 {
 	OGRE_DELETE fsLayer;
 }

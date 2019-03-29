@@ -7,13 +7,13 @@
 #include "InputManager.h"
 
 #include "OgreIncludes.h"
-#include "OgreSystem.h"
+#include "OgreManager.h"
 
 Camera::Camera()
 {
-	camNode_ = OgreSystem::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("camNode");
-	camera_ = OgreSystem::instance()->createCamera("cam", camNode_, 5, 50000, true);
-	viewport_ = OgreSystem::instance()->getWindow()->addViewport(camera_);
+	camNode_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("camNode");
+	camera_ = OgreManager::instance()->createCamera("cam", camNode_, 5, 50000, true);
+	viewport_ = OgreManager::instance()->getWindow()->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
 
 	//InputManager::getSingletonPtr()->addKeyListener(this, "Camera");

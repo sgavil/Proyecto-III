@@ -58,16 +58,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\EntityFactory.cpp">
       <Filter>Factoría</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\PARKEngine\AudioSource.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\PARKEngine\InputManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\PARKEngine\OgreSystem.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\PARKEngine\PhysicSystem.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\PARKEngine\ResourceManager.cpp">
@@ -78,6 +69,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\PARKEngine\TerrainCreator.cpp">
       <Filter>Otros</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\AudioManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\OgreManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\PhysicsManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,16 +126,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\Utils.h">
       <Filter>Includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\PARKEngine\AudioSource.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\InputManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\PARKEngine\OgreSystem.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\PARKEngine\PhysicSystem.h">
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\ResourceManager.h">
@@ -146,6 +137,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\TerrainCreator.h">
       <Filter>Otros</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\AudioManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\OgreManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\PhysicsManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -134,7 +134,7 @@
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OgreMain_d.lib;OgreTerrain_d.lib;OgrePaging_d.lib;PARKEngine_Deb.lib;SDL2.lib;SDL2main.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;fmodL_vc.lib;fmodL64_vc.lib;fsbank_vc.lib;fsbank64_vc.lib;fmodstudioL_vc.lib;fmodstudioL64_vc.lib;CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIOgreRenderer-0_d.lib;CEGUIDirect3D9Renderer-0_d.lib;CEGUIDirect3D10Renderer-0_d.lib;CEGUIDirect3D11Renderer-0_d.lib;CEGUIExpatParser_d.lib;CEGUIOpenGLRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;vld.lib;OIS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>/WHOLEARCHIVE:Arquitectura_Deb.lib /WHOLEARCHIVE:Lógica_Deb.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:PARKEngine_Deb.lib /WHOLEARCHIVE:Lógica_Deb.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -178,7 +178,7 @@
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OgreMain.lib;OgreTerrain.lib;SDL2.lib;SDL2main.lib;OgrePaging.lib;PARKEngine.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;fmod_vc.lib;fmod64_vc.lib;fsbank_vc.lib;fsbank64_vc.lib;fmodstudio_vc.lib;fmodstudio64_vc.lib;CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIDirect3D9Renderer-0.lib;CEGUIDirect3D10Renderer-0.lib;CEGUIDirect3D11Renderer-0.lib;CEGUIExpatParser.lib;CEGUIOgreRenderer-0.lib;CEGUIOpenGLRenderer-0.lib;CEGUISILLYImageCodec.lib;OIS.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>/WHOLEARCHIVE:Arquitectura.lib /WHOLEARCHIVE:Lógica.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:PARKEngine.lib /WHOLEARCHIVE:Lógica.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

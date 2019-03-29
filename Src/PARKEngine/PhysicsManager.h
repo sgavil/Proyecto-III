@@ -16,12 +16,12 @@ class btSequentialImpulseConstraintSolver;
 class btDiscreteDynamicsWorld;
 
 //Clase physXSytem: Singleton para gestionar el sistema de físicas
-class PhysicSystem
+class PhysicsManager
 {
 public:
 
 	//Devuelve la instancia
-	static PhysicSystem* instance();
+	static PhysicsManager* instance();
 
 	//Inicializa el sistema de físicas
 	void initPhysics();
@@ -41,14 +41,14 @@ public:
 
 
 	//Destructora
-	~PhysicSystem();
+	~PhysicsManager();
 private:
 	//Constructora privada
-	PhysicSystem();
+	PhysicsManager();
 	//Limpia la basura
 	void cleanupPhysics();
 	//Instancia
-	static std::unique_ptr<PhysicSystem> instance_;
+	static std::unique_ptr<PhysicsManager> instance_;
 
 	//Atributos
 	//Config. de colisiones

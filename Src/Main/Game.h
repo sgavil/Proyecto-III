@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 
-class OgreSystem;
+class OgreManager;
 class SceneManager;
-class AudioSource;
-class PhysicSystem;
+class AudioManager;
+class PhysicsManager;
 class InputManager;
 
 
@@ -16,10 +16,10 @@ public:
 	void start();
 	void run();
 private:
-	PhysicSystem* physSyst_;
+	PhysicsManager* physSyst_;
 	SceneManager* ScnMng_;
-	OgreSystem* ogreSyst_;
-	AudioSource* audioSrc_;
+	OgreManager* ogreSyst_;
+	AudioManager* audioSrc_;
 	InputManager* inputManager_;
 
 	bool exit;

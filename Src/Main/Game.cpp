@@ -1,9 +1,9 @@
 #include "Game.h"
 
 //NUESTRO
-#include <PARKEngine/physicSystem.h>
-#include <PARKEngine/AudioSource.h>
-#include <PARKEngine/OgreSystem.h>
+#include <PARKEngine/PhysicsManager.h>
+#include <PARKEngine/AudioManager.h>
+#include <PARKEngine/OgreManager.h>
 #include <PARKEngine/InputManager.h>
 #include <PARKEngine/Entity.h>
 #include <PARKEngine/SceneManager.h> 
@@ -19,12 +19,12 @@
 Game::Game(std::string basicConfig):exit(false)
 {
 	
-	ogreSyst_ = OgreSystem::instance(basicConfig);
-	InputManager::getSingletonPtr()->initialise(OgreSystem::instance()->getWindow());
+	ogreSyst_ = OgreManager::instance(basicConfig);
+	InputManager::getSingletonPtr()->initialise(OgreManager::instance()->getWindow());
 	ResourceManager::instance()->ceguiInit();
-	audioSrc_ = AudioSource::instance();
+	audioSrc_ = AudioManager::instance();
 	ScnMng_ = SceneManager::instance();
-	physSyst_ = PhysicSystem::instance();
+	physSyst_ = PhysicsManager::instance();
 }
 
 Game::~Game()
@@ -48,7 +48,7 @@ void Game::start()
 
 	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
 
-	AudioSource::instance()->READ_JSON_SOUNDS("AudioSource.json");
+	AudioManager::instance()->READ_JSON_SOUNDS("AudioSource.json");
 	//AudioSource::instance()->PLAY_2D_SOUND("cochecitos");
 
 	//Start

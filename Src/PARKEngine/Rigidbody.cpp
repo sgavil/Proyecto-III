@@ -2,7 +2,7 @@
 
 #include "Entity.h"
 #include "Transform.h"
-#include "PhysicSystem.h"
+#include "PhysicsManager.h"
 #include <iostream>
 #include "btBulletDynamicsCommon.h"
 
@@ -16,7 +16,7 @@ Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr)
 Rigidbody::Rigidbody(Transform* transform, Shape shape, float mass) : transform_(transform)
 {
 	//Creamos el rigidbody
-	rigid_ = PhysicSystem::createRigidBody(shape, transform_->getScale(), mass);
+	rigid_ = PhysicsManager::createRigidBody(shape, transform_->getScale(), mass);
 }
 
 
@@ -28,7 +28,7 @@ void Rigidbody::load(json file)
 	dims.y = dimensions["y"];
 	dims.z = dimensions["z"];
 
-	rigid_ = PhysicSystem::createRigidBody(BoxShape, dims, file["mass"]);
+	rigid_ = PhysicsManager::createRigidBody(BoxShape, dims, file["mass"]);
 }
 
 void Rigidbody::start()

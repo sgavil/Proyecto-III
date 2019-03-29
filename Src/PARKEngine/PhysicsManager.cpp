@@ -1,30 +1,30 @@
-#include "PhysicSystem.h"
+#include "PhysicsManager.h"
 
 #include "btBulletDynamicsCommon.h"
 
-std::unique_ptr<PhysicSystem> PhysicSystem::instance_;
+std::unique_ptr<PhysicsManager> PhysicsManager::instance_;
 
-btDiscreteDynamicsWorld * PhysicSystem::dynamicsWorld = nullptr;
+btDiscreteDynamicsWorld * PhysicsManager::dynamicsWorld = nullptr;
 
-std::vector<btCollisionShape*> PhysicSystem::shapes = std::vector<btCollisionShape*>();
+std::vector<btCollisionShape*> PhysicsManager::shapes = std::vector<btCollisionShape*>();
 
 
-PhysicSystem::PhysicSystem()
+PhysicsManager::PhysicsManager()
 {
 	initPhysics();
 }
 
 
-PhysicSystem * PhysicSystem::instance()
+PhysicsManager * PhysicsManager::instance()
 {
 	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_.get() == nullptr)
-		instance_.reset(new PhysicSystem());
+		instance_.reset(new PhysicsManager());
 
 	return instance_.get();
 }
 
-void PhysicSystem::initPhysics()
+void PhysicsManager::initPhysics()
 {
 	// collision configuration contains default setup for memory , collision setup . Advanced users can create their own configuration
 	collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -45,7 +45,7 @@ void PhysicSystem::initPhysics()
 	dynamicsWorld->setGravity(btVector3(DEFAULT_GRAVITY.x, DEFAULT_GRAVITY.y, DEFAULT_GRAVITY.z));
 }
 
-void PhysicSystem::stepSimulation(unsigned int time)
+void PhysicsManager::stepSimulation(unsigned int time)
 {
 	//Actualiza la física
 	dynamicsWorld->stepSimulation((float)time / 1000);
@@ -68,7 +68,7 @@ void PhysicSystem::stepSimulation(unsigned int time)
 	}
 }
 
-void PhysicSystem::cleanupPhysics()
+void PhysicsManager::cleanupPhysics()
 {
 	
 	//// remove the rigidbodies from the dynamics world and delete them
@@ -113,7 +113,7 @@ void PhysicSystem::cleanupPhysics()
 	}
 }
 
-btRigidBody * PhysicSystem::createRigidBody( Shape forma, Vector3 dimensions, float mass)
+btRigidBody * PhysicsManager::createRigidBody( Shape forma, Vector3 dimensions, float mass)
 {
 	
 	btCollisionShape* shape = nullptr;
@@ -171,7 +171,7 @@ btRigidBody * PhysicSystem::createRigidBody( Shape forma, Vector3 dimensions, fl
 	return rigid;
 }
 
-void PhysicSystem::addShape(btCollisionShape * shape)
+void PhysicsManager::addShape(btCollisionShape * shape)
 {
 	shapes.push_back(shape);
 }
@@ -179,12 +179,12 @@ void PhysicSystem::addShape(btCollisionShape * shape)
 
 
 
-void PhysicSystem::addRigidBody(btRigidBody * rigid)
+void PhysicsManager::addRigidBody(btRigidBody * rigid)
 {
 	dynamicsWorld->addRigidBody(rigid);
 }
 
-PhysicSystem::~PhysicSystem()
+PhysicsManager::~PhysicsManager()
 {
 	if (instance_ != nullptr) {
 		cleanupPhysics();

@@ -1,8 +1,8 @@
 #include "GameState.h"
-#include <PARKEngine/physicSystem.h>
-#include <PARKEngine/EntityFactory.h>
+#include <PARKEngine/PhysicsManager.h>
+#include <PARKEngine/EntityFactory.h>OgreManager.h
 #include <PARKEngine/InputManager.h>
-#include <PARKEngine/OgreSystem.h>
+#include <PARKEngine/OgreManager.h>
 #include <PARKEngine/Entity.h>
 #include <PARKEngine/Component.h>
 
@@ -41,7 +41,7 @@ void GameState::start()
 
 void GameState::update(unsigned int time)
 {
-	PhysicSystem::instance()->stepSimulation(time); //FÍSICA
+	PhysicsManager::instance()->stepSimulation(time); //FÍSICA
 
 	for (Component* c : scene)
 		if(c->isActive())
