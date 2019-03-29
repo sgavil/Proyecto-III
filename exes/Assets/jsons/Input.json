@@ -1,0 +1,29 @@
+{
+"Keyboard":
+	[
+		{
+			"Id": "Avanzar",
+			"key": "W"
+		},
+		{
+			"Id": "Retroceder",
+			"key": "S"
+		},
+		{
+			"Id": "MoverIzquierda",
+			"key": "A"
+		},
+		{
+			"Id": "MoverDerecha",
+			"key": "D"
+		},
+		{
+			"Id": "Ampliar",
+			"key": "E"
+		},
+		{
+			"Id": "Desampliar",
+			"key": "Q"
+		}
+	]
+}

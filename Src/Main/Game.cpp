@@ -46,11 +46,8 @@ void Game::start()
 	sceneManager_->addState("StateTest");
 	sceneManager_->changeState("StateTest");
 
-	//--------------------------TEST DE REPRODUCCION DE SONIDO--------------------------//
-
 	AudioManager::instance()->READ_JSON_SOUNDS("AudioSource.json");
-	//AudioSource::instance()->PLAY_2D_SOUND("cochecitos");
-
+	InputManager::getSingletonPtr()->addMappingValues("Input.json");
 	//Start
 	sceneManager_->currentState()->start();
 
@@ -69,6 +66,7 @@ void Game::run()
 	{
 		//Llama al update, handleInput y render de la escena activa
 		sceneManager_->currentState()->update(deltaTime);
+		InputManager::getSingletonPtr()->capture();
 		exit = sceneManager_->currentState()->handleInput(deltaTime);
 		ogreManager_->render(deltaTime);
 

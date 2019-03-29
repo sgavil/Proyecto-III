@@ -15,8 +15,6 @@ Camera::Camera()
 	camera_ = OgreManager::instance()->createCamera("cam", camNode_, 5, 50000, true);
 	viewport_ = OgreManager::instance()->getWindow()->addViewport(camera_);
 	viewport_->setClearEveryFrame(true);
-
-	//InputManager::getSingletonPtr()->addKeyListener(this, "Camera");
 }
 
 
@@ -44,17 +42,17 @@ void Camera::update(unsigned int time)
 
 bool Camera::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_W))
+	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("Avanzar"))
 		camNode_->translate({ 0, 0, -10 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_S))
+	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("Retroceder"))
 		camNode_->translate({ 0, 0, 10 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_A))
+	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("MoverIzquierda"))
 		camNode_->translate({ -10, 0, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_D))
+	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("MoverDerecha"))
 		camNode_->translate({ 10, 0, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_E))
+	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("Ampliar"))
 		camNode_->translate({ 0, -10, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_Q))
+	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("Desampliar"))
 		camNode_->translate({ 0, 10, 0 }, Ogre::Node::TS_WORLD);
 	return false;
 }

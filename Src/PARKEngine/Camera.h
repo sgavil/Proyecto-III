@@ -8,7 +8,7 @@ class Ogre::Camera;
 class Ogre::Viewport;
 class Ogre::SceneNode;
 
-class Camera : public Component, public OIS::KeyListener, public OIS::MouseListener
+class Camera : public Component
 {
 public:
 	Camera();
@@ -19,11 +19,6 @@ public:
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);
 	virtual bool handleEvent(unsigned int time);
-	virtual bool keyPressed(const OIS::KeyEvent& arg) { return true; };
-	virtual bool keyReleased(const OIS::KeyEvent& arg) { return true; };
-	virtual bool mouseMoved(const OIS::MouseEvent& arg) { return true; };
-	virtual bool mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id) { return true; };
-	virtual bool mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id) { return true; };
 	virtual void receive(Message* msg) {};
 
 	Ogre::SceneNode* getCameraNode() { return camNode_; }
