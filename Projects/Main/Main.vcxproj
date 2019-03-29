@@ -132,7 +132,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain_d.lib;OgreTerrain_d.lib;OgrePaging_d.lib;Scenes_Deb.lib;GestorRecursos_Deb.lib;Arquitectura_Deb.lib;SDL2.lib;SDL2main.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;fmodL_vc.lib;fmodL64_vc.lib;fsbank_vc.lib;fsbank64_vc.lib;fmodstudioL_vc.lib;fmodstudioL64_vc.lib;CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIOgreRenderer-0_d.lib;CEGUIDirect3D9Renderer-0_d.lib;CEGUIDirect3D10Renderer-0_d.lib;CEGUIDirect3D11Renderer-0_d.lib;CEGUIExpatParser_d.lib;CEGUIOpenGLRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;vld.lib;OIS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;OgreTerrain_d.lib;OgrePaging_d.lib;Arquitectura_Deb.lib;SDL2.lib;SDL2main.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;fmodL_vc.lib;fmodL64_vc.lib;fsbank_vc.lib;fsbank64_vc.lib;fmodstudioL_vc.lib;fmodstudioL64_vc.lib;CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIOgreRenderer-0_d.lib;CEGUIDirect3D9Renderer-0_d.lib;CEGUIDirect3D10Renderer-0_d.lib;CEGUIDirect3D11Renderer-0_d.lib;CEGUIExpatParser_d.lib;CEGUIOpenGLRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;vld.lib;OIS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/WHOLEARCHIVE:Arquitectura_Deb.lib /WHOLEARCHIVE:Lógica_Deb.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -189,11 +189,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\Main\BureaucracyManager.h" />
     <ClInclude Include="..\..\Src\Main\Game.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Arquitectura\Arquitectura.vcxproj">
-      <Project>{9b5952b6-d23f-47c5-ad8d-22dee9e04b99}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

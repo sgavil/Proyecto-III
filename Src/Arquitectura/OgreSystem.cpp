@@ -1,9 +1,9 @@
 #include "OgreSystem.h"
 
 //NUESTRO
-#include <GestorRecursos/ResourceManager.h>
-#include "Scenes/SceneManager.h"
-#include <GestorRecursos/TerrainCreator.h>
+#include "ResourceManager.h""
+#include "SceneManager.h"
+#include "TerrainCreator.h"
 #include "Utils.h"
 
 //CEGUI

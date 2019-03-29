@@ -2,7 +2,7 @@
 #include "Arquitectura/Entity.h"
 #include "Arquitectura/Transform.h"
 #include "Arquitectura/MeshRenderer.h"
-#include "Scenes/SceneManager.h"
+#include "Arquitectura/SceneManager.h"
 #include "Node.h"
 
 using namespace std;

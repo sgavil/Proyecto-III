@@ -1,5 +1,5 @@
 #include "Component.h"
-#include <GestorRecursos/ResourceManager.h>
+#include "ResourceManager.h"
 
 Component::Component() : active_(true), entity_(nullptr)
 {

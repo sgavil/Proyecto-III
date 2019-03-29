@@ -6,7 +6,7 @@
 #include <Arquitectura/OgreSystem.h>
 #include <Arquitectura/InputManager.h>
 #include <Arquitectura/Entity.h>
-#include <Scenes/SceneManager.h> 
+#include <Arquitectura/SceneManager.h> 
 #include "BureaucracyManager.h"
 #include <Arquitectura/EntityFactory.h>
 

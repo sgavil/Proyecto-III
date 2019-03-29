@@ -179,13 +179,17 @@
     <ClCompile Include="..\..\Src\Arquitectura\Component.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Entity.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\EntityFactory.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\GameState.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\InputManager.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Messages.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\OgreSystem.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\MeshRenderer.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\PhysicSystem.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\ResourceManager.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Rigidbody.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\SceneManager.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Terrain.cpp" />
+    <ClCompile Include="..\..\Src\Arquitectura\TerrainCreator.cpp" />
     <ClCompile Include="..\..\Src\Arquitectura\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +200,7 @@
     <ClInclude Include="..\..\Src\Arquitectura\ComponentCreator.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Entity.h" />
     <ClInclude Include="..\..\Src\Arquitectura\EntityFactory.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\GameState.h" />
     <ClInclude Include="..\..\Src\Arquitectura\InputManager.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Messages.h" />
     <ClInclude Include="..\..\Src\Arquitectura\OgreIncludes.h" />
@@ -203,8 +208,11 @@
     <ClInclude Include="..\..\Src\Arquitectura\MeshRenderer.h" />
     <ClInclude Include="..\..\Src\Arquitectura\OISIncludes.h" />
     <ClInclude Include="..\..\Src\Arquitectura\PhysicSystem.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\ResourceManager.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Rigidbody.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\SceneManager.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Terrain.h" />
+    <ClInclude Include="..\..\Src\Arquitectura\TerrainCreator.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Transform.h" />
     <ClInclude Include="..\..\Src\Arquitectura\Utils.h" />
   </ItemGroup>

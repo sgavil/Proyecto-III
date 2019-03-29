@@ -3,7 +3,7 @@
 #include "Transform.h"
 #include <SDL_video.h>
 
-#include <GestorRecursos/ResourceManager.h>
+#include "ResourceManager.h"
 #include "InputManager.h"
 
 #include "OgreIncludes.h"

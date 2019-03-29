@@ -1,5 +1,5 @@
 #include "SceneManager.h"
-#include <GestorRecursos/ResourceManager.h>
+#include "ResourceManager.h"
 
 std::unique_ptr<SceneManager> SceneManager::instance_;
 
