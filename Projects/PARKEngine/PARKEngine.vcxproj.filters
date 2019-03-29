@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Componentes">
+      <UniqueIdentifier>{c861ca7e-e8cd-42df-acd7-4c97df049dbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{443d6813-87ab-49a4-b767-efdc23548ff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factoría">
+      <UniqueIdentifier>{9cbda19c-f37a-4c22-9e64-7266cce1f2da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{b4e66e04-f4c4-4635-9676-f79b94a10f38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{2aabd952-7335-4e19-a1a9-a35fa92ec8f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Otros">
+      <UniqueIdentifier>{9a46dc28-1e52-429f-b4f6-8abd7bd21058}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Src\PARKEngine\Component.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\Entity.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\GameState.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\Messages.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\Button.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\Camera.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\MeshRenderer.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\Rigidbody.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\Terrain.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\Transform.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\EntityFactory.cpp">
+      <Filter>Factoría</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\AudioSource.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\InputManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\OgreSystem.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\PhysicSystem.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\ResourceManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\SceneManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\TerrainCreator.cpp">
+      <Filter>Otros</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\PARKEngine\Component.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Entity.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\GameState.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Messages.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Button.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Camera.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\MeshRenderer.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Rigidbody.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Terrain.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Transform.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\ComponentCreator.h">
+      <Filter>Factoría</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\EntityFactory.h">
+      <Filter>Factoría</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\OgreIncludes.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\OISIncludes.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Utils.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\AudioSource.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\InputManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\OgreSystem.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\PhysicSystem.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\ResourceManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\SceneManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\TerrainCreator.h">
+      <Filter>Otros</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

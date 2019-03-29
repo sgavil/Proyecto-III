@@ -1,14 +1,14 @@
 #include "Game.h"
 
 //NUESTRO
-#include <Arquitectura/physicSystem.h>
-#include <Arquitectura/AudioSource.h>
-#include <Arquitectura/OgreSystem.h>
-#include <Arquitectura/InputManager.h>
-#include <Arquitectura/Entity.h>
-#include <Arquitectura/SceneManager.h> 
+#include <PARKEngine/physicSystem.h>
+#include <PARKEngine/AudioSource.h>
+#include <PARKEngine/OgreSystem.h>
+#include <PARKEngine/InputManager.h>
+#include <PARKEngine/Entity.h>
+#include <PARKEngine/SceneManager.h> 
 #include "BureaucracyManager.h"
-#include <Arquitectura/EntityFactory.h>
+#include <PARKEngine/EntityFactory.h>
 
 //CEGUI/OIS
 #include <CEGUI/CEGUI.h>

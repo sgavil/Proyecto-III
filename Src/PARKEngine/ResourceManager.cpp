@@ -5,10 +5,10 @@
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 //OGRE
-#include <Arquitectura/OgreIncludes.h>
+#include <PARKEngine/OgreIncludes.h>
 
 //NUESTRO
-#include <Arquitectura/OgreSystem.h>
+#include <PARKEngine/OgreSystem.h>
 
 
 

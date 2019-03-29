@@ -1,5 +1,5 @@
 #include "TerrainCreator.h"
-#include <Arquitectura/Utils.h>
+#include "Utils.h"
 
 TerrainGenerator::TerrainGenerator() : scnMgn_(nullptr), terrainJson_(NULL)
 {

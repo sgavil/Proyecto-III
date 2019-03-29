@@ -1,5 +1,5 @@
 #pragma once
-#include "Arquitectura/Component.h"
+#include <PARKEngine/Component.h>
 
 class NPC : public Component
 {

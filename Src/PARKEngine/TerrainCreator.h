@@ -1,5 +1,5 @@
 #pragma once
-#include <Arquitectura/OgreIncludes.h>
+#include "OgreIncludes.h"
 #include "ResourceManager.h"
 
 class TerrainGenerator

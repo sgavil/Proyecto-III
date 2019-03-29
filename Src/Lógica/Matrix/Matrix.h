@@ -1,8 +1,8 @@
 #pragma once
-#include "Arquitectura/Entity.h"
-#include "Arquitectura/Transform.h"
-#include "Arquitectura/MeshRenderer.h"
-#include "Arquitectura/SceneManager.h"
+#include "PARKEngine/Entity.h"
+#include "PARKEngine/Transform.h"
+#include "PARKEngine/MeshRenderer.h"
+#include "PARKEngine/SceneManager.h"
 #include "Node.h"
 
 using namespace std;

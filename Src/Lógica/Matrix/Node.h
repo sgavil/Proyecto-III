@@ -1,5 +1,5 @@
 #pragma once
-#include "Arquitectura/Component.h"
+#include "PARKEngine/Component.h"
 
 using namespace std;
 
