@@ -421,7 +421,7 @@ InputManager* InputManager::getSingletonPtr(void) {
 OIS::KeyCode InputManager::getAsKeyCode(std::string str)
 {
 
-	
+	for (int i = 0; i < str.size(); i++) { str.at(i) = toupper(str.at(i)); }
 	if (str == "A") return OIS::KC_A;
 	else if (str == "B") return OIS::KC_B;
 	else if (str == "C") return OIS::KC_C;
@@ -448,14 +448,14 @@ OIS::KeyCode InputManager::getAsKeyCode(std::string str)
 	else if (str == "X") return OIS::KC_X;
 	else if (str == "Y") return OIS::KC_Y;
 	else if (str == "Z") return OIS::KC_Z;
-	else if (str == "Enter") return OIS::KC_RETURN;
-	else if (str == "Esc") return OIS::KC_ESCAPE;
-	else if (str == "Space") return OIS::KC_SPACE;
-	else if (str == "LeftCtrl") return OIS::KC_LCONTROL;
-	else if (str == "RightCtrl") return OIS::KC_RCONTROL;
-	else if (str == "LeftShift") return OIS::KC_LSHIFT;
-	else if (str == "RightShift") return OIS::KC_RSHIFT;
-	else if (str == "Tab") return OIS::KC_TAB;
+	else if (str == "ENTER") return OIS::KC_RETURN;
+	else if (str == "ESC") return OIS::KC_ESCAPE;
+	else if (str == "SPACE") return OIS::KC_SPACE;
+	else if (str == "LEFTCTRL") return OIS::KC_LCONTROL;
+	else if (str == "RIGHTCTRL") return OIS::KC_RCONTROL;
+	else if (str == "LEFTSHIFT") return OIS::KC_LSHIFT;
+	else if (str == "RIGHTSHIFT") return OIS::KC_RSHIFT;
+	else if (str == "TAB") return OIS::KC_TAB;
 	else if (str == "0") return OIS::KC_0;
 	else if (str == "1") return OIS::KC_1;
 	else if (str == "2") return OIS::KC_2;
@@ -466,7 +466,7 @@ OIS::KeyCode InputManager::getAsKeyCode(std::string str)
 	else if (str == "7") return OIS::KC_7;
 	else if (str == "8") return OIS::KC_8;
 	else if (str == "9") return OIS::KC_9;
-	else if (str == "Ins") return OIS::KC_INSERT;
-	else if (str == "Surp") return OIS::KC_SUBTRACT;
+	else if (str == "INS") return OIS::KC_INSERT;
+	else if (str == "SUPR") return OIS::KC_SUBTRACT;
 	else return OIS::KC_UNASSIGNED;
 }
