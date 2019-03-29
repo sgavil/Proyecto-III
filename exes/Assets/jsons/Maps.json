@@ -9,12 +9,12 @@
 
 		    "minHeight0": 20,
 		    "fadeDist0": 40,
-		    "minHeight1": 200,
+		    "minHeight1": 250,
 		    "fadeDist1": 15,
 
 		    "terrainSize": 129,
-		    "worldSize": 3000.0,
-		    "inputScale": 500,
+		    "worldSize": 4000.0,
+		    "inputScale": 600,
 		    "minBatchSize": 9,
 		    "maxBatchSize": 17,
 

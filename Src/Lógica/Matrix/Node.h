@@ -20,13 +20,11 @@ public:
 
 
 	Vector2 getMatrixPos();
-	Vector3 getNodeSize();
 
 	NodeType getType();
 	void setType(NodeType t);
 
 private:
-	Vector3 size_;
 	Vector2 posMatrix_;
 	NodeType nodeType_;
 

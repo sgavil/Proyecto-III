@@ -10,23 +10,13 @@ Node::~Node()
 
 void Node::load(json file)
 {
-	json size = file["dimensions"];
-	size_.x = size["x"];
-	size_.y = size["y"];
-	size_.z = size["z"];
-
-	json type = file["nodeType"];
+	//json type = file["nodeType"];
 	nodeType_ = EMPTY;
 }
 
 Vector2 Node::getMatrixPos()
 {
 	return posMatrix_;
-}
-
-Vector3 Node::getNodeSize()
-{
-	return size_;
 }
 
 NodeType Node::getType()

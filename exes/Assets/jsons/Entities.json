@@ -68,20 +68,15 @@
       "name": "MeshRenderer",
       "parameters":
       {
-        "mesh": "ogrehead.mesh",
+        "mesh": "Building.mesh",
+        "material": "Building",
         "visible" : false
       }
     },
     {
-    "name": "Node",
-    "parameters": 
+      "name": "Node",
+      "parameters": 
       {
-        "dimensions": 
-        {
-          "x": 80,
-          "y": 80,
-          "z": 80
-        },
         "nodeType": "EMPTY"
       }
     }

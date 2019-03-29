@@ -5,6 +5,8 @@
 #include "PARKEngine/SceneManager.h"
 #include "Node.h"
 
+#include <vector>
+
 using namespace std;
 using M = vector<vector<Entity*>>;
 using dirs = vector<pair<int, int>>;
@@ -19,8 +21,8 @@ public:
 
 	virtual void load(json file);
 
-	virtual void render(unsigned int time);
-	virtual void update(unsigned int time);
+	virtual void render(unsigned int time) {};
+	virtual void update(unsigned int time) {};
 	virtual bool handleEvent(unsigned int time) { return false; };
 	virtual void receive(Message* msg) {};
 

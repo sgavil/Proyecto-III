@@ -26,6 +26,8 @@ void MeshRenderer::load(json file)
 	std::string meshName = file["mesh"];
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
 	node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
+	if (file["material"] != "")
+		ogreEntity->setMaterialName(file["material"]);
 	node_->attachObject(ogreEntity);
 	node_->setVisible(file["visible"]);
 }

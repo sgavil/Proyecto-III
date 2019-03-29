@@ -1,15 +1,11 @@
 #include "Matrix.h"
 Matrix::Matrix()
-	: mSize_({ 0 ,0 }), nSize_({0, 0, 0}), matrix_(mSize_.y, vector<Entity*>(mSize_.x, nullptr))
+	: mSize_({ 0 ,0 }), nSize_({0, 0, 0}), matrix_(mSize_.x, vector<Entity*>(mSize_.y, nullptr))
 {
 }
 
 Matrix::~Matrix()
 {
-	for (int i = 0; i < matrix_.size(); i++) {
-		for (int j = 0; j < matrix_[0].size(); j++)
-			delete matrix_[i][j];
-	}
 }
 
 
@@ -26,29 +22,21 @@ void Matrix::load(json file)
 
 	dirs_ = { { 1,0 }, { -1,0 }, { 0,1 }, { 0, -1 } };
 
-	matrix_ = M(mSize_.y, vector<Entity*>(mSize_.x, nullptr));
+	matrix_ = M(mSize_.x, vector<Entity*>(mSize_.y, nullptr));
 	createMatrix();
 }
 
 void Matrix::start()
 {
-	for (Component* c : comps)
-		if (c->isActive())
-			c->start();
-}
-
-void Matrix::render(unsigned int time)
-{
-	for (Component* c : comps)
-		if (c->isActive())
-			c->render(time);
-}
-
-void Matrix::update(unsigned int time)
-{
-	for (Component* c : comps)
-		if (c->isActive())
-			c->update(time);
+	for (int i = 0; i < matrix_.size(); i++) {
+		for (int j = 0; j < matrix_[0].size(); j++) {
+			SceneManager::instance()->currentState()->addEntity(matrix_[i][j]);
+			for (Component* c : matrix_[i][j]->getComponents()) {
+				if (c->isActive())
+					c->start();
+			}
+		}
+	}
 }
 
 void Matrix::createMatrix()
@@ -58,10 +46,6 @@ void Matrix::createMatrix()
 		for (int i = 0; i < mSize_.x; i++) {
 			Entity* e = EntityFactory::Instance()->createEntityFromBlueprint("Node");
 			e->getComponent<Transform>()->setPosition({ (Ogre::Real)(posIni.x + (i * nSize_.x)), (Ogre::Real)posIni.y, (Ogre::Real)(posIni.z + (j * nSize_.z)) });
-			e->getComponent<MeshRenderer>()->start();
-			for (Component* c : e->getComponents())
-				comps.push_back(c);
-
 			matrix_[i][j] = e;
 		}
 	}

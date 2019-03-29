@@ -41,6 +41,7 @@
 				{
 					"name": "MeshRenderer",
 					"mesh": "ogrehead.mesh",
+					"material": "",
 					"visible" : true
 				},
 				{
@@ -77,6 +78,7 @@
 				{
 					"name": "MeshRenderer",
 					"mesh": "ogrehead.mesh",
+					"material": "",
 					"visible" : true
 				},
 				{
@@ -113,6 +115,7 @@
 				{
 					"name": "MeshRenderer",
 					"mesh": "ogrehead.mesh",
+					"material": "",
 					"visible" : true
 				},
 				{
@@ -151,14 +154,14 @@
 					"name": "Matrix",
 					"matrixSize":
 					{
-						"x": 20,
-						"y": 20
+						"x": 40,
+						"y": 35
 					},
 					"nodeSize":
 					{
-					  	"x": 80,
-					 	"y": 80,
-					  	"z": 80
+					  	"x": 50,
+					 	"y": 50,
+					  	"z": 50
 					}
 				}
 			]
