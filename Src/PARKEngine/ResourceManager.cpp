@@ -88,6 +88,35 @@ void ResourceManager::initializeResources()
 void ResourceManager::ceguiInit() {
 	//Carga de CEGUI y configurado automatico con elementos de OGRE
 	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>(OgreManager::instance()->getWindow()));
+
+	//Carga de cosas
+	// create (load) the TaharezLook scheme file
+	// (this auto-loads the TaharezLook looknfeel and imageset files)
+	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+
+	// create (load) a font.
+	// The first font loaded automatically becomes the default font, but note
+	// that the scheme might have already loaded a font, so there may already
+	// be a default set - if we want the "DejaVuSans-10" font to definitely
+	// be the default, we should set the default explicitly afterwards.
+	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-10.font");
+
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DejaVuSans-10");
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("TaharezLook/Tooltip");
+
+	
+	//Crear ventana cegui de prueba
+	CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+	CEGUI::Window* myRoot = wmgr.createWindow("DefaultWindow", "root");
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(myRoot);
+	CEGUI::FrameWindow* fWnd = static_cast<CEGUI::FrameWindow*>(wmgr.createWindow("TaharezLook/FrameWindow", "testWindow"));
+	myRoot->addChild(fWnd);
+	// position a quarter of the way in from the top-left of parent.
+	fWnd->setPosition(CEGUI::UVector2(CEGUI::UDim(0.25f, 0.0f), CEGUI::UDim(0.25f, 0.0f)));
+	// set size to be half the size of the parent
+	fWnd->setSize(CEGUI::USize(CEGUI::UDim(0.5f, 0.0f), CEGUI::UDim(0.5f, 0.0f)));
+	fWnd->setText("Hello World!");
 }
 
 json ResourceManager::getJsonByKey(const std::string & key)
