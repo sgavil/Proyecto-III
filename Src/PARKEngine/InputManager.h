@@ -10,7 +10,7 @@ public:
 
 	void initialise(Ogre::RenderWindow *renderWindow);
 	void capture(void);
-	bool isKeyBoardKeyDown(std::string accion);
+	bool isKeyDown(std::string accion);
 
 	void addKeyListener(OIS::KeyListener *keyListener, const std::string& instanceName);
 	void addMouseListener(OIS::MouseListener *mouseListener, const std::string& instanceName);
@@ -18,6 +18,7 @@ public:
 
 	void addMappingValues(std::string file);
 	void addKeyBoardMappingValue(std::string name, std::string input);
+	void addMouseMappingValue(std::string name, std::string input);
 
 	void removeKeyListener(const std::string& instanceName);
 	void removeMouseListener(const std::string& instanceName);
@@ -60,6 +61,7 @@ private:
 	bool buttonReleased(const OIS::JoyStickEvent &e, int button);
 
 	virtual OIS::KeyCode getAsKeyCode(std::string str);
+	virtual OIS::MouseButtonID getAsMouseButtonID(std::string str);
 
 	OIS::Mouse        *mMouse;
 	OIS::Keyboard     *mKeyboard;
@@ -82,6 +84,7 @@ private:
 	std::map<std::string, OIS::JoyStickListener*>::iterator itJoystickListenerEnd;
 
 	std::map<std::string, OIS::KeyCode> KeyboardMapping;
+	std::map<std::string, OIS::MouseButtonID> MouseMapping;
 
 	static InputManager *mInputManager;
 };

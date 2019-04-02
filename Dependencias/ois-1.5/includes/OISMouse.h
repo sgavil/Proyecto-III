@@ -32,6 +32,7 @@ namespace OIS
 {
 	//! Button ID for mouse devices
 	enum MouseButtonID {
+		MB_Unassigned,
 		MB_Left = 0,
 		MB_Right,
 		MB_Middle,

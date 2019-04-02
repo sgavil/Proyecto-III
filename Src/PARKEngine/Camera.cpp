@@ -42,17 +42,17 @@ void Camera::update(unsigned int time)
 
 bool Camera::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("Avanzar"))
+	if (InputManager::getSingletonPtr()->isKeyDown("Avanzar"))
 		camNode_->translate({ 0, 0, -10 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("Retroceder"))
+	if (InputManager::getSingletonPtr()->isKeyDown("Retroceder"))
 		camNode_->translate({ 0, 0, 10 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("MoverIzquierda"))
+	if (InputManager::getSingletonPtr()->isKeyDown("MoverIzquierda"))
 		camNode_->translate({ -10, 0, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("MoverDerecha"))
+	if (InputManager::getSingletonPtr()->isKeyDown("MoverDerecha"))
 		camNode_->translate({ 10, 0, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("Ampliar"))
+	if (InputManager::getSingletonPtr()->isKeyDown("Ampliar"))
 		camNode_->translate({ 0, -10, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyBoardKeyDown("Desampliar"))
+	if (InputManager::getSingletonPtr()->isKeyDown("Desampliar"))
 		camNode_->translate({ 0, 10, 0 }, Ogre::Node::TS_WORLD);
 	return false;
 }

@@ -25,5 +25,12 @@
 			"Id": "Desampliar",
 			"key": "Q"
 		}
+	],
+	"Mouse":
+	[
+		{
+			"Id": "Violetar",
+			"key": "MB_Left"
+		}
 	]
 }

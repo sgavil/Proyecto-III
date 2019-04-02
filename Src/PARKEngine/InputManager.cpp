@@ -19,7 +19,6 @@ InputManager::~InputManager(void) {
 			mInputSystem->destroyInputObject(mMouse);
 			mMouse = 0;
 		}
-
 		if (mKeyboard) {
 			mInputSystem->destroyInputObject(mKeyboard);
 			mKeyboard = 0;
@@ -111,7 +110,7 @@ void InputManager::capture(void) {
 	if (mMouse) {
 		mMouse->capture();
 	}
-
+	mMouse->getMouseState();
 	if (mKeyboard) {
 		mKeyboard->capture();
 	}
@@ -125,11 +124,16 @@ void InputManager::capture(void) {
 	}
 }
 
-bool InputManager::isKeyBoardKeyDown(std::string accion)
+bool InputManager::isKeyDown(std::string accion)
 {
-	auto it = KeyboardMapping.find(accion);
-	if (it != KeyboardMapping.end())
-		return mKeyboard->isKeyDown(it->second);
+	auto itK = KeyboardMapping.find(accion);
+	if (itK != KeyboardMapping.end())
+		return mKeyboard->isKeyDown(itK->second);
+	auto itM = MouseMapping.find(accion);
+	if (itM != MouseMapping.end())
+		return mMouse->getMouseState().buttonDown(itM->second);
+
+	return false;
 }
 
 void InputManager::addKeyListener(OIS::KeyListener *keyListener, const std::string& instanceName) {
@@ -178,11 +182,19 @@ void InputManager::addMappingValues(std::string file)
 	for (json Jkeyboard : js["Keyboard"]) {
 		KeyboardMapping.insert(std::pair<std::string, OIS::KeyCode>(Jkeyboard["Id"], getAsKeyCode(Jkeyboard["key"])));
 	}
+	for (json JMouse : js["Mouse"]) {
+		MouseMapping.insert(std::pair<std::string, OIS::MouseButtonID>(JMouse["Id"], getAsMouseButtonID(JMouse["key"])));
+	}
 }
 
 void InputManager::addKeyBoardMappingValue(std::string name, std::string input)
 {
 	KeyboardMapping.insert(std::pair<std::string, OIS::KeyCode>(name, mKeyboard->getAsKeyCode(input)));
+}
+
+void InputManager::addMouseMappingValue(std::string name, std::string input)
+{
+	MouseMapping.insert(std::pair<std::string, OIS::MouseButtonID>(name, getAsMouseButtonID(input)));
 }
 
 void InputManager::removeKeyListener(const std::string& instanceName) {
@@ -469,4 +481,17 @@ OIS::KeyCode InputManager::getAsKeyCode(std::string str)
 	else if (str == "INS") return OIS::KC_INSERT;
 	else if (str == "SUPR") return OIS::KC_SUBTRACT;
 	else return OIS::KC_UNASSIGNED;
+}
+
+OIS::MouseButtonID InputManager::getAsMouseButtonID(std::string str)
+{
+	if (str == "MOUSE_LEFT") return OIS::MB_Left;
+	else if (str == "MOUSE_RIGHT") return OIS::MB_Right;
+	else if (str == "MOUSE_MIDDLE") return OIS::MB_Middle;
+	else if (str == "MOUSE_BUTTON3") return OIS::MB_Button3;
+	else if (str == "MOUSE_BUTTON4") return OIS::MB_Button4;
+	else if (str == "MOUSE_BUTTON5") return OIS::MB_Button5;
+	else if (str == "MOUSE_BUTTON6") return OIS::MB_Button6;
+	else if (str == "MOUSE_BUTTON7") return OIS::MB_Button7;
+	else return OIS::MB_Unassigned;
 }
