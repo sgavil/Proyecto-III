@@ -15,6 +15,9 @@ public:
 
 private:
 	//Necesidades
-	int hunger;
-	int thirst;
+	int hunger_;
+	int peepee_;
+	int fun_;
 };
+
+REGISTER_TYPE(NPC);

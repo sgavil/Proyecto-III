@@ -1,14 +1,12 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <map>
-
 #include <fmod.h>
-#include <fmod.hpp>
-#include <fmod_errors.h>
 #include "Utils.h"
 
-
+namespace FMOD
+{
+	class System;
+	class Sound;
+};
 
 class AudioManager 
 {

@@ -11,6 +11,7 @@ NPC::~NPC()
 
 void NPC::load(json file)
 {
-	hunger = file["hunger"];
-	thirst = file["thirst"];
+	hunger_ = file["hunger"];
+	peepee_ = file["peepee"];
+	fun_ = file["fun"];
 }

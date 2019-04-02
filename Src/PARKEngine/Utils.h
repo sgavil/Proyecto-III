@@ -4,6 +4,7 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <map>
 
 
 //... COMO REDECLARACIONES DE OTROS TIPOS DE DATOS--->
