@@ -49,7 +49,7 @@ void MeshRenderer::update(unsigned int time)
 	if(transform_ != nullptr)
 	{
 		node_->setPosition(transform_->getPosition());
-		node_->setOrientation(transform_->getOrientation());
+		node_->setOrientation(transform_->getRotation());
 		node_->setScale(transform_->getScale());
 	}
 }

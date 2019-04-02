@@ -25,7 +25,7 @@ public:
 	virtual void receive(Message* msg) {};
 
 	//Devuelve el nodo de Ogre
-	virtual Ogre::SceneNode* getNode();
+	virtual Ogre::SceneNode* getNode(); //ESTO HAY QUE QUITARLO
 
 	//Vuelve visible/invisible el renderer
 	virtual void setVisible(bool b);

@@ -69,7 +69,7 @@ void Rigidbody::update(unsigned int time)
 
 		//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
 		transform_->setPosition(Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
-		transform_->setOrientation(Quaternion(trans.getRotation().getW(), trans.getRotation().getX(),
+		transform_->setRotation(Quaternion(trans.getRotation().getW(), trans.getRotation().getX(),
 			trans.getRotation().getY(), trans.getRotation().getZ()));
 	}
 }
