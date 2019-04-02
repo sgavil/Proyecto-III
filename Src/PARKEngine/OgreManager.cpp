@@ -10,6 +10,8 @@
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
+#include "InputManager.h"
+
 //OIS
 #include <OIS.h>
 #include <OISKeyboard.h>
@@ -102,7 +104,13 @@ OgreManager::~OgreManager()
 
 void OgreManager::render(unsigned int deltaTime)
 {
-	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);
+	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);	
+
+	OIS::Mouse* mouse =  InputManager::getSingletonPtr()->getMouse();
+	std::cout << CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x << std::endl;
+	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(mouse->getMouseState().X.rel
+		, mouse->getMouseState().Y.rel );
+
 }
 
 Ogre::SceneManager * OgreManager::getSceneManager()
