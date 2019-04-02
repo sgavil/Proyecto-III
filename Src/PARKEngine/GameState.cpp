@@ -1,10 +1,8 @@
 #include "GameState.h"
-#include <PARKEngine/PhysicsManager.h>
-#include <PARKEngine/EntityFactory.h>OgreManager.h
-#include <PARKEngine/InputManager.h>
-#include <PARKEngine/OgreManager.h>
-#include <PARKEngine/Entity.h>
-#include <PARKEngine/Component.h>
+#include "PARKManagers.h"
+#include "EntityFactory.h"
+#include "Entity.h"
+#include "Component.h"
 
 GameState::GameState(std::string stateID)
 {
