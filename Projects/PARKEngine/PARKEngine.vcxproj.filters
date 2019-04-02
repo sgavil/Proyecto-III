@@ -147,5 +147,8 @@
     <ClInclude Include="..\..\Src\PARKEngine\PhysicsManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\PARKManagers.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

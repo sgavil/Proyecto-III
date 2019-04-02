@@ -1,14 +1,10 @@
 #include "Game.h"
 
 //NUESTRO
-#include <PARKEngine/PhysicsManager.h>
-#include <PARKEngine/AudioManager.h>
-#include <PARKEngine/OgreManager.h>
-#include <PARKEngine/InputManager.h>
-#include <PARKEngine/Entity.h>
-#include <PARKEngine/SceneManager.h> 
-#include "BureaucracyManager.h"
+#include <PARKEngine/PARKManagers.h>
 #include <PARKEngine/EntityFactory.h>
+#include "BureaucracyManager.h"
+
 
 //CEGUI/OIS
 #include <CEGUI/CEGUI.h>
