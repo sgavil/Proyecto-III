@@ -22,6 +22,21 @@ void Transform::load(json file)
 	//scale_.z = scale["z"];
 }
 
+void Transform::translate(Vector3 incr)
+{
+	position_ += incr;
+}
+
+void Transform::rotate(Quaternion incr)
+{
+
+}
+
+void Transform::scale(Vector3 incr)
+{
+	scale_ *= incr;
+}
+
 Transform::~Transform()
 {
 }

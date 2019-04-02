@@ -150,5 +150,8 @@
     <ClInclude Include="..\..\Src\PARKEngine\PARKManagers.h">
       <Filter>Includes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\PARKComponents.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

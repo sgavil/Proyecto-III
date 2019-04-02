@@ -54,8 +54,12 @@ void MeshRenderer::update(unsigned int time)
 	}
 }
 
-bool MeshRenderer::handleEvent(unsigned int time)
+Ogre::SceneNode * MeshRenderer::getNode()
 {
-	
-	return false;
+	 return node_; 
+}
+
+void MeshRenderer::setVisible(bool b)
+{
+	node_->setVisible(b);
 }

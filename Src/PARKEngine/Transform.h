@@ -12,20 +12,27 @@ public:
 
 	virtual void load(json file);
 
+	//GETTERS
 	//Position getter
 	Vector3 getPosition() { return position_; };
-	//Position setter
-	void setPosition(Vector3 pos) { this->position_ = pos; };
-
 	//Orientation getter
 	Ogre::Quaternion getOrientation() { return orientation_; };
-	//Orientation setter
-	void setOrientation(Ogre::Quaternion orientation) { this->orientation_ = orientation; };
-	
 	//Scale getter
 	Vector3 getScale() { return scale_; };
+
+
+	//SETTERS
+	//Position setter
+	void setPosition(Vector3 pos) { this->position_ = pos; };
+	//Orientation setter
+	void setOrientation(Ogre::Quaternion orientation) { this->orientation_ = orientation; };
 	//Scale setter
 	void setScale(Vector3 scale) { this->scale_ = scale; };
+
+	//TRANSFORMATIONS
+	void translate(Vector3 incr);
+	void rotate(Quaternion incr);
+	void scale(Vector3 incr);
 
 protected:
 	Vector3 position_;
