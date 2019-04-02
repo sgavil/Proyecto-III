@@ -1,0 +1,6 @@
+#include "PhysicsManager.h"
+#include "AudioManager.h"
+#include "OgreManager.h"
+#include "InputManager.h"
+#include "SceneManager.h"
+#include "ResourceManager.h"
