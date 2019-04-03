@@ -133,6 +133,52 @@ Ogre::TextureManager * OgreManager::getTextureManager()
 	return &Ogre::TextureManager::getSingleton();
 }
 
+Ogre::Vector3 OgreManager::raycast(Ogre::Ray ray_)
+{
+	Ogre::RaySceneQuery* m_pray_scene_query = sceneMgr_->createRayQuery(Ogre::Ray(), sceneMgr_->WORLD_GEOMETRY_TYPE_MASK);
+	if (nullptr == m_pray_scene_query) return (Vector3::ZERO);
+	m_pray_scene_query->setSortByDistance(true);
+
+	// create the ray to test
+	Ogre::Ray ray = ray_;
+	// check we are initialised
+	if (m_pray_scene_query != nullptr)
+	{
+		// create a query object
+		m_pray_scene_query->setRay(ray);
+	}
+
+	// at this point we have raycast to a series of different objects bounding boxes.
+	// we need to test these different objects to see which is the first polygon hit.
+	// there are some minor optimizations (distance based) that mean we wont have to
+	// check all of the objects most of the time, but the worst case scenario is that
+	// we need to test every triangle of every object.
+	Ogre::Real closest_distance = -1.0f;
+	Ogre::Vector3 closest_result;
+	Ogre::RaySceneQueryResult& query_result = m_pray_scene_query->execute();
+	for (int qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
+	{
+		// stop checking if we have found a raycast hit that is closer
+		// than all remaining entities
+		if ((closest_distance >= 0.0f) &&
+			(closest_distance < query_result[qr_idx].distance))
+		{
+			break;
+		}
+
+		// only check this result if its a hit against an entity
+		if ((query_result[qr_idx].movable != NULL) &&
+			(query_result[qr_idx].movable->getMovableType().compare("Entity") == 0))
+		{
+			// get the entity to check
+			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
+			return pentity->getParentSceneNode()->getPosition();
+		}
+	}
+
+	return Vector3::ZERO;
+}
+
 Ogre::FileSystemLayer * OgreManager::createFileSystemLayer(std::string cfLayerSystem)
 {
 	return OGRE_NEW Ogre::FileSystemLayer("cfLayerSystem");

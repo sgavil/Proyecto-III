@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include <dirent.h>
+#include <OgreRay.h>
 
 //Espacio de nombres de Ogre
 namespace Ogre
@@ -44,7 +45,7 @@ public:
 	Ogre::ResourceGroupManager* getResourceGroupManager();
 	Ogre::TextureManager* getTextureManager();
 	Ogre::RenderWindow* getWindow() { return window_; };
-
+	Ogre::Vector3 raycast(Ogre::Ray ray_);
 
 	//Cración de recursos
 	Ogre::FileSystemLayer* createFileSystemLayer(std::string cfLayerSystem);
