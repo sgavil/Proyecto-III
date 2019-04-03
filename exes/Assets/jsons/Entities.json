@@ -68,8 +68,8 @@
       "name": "MeshRenderer",
       "parameters":
       {
-        "mesh": "Building.mesh",
-        "material": "Building",
+        "mesh": "Node.mesh",
+        "material": "Node",
         "visible" : false
       }
     },
@@ -78,6 +78,86 @@
       "parameters": 
       {
         "nodeType": "EMPTY"
+      }
+    }
+  ],
+
+  "Amusement": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Amusement.mesh",
+        "material": "Amusement",
+        "visible" : true
+      }
+    }
+  ],
+
+  "Amusement1": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Amusement1.mesh",
+        "material": "Amusement",
+        "visible" : true
+      }
+    }
+  ],
+
+  "Amusement2": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Amusement2.mesh",
+        "material": "Amusement",
+        "visible" : true
+      }
+    }
+  ],
+
+  "Toilet": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Building.mesh",
+        "material": "Toilet",
+        "visible" : true
+      }
+    }
+  ],
+
+  "Restaurant": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Building.mesh",
+        "material": "Restaurant",
+        "visible" : true
       }
     }
   ]

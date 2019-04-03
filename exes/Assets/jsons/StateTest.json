@@ -198,6 +198,39 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "ConstructionMode",
+			"Components":
+			[
+				{
+					"name": "ConstructionMode",
+					"BuildingsNames":
+					[
+						{
+							"name" : "Empty"
+						},
+						{
+							"name" : "Road"
+						},
+						{
+							"name" : "Amusement"
+						},
+						{
+							"name" : "Amusement1"
+						},
+						{
+							"name" : "Amusement2"
+						},
+						{
+							"name" : "Toilet"
+						},
+						{
+							"name" : "Restaurant"
+						}
+					]
+				}
+			]
 		}
 	]
 }
