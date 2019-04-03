@@ -18,13 +18,13 @@ private:
 	int funRestore_;
 
 	int maxCola_; //Tamaño máximo de la cola, si esta está llena no se podrá acceder a ella
-
+	
 	type type_;
 	
 	std::queue<Entity*> cola;
-	std::pair<int, int> tam; //este tamaño hace referncia al numero de nodos que ocupa en la matriz logica
-	std::pair<int, int> entry; //Coordenada de entrada con respecto al (0, 0) de la atracción 
-	std::pair<int, int> exit; //Coordenada de salida con respecto al (0, 0) de la atracción 
+	Ogre::Vector2 tam;
+	Ogre::Vector2 entry;
+	Ogre::Vector2 exit;
 
 public:
 	Edificio();
@@ -36,25 +36,25 @@ public:
 	virtual bool handleEvent(unsigned int time) { return false; };
 	virtual void receive(Message* msg) {};
 
-	void load(json file) {};
+	void load(json file);
 
 	//GETTERS
 	int getPeePeeValue() { return PeePeeRestore_; };
 	int getHungryValue() { return HungryRestore_; };
 	int getFunValue() { return funRestore_; };
+	//Para obtener las coordenadas de forma individual
+	int getTamX() { return tam.x; };
+	int getTamY() { return tam.y; };
 
-	int getTamX() { return tam.first; };
-	int getTamY() { return tam.second; };
+	int getEntryX() { return entry.x; };
+	int getEntryY() { return entry.y; };
 
-	int getEntryX() { return entry.first; };
-	int getEntryY() { return entry.second; };
-
-	int getExitX() { return exit.first; };
-	int getExitY() { return exit.second; }
-
-	std::pair<int, int> getTamAsPair() { return tam; };
-	std::pair<int, int> getEntryAsPair() { return entry; };
-	std::pair<int, int> getExitAsPair() { return exit; };
+	int getExitX() { return exit.x; };
+	int getExitY() { return exit.y; }
+	//
+	Ogre::Vector2 getTam() { return tam; };
+	Ogre::Vector2 getEntry() { return entry; };
+	Ogre::Vector2 getExit() { return exit; };
 
 	//SETTERS
 	void getPeePeeValue(int P) { PeePeeRestore_ = P; };
