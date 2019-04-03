@@ -49,7 +49,7 @@ void Game::start()
 
 
 	// TEST DE LOS BLUEPRINTS CON PARÁMETROS (SALE BIEN)
-	EntityFactory::Instance()->createEntityFromBlueprint("NPC");
+	//EntityFactory::Instance()->createEntityFromBlueprint("NPC");
 }
 
 void Game::run()

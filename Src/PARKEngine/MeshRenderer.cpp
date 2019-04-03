@@ -26,9 +26,9 @@ void MeshRenderer::load(json file)
 	std::string meshName = file["mesh"];
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
 	node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
-	if (file["material"] != "")
-		ogreEntity->setMaterialName(file["material"]);
 	node_->attachObject(ogreEntity);
+	if (file["material"] != "")
+		setMaterial(file["material"]);
 	node_->setVisible(file["visible"]);
 }
 
@@ -62,4 +62,17 @@ Ogre::SceneNode * MeshRenderer::getNode()
 void MeshRenderer::setVisible(bool b)
 {
 	node_->setVisible(b);
+}
+
+void MeshRenderer::setMaterial(std::string materialName)
+{
+	if (!node_->getAttachedObjects().empty())
+		((Ogre::Entity*)node_->getAttachedObject(0))->setMaterialName(materialName);
+	else
+		std::cout << "CAN'T ASSIGN MATERIAL, LACKING OGRE ENTITY" << std::endl;
+}
+
+std::string MeshRenderer::getMaterial()
+{
+	return ((Ogre::Entity*)node_->getAttachedObject(0))->getSubEntities()[0]->getMaterialName();
 }

@@ -169,6 +169,7 @@ json ResourceManager::getJsonByKey(const std::string & key)
 	else return nullptr;
 }
 
+
 void ResourceManager::loadJsonsFiles(const std::string resourcesPath)
 {
 	//Se le añade al path exes la carpeta Assets\\jsons

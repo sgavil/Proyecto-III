@@ -30,6 +30,11 @@ public:
 	//Vuelve visible/invisible el renderer
 	virtual void setVisible(bool b);
 
+	//Sets the material of the mesh
+	virtual void setMaterial(std::string materialName);
+	//Returns the material of the mesh
+	virtual std::string getMaterial();
+
 protected:
 	Transform * transform_ = nullptr;
 	Ogre::SceneNode* node_;

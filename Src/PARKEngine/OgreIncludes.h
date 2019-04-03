@@ -2,6 +2,7 @@
 #include <OgreNode.h>
 #include <OgreSceneNode.h>
 #include <OgreEntity.h>
+#include <OgreSubEntity.h>
 #include <OgrePlane.h>
 #include <OgreRenderWindow.h>
 #include <OgreConfigFile.h>
