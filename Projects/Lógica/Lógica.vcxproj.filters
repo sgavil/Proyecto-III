@@ -22,6 +22,9 @@
     <ClCompile Include="..\..\Src\Lógica\Matrix\Node.cpp">
       <Filter>Componentes\Matrix</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\Edificio.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\NPC.h">
@@ -32,6 +35,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\Matrix\Node.h">
       <Filter>Componentes\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\Edificio.h">
+      <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
