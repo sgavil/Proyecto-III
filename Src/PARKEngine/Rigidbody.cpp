@@ -153,8 +153,12 @@ Vector3 Rigidbody::getPosition()
 
 void Rigidbody::setPosition(Vector3 destiny)
 {
+	//Get actual transform and change position
 	btTransform trans = getBtTransform();
 	trans.setOrigin(btVector3(destiny.x, destiny.y, destiny.z));
+
+	//Set it
+	rigid_->setWorldTransform(trans);
 }
 
 btTransform Rigidbody::getBtTransform()
