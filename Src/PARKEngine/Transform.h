@@ -34,8 +34,8 @@ public:
 	void translate(Vector3 incr);
 	//Rotate the component around a certain axis
 	void rotate(Vector3 axis, float degrees);
-	//Multiplies the component scale
-	void scale(Vector3 incr);
+	//Multiplies the component scale for a given factor
+	void scale(Vector3 factor);
 
 protected:
 	Vector3 position_;

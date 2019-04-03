@@ -61,11 +61,7 @@ void Rigidbody::update(unsigned int time)
 	{
 
 		//Obtenemos su posición y orientación
-		btTransform trans;
-		if (rigid_->getMotionState())
-			rigid_->getMotionState()->getWorldTransform(trans);
-		else
-			trans = rigid_->getWorldTransform();
+		btTransform trans = getBtTransform();
 
 		//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
 		transform_->setPosition(Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
@@ -74,7 +70,126 @@ void Rigidbody::update(unsigned int time)
 	}
 }
 
-void Rigidbody::addForce(btVector3 force)
+void Rigidbody::addForce(Vector3 force)
 {
-	rigid_->applyCentralImpulse(force);
+	rigid_->applyCentralImpulse(btVector3(force.x, force.y, force.z));
+}
+
+void Rigidbody::addTorque(Vector3 torque)
+{
+	rigid_->applyTorque(btVector3(torque.x, torque.y, torque.z));
+}
+
+void Rigidbody::clearForces()
+{
+	rigid_->clearForces();
+}
+
+void Rigidbody::getAABB(Vector3& min, Vector3& max)
+{
+	btVector3 btMin, btMax;
+	rigid_->getAabb(btMin, btMax);
+
+	//Actualizamos valores
+	min = Vector3(btMin.getX(), btMin.getY(), btMin.getZ());
+	max = Vector3(btMax.getX(), btMax.getY(), btMax.getZ());
+}
+
+Vector3 Rigidbody::getAngularVelocity()
+{
+	btVector3 angVel = rigid_->getAngularVelocity();
+	return Vector3(angVel.getX(), angVel.getY(), angVel.getZ());
+}
+
+Vector3 Rigidbody::getLinearVelocity()
+{
+	btVector3 linearVel = rigid_->getLinearVelocity();
+	return Vector3(linearVel.getX(), linearVel.getY(), linearVel.getZ());
+}
+
+float Rigidbody::getMass()
+{
+	return 1.0/rigid_->getInvMass();
+}
+
+Vector3 Rigidbody::getTotalForce()
+{
+	btVector3 totalForce = rigid_->getTotalForce();
+	return Vector3(totalForce.getX(), totalForce.getY(), totalForce.getZ());
+}
+
+
+Vector3 Rigidbody::getTotalTorque()
+{
+	btVector3 totalTorque = rigid_->getTotalTorque();
+	return Vector3(totalTorque.getX(), totalTorque.getY(), totalTorque.getZ());
+}
+
+bool Rigidbody::isKinematic()
+{
+	return rigid_->isKinematicObject();
+}
+
+bool Rigidbody::isStatic()
+{
+	return rigid_->isStaticObject();
+}
+
+void Rigidbody::setLinearVelocity(Vector3 linearVel)
+{
+	rigid_->setLinearVelocity(btVector3(linearVel.x, linearVel.y, linearVel.z));
+}
+
+void Rigidbody::setAngularVelocity(Vector3 angularVel)
+{
+	rigid_->setAngularVelocity(btVector3(angularVel.x, angularVel.y, angularVel.z));
+}
+
+Vector3 Rigidbody::getPosition()
+{
+	btTransform trans = getBtTransform();
+	return Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ());
+}
+
+void Rigidbody::setPosition(Vector3 destiny)
+{
+	btTransform trans = getBtTransform();
+	trans.setOrigin(btVector3(destiny.x, destiny.y, destiny.z));
+}
+
+btTransform Rigidbody::getBtTransform()
+{
+	btTransform trans;
+	//Está en movimiento
+	if (rigid_ && rigid_->getMotionState())
+		rigid_->getMotionState()->getWorldTransform(trans);
+	//Está parado (cogemos la posición inicial)
+	else
+		trans = rigid_->getWorldTransform();
+
+	return trans;
+}
+
+
+std::string Rigidbody::getInfo()
+{
+	std::string s = " ~~ Rigidbody of Entity '" + entity_->getName() + "' ~~ \n Mass: " + std::to_string(getMass()) + "\n Position: {" +
+		std::to_string(getPosition().x) + ", " + std::to_string(getPosition().y) + ", " + std::to_string(getPosition().z) + "} \n Linear velocity: {" +
+		std::to_string(getLinearVelocity().x) + ", " + std::to_string(getLinearVelocity().y) + ", " + std::to_string(getLinearVelocity().z) + "} \n Angular velocity: {" +
+		std::to_string(getAngularVelocity().x) + ", " + std::to_string(getAngularVelocity().y) + ", " + std::to_string(getAngularVelocity().z) + "} \n Force accumulated: {" +
+		std::to_string(getTotalForce().x) + ", " + std::to_string(getTotalForce().y) + ", " + std::to_string(getTotalForce().z) + "} \n Torque accumulated: {" +
+		std::to_string(getTotalTorque().x) + ", " + std::to_string(getTotalTorque().y) + ", " + std::to_string(getTotalTorque().z) + "} \n KINEMATIC?: ";
+	if (isKinematic())
+		s += "YES";
+	else
+		s += "NO";
+
+	s += "\n STATIC?: ";
+	if (isStatic())
+		s += "YES";
+	else
+		s += "NO";
+	s += "\n";
+
+	return s;
 }

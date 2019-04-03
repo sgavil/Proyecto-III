@@ -45,6 +45,16 @@
 					"visible" : true
 				},
 				{
+					"name": "Rigidbody",
+					"dimensions":
+					{
+					  "x": 3,
+					  "y": 3,
+					  "z": 3
+					},
+					"mass": 10
+				},
+				{
 					"name": "NPC",
 					"hunger": 0,
 					"peepee": 0,

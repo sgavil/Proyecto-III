@@ -29,19 +29,24 @@ void Transform::translate(Vector3 incr)
 
 void Transform::rotate(Vector3 axis, float degrees)
 {
-	Ogre::Degree degreeAngle = Ogre::Degree(degrees);
-	Ogre::Radian radianAngle = Ogre::Radian(degreeAngle);
+	//Quaternions are fun
+	//Pasamos a radianes
+	Ogre::Radian radianAngle = Ogre::Radian(Ogre::Degree(degrees));
+
+	//Obtenemos el cutarnión que simboliza esa transformación
 	Ogre::Quaternion q;
 	q.FromAngleAxis(radianAngle, axis);
+
+	//Multiplicamos el cuaternión por la rotación
 	rotation_ = rotation_ * q;
 		
-	// Normalise quaternion to avoid drift
+	//Normalizamos el cuaternión
 	rotation_.normalise();
 }
 
-void Transform::scale(Vector3 incr)
+void Transform::scale(Vector3 factor)
 {
-	scale_ *= incr;
+	scale_ *= factor;
 }
 
 Transform::~Transform()
