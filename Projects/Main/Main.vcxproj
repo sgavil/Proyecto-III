@@ -182,12 +182,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Main\BureaucracyManager.cpp" />
     <ClCompile Include="..\..\Src\Main\Game.cpp" />
     <ClCompile Include="..\..\Src\Main\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Main\BureaucracyManager.h" />
     <ClInclude Include="..\..\Src\Main\Game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

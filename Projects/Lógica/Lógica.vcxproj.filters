@@ -11,6 +11,9 @@
     <Filter Include="Componentes\Matrix">
       <UniqueIdentifier>{3d01f28b-45e2-4425-9ec3-6bf52228dfea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{fac31122-4c05-48fd-8e8f-bae6d69a7990}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Lógica\NPC.cpp">
@@ -25,6 +28,9 @@
     <ClCompile Include="..\..\Src\Lógica\Edificio.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\BureaucracyManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\NPC.h">
@@ -38,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\Edificio.h">
       <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
