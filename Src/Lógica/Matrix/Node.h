@@ -3,8 +3,6 @@
 
 using namespace std;
 
-enum NodeType{EMPTY, ROAD, BUILDING_ENTRY, BUILDING_EXIT};
-
 class Node : public Component
 {
 public:
@@ -18,15 +16,15 @@ public:
 	virtual bool handleEvent(unsigned int time) { return false; };
 	virtual void receive(Message* msg) {};
 
-
+	void setMatrixPos(int i, int j);
 	Vector2 getMatrixPos();
 
-	NodeType getType();
-	void setType(NodeType t);
+	string getType();
+	void setType(string t);
 
 private:
-	Vector2 posMatrix_;
-	NodeType nodeType_;
+	Ogre::Vector2 posMatrix_;
+	string nodeType_;
 
 	//Componente asociado al edificio
 

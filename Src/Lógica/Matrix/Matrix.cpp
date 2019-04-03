@@ -1,6 +1,6 @@
 #include "Matrix.h"
 Matrix::Matrix()
-	: mSize_({ 0 ,0 }), nSize_({0, 0, 0}), matrix_(mSize_.x, vector<Entity*>(mSize_.y, nullptr))
+	: mSize_({ 0 ,0 }), nSize_({0, 0, 0})
 {
 }
 
@@ -20,9 +20,12 @@ void Matrix::load(json file)
 	nSize_.y = nodeSize["y"];
 	nSize_.z = nodeSize["z"];
 
-	dirs_ = { { 1,0 }, { -1,0 }, { 0,1 }, { 0, -1 } };
-
-	matrix_ = M(mSize_.x, vector<Entity*>(mSize_.y, nullptr));
+	for (int i = 0; i < mSize_.x; i++) {
+		matrix_.push_back(vector<Entity*>());
+		for (int j = 0; j < mSize_.y; j++) {
+			matrix_[i].push_back(nullptr);
+		}
+	}
 	createMatrix();
 }
 
@@ -46,6 +49,7 @@ void Matrix::createMatrix()
 		for (int i = 0; i < mSize_.x; i++) {
 			Entity* e = EntityFactory::Instance()->createEntityFromBlueprint("Node");
 			e->getComponent<Transform>()->setPosition({ (Ogre::Real)(posIni.x + (i * nSize_.x)), (Ogre::Real)posIni.y, (Ogre::Real)(posIni.z + (j * nSize_.z)) });
+			e->getComponent<Node>()->setMatrixPos(i, j);
 			matrix_[i][j] = e;
 		}
 	}
@@ -61,7 +65,7 @@ Vector3 Matrix::getPosIni()
 	return v;
 }
 
-M Matrix::getMatrix()
+vector<vector<Entity*>> Matrix::getMatrix()
 {
 	return matrix_;
 }
@@ -71,31 +75,26 @@ Entity * Matrix::getEntityNode(int i, int j)
 	return matrix_[i][j];
 }
 
-list<Entity*> Matrix::getAdj(Entity* e)
+list<Entity*> Matrix::getAdj(Entity* e, int x, int y)
 {
 	list<Entity*> list;
 	Vector2 nPos = e->getComponent<Node>()->getMatrixPos();
-	for (pair<int, int> p : dirs_) {
-		if (limits(nPos.x + p.first, nPos.y + p.second))
-			list.push_back(getEntityNode(nPos.x + p.first, nPos.y + p.second));
+	for (int i = -x; i <= x; i++) {
+		for (int j = -y; j <= y; j++) {
+			if (limits(nPos.x + i, nPos.y + j)) {
+				list.push_back(getEntityNode(nPos.x + i, nPos.y + j));
+			}
+		}
 	}
-
 	return list;
 }
 
-list<Entity*> Matrix::getAdj(int i, int j)
+Ogre::Vector3 Matrix::getNodeSize()
 {
-	list<Entity*> list;
-	for (pair<int, int> p : dirs_) {
-		if (limits(i + p.first, j + p.second))
-			list.push_back(getEntityNode(i + p.first, j + p.second));
-	}
-
-	return list;
+	return nSize_;
 }
-
 
 bool Matrix::limits(int i, int j)
 {
-	return i > 0 && j > 0 && i < mSize_.x, j < mSize_.y;
+	return i >= 0 && j >= 0 && i < mSize_.x && j < mSize_.y;
 }

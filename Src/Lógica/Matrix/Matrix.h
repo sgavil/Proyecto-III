@@ -8,9 +8,6 @@
 #include <vector>
 
 using namespace std;
-using M = vector<vector<Entity*>>;
-using dirs = vector<pair<int, int>>;
-
 class Matrix : public Component
 {
 public:
@@ -26,21 +23,21 @@ public:
 	virtual bool handleEvent(unsigned int time) { return false; };
 	virtual void receive(Message* msg) {};
 
-	M getMatrix();
+	vector<vector<Entity*>> getMatrix();
 	Entity* getEntityNode(int i, int j);
-	list<Entity*> getAdj(Entity* e);
-	list<Entity*> getAdj(int i, int j);
+	list<Entity*> getAdj(Entity* e, int x, int y);
+
+	Ogre::Vector3 getNodeSize();
+	bool limits(int i, int j);
 
 private:
-	dirs dirs_;
-	Vector2 mSize_;
-	Vector3 nSize_;
-	M matrix_;
+	Ogre::Vector2 mSize_;
+	Ogre::Vector3 nSize_;
+	vector<vector<Entity*>> matrix_;
 	std::list<Component*> comps;
 	
 	void createMatrix();
 	Vector3 getPosIni();
-	bool limits(int i, int j);
 };
 
 REGISTER_TYPE(Matrix)

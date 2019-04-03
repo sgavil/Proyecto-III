@@ -9,6 +9,9 @@
 #include "OgreIncludes.h"
 #include "OgreManager.h"
 
+#include <CEGUI/CEGUI.h>
+
+
 Camera::Camera()
 {
 	camNode_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("camNode");
@@ -54,6 +57,15 @@ bool Camera::handleEvent(unsigned int time)
 		camNode_->translate({ 0, -10, 0 }, Ogre::Node::TS_WORLD);
 	if (InputManager::getSingletonPtr()->isKeyDown("Desampliar"))
 		camNode_->translate({ 0, 10, 0 }, Ogre::Node::TS_WORLD);
+	if (InputManager::getSingletonPtr()->isKeyDown("Ray"))
+	{
+		Ogre::Ray r = camera_->getCameraToViewportRay(
+			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x/
+			float(OgreManager::instance()->getWindow()->getWidth()),
+			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_y/
+			float(OgreManager::instance()->getWindow()->getHeight()));
+		OgreManager::instance()->raycast(r);
+	}
 	return false;
 }
 
