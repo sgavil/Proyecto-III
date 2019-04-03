@@ -172,6 +172,7 @@ Ogre::Vector3 OgreManager::raycast(Ogre::Ray ray_)
 		{
 			// get the entity to check
 			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
+			pentity->setVisible(false);
 			return pentity->getParentSceneNode()->getPosition();
 		}
 	}
