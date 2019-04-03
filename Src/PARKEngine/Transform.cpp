@@ -27,9 +27,16 @@ void Transform::translate(Vector3 incr)
 	position_ += incr;
 }
 
-void Transform::rotate(Vector3 axis, float angle)
+void Transform::rotate(Vector3 axis, float degrees)
 {
-	//TODO: ROTAR EL CUATERNION
+	Ogre::Degree degreeAngle = Ogre::Degree(degrees);
+	Ogre::Radian radianAngle = Ogre::Radian(degreeAngle);
+	Ogre::Quaternion q;
+	q.FromAngleAxis(radianAngle, axis);
+	rotation_ = rotation_ * q;
+		
+	// Normalise quaternion to avoid drift
+	rotation_.normalise();
 }
 
 void Transform::scale(Vector3 incr)
@@ -40,3 +47,38 @@ void Transform::scale(Vector3 incr)
 Transform::~Transform()
 {
 }
+
+
+//CÓDIGO DE ROTACIONES DE NODOS EN OGRE
+//void Node::rotate(const Vector3& axis, const Radian& angle, TransformSpace relativeTo)
+//{
+//	Quaternion q;
+//	q.FromAngleAxis(angle, axis);
+//	rotate(q, relativeTo);
+//}
+//
+////-----------------------------------------------------------------------
+//void Node::rotate(const Quaternion& q, TransformSpace relativeTo)
+//{
+//	switch (relativeTo)
+//	{
+//	case TS_PARENT:
+//		// Rotations are normally relative to local axes, transform up
+//		mOrientation = q * mOrientation;
+//		break;
+//	case TS_WORLD:
+//		// Rotations are normally relative to local axes, transform up
+//		mOrientation = mOrientation * _getDerivedOrientation().Inverse()
+//			* q * _getDerivedOrientation();
+//		break;
+//	case TS_LOCAL:
+//		// Note the order of the mult, i.e. q comes after
+//		mOrientation = mOrientation * q;
+//		break;
+//	}
+//
+//	// Normalise quaternion to avoid drift
+//	mOrientation.normalise();
+//
+//	needUpdate();
+//}
