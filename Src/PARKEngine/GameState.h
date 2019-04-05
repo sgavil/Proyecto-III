@@ -43,6 +43,7 @@ public:
 			if (component != nullptr)
 				v.push_back(component->getEntity());
 		}
+		return v;
 	};
 
 	// �> Devuelve la escena

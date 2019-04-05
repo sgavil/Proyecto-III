@@ -4,6 +4,7 @@
 #include <PARKEngine/PARKComponents.h>
 #include <PARKEngine/OgreIncludes.h>
 #include <PARKEngine/ResouRceManager.h>
+#include <PARKEngine/SceneManager.h>
 
 NPC::NPC()
 {
@@ -14,6 +15,9 @@ NPC::~NPC()
 }
 void NPC::start()
 {
+	std::vector<Entity*> entities = SceneManager::instance()->currentState()->getEntitiesWithComponent<Transform>();
+	for (Entity* e : entities)
+		std::cout << "ENTITY: " << e->getName() <<  std::endl;
 	//entity_->getComponent<Rigidbody>()->setPosition(entity_->getComponent<Rigidbody>()->getPosition() + Vector3(-500, 0, 0));
 	//entity_->getComponent<MeshRenderer>()->setMaterial("Ogre.material");
 	
