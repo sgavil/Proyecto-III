@@ -38,7 +38,7 @@ public:
 	{
 		std::vector<Entity*> v;
 		//Busca el componente
-		for (Component* c : components_) {
+		for (Component* c : scene) {
 			T* component = dynamic_cast<T*>(c);
 			if (component != nullptr)
 				v.push_back(component->getEntity());
