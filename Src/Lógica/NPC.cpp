@@ -3,8 +3,9 @@
 #include  <PARKEngine/Entity.h>
 #include <PARKEngine/PARKComponents.h>
 #include <PARKEngine/OgreIncludes.h>
-#include <PARKEngine/ResouRceManager.h>
+#include <PARKEngine/ResourceManager.h>
 #include <PARKEngine/SceneManager.h>
+#include "Matrix/Node.h"
 
 NPC::NPC()
 {
@@ -32,6 +33,16 @@ void NPC::update(unsigned int time)
 	//std::cout << entity_->getComponent<Rigidbody>()->getInfo();
 	//entity_->getComponent<Transform>()->scale(Vector3(0.9, 0.9, 0.9));
 	//std::cout << "Hola, soy " << entity_->getName() << " y tengo \n Hambre: " << hunger_ << "\n Pipí: " << peepee_ << "\n Diversión: " << fun_ << std::endl;
+}
+
+void NPC::setNode(Node * node)
+{
+	node_ = node;
+}
+
+Node * NPC::getNode()
+{
+	return node_;
 }
 
 void NPC::load(json file)
