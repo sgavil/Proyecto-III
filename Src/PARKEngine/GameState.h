@@ -32,6 +32,19 @@ public:
 	// ·> Devuelve una entidad de la escena
 	Entity* getEntity(std::string name);
 
+	//Devuelve ua l
+	template<typename T>
+	std::vector<Entity*> getEntitiesWithComponent()
+	{
+		std::vector<Entity*> v;
+		//Busca el componente
+		for (Component* c : components_) {
+			T* component = dynamic_cast<T*>(c);
+			if (component != nullptr)
+				v.push_back(component->getEntity());
+		}
+	};
+
 	// ·> Devuelve la escena
 	std::list<Component*> getScene();
 };

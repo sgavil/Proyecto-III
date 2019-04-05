@@ -36,3 +36,33 @@ void NPC::load(json file)
 	peepee_ = file["peepee"];
 	fun_ = file["fun"];
 }
+
+//void relax(const AristaDirigida<int>& e)
+//	{
+//		int v = e.from(), w = e.to();
+//		if (timeTo[w] > timeTo[v] + e.valor())
+//		{
+//			//Añadimos el tiempo de espera de la página en si
+//			timeTo[w] = timeTo[v] + e.valor();
+//			//En la función update se contempla que la clave no estuviera ya
+//			pq.update(w, timeTo[w]);
+//		}
+//	}
+
+//Inicializamos las distancias a infinito
+//		for (int v = 0; v < N_; v++)
+//			timeTo[v] = numeric_limits<int>::max();
+//
+//		//Metemos el 0 con distancia 0
+//		timeTo[0] = 0;
+//		pq.push(0, 0);
+//
+//		//Vamos metiendo y sacando elementos de la cola de prioridades variables
+//		while (!pq.empty())
+//		{
+//			IndexPQ<int>::Par v = pq.top();
+//			pq.pop();
+//			//timeTo[v.elem] += tCarga[v.elem];
+//			for (AristaDirigida<int> e : g.ady(v.elem))
+//				relax(e);
+//		}

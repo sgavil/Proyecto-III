@@ -33,15 +33,15 @@
 					},
 					"scale":
 					{
-					  "x": 3,
-					  "y": 3,
-					  "z": 3
+					  "x": 5,
+					  "y": 5,
+					  "z": 5
 					}
 				},
 				{
 					"name": "MeshRenderer",
 					"mesh": "penguin.mesh",
-					"material": "Penguin",
+					"material": "",
 					"visible" : true
 				},
 				{
