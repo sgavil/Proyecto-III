@@ -31,7 +31,6 @@ public:
 
 	// ·> Devuelve una entidad de la escena
 	Entity* getEntity(std::string name);
-
 	// ·> Devuelve la escena
 	std::list<Component*> getScene();
 };

@@ -133,18 +133,21 @@ Ogre::TextureManager * OgreManager::getTextureManager()
 	return &Ogre::TextureManager::getSingleton();
 }
 
-Ogre::Vector3 OgreManager::raycast(Ogre::Ray ray_)
+Ogre::Vector3 OgreManager::raycast()
 {
 	Ogre::RaySceneQuery* m_pray_scene_query = sceneMgr_->createRayQuery(Ogre::Ray(), sceneMgr_->WORLD_GEOMETRY_TYPE_MASK);
 	if (nullptr == m_pray_scene_query) return (Vector3::ZERO);
 	m_pray_scene_query->setSortByDistance(true);
 
-	// create the ray to test
-	Ogre::Ray ray = ray_;
 	// check we are initialised
 	if (m_pray_scene_query != nullptr)
 	{
 		// create a query object
+		Ogre::Ray ray = camera_->getCameraToViewportRay(
+			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x /
+			float(OgreManager::instance()->getWindow()->getWidth()),
+			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_y /
+			float(OgreManager::instance()->getWindow()->getHeight()));
 		m_pray_scene_query->setRay(ray);
 	}
 
@@ -224,6 +227,7 @@ Ogre::Camera* OgreManager::createCamera(std::string name, Ogre::SceneNode* Fathe
 	FatherNode->attachObject(cam_);
 	if (autoAspectRatio)cam_->setAutoAspectRatio(autoAspectRatio);
 	else cam_->setAspectRatio(AspectRatio);
+	camera_ = cam_;
 	return cam_;
 }
 

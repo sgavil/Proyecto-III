@@ -57,15 +57,7 @@ bool Camera::handleEvent(unsigned int time)
 		camNode_->translate({ 0, -10, 0 }, Ogre::Node::TS_WORLD);
 	if (InputManager::getSingletonPtr()->isKeyDown("Desampliar"))
 		camNode_->translate({ 0, 10, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyDown("Ray"))
-	{
-		Ogre::Ray r = camera_->getCameraToViewportRay(
-			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x/
-			float(OgreManager::instance()->getWindow()->getWidth()),
-			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_y/
-			float(OgreManager::instance()->getWindow()->getHeight()));
-		OgreManager::instance()->raycast(r);
-	}
+	if (InputManager::getSingletonPtr()->isKeyDown("Ray")) 	OgreManager::instance()->raycast();
 	return false;
 }
 
