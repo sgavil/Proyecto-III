@@ -32,7 +32,7 @@ public:
 	// �> Devuelve una entidad de la escena
 	Entity* getEntity(std::string name);
 
-	//Devuelve ua l
+	//Devuelve una lista de entidades que tengan el componente especificado
 	template<typename T>
 	std::vector<Entity*> getEntitiesWithComponent()
 	{

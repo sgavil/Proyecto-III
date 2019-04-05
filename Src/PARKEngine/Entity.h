@@ -43,6 +43,12 @@ public:
 
 	//Otorga un nombre a la entidad
 	void setName(std::string name) { name_ = name; };
+
+	//Pone activa la entidad
+	void setActive(bool b);
+
+	//Indica si la entidad está activa
+	bool isActive() { return active_; };
 	
 	//Destructora
 	virtual ~Entity();
@@ -50,4 +56,5 @@ private:
 	//Vector de componentes genérico (no se diferencian por el tipo de componente)
 	std::vector<Component*> components_;
 	std::string name_;
+	bool active_;
 };

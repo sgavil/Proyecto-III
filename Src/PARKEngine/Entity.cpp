@@ -1,12 +1,12 @@
 #include "Entity.h"
 #include "Component.h"
 
-Entity::Entity():name_("undefined")
+Entity::Entity():name_("undefined"), active_(true)
 {
 	
 }
 
-Entity::Entity(std::vector<Component*> comps, std::string name):name_(name)
+Entity::Entity(std::vector<Component*> comps, std::string name):name_(name), active_(true)
 {
 	//Creamos la entidad con los componentes dados, llamando a addComponent
 	for (Component* c : comps)
@@ -33,6 +33,13 @@ bool Entity::delComponent(Component* comp)
 		return true;
 	}
 	return false;
+}
+
+void Entity::setActive(bool b)
+{
+	active_ = b;
+	for (Component* c : components_)
+		c->setActive(b);
 }
 
 Entity::~Entity()
