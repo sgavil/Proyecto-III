@@ -20,16 +20,16 @@ public:
 	virtual void render(unsigned int time);
 	virtual bool handleInput(unsigned int time);
 
-	// ·> Añade una entidad a la escena
+	// ï¿½> Aï¿½ade una entidad a la escena
 	void addEntity(Entity* e);
 
-	// ·> Añade un grupo de entidades a la escena 
+	// ï¿½> Aï¿½ade un grupo de entidades a la escena 
 	void addEntities(std::vector<Entity*> ent);
 
-	// ·> Elimina una entidad de la escena. Devuelve 'true' si estaba en la escena, 'false' e.o.c
+	// ï¿½> Elimina una entidad de la escena. Devuelve 'true' si estaba en la escena, 'false' e.o.c
 	bool removeEntity(std::string name);
 
-	// ·> Devuelve una entidad de la escena
+	// ï¿½> Devuelve una entidad de la escena
 	Entity* getEntity(std::string name);
 
 	//Devuelve ua l
@@ -45,6 +45,6 @@ public:
 		}
 	};
 
-	// ·> Devuelve la escena
+	// ï¿½> Devuelve la escena
 	std::list<Component*> getScene();
 };
