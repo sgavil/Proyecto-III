@@ -1,4 +1,7 @@
 #include "Edificio.h"
+#include <PARKEngine/Entity.h>
+#include "NPC.h"
+#include "Matrix/Node.h"
 
 
 
@@ -10,6 +13,47 @@ Edificio::Edificio()
 Edificio::~Edificio()
 {
 }
+
+void Edificio::update(unsigned int time)
+{
+	actDuration_ -= time;
+
+	if (actDuration_ <= 0) {
+		sacar();
+		montar();
+		actDuration_ = duration_;
+	}
+}
+
+void Edificio::encolar(Entity * e)
+{
+	if (cola.size() < maxCola_)
+		cola.push(e);
+}
+
+void Edificio::montar()
+{
+	for (int i = 0; i < capacity_; i++) {
+		if (!cola.empty()) {
+			rideing.push_back(cola.front());
+			cola.pop();
+		}
+	}
+}
+
+void Edificio::sacar()
+{
+	for (int i = 0; i < rideing.size(); i++) {
+		if (!rideing.empty()) {
+			Entity* e = rideing.front();
+			rideing.pop_front();
+			e->setActive(true);
+			//e->getComponent<NPC>()->setNode(ExitNode->getComponent<Node>());
+		}
+	}
+}
+
+
 
 void Edificio::load(json file)
 {
@@ -27,4 +71,9 @@ void Edificio::load(json file)
 
 	exit.x = file["Exit"]["x"];
 	exit.y = file["Exit"]["y"];
+
+	duration_ = file["Duration"] * 1000; //Conversión a milisegundos;
+	actDuration_ = duration_;
+	capacity_ = file["Capacity"];
+	setName(file["bName"]);
 }
