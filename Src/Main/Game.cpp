@@ -42,10 +42,10 @@ void Game::start()
 	sceneManager_->changeState("StateTest");
 
 	AudioManager::instance()->READ_JSON_SOUNDS("AudioSource.json");
+	AudioManager::instance()->PLAY_2D_SOUND("cochecitos");
 	InputManager::getSingletonPtr()->addMappingValues("Input.json");
 	//Start
 	sceneManager_->currentState()->start();
-
 
 	// TEST DE LOS BLUEPRINTS CON PARÁMETROS (SALE BIEN)
 	//EntityFactory::Instance()->createEntityFromBlueprint("NPC");

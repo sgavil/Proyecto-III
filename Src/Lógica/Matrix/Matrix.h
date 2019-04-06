@@ -26,6 +26,13 @@ public:
 	vector<vector<Entity*>> getMatrix();
 	Entity* getEntityNode(int i, int j);
 	list<Entity*> getAdj(Entity* e, int x, int y);
+	//Devuelve adyacntes especificando nodos
+	list<Node*> getAdj(Node* e);
+	//Devuelve adyacentes especificando indice
+	list<Node*> getAdj(int index);
+
+	//Pa pillar el tamaño
+	int getSize(int i) { if (i == 0) return matrix_.size(); else return matrix_.at(0).size(); };
 
 	Ogre::Vector3 getNodeSize();
 	bool limits(int i, int j);

@@ -90,8 +90,9 @@ list<Entity*> ConstructionMode::getNodesToConstruct(Entity * node, Ogre::Vector3
 	}
 
 	for (Entity* e : adj) {
-		cout << "X: " << e->getComponent<Node>()->getMatrixPos().x << " ";
-		cout << "Z: " << e->getComponent<Node>()->getMatrixPos().y << endl;
+
+		//cout << "X: " << e->getComponent<Node>()->getMatrixPos().x << " ";
+		//cout << "Z: " << e->getComponent<Node>()->getMatrixPos().y << endl;
 	}
 	
 	return adj;

@@ -30,6 +30,7 @@
     <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h" />
     <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h" />
     <ClInclude Include="..\..\Src\Lógica\Edificio.h" />
+    <ClInclude Include="..\..\Src\Lógica\IndexPQ.h" />
     <ClInclude Include="..\..\Src\Lógica\Matrix\Matrix.h" />
     <ClInclude Include="..\..\Src\Lógica\Matrix\Node.h" />
     <ClInclude Include="..\..\Src\Lógica\NPC.h" />

@@ -1,5 +1,4 @@
 #pragma once
-#include <fmod.h>
 #include "Utils.h"
 
 namespace FMOD
@@ -7,6 +6,9 @@ namespace FMOD
 	class System;
 	class Sound;
 };
+
+struct FMOD_VECTOR;
+enum FMOD_RESULT;
 
 class AudioManager 
 {
@@ -30,14 +32,14 @@ class AudioManager
 		float volume;
 		int loopCount;
 		POSITION emitter;
-		FMOD_VECTOR vel;
+		FMOD_VECTOR* vel;
 	};
 
 	struct SoundListener {
 		POSITION position;
-		FMOD_VECTOR vel;
-		FMOD_VECTOR up;
-		FMOD_VECTOR at;
+		FMOD_VECTOR* vel;
+		FMOD_VECTOR* up;
+		FMOD_VECTOR* at;
 	};
 
 	std::map<std::string, soundValues> soundList_;

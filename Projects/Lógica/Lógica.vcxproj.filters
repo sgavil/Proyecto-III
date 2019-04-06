@@ -54,5 +54,6 @@
     <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h">
       <Filter>Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\IndexPQ.h" />
   </ItemGroup>
 </Project>

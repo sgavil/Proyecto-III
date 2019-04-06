@@ -24,6 +24,10 @@
 		{
 			"Id": "Desampliar",
 			"key": "Q"
+		},
+		{
+			"Id": "NPC",
+			"key": "N"
 		}
 	],
 	"Mouse":

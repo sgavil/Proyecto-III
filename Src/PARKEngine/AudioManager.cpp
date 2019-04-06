@@ -1,6 +1,7 @@
 #include "AudioManager.h"
 #include <fmod.hpp>
 #include <fmod_errors.h>
+#include <fmod.h>
 
 #include "ResourceManager.h"
 
@@ -117,13 +118,13 @@ void AudioManager::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 	if (it != soundList3D_.end()) {
 		result_ = system_->playSound((*it).second.snd, 0, true, &chn);
 		(*it).second.emitter.x = &pos_.x; (*it).second.emitter.y = &pos_.y; (*it).second.emitter.z = &pos_.z;
-		(*it).second.vel = { 0,0,0 };
+		*(*it).second.vel = { 0,0,0 };
 
 		FMOD_VECTOR pos = { pos_.x, pos_.y, pos_.z };
 
 		chn->setVolume((*it).second.volume);
 		chn->setLoopCount((*it).second.loopCount);
-		chn->set3DAttributes(&pos, &(*it).second.vel);
+		chn->set3DAttributes(&pos, (*it).second.vel);
 
 		FMOD_OK_ERROR_CHECK();
 	}
