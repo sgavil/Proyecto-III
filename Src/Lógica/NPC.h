@@ -51,7 +51,7 @@ private:
 	std::stack<Node*> movements;
 
 	//Tiempo entre movimientos
-	int movementTime_;
+	float speed_;
 	int totalTime_;
 
 
@@ -62,6 +62,8 @@ private:
 	int calculateIndex(int i, int j);
 	//Dice si la adyacente es del formato correcto (no diagonal)
 	bool adyacenteCorrecta(Vector2 src, Vector2 dst);
+	//Indica si el NPC ya está en el siguiente nodo
+	bool isInNode(Node* n);
 
 
 };

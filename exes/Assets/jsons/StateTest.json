@@ -49,7 +49,7 @@
 					"hunger": 0,
 					"peepee": 0,
 					"fun": 5,
-					"movTime": 300 
+					"speed": 4 
 				}
 			]
 		},

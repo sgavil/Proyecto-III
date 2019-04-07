@@ -28,20 +28,36 @@ void NPC::update(unsigned int time)
 
 	if(hasPath)
 	{
-		totalTime_ += time;
-		if(totalTime_ > movementTime_)
+		Node* n = movements.top();
+		//Not in that node yet
+		if(node_ != n)
 		{
-			//Update stack
-			Node* n = movements.top(); 	movements.pop();
-
-			//Move
-			Vector3 nodePos = n->getEntity()->getComponent<Transform>()->getPosition();
-			getEntity()->getComponent<Transform>()->setPosition(nodePos + Vector3(0, 5, 0));
+			//Move towards next node
+			Transform* trans = getEntity()->getComponent<Transform>();
+			Transform* nextTrans = n->getEntity()->getComponent<Transform>();
+			//Vector unitario
+			Vector3 delta = (nextTrans->getPosition() - trans->getPosition());
+			delta.normalise();
+			//Lo multiplicamos por el deltaTime y la velocidad del NPC
+			delta = delta * speed_ * (time/10);
+			delta.y = 0;//We dont want to move in that axis
+			std::cout << "Delta: [" << delta.x << ", " << delta.y << ", " << delta.z << "]" << std::endl;
+			trans->translate(delta);
+			if (isInNode(n))
+				node_ = n;
 			//std::cout << getEntity()->getName() << " MOVING TO {" << n->getMatrixPos().x << ", " << n->getMatrixPos().y << "}" << std::endl;
+		}
+		else
+		{
+			//Change node material for debugging
+			n->getEntity()->getComponent<MeshRenderer>()->setVisible(true);
+			n->getEntity()->getComponent<MeshRenderer>()->setMaterial("Road");
+			//Pop movement
+			movements.pop();
+
+			//If path ended
 			if (movements.empty())
 				hasPath = false;
-
-			totalTime_ = 0;
 		}
 	}
 	//std::cout << entity_->getComponent<MeshRenderer>()->getMaterial() << std::endl;
@@ -68,7 +84,7 @@ void NPC::load(json file)
 	hunger_ = file["hunger"];
 	peepee_ = file["peepee"];
 	fun_ = file["fun"];
-	movementTime_ = file["movTime"];
+	speed_ = file["speed"];
 }
 
 void NPC::lookForPaths()
@@ -182,4 +198,17 @@ bool NPC::adyacenteCorrecta(Vector2 src, Vector2 dst)
 {
 	//Es una goddamn puerta XOR
 	return ((src.x == dst.x || src.y == dst.y) && (src.x != dst.x || src.y != dst.y));
+}
+
+bool NPC::isInNode(Node* n)
+{
+	Vector3 nodeSize = matrix_->getNodeSize();
+	Vector3 newNodeMin = n->getEntity()->getComponent<Transform>()->getPosition() - nodeSize / 4;
+	Vector3 newNodeMax = n->getEntity()->getComponent<Transform>()->getPosition() + nodeSize / 4;
+
+	//Check AABB
+	Vector3 actualPos = getEntity()->getComponent<Transform>()->getPosition();
+	if (actualPos.x > newNodeMin.x && actualPos.x < newNodeMax.x && actualPos.z > newNodeMin.z && actualPos.z < newNodeMax.z)
+		return true;
+	return false;
 }
