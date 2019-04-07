@@ -33,8 +33,8 @@ void NPC::update(unsigned int time)
 		if(node_ != n)
 		{
 			//Move towards next node
-			Transform* trans = getEntity()->getComponent<Transform>();
-			Transform* nextTrans = n->getEntity()->getComponent<Transform>();
+			Transform* trans = getBrotherComponent<Transform>();
+			Transform* nextTrans = n->getBrotherComponent<Transform>();
 			//Vector unitario
 			Vector3 delta = (nextTrans->getPosition() - trans->getPosition());
 			delta.normalise();
@@ -45,13 +45,12 @@ void NPC::update(unsigned int time)
 			trans->translate(delta);
 			if (isInNode(n))
 				node_ = n;
-			//std::cout << getEntity()->getName() << " MOVING TO {" << n->getMatrixPos().x << ", " << n->getMatrixPos().y << "}" << std::endl;
 		}
 		else
 		{
 			//Change node material for debugging
-			n->getEntity()->getComponent<MeshRenderer>()->setVisible(true);
-			n->getEntity()->getComponent<MeshRenderer>()->setMaterial("Road");
+			n->getBrotherComponent<MeshRenderer>()->setVisible(true);
+			n->getBrotherComponent<MeshRenderer>()->setMaterial("Road");
 			//Pop movement
 			movements.pop();
 
@@ -60,13 +59,6 @@ void NPC::update(unsigned int time)
 				hasPath = false;
 		}
 	}
-	//std::cout << entity_->getComponent<MeshRenderer>()->getMaterial() << std::endl;
-	//entity_->getComponent<Transform>()->rotate(Vector3::UNIT_Y, 2);
-	//entity_->getComponent<Transform>()->translate(Vector3(1, 0, 0));
-	//entity_->getComponent<Rigidbody>()->setPosition(entity_->getComponent<Rigidbody>()->getPosition() + Vector3(-500, 0, 0));
-	//std::cout << entity_->getComponent<Rigidbody>()->getInfo();
-	//entity_->getComponent<Transform>()->scale(Vector3(0.9, 0.9, 0.9));
-	//std::cout << "Hola, soy " << entity_->getName() << " y tengo \n Hambre: " << hunger_ << "\n Pipí: " << peepee_ << "\n Diversión: " << fun_ << std::endl;
 }
 
 void NPC::setNode(Node * node)
@@ -185,7 +177,7 @@ bool NPC::handleEvent(unsigned int time)
 		node_ = initialNode->getComponent<Node>();
 		//Set position to it
 		Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
-		getEntity()->getComponent<Transform>()->setPosition(pos + Vector3(0,10,0));
+		getBrotherComponent<Transform>()->setPosition(pos + Vector3(0,10,0));
 		//Look for paths
 		lookForPaths();
 	}
@@ -203,11 +195,11 @@ bool NPC::adyacenteCorrecta(Vector2 src, Vector2 dst)
 bool NPC::isInNode(Node* n)
 {
 	Vector3 nodeSize = matrix_->getNodeSize();
-	Vector3 newNodeMin = n->getEntity()->getComponent<Transform>()->getPosition() - nodeSize / 4;
-	Vector3 newNodeMax = n->getEntity()->getComponent<Transform>()->getPosition() + nodeSize / 4;
+	Vector3 newNodeMin = n->getBrotherComponent<Transform>()->getPosition() - nodeSize / 4;
+	Vector3 newNodeMax = n->getBrotherComponent<Transform>()->getPosition() + nodeSize / 4;
 
 	//Check AABB
-	Vector3 actualPos = getEntity()->getComponent<Transform>()->getPosition();
+	Vector3 actualPos = getBrotherComponent<Transform>()->getPosition();
 	if (actualPos.x > newNodeMin.x && actualPos.x < newNodeMax.x && actualPos.z > newNodeMin.z && actualPos.z < newNodeMax.z)
 		return true;
 	return false;

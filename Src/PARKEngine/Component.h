@@ -36,14 +36,24 @@ public:
 	virtual void update(unsigned int time) {};
 	virtual bool handleEvent(unsigned int time) { return false; };
 
-	//Getters y setters del flag de actividad
+	//Returns activity flag
 	bool isActive() { return active_; };
+	//Sets activity flag
 	void setActive(bool b) { active_ = b; };
 
-	//Getters y setters de la entidad
+	//Returns pointer to the entity
 	void setEntity(Entity* ent) { entity_ = ent; };
+	//Sets pointer to the entity
 	Entity* getEntity() { return entity_; }
+	//Releases the entity
 	void releaseEntity();
+
+	//Gets a specific component within the same entity
+	template<typename T>
+	T* getBrotherComponent()
+	{
+		return getEntity()->getComponent<T>();
+	};
 	
 	//Destructora
 	virtual ~Component();
