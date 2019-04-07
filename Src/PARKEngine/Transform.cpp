@@ -16,10 +16,13 @@ void Transform::load(json file)
 	position_.y = pos["y"];
 	position_.z = pos["z"];
 
-	//json scale = file["scale"];
-	//scale_.x = scale["x"];
-	//scale_.y = scale["y"];
-	//scale_.z = scale["z"];
+	if (file.contains("scale"))
+	{
+		json scale = file["scale"];
+		scale_.x = scale["x"];
+		scale_.y = scale["y"];
+		scale_.z = scale["z"];
+	}
 }
 
 void Transform::translate(Vector3 incr)
