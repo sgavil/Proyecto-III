@@ -15,7 +15,7 @@ Game::Game(std::string basicConfig):exit(false)
 {
 	ogreManager_ = OgreManager::instance(basicConfig);
 	InputManager::getSingletonPtr()->initialise(OgreManager::instance()->getWindow());
-	ResourceManager::instance()->ceguiInit();
+	HUDManager::instance()->init();
 	audioManager_ = AudioManager::instance();
 	sceneManager_ = SceneManager::instance();
 	physicsManager_ = PhysicsManager::instance();
@@ -38,7 +38,6 @@ Game::~Game()
 
 void Game::start()
 {
-	sceneManager_->addState("StateTest");
 	sceneManager_->changeState("StateTest");
 
 	AudioManager::instance()->READ_JSON_SOUNDS("AudioSource.json");

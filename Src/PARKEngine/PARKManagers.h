@@ -4,3 +4,4 @@
 #include "InputManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
+#include "HUDManager.h"

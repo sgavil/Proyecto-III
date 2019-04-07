@@ -3,10 +3,15 @@
 #include "EntityFactory.h"
 #include "Entity.h"
 #include "Component.h"
+#include "Button.h"
 
 GameState::GameState(std::string stateID)
 {
 	addEntities(EntityFactory::Instance()->createEntities(stateID));
+
+	Button* button = new Button();
+
+	scene.push_back(button);
 }
 
 

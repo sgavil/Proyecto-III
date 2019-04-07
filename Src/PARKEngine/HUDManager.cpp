@@ -2,10 +2,8 @@
 
 #include "OgreManager.h"
 #include "OgreIncludes.h"
+#include <functional>
 
-//CEGUI
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 
 std::unique_ptr<HUDManager> HUDManager::instance_;
@@ -23,7 +21,8 @@ HUDManager* HUDManager::instance()
 	return instance_.get();
 }
 
-void HUDManager::init() {
+void HUDManager::init() 
+{
 	//Carga de CEGUI y configurado automatico con elementos de OGRE
 	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>(OgreManager::instance()->getWindow()));
 
@@ -31,6 +30,7 @@ void HUDManager::init() {
 	// create (load) the TaharezLook scheme file
 	// (this auto-loads the TaharezLook looknfeel and imageset files)
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
 
 	// create (load) a font.
 	// The first font loaded automatically becomes the default font, but note
@@ -44,6 +44,7 @@ void HUDManager::init() {
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setImage("TaharezLook/MouseArrow");
 	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("TaharezLook/Tooltip");
 
+	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
 
 	///////////////////////////////
 	// ARRANCANDO INTERFAZ
@@ -55,18 +56,14 @@ void HUDManager::init() {
 	//////////////////////////////
 
 	//Crear ventana Invisible sobre la que construir el interfaz
-	CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();		// Obtenemos la ventana de renderizado
-	CEGUI::Window* myRoot = wmgr.createWindow("DefaultWindow", "root");		// Creamos una ventana de interfaz con parametros (Tipo ventana definida en Scheme activo, nombre asignado a la ventana)
-	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(myRoot); // Establece que sets de GUI se muestra en el contexto actual, puede cambiarse de uno a otro.
+	windowMgr = CEGUI::WindowManager::getSingletonPtr();		// Obtenemos la ventana de renderizado
+	//CEGUI::System::getSingleton().cre
+	// myRoot = windowMgr->createWindow("DefaultWindow", "root");		// Creamos una ventana de interfaz con parametros (Tipo ventana definida en Scheme activo, nombre asignado a la ventana)
+	//CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(myRoot); // Establece que sets de GUI se muestra en el contexto actual, puede cambiarse de uno a otro.
 
 	//Hasta este punto ya se ha creado la ventana invisible sobre la que pondremos los widgets que formaran el menu
 	//Vamos a crear elementos sobre esa ventana invisible
-	CEGUI::Window* fWnd = CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/Button", "PushButton");
-	fWnd->setPosition(CEGUI::UVector2(CEGUI::UDim(0.75, 0), CEGUI::UDim(0.50, 0)));
-	fWnd->setSize(CEGUI::USize(CEGUI::UDim(0, 50), CEGUI::UDim(0, 50)));
-	fWnd->setText("Jump!");
-
-	CEGUI::System::getSingleton().getDefaultGUIContext().getRootWindow()->addChild(fWnd);
+	
 	//myRoot->addChild(fWnd);
 	//fWnd->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber();
 
@@ -106,6 +103,37 @@ void HUDManager::init() {
 	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(myRoot2);							// Establece que sets de GUI se muestra en el contexto actual, puede cambiarse de uno a otro.
 	*/
 
+}
+
+
+
+void HUDManager::addWindow(std::string state)
+{
+	CEGUI::Window* newWindow = windowMgr->createWindow("DefaultWindow", state);
+	windows[state] = newWindow;
+	// creamos una ventana de interfaz con parametros (tipo ventana definida en scheme activo, nombre asignado a la ventana)
+}
+
+void HUDManager::changeWindow(std::string state)
+{
+	auto it = windows.find(state);
+
+	if (it == windows.end())
+		addWindow(state);
+		
+	setActiveWindow(state);
+}
+
+void HUDManager::setActiveWindow(std::string state)
+{
+	activeWindow = windows[state];
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(activeWindow); // establece que sets de gui se muestra en el contexto actual, puede cambiarse de uno a otro.
+}
+
+void HUDManager::setActiveWindow(CEGUI::Window* window)
+{
+	activeWindow = window;
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(activeWindow);
 }
 
 

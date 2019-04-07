@@ -115,7 +115,9 @@ void OgreManager::render(unsigned int deltaTime)
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(mouse->getMouseState().X.rel
 		, mouse->getMouseState().Y.rel );
 
+	CEGUI::System::getSingleton().injectTimePulse(deltaTime / 1000.0f);
 }
+
 Ogre::SceneManager * OgreManager::getSceneManager()
 {
 	return sceneMgr_;

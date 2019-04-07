@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
+#include "HUDManager.h"
 
 std::unique_ptr<SceneManager> SceneManager::instance_;
 
@@ -49,6 +50,8 @@ GameState* SceneManager::addState(std::string stateID)
 
 void SceneManager::changeState(std::string stateID)
 {
+	HUDManager::instance()->changeWindow(stateID);
+
 	auto it = states.find(stateID);
 
 	if (it == states.end())
