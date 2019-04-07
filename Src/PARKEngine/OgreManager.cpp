@@ -23,6 +23,10 @@
 #include "OgreIncludes.h"
 #include <iostream>
 
+
+#include "Component.h"
+#include "MeshRenderer.h"
+
 // Bootstrap CEGUI::System with an OgreRenderer object that uses the
 // default Ogre rendering window as the default output surface, an Ogre based
 // ResourceProvider, and an Ogre based ImageCodec.
@@ -132,17 +136,17 @@ Ogre::TextureManager * OgreManager::getTextureManager()
 	return &Ogre::TextureManager::getSingleton();
 }
 
-Ogre::Vector3 OgreManager::raycast()
+std::pair<Entity*, Ogre::Vector3> OgreManager::raycast()
 {
 	Ogre::RaySceneQuery* m_pray_scene_query = sceneMgr_->createRayQuery(Ogre::Ray(), sceneMgr_->WORLD_GEOMETRY_TYPE_MASK);
-	if (nullptr == m_pray_scene_query) return (Vector3::ZERO);
+	if (nullptr == m_pray_scene_query) return (std::pair<Entity* ,Ogre::Vector3>(nullptr,Ogre::Vector3::ZERO));
 	m_pray_scene_query->setSortByDistance(true);
-
+	Ogre::Ray ray;
 	// check we are initialised
 	if (m_pray_scene_query != nullptr)
 	{
 		// create a query object
-		Ogre::Ray ray = camera_->getCameraToViewportRay(
+		ray = camera_->getCameraToViewportRay(
 			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x /
 			float(OgreManager::instance()->getWindow()->getWidth()),
 			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_y /
@@ -158,6 +162,8 @@ Ogre::Vector3 OgreManager::raycast()
 	Ogre::Real closest_distance = -1.0f;
 	Ogre::Vector3 closest_result;
 	Ogre::RaySceneQueryResult& query_result = m_pray_scene_query->execute();
+
+	//ray.getOrigin+ray.getDirection()*result.second
 	for (int qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
 	{
 		// stop checking if we have found a raycast hit that is closer
@@ -174,12 +180,14 @@ Ogre::Vector3 OgreManager::raycast()
 		{
 			// get the entity to check
 			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
+			Entity* en = getEntityFromMesh(pentity->getParentSceneNode());
+			std::pair<Entity*, Ogre::Vector3> pair_(en,ray.getPoint(query_result[qr_idx].distance));
 			pentity->setVisible(false);
-			return pentity->getParentSceneNode()->getPosition();
+			return pair_;
 		}
 	}
 
-	return Vector3::ZERO;
+	return (std::pair<Entity*, Ogre::Vector3>(nullptr, Ogre::Vector3::ZERO));
 }
 
 Ogre::FileSystemLayer * OgreManager::createFileSystemLayer(std::string cfLayerSystem)
@@ -240,6 +248,14 @@ Ogre::Entity * OgreManager::createPlane(std::string name, std::string MaterialNa
 	plane->setMaterialName(MaterialName);
 	FatherNode->attachObject(plane);
 	return plane;
+}
+
+Entity * OgreManager::getEntityFromMesh(Ogre::SceneNode * n)
+{
+	for (Entity* c : SceneManager::instance()->currentState()->getEntitiesWithComponent<MeshRenderer>())
+	{
+		if (c->getComponent<MeshRenderer>()->getNode() == n)return c;
+	}
 }
 
 TerrainGenerator * OgreManager::createTerrain(std::string terrainFile)

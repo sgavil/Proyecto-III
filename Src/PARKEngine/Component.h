@@ -20,8 +20,26 @@ Clase Componente:
 class Entity;
 
 
-class Component:public Listener, public Emitter
+class Component :public Listener, public Emitter
 {
+protected:
+	//Flag de actividad
+	bool active_;
+	//Puntero a la entidad
+	Entity* entity_;
+
+
+	template<typename T>
+	bool addParameter(T& parameter, json value)
+	{
+		if (!value.empty())
+		{
+			parameter = value;
+			return true;
+		}
+		return false;
+	}
+
 public:
 	//Constructora por defecto
 	Component();
@@ -53,17 +71,8 @@ public:
 	T* getBrotherComponent()
 	{
 		return getEntity()->getComponent<T>();
-	};
-	
+	}
+
 	//Destructora
 	virtual ~Component();
-
-	
-protected:
-	//Flag de actividad
-	bool active_;
-	//Puntero a la entidad
-	Entity* entity_;
 };
-
-

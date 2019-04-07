@@ -25,9 +25,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\PARKEngine\Component.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\PARKEngine\Entity.cpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -79,11 +76,14 @@
     <ClCompile Include="..\..\Src\PARKEngine\PhysicsManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\HUDManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\Component.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\PARKEngine\Component.h">
-      <Filter>Base</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\Entity.h">
       <Filter>Base</Filter>
     </ClInclude>
@@ -152,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\PARKComponents.h">
       <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\HUDManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\Component.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

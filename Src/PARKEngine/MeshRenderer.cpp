@@ -23,14 +23,21 @@ MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 
 void MeshRenderer::load(json file)
 {
-	std::string meshName = file["mesh"];
+	std::string meshName;
+	addParameter(meshName, file["mesh"]);
+
+//	std::string meshName = file["mesh"];
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
 	node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
-	if (file.contains("material"))
-		setMaterial(file["material"]);
+
+	std::string material;
+	if (addParameter(material, file["material"]))
+		setMaterial(material);
+
 	node_->setVisible(file["visible"]);
 }
+
 
 MeshRenderer::~MeshRenderer()
 {

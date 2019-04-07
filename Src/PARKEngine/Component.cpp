@@ -12,6 +12,7 @@ void Component::releaseEntity()
 	entity_ = nullptr;
 }
 
+
 Component::~Component()
 {
 }
