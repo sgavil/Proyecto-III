@@ -1,6 +1,7 @@
 #pragma once
 #include <PARKEngine/Component.h>
 #include "IndexPQ.h"
+#include <stack>
 
 class Node;
 class Matrix;
@@ -42,15 +43,25 @@ private:
 	Node* node_;
 
 	//Para hacer el algoritmo de Dijkstra
-	IndexPQ<int> pq; //Cola de prioridad
+	IndexPQ<int> pq; //Cola de prioridad 
 	std::vector<int > distTo; //Distancia entre el nodo inicial y los demás
 	std::vector<int > nodeTo; //Indicador del camino que hacemos
+
+	//Cola que indica los movimientos que seguirá el NPC
+	std::stack<Node*> movements;
+
+	//Tiempo entre movimientos
+	int movementTime_;
+	int totalTime_;
+
 
 	//Métodos privados
 	//Relaja la arista actual
 	void relax(int srcIndex, int destIndex);
 	//Calcula el índice de una posición de la matriz (PONERLO EN MATRIX)
 	int calculateIndex(int i, int j);
+	//Dice si la adyacente es del formato correcto (no diagonal)
+	bool adyacenteCorrecta(Vector2 src, Vector2 dst);
 
 
 };

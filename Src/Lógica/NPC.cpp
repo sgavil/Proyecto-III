@@ -8,7 +8,7 @@
 #include "Matrix/Matrix.h"
 #include <limits>
 
-NPC::NPC():pq(0), hasPath(false)
+NPC::NPC():pq(0), hasPath(false), totalTime_(0)
 {
 }
 
@@ -25,9 +25,24 @@ void NPC::start()
 
 void NPC::update(unsigned int time)
 {
+
 	if(hasPath)
 	{
-		std::cout << getEntity()->getName() << " MOVING" << std::endl;
+		totalTime_ += time;
+		if(totalTime_ > movementTime_)
+		{
+			//Update stack
+			Node* n = movements.top(); 	movements.pop();
+
+			//Move
+			Vector3 nodePos = n->getEntity()->getComponent<Transform>()->getPosition();
+			getEntity()->getComponent<Transform>()->setPosition(nodePos + Vector3(0, 5, 0));
+			//std::cout << getEntity()->getName() << " MOVING TO {" << n->getMatrixPos().x << ", " << n->getMatrixPos().y << "}" << std::endl;
+			if (movements.empty())
+				hasPath = false;
+
+			totalTime_ = 0;
+		}
 	}
 	//std::cout << entity_->getComponent<MeshRenderer>()->getMaterial() << std::endl;
 	//entity_->getComponent<Transform>()->rotate(Vector3::UNIT_Y, 2);
@@ -53,50 +68,90 @@ void NPC::load(json file)
 	hunger_ = file["hunger"];
 	peepee_ = file["peepee"];
 	fun_ = file["fun"];
+	movementTime_ = file["movTime"];
 }
 
 void NPC::lookForPaths()
 {
+	//PRUEBA
+	matrix_->getEntityNode(21, 20)->getComponent<Node>()->setType("Amusement");
+
+	//Pillamos variables
 	int N = matrix_->getSize(0) * matrix_->getSize(1);
-	std::cout << N << endl;
+	pq = IndexPQ<int>(N);
 	distTo = std::vector<int>(N);
 	nodeTo = std::vector<int>(N);
 
 	//Inicializamos las distancias a infinito
 	for (int v = 0; v < N; v++)
 		distTo[v] = numeric_limits<int>::max();
+
 	
 	//Metemos el nodo actual con prioridad 0
-	Vector2 nodePos = node_->getMatrixPos();
-	int nodeIndex = calculateIndex(nodePos.y, nodePos.x); //TODO: PONER NUMERO DE COLUMNAS
+	Vector2 nodePos = node_->getMatrixPos(); //ESTO TAMBIÉN ESTÁ AL REVÉS
+	int nodeIndex = calculateIndex(nodePos.y, nodePos.x);
 	pq.push(nodeIndex, 0);
 	distTo[0] = 0; //Distancia 0
+	nodeTo[0] = 0;
 
 	bool atraccion = false;
+	Node* nodoActual = nullptr;
 	//Vamos metiendo y sacando elementos de la cola de prioridades variables
 	while (!pq.empty() && !atraccion)
 	{
 		IndexPQ<int>::Par n = pq.top();
-		pq.pop();
-		list<Node*> ady = matrix_->getAdj(n.elem);
-		for (Node* n : ady)
+		nodoActual = matrix_->getEntityNode(n.elem)->getComponent<Node>();
+		if (nodoActual->getType() == "Amusement")
 		{
-			Vector2 adyPos = n->getMatrixPos();
-			relax(nodeIndex, calculateIndex(adyPos.y, adyPos.x));
+			atraccion = true;
+			break;
+		}
+		
+		pq.pop();
+		list<Entity*> ady = matrix_->getAdj(nodoActual->getEntity(), 1, 1); //radio de 1
+		//Adyacentes al nodo actual
+
+		for (Entity* e : ady)
+		{
+			Vector2 srcPos = nodoActual->getMatrixPos();
+			Vector2 adyPos = e->getComponent<Node>()->getMatrixPos();
+			//Quitamos diagonales y la propia casilla
+			if(adyacenteCorrecta(srcPos, adyPos)) // && e->getComponent<Node>()->getType() == "Empty"
+				relax(n.elem, calculateIndex(adyPos.y, adyPos.x));
 		}
 	}
-	hasPath = true;
+
+	//Rellenamos la cola de movimientos
+	if (atraccion)
+	{
+		int index = calculateIndex(nodoActual->getMatrixPos().y, nodoActual->getMatrixPos().x); //ESTO TAMBIÉN ESTÁ AL REVÉS
+		while (nodeTo[index] != index)
+		{
+			//Get node 
+			Node* n = matrix_->getEntityNode(index)->getComponent<Node>();
+			//Put it in the element list
+			movements.push(n);
+			//Previous index
+			index = nodeTo[index];
+		}
+		std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
+		hasPath = true;
+	}
+	else
+		std::cout << "NO HAY ATRACCIONES DISPONIBLES" << std::endl;
 }
 
 void NPC::relax(int srcIndex, int destIndex)
 {
-	if (distTo[destIndex] > distTo[srcIndex] + 1) 
+	//std::cout << "Relaxing from " << srcIndex << " to" << destIndex << std::endl;
+	if (distTo[destIndex] > distTo[srcIndex] + 1)
 	{
 		//Añadimos el tiempo de espera de la página en si
 		distTo[destIndex] = distTo[srcIndex] + 1;
 		nodeTo[destIndex] = srcIndex;
 		//En la función update se contempla que la clave no estuviera ya
 		pq.update(destIndex, distTo[destIndex]);
+		//std::cout << "METIDO EN LA COLA EL " << destIndex << std::endl;
 	}
 }
 
@@ -108,6 +163,23 @@ int NPC::calculateIndex(int i, int j)
 bool NPC::handleEvent(unsigned int time)
 {
 	if (InputManager::getSingletonPtr()->isKeyDown("NPC"))
+	{
+		//Get initial node
+		Entity* initialNode = matrix_->getEntityNode(0, 0); //ESTÁN AL REVÉS FILAS Y COLUMNAS
+		node_ = initialNode->getComponent<Node>();
+		//Set position to it
+		Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
+		getEntity()->getComponent<Transform>()->setPosition(pos + Vector3(0,10,0));
+		//Look for paths
 		lookForPaths();
+	}
+	
 	return false;
+}
+
+
+bool NPC::adyacenteCorrecta(Vector2 src, Vector2 dst)
+{
+	//Es una goddamn puerta XOR
+	return ((src.x == dst.x || src.y == dst.y) && (src.x != dst.x || src.y != dst.y));
 }

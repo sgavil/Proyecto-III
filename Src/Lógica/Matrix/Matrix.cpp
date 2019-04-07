@@ -75,6 +75,13 @@ Entity * Matrix::getEntityNode(int i, int j)
 	return matrix_[i][j];
 }
 
+Entity* Matrix::getEntityNode(int index)
+{
+	int row = index / getSize(1);
+	int col = index % getSize(1);
+	return getEntityNode(col, row);
+}
+
 list<Entity*> Matrix::getAdj(Entity* e, int x, int y)
 {
 	list<Entity*> list;
@@ -89,27 +96,7 @@ list<Entity*> Matrix::getAdj(Entity* e, int x, int y)
 	return list;
 }
 
-list<Node*> Matrix::getAdj(Node* e)
-{
-	list<Node*> list;
-	Vector2 nPos = e->getMatrixPos();
-	for (int i = nPos.x - 1; i <= nPos.x + 1; i++) {
-		for (int j = nPos.y - 1; j <= nPos.y + 1; j++) {
-			if (limits(i, j)) {
-				list.push_back(getEntityNode(i, j)->getComponent<Node>());
-			}
-		}
-	}
-	return list;
-}
 
-list<Node*> Matrix::getAdj(int index)
-{
-	int row = index / matrix_.at(0).size();
-	int col = index % matrix_.at(0).size();
-	Node* n = getEntityNode(row, col)->getComponent<Node>();
-	return getAdj(n);
-}
 
 Ogre::Vector3 Matrix::getNodeSize()
 {
