@@ -3,6 +3,7 @@
 #include <memory>
 #include <dirent.h>
 #include <OgreRay.h>
+#include "Entity.h"
 
 //Espacio de nombres de Ogre
 namespace Ogre
@@ -45,7 +46,7 @@ public:
 	Ogre::ResourceGroupManager* getResourceGroupManager();
 	Ogre::TextureManager* getTextureManager();
 	Ogre::RenderWindow* getWindow() { return window_; };
-	Ogre::Vector3 raycast();
+	std::pair<Entity*, Ogre::Vector3> raycast();
 
 	//Cración de recursos
 	Ogre::FileSystemLayer* createFileSystemLayer(std::string cfLayerSystem);
@@ -54,6 +55,7 @@ public:
 	Ogre::Entity* createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments,
 		Ogre::SceneNode* FatherNode);
 	TerrainGenerator* createTerrain(std::string terrainFile);
+	Entity * getEntityFromMesh(Ogre::SceneNode * n);
 
 	//Eliminación de recursos
 	void deleteFileSystemLayer(Ogre::FileSystemLayer* fsLayer);
