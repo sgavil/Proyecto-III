@@ -50,22 +50,21 @@ private:
 	//Cola que indica los movimientos que seguirá el NPC
 	std::stack<Node*> movements;
 
-	//Tiempo entre movimientos
+	//Velocidad
 	float speed_;
-	int totalTime_;
 
 
-	//Métodos privados
-	//Relaja la arista actual
+	//Métodos auxiliares
+	//Relaja el camino entre el primer nodo y el segundo
 	void relax(int srcIndex, int destIndex);
 	//Calcula el índice de una posición de la matriz (PONERLO EN MATRIX)
 	int calculateIndex(int i, int j);
 	//Dice si la adyacente es del formato correcto (no diagonal)
 	bool adyacenteCorrecta(Vector2 src, Vector2 dst);
-	//Indica si el NPC ya está en el siguiente nodo
+	//Indica si el NPC ya está en el nodo dado
 	bool isInNode(Node* n);
-
-
+	//Mueve al NPC al nodo indicado
+	void moveToNode(Node* n, int deltaTime);
 };
 
 REGISTER_TYPE(NPC);

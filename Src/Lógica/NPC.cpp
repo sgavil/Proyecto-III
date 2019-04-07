@@ -8,7 +8,7 @@
 #include "Matrix/Matrix.h"
 #include <limits>
 
-NPC::NPC():pq(0), hasPath(false), totalTime_(0)
+NPC::NPC():pq(0), hasPath(false)
 {
 }
 
@@ -18,37 +18,27 @@ NPC::~NPC()
 void NPC::start()
 {
 	matrix_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Matrix>()[0]->getComponent<Matrix>();
-	//entity_->getComponent<Rigidbody>()->setPosition(entity_->getComponent<Rigidbody>()->getPosition() + Vector3(-500, 0, 0));
-	//entity_->getComponent<MeshRenderer>()->setMaterial("Ogre.material");
-	
 }
 
 void NPC::update(unsigned int time)
 {
-
+	//NPC has an avaiable path
 	if(hasPath)
 	{
 		Node* n = movements.top();
 		//Not in that node yet
 		if(node_ != n)
 		{
-			//Move towards next node
-			Transform* trans = getBrotherComponent<Transform>();
-			Transform* nextTrans = n->getBrotherComponent<Transform>();
-			//Vector unitario
-			Vector3 delta = (nextTrans->getPosition() - trans->getPosition());
-			delta.normalise();
-			//Lo multiplicamos por el deltaTime y la velocidad del NPC
-			delta = delta * speed_ * (time/10);
-			delta.y = 0;//We dont want to move in that axis
-			std::cout << "Delta: [" << delta.x << ", " << delta.y << ", " << delta.z << "]" << std::endl;
-			trans->translate(delta);
+			//Move towards it
+			moveToNode(n, time);
+			//Update current node
 			if (isInNode(n))
 				node_ = n;
 		}
 		else
 		{
 			//Change node material for debugging
+			n->setType("Road");
 			n->getBrotherComponent<MeshRenderer>()->setVisible(true);
 			n->getBrotherComponent<MeshRenderer>()->setMaterial("Road");
 			//Pop movement
@@ -99,8 +89,8 @@ void NPC::lookForPaths()
 	Vector2 nodePos = node_->getMatrixPos(); //ESTO TAMBIÉN ESTÁ AL REVÉS
 	int nodeIndex = calculateIndex(nodePos.y, nodePos.x);
 	pq.push(nodeIndex, 0);
-	distTo[0] = 0; //Distancia 0
-	nodeTo[0] = 0;
+	distTo[nodeIndex] = 0; //Distancia 0
+	nodeTo[nodeIndex] = nodeIndex;
 
 	bool atraccion = false;
 	Node* nodoActual = nullptr;
@@ -109,23 +99,28 @@ void NPC::lookForPaths()
 	{
 		IndexPQ<int>::Par n = pq.top();
 		nodoActual = matrix_->getEntityNode(n.elem)->getComponent<Node>();
-		if (nodoActual->getType() == "Amusement")
-		{
-			atraccion = true;
-			break;
-		}
-		
 		pq.pop();
 		list<Entity*> ady = matrix_->getAdj(nodoActual->getEntity(), 1, 1); //radio de 1
 		//Adyacentes al nodo actual
-
 		for (Entity* e : ady)
 		{
 			Vector2 srcPos = nodoActual->getMatrixPos();
 			Vector2 adyPos = e->getComponent<Node>()->getMatrixPos();
 			//Quitamos diagonales y la propia casilla
-			if(adyacenteCorrecta(srcPos, adyPos)) // && e->getComponent<Node>()->getType() == "Empty"
-				relax(n.elem, calculateIndex(adyPos.y, adyPos.x));
+			if (adyacenteCorrecta(srcPos, adyPos))
+			{
+				//Amusement found
+				if (e->getComponent<Node>()->getType() == "Amusement")
+				{
+					nodoActual = e->getComponent <Node>();
+					relax(n.elem, calculateIndex(adyPos.y, adyPos.x));
+					atraccion = true;
+					break;
+				}
+				//Explore other nodes
+				else if(e->getComponent<Node>()->getType() == "Empty")
+					relax(n.elem, calculateIndex(adyPos.y, adyPos.x));
+			}
 		}
 	}
 
@@ -159,7 +154,6 @@ void NPC::relax(int srcIndex, int destIndex)
 		nodeTo[destIndex] = srcIndex;
 		//En la función update se contempla que la clave no estuviera ya
 		pq.update(destIndex, distTo[destIndex]);
-		//std::cout << "METIDO EN LA COLA EL " << destIndex << std::endl;
 	}
 }
 
@@ -170,10 +164,10 @@ int NPC::calculateIndex(int i, int j)
 
 bool NPC::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->isKeyDown("NPC"))
+	if (InputManager::getSingletonPtr()->isKeyDown("NPC") && !hasPath)
 	{
 		//Get initial node
-		Entity* initialNode = matrix_->getEntityNode(0, 0); //ESTÁN AL REVÉS FILAS Y COLUMNAS
+		Entity* initialNode = matrix_->getEntityNode(10, 10); //ESTÁN AL REVÉS FILAS Y COLUMNAS
 		node_ = initialNode->getComponent<Node>();
 		//Set position to it
 		Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
@@ -203,4 +197,19 @@ bool NPC::isInNode(Node* n)
 	if (actualPos.x > newNodeMin.x && actualPos.x < newNodeMax.x && actualPos.z > newNodeMin.z && actualPos.z < newNodeMax.z)
 		return true;
 	return false;
+}
+void NPC::moveToNode(Node* n, int deltaTime)
+{
+	Transform* trans = getBrotherComponent<Transform>();
+	Transform* nextTrans = n->getBrotherComponent<Transform>();
+
+	//Vector unitario de la dirección
+	Vector3 delta = (nextTrans->getPosition() - trans->getPosition());
+	delta.normalise();
+	//Lo multiplicamos por el deltaTime y la velocidad del NPC
+	delta = delta * speed_ * ((float)deltaTime / 10);
+	delta.y = 0;//We dont want to move in that axis
+
+	//Lo movemos
+	trans->translate(delta);
 }
