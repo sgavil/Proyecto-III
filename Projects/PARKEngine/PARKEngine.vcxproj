@@ -23,7 +23,7 @@
     <ProjectGuid>{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>PARKEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -124,7 +124,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -162,7 +162,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
@@ -181,6 +181,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\Entity.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\EntityFactory.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\GameState.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\HUDManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\InputManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\MeshRenderer.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Messages.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\Entity.h" />
     <ClInclude Include="..\..\Src\PARKEngine\EntityFactory.h" />
     <ClInclude Include="..\..\Src\PARKEngine\GameState.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\HUDManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\InputManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\MeshRenderer.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Messages.h" />

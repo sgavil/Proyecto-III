@@ -12,6 +12,17 @@ void Component::releaseEntity()
 	entity_ = nullptr;
 }
 
+template <typename T>
+bool Component::addParameter(T& parameter, json value)
+{
+	if (!value.empty())
+	{
+		parameter = value;
+		return true;
+	}
+	return false;
+}
+
 Component::~Component()
 {
 }

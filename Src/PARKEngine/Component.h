@@ -64,6 +64,10 @@ protected:
 	bool active_;
 	//Puntero a la entidad
 	Entity* entity_;
+
+
+	template<typename T>
+	bool addParameter(T& parameter, json value);
 };
 
 
