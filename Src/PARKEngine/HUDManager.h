@@ -15,12 +15,12 @@ private:
 	std::map<std::string, CEGUI::Window*> windows;
 
 	CEGUI::WindowManager* windowMgr;
-	CEGUI::Window* activeWindow;
+	
 
 	HUDManager();
 public:	
 	static HUDManager* instance();
-
+	CEGUI::Window* activeWindow;
 	void init();
 	void addWindow(std::string state);
 	void changeWindow(std::string state);
@@ -37,16 +37,14 @@ public:
 template<typename T>
 inline void HUDManager::createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::* function)(const CEGUI::EventArgs &), T * obj)
 {
-	CEGUI::Window* wnd = CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/Button"); // No name given, at least for now
+	CEGUI::Window* wnd = windowMgr->createWindow("TaharezLook/Button", text + "Button");
 
 	wnd->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
 	wnd->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
+	//CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(wnd);
+	wnd->setText(text);
+
+	wnd->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
+
 	activeWindow->addChild(wnd);
-
-	CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(wnd);
-	button->setText(text);
-
-	button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
-
-	//CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonClick(CEGUI::LeftButton);
 }

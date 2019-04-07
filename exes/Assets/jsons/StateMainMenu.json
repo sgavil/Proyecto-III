@@ -1,15 +1,27 @@
 {
-  "Entities": 
-  [
+  "Entities": [
     {
       "name": "PlayStateButton",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "Button",
-          "nextState": "StateMainMenu"
+          "nextState": "StateTest",
+          "text": "PLAY",
+          "posX": 0.75
+        }
+      ]
+    },
+    {
+      "name": "ExitButton",
+      "Components": [
+        {
+          "name": "Button",
+          "nextState": "StateMainMenu",
+          "text": "EXIT",
+          "posX": 0.25
         }
       ]
     }
+
   ]
 }

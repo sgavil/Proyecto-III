@@ -42,6 +42,8 @@ GameState* SceneManager::currentState()
 GameState* SceneManager::addState(std::string stateID)
 {
 	GameState* state = new GameState(stateID);
+	currentState_ = state;
+	state->start();
 
 	states.insert(std::pair<std::string, GameState*>(stateID, state));
 

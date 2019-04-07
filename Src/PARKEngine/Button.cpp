@@ -5,10 +5,7 @@
 
 Button::Button()
 {
-	nextState = "StateMainMenu";
-	std::string text = "PLAY";
-
-	HUDManager::instance()->createButton(0.5f, 0.5f, -50, -30, 100.0f, 50.0f, text, &Button::onClick, this); // &onClick if used the other function
+	
 }
 
 Button::~Button()
@@ -19,9 +16,11 @@ void Button::load(json file)
 {
 	addParameter(nextState, file["nextState"]);
 
-	std::string text = "PLAY";
+	std::string text;
+	addParameter(text, file["text"]);
 
-	HUDManager::instance()->createButton(0.5f, 0.5f, 0.0f, 0.0f, 100.0f, 50.0f, text, &Button::onClick, this); // &onClick if used the other function
+	float posX = file["posX"];
+	HUDManager::instance()->createButton(posX, 0.5, -50, 0, 100, 50, text, &Button::onClick, this); // &onClick if used the other function
 }
 
 
@@ -40,6 +39,7 @@ bool Button::handleEvent(unsigned int time)
 
 bool Button::onClick(const CEGUI::EventArgs& e)
 {
+	int count = HUDManager::instance()->activeWindow->getChildCount();
 	SceneManager::instance()->changeState(nextState);
 	return true;
 }

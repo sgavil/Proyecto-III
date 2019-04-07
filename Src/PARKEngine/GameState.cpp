@@ -8,10 +8,6 @@
 GameState::GameState(std::string stateID)
 {
 	addEntities(EntityFactory::Instance()->createEntities(stateID));
-
-	Button* button = new Button();
-
-	scene.push_back(button);
 }
 
 

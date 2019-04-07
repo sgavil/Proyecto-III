@@ -79,7 +79,8 @@ void HUDManager::init()
 
 	//Vamos a meter un boton
 	/*CEGUI::PushButton* btn = static_cast<CEGUI::PushButton*>(wmgr.createWindow("TaharezLook/Button", "testButton"));
-	myRoot->addChild(btn);
+	myRoot->
+	(btn);
 	btn->setPosition(CEGUI::UVector2(CEGUI::UDim(0.25f, 0.0f), CEGUI::UDim(0.25f, 0.0f)));
 	btn->setText("BOTONACO");*/
 
@@ -126,14 +127,24 @@ void HUDManager::changeWindow(std::string state)
 
 void HUDManager::setActiveWindow(std::string state)
 {
-	activeWindow = windows[state];
-	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(activeWindow); // establece que sets de gui se muestra en el contexto actual, puede cambiarse de uno a otro.
-}
+	if (activeWindow != nullptr)
+	{
+		for (size_t i = 0; i < activeWindow->getChildCount(); i++)
+		{
+			activeWindow->getChildAtIdx(i)->disable();
+			activeWindow->getChildAtIdx(i)->hide();
+		}
+	}
 
-void HUDManager::setActiveWindow(CEGUI::Window* window)
-{
-	activeWindow = window;
-	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(activeWindow);
+	activeWindow = windows[state];
+
+	for (size_t i = 0; i < activeWindow->getChildCount(); i++)
+	{
+		activeWindow->getChildAtIdx(i)->enable();
+		activeWindow->getChildAtIdx(i)->show();
+	}
+
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(activeWindow); // establece que sets de gui se muestra en el contexto actual, puede cambiarse de uno a otro.
 }
 
 
