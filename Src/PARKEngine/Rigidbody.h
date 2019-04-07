@@ -77,6 +77,7 @@ public:
 protected:
 	btRigidBody* rigid_;
 	Transform* transform_;
+	float mass_;
 
 	btTransform getBtTransform();
 };

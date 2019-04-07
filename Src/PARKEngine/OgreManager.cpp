@@ -104,15 +104,14 @@ OgreManager::~OgreManager()
 
 void OgreManager::render(unsigned int deltaTime)
 {
+	sceneMgr_->_updateSceneGraph(camera_);
 	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);	
-
 	OIS::Mouse* mouse =  InputManager::getSingletonPtr()->getMouse();
 	//std::cout << CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x << std::endl;
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(mouse->getMouseState().X.rel
 		, mouse->getMouseState().Y.rel );
 
 }
-
 Ogre::SceneManager * OgreManager::getSceneManager()
 {
 	return sceneMgr_;

@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include "Transform.h"
+#include "MeshRenderer.h"
 #include "PhysicsManager.h"
 #include <iostream>
 #include "btBulletDynamicsCommon.h"
@@ -22,17 +23,23 @@ Rigidbody::Rigidbody(Transform* transform, Shape shape, float mass) : transform_
 
 void Rigidbody::load(json file)
 {
-	json dimensions = file["dimensions"];
-	Vector3 dims;
-	dims.x = dimensions["x"];
-	dims.y = dimensions["y"];
-	dims.z = dimensions["z"];
+	//json dimensions = file["dimensions"];
+	//Vector3 dims;
+	//dims.x = dimensions["x"];
+	//dims.y = dimensions["y"];
+	//dims.z = dimensions["z"];
 
-	rigid_ = PhysicsManager::createRigidBody(BoxShape, dims, file["mass"]);
+	mass_ = file["mass"];
 }
 
 void Rigidbody::start()
 {
+	//Create the rigidbody
+	MeshRenderer* renderer = entity_->getComponent<MeshRenderer>();
+	Vector3 aabbMin, aabbMax; renderer->getAABB(aabbMin, aabbMax); //¿CUANDO TIENE VALOR VALIDO?
+	Vector3 dims = aabbMax - aabbMin;
+	rigid_ = PhysicsManager::createRigidBody(BoxShape, dims, mass_);
+	//Set position
 	transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
 		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
@@ -56,6 +63,7 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::update(unsigned int time)
 {
+	std::cout << getInfo() << std::endl;
 	//Si está asociado a un transform
 	if(transform_ != nullptr)
 	{
@@ -177,11 +185,20 @@ btTransform Rigidbody::getBtTransform()
 
 std::string Rigidbody::getInfo()
 {
-	std::string s = " ~~ Rigidbody of Entity '" + entity_->getName() + "' ~~ \n Mass: " + std::to_string(getMass()) + "\n Position: {" +
-		std::to_string(getPosition().x) + ", " + std::to_string(getPosition().y) + ", " + std::to_string(getPosition().z) + "} \n Linear velocity: {" +
+	Vector3 min, max;
+	getAABB(min, max);
+	Vector3 meshMin, meshMax;
+	getBrotherComponent<MeshRenderer>()->getAABB(meshMin, meshMax);
+	std::string s = " ~~ Rigidbody of Entity '" + entity_->getName() + "' ~~ \n Mass: " + std::to_string(getMass()) + "\n Rigidbody position: {" +
+		std::to_string(getPosition().x) + ", " + std::to_string(getPosition().y) + ", " + std::to_string(getPosition().z) + "\n Transform position: {" +
+		std::to_string(getBrotherComponent<Transform>()->getPosition().x) + ", " + std::to_string(getBrotherComponent<Transform>()->getPosition().y) + ", " + std::to_string(getBrotherComponent<Transform>()->getPosition().z) + "\n Mesh AABB: Min{" +
+		std::to_string(meshMin.x) + ", " + std::to_string(meshMin.y) + ", " + std::to_string(meshMin.z) + "} Max{" + 
+		std::to_string(meshMax.x) + ", " + std::to_string(meshMax.y) + ", " + std::to_string(meshMax.z) + "} \n Linear velocity: {" +
 		std::to_string(getLinearVelocity().x) + ", " + std::to_string(getLinearVelocity().y) + ", " + std::to_string(getLinearVelocity().z) + "} \n Angular velocity: {" +
 		std::to_string(getAngularVelocity().x) + ", " + std::to_string(getAngularVelocity().y) + ", " + std::to_string(getAngularVelocity().z) + "} \n Force accumulated: {" +
-		std::to_string(getTotalForce().x) + ", " + std::to_string(getTotalForce().y) + ", " + std::to_string(getTotalForce().z) + "} \n Torque accumulated: {" +
+		std::to_string(getTotalForce().x) + ", " + std::to_string(getTotalForce().y) + ", " + std::to_string(getTotalForce().z) + "} \n AABB: Min{" +
+		std::to_string(min.x) + ", " + std::to_string(min.y) + ", " + std::to_string(min.z) + "} Max{" +
+		std::to_string(max.x) + ", " + std::to_string(max.y) + ", " + std::to_string(max.z) + "} \n Torque accumulated: {" +
 		std::to_string(getTotalTorque().x) + ", " + std::to_string(getTotalTorque().y) + ", " + std::to_string(getTotalTorque().z) + "} \n KINEMATIC?: ";
 	if (isKinematic())
 		s += "YES";

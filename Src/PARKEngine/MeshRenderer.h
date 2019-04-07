@@ -34,6 +34,8 @@ public:
 	virtual void setMaterial(std::string materialName);
 	//Returns the material of the mesh
 	virtual std::string getMaterial();
+	//Returns aabb of the mesh
+	virtual void getAABB(Vector3& aabbMin, Vector3& aabbMax);
 
 protected:
 	Transform * transform_ = nullptr;

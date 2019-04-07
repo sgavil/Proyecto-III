@@ -76,3 +76,10 @@ std::string MeshRenderer::getMaterial()
 {
 	return ((Ogre::Entity*)node_->getAttachedObject(0))->getSubEntities()[0]->getMaterialName();
 }
+
+void MeshRenderer::getAABB(Vector3& aabbMin, Vector3& aabbMax)
+{
+	Ogre::AxisAlignedBox box = node_->_getWorldAABB();
+	aabbMin = box.getMinimum();
+	aabbMax = box.getMaximum();
+}

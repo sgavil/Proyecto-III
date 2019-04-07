@@ -123,7 +123,7 @@ btRigidBody * PhysicsManager::createRigidBody( Shape forma, Vector3 dimensions, 
 		shape = new btEmptyShape();
 		break;
 	case Shape::BoxShape:
-		shape = new btBoxShape(btVector3(dimensions.x, dimensions.y, dimensions.z));
+		shape = new btBoxShape(btVector3(dimensions.x / 2, dimensions.y / 2, dimensions.z /2));
 		break;
 	case Shape::SphereShape:
 		shape = new btSphereShape(dimensions.x);
