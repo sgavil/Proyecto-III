@@ -45,6 +45,7 @@
     <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\IndexPQ.h" />
     <ClInclude Include="..\..\Src\Lógica\Matrix\Matrix.h">
       <Filter>Componentes\Matrix</Filter>
     </ClInclude>
@@ -54,6 +55,5 @@
     <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h">
       <Filter>Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Lógica\IndexPQ.h" />
   </ItemGroup>
 </Project>

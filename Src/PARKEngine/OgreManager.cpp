@@ -184,7 +184,7 @@ std::pair<Entity*, Ogre::Vector3> OgreManager::raycast()
 			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
 			Entity* en = getEntityFromMesh(pentity->getParentSceneNode());
 			std::pair<Entity*, Ogre::Vector3> pair_(en,ray.getPoint(query_result[qr_idx].distance));
-			pentity->setVisible(false);
+			//pentity->setVisible(false);
 			return pair_;
 		}
 	}
