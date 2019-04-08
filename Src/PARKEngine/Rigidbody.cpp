@@ -63,7 +63,7 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::update(unsigned int time)
 {
-	std::cout << getInfo() << std::endl;
+	//std::cout << getInfo() << std::endl;
 	//Si está asociado a un transform
 	if(transform_ != nullptr)
 	{

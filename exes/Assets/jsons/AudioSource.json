@@ -22,6 +22,13 @@
 	],
 	"Songs":
 	[
+		{
+			"Id": "MainTheme",
+			"rute": "Assets\\Audio\\MainTheme.mp3",
+			"loopCount": 100,
+			"Volume": 1,
+			"Pan": 0
+		}
 
 	]
 }

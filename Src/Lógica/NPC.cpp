@@ -71,9 +71,6 @@ void NPC::load(json file)
 
 void NPC::lookForPaths()
 {
-	//PRUEBA
-	matrix_->getEntityNode(21, 20)->getComponent<Node>()->setType("Amusement");
-
 	//Pillamos variables
 	int N = matrix_->getSize(0) * matrix_->getSize(1);
 	pq = IndexPQ<int>(N);
@@ -110,7 +107,7 @@ void NPC::lookForPaths()
 			if (adyacenteCorrecta(srcPos, adyPos))
 			{
 				//Amusement found
-				if (e->getComponent<Node>()->getType() == "Amusement")
+				if (e->getComponent<Node>()->getType() == "Amusement1")
 				{
 					nodoActual = e->getComponent <Node>();
 					relax(n.elem, calculateIndex(adyPos.y, adyPos.x));

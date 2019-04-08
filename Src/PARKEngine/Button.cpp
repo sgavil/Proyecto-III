@@ -34,7 +34,7 @@ bool Button::handleEvent(unsigned int time)
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::LeftButton);
 	}
 	
-	return true;
+	return false;
 }
 
 bool Button::onClick(const CEGUI::EventArgs& e)
