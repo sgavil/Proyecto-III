@@ -2,15 +2,14 @@
 #include "Component.h"
 #include "HUDManager.h"
 
-class Button : public Component
+class ButtonExit : public Component
 {
 private:
-	std::string windowState;
-	std::string nextState;
+	bool exit;
 
 public:
-	Button();
-	~Button();
+	ButtonExit();
+	~ButtonExit();
 
 	void load(json file);
 
@@ -19,9 +18,9 @@ public:
 	virtual void update(unsigned int time) {}
 	virtual bool handleEvent(unsigned int time);
 
-	virtual bool onClick(const CEGUI::EventArgs& e);
+	bool onClick(const CEGUI::EventArgs& e);
 
 	virtual void receive(Message* msg) {};
 };
 
-REGISTER_TYPE(Button)
+REGISTER_TYPE(ButtonExit)

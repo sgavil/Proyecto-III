@@ -4,19 +4,31 @@
 #include "GameState.h"
 
 class SceneManager
-{	
+{
 private:
 	static std::unique_ptr<SceneManager> instance_; // Singleton
 
 	std::map <std::string, GameState*> states; // Estados del juego
 
 	GameState* currentState_; // Estado activo
+
+	bool* exit;
+
 public:
 	SceneManager();
 	virtual ~SceneManager();
 
 	// ·> Devuelve un puntero al SceneManager, o lo crea si no lo estaba ya
-	static SceneManager* instance(); 
+	static SceneManager* instance();
+
+	void setExit(bool* ex) {
+		exit = ex; 
+	}
+
+	void exitGame() {
+		*exit = true; 
+	}
+
 
 	// ·> Devuelve el estado activo actualmente
 	GameState* currentState();

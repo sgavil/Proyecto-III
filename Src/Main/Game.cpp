@@ -18,6 +18,7 @@ Game::Game(std::string basicConfig):exit(false)
 	HUDManager::instance()->init();
 	audioManager_ = AudioManager::instance();
 	sceneManager_ = SceneManager::instance();
+	sceneManager_->setExit(&exit);
 	physicsManager_ = PhysicsManager::instance();
 }
 
@@ -61,7 +62,7 @@ void Game::run()
 		//Llama al update, handleInput y render de la escena activa
 		sceneManager_->currentState()->update(deltaTime);
 		InputManager::getSingletonPtr()->capture();
-		exit = sceneManager_->currentState()->handleInput(deltaTime);
+		sceneManager_->currentState()->handleInput(deltaTime);
 		ogreManager_->render(deltaTime);
 
 		//Actualiza el deltaTime

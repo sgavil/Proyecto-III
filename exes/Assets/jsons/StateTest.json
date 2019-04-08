@@ -1,4 +1,221 @@
 {
+  "Entities": [
+    {
+      "name": "Camera",
+      "Components": [
+        {
+          "name": "Camera"
+        },
+        {
+          "name": "Transform",
+          "position": {
+            "x": 0,
+            "y": 1500,
+            "z": 1500
+          },
+          "scale": {
+            "x": 0.8,
+            "y": 3,
+            "z": 0.8
+          }
+        }
+      ]
+    },
+    {
+      "name": "MainMenuButton",
+      "Components": [
+        {
+          "name": "Button",
+          "nextState": "StateMainMenu",
+          "text": "MAIN MENU",
+          "posX": 0.25
+        }
+      ]
+    },
+    {
+      "name": "NPC1",
+      "Components": [
+        {
+          "name": "Transform",
+          "position": {
+            "x": 0,
+            "y": 1000,
+            "z": 1000
+          }
+        },
+        {
+          "name": "MeshRenderer",
+          "mesh": "penguin.mesh",
+          "visible": true
+        },
+        {
+          "name": "NPC",
+          "hunger": 0,
+          "peepee": 0,
+          "fun": 5,
+          "speed": 4
+        }
+      ]
+    },
+    {
+      "name": "Simbad",
+      "Components": [
+        {
+          "name": "Transform",
+          "position": {
+            "x": 0,
+            "y": 1500,
+            "z": 1000
+          },
+          "scale": {
+            "x": 3,
+            "y": 3,
+            "z": 3
+          }
+        },
+        {
+          "name": "MeshRenderer",
+          "mesh": "ogrehead.mesh",
+          "visible": true
+        },
+        {
+          "name": "Rigidbody",
+          "dimensions": {
+            "x": 3,
+            "y": 3,
+            "z": 3
+          },
+          "mass": 10
+        }
+      ]
+    },
+    {
+      "name": "SimbadFloor",
+      "Components": [
+        {
+          "name": "Transform",
+          "position": {
+            "x": 0,
+            "y": 1400,
+            "z": 1000
+          },
+          "scale": {
+            "x": 5,
+            "y": 0.5,
+            "z": 5
+          }
+        },
+        {
+          "name": "MeshRenderer",
+          "mesh": "ogrehead.mesh",
+          "visible": true
+        },
+        {
+          "name": "Rigidbody",
+          "dimensions": {
+            "x": 5,
+            "y": 0.5,
+            "z": 5
+          },
+          "mass": 0
+        }
+      ]
+    },
+    {
+      "name": "SimbadCeil",
+      "Components": [
+        {
+          "name": "Transform",
+          "position": {
+            "x": 0,
+            "y": 1700,
+            "z": 1000
+          },
+          "scale": {
+            "x": 5,
+            "y": 0.5,
+            "z": 5
+          }
+        },
+        {
+          "name": "MeshRenderer",
+          "mesh": "ogrehead.mesh",
+          "visible": true
+        },
+        {
+          "name": "Rigidbody",
+          "dimensions": {
+            "x": 5,
+            "y": 0.5,
+            "z": 5
+          },
+          "mass": 0
+        }
+      ]
+    },
+    {
+      "name": "Terrain",
+      "Components": [
+        {
+          "name": "Terrain",
+          "file": "Maps.json",
+          "Listeners": [
+            {
+              "name": "Camera"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Matrix",
+      "Components": [
+        {
+          "name": "Matrix",
+          "matrixSize": {
+            "x": 40,
+            "y": 35
+          },
+          "nodeSize": {
+            "x": 50,
+            "y": 50,
+            "z": 50
+          }
+        }
+      ]
+    },
+    {
+      "name": "ConstructionMode",
+      "Components": [
+        {
+          "name": "ConstructionMode",
+          "BuildingsNames": [
+            {
+              "name": "Empty"
+            },
+            {
+              "name": "Road"
+            },
+            {
+              "name": "Amusement"
+            },
+            {
+              "name": "Amusement1"
+            },
+            {
+              "name": "Amusement2"
+            },
+            {
+              "name": "Toilet"
+            },
+            {
+              "name": "Restaurant"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 	"Entities":
 	[
 		{

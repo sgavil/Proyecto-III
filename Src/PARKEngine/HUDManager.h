@@ -37,14 +37,14 @@ public:
 template<typename T>
 inline void HUDManager::createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::* function)(const CEGUI::EventArgs &), T * obj)
 {
-	CEGUI::Window* wnd = windowMgr->createWindow("TaharezLook/Button", text + "Button");
+	CEGUI::Window* button = windowMgr->createWindow("AlfiskoSkin/Button", text + "Button");
 
-	wnd->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
-	wnd->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
+	button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
+	button->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
 	//CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(wnd);
-	wnd->setText(text);
+	button->setText(text);
 
-	wnd->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
+	button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
 
-	activeWindow->addChild(wnd);
+	activeWindow->addChild(button);
 }

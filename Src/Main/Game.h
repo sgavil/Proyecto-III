@@ -15,6 +15,7 @@ public:
 
 	void start();
 	void run();
+
 private:
 	PhysicsManager* physicsManager_;
 	SceneManager* sceneManager_;

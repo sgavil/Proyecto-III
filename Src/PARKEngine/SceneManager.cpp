@@ -6,7 +6,6 @@ std::unique_ptr<SceneManager> SceneManager::instance_;
 
 SceneManager::SceneManager()
 {
-
 }
 
 SceneManager::~SceneManager()
