@@ -58,11 +58,106 @@
           "hunger": 0,
           "peepee": 0,
           "fun": 5,
-          "speed": 3
+          "speed": 4
         }
       ]
     },
-    
+    {
+      "name": "Simbad",
+      "Components": [
+        {
+          "name": "Transform",
+          "position": {
+            "x": 0,
+            "y": 1500,
+            "z": 1000
+          },
+          "scale": {
+            "x": 3,
+            "y": 3,
+            "z": 3
+          }
+        },
+        {
+          "name": "MeshRenderer",
+          "mesh": "ogrehead.mesh",
+          "visible": true
+        },
+        {
+          "name": "Rigidbody",
+          "dimensions": {
+            "x": 3,
+            "y": 3,
+            "z": 3
+          },
+          "mass": 10
+        }
+      ]
+    },
+    {
+      "name": "SimbadFloor",
+      "Components": [
+        {
+          "name": "Transform",
+          "position": {
+            "x": 0,
+            "y": 1400,
+            "z": 1000
+          },
+          "scale": {
+            "x": 5,
+            "y": 0.5,
+            "z": 5
+          }
+        },
+        {
+          "name": "MeshRenderer",
+          "mesh": "ogrehead.mesh",
+          "visible": true
+        },
+        {
+          "name": "Rigidbody",
+          "dimensions": {
+            "x": 5,
+            "y": 0.5,
+            "z": 5
+          },
+          "mass": 0
+        }
+      ]
+    },
+    {
+      "name": "SimbadCeil",
+      "Components": [
+        {
+          "name": "Transform",
+          "position": {
+            "x": 0,
+            "y": 1700,
+            "z": 1000
+          },
+          "scale": {
+            "x": 5,
+            "y": 0.5,
+            "z": 5
+          }
+        },
+        {
+          "name": "MeshRenderer",
+          "mesh": "ogrehead.mesh",
+          "visible": true
+        },
+        {
+          "name": "Rigidbody",
+          "dimensions": {
+            "x": 5,
+            "y": 0.5,
+            "z": 5
+          },
+          "mass": 0
+        }
+      ]
+    },
     {
       "name": "Terrain",
       "Components": [

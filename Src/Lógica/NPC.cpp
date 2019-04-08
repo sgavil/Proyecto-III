@@ -34,10 +34,6 @@ void NPC::update(unsigned int time)
 		}
 		else
 		{
-			//Change node material for debugging
-			n->setType("Road");
-			n->getBrotherComponent<MeshRenderer>()->setVisible(true);
-			n->getBrotherComponent<MeshRenderer>()->setMaterial("Road");
 			//Pop movement
 			movements.pop();
 
@@ -112,7 +108,7 @@ void NPC::lookForPaths()
 					break;
 				}
 				//Explore other nodes
-				else if(e->getComponent<Node>()->getType() == "Empty")
+				else if(e->getComponent<Node>()->getType() == "Road")
 					relax(n.elem, calculateIndex(adyPos.y, adyPos.x));
 			}
 		}
