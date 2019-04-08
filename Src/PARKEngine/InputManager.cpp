@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "Utils.h"
+#include "OgreManager.h"
 
 InputManager *InputManager::mInputManager;
 
@@ -47,7 +48,8 @@ InputManager::~InputManager(void) {
 	}
 }
 
-void InputManager::initialise(Ogre::RenderWindow *renderWindow) {
+void InputManager::initialise() {
+	Ogre::RenderWindow *renderWindow = OgreManager::instance()->getWindow();
 	if (!mInputSystem) {
 		// Setup basic variables
 		OIS::ParamList paramList;

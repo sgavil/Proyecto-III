@@ -3,6 +3,7 @@
 //NUESTRO
 #include "ResourceManager.h""
 #include "SceneManager.h"
+#include "InputManager.h"
 #include "TerrainCreator.h"
 #include "Utils.h"
 
@@ -10,14 +11,8 @@
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
-#include "InputManager.h"
-
 //OIS
-#include <OIS.h>
-#include <OISKeyboard.h>
-#include <OISMouse.h>
-#include <OISInputManager.h>
-
+#include "OISIncludes.h"
 #include "SDL.h"
 //OGRE
 #include "OgreIncludes.h"
@@ -25,6 +20,7 @@
 
 
 #include "Component.h"
+#include "Entity.h"
 #include "MeshRenderer.h"
 
 // Bootstrap CEGUI::System with an OgreRenderer object that uses the
@@ -182,7 +178,7 @@ std::pair<Entity*, Ogre::Vector3> OgreManager::raycast()
 		{
 			// get the entity to check
 			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
-			Entity* en = getEntityFromMesh(pentity->getParentSceneNode());
+			Entity* en = getEntityFromNode(pentity->getParentSceneNode());
 			std::pair<Entity*, Ogre::Vector3> pair_(en,ray.getPoint(query_result[qr_idx].distance));
 			//pentity->setVisible(false);
 			return pair_;
@@ -252,7 +248,7 @@ Ogre::Entity * OgreManager::createPlane(std::string name, std::string MaterialNa
 	return plane;
 }
 
-Entity * OgreManager::getEntityFromMesh(Ogre::SceneNode * n)
+Entity * OgreManager::getEntityFromNode(Ogre::SceneNode * n)
 {
 	for (Entity* c : SceneManager::instance()->currentState()->getEntitiesWithComponent<MeshRenderer>())
 	{

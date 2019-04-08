@@ -3,3 +3,5 @@
 #include "Rigidbody.h"
 #include "Camera.h"
 #include "Terrain.h"
+#include "Button.h"
+#include "ButtonExit.h"

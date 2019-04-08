@@ -45,11 +45,11 @@ void ConstructionMode::update(unsigned int time)
 
 bool ConstructionMode::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_R))
+	if (InputManager::getSingletonPtr()->isKeyDown("ConstructionMode"))
 	{
 		constructActive_ = true;
 	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_T))
+	else if (InputManager::getSingletonPtr()->isKeyDown("Build"))
 	{
 		if (canConst_) {
 			setBuilding("Amusement1", 2, 2);

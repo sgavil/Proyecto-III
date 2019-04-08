@@ -3,9 +3,8 @@
 #include <memory>
 #include <dirent.h>
 #include <OgreRay.h>
-#include "Entity.h"
 
-//Espacio de nombres de Ogre
+//Espacio de nombres de Ogre (predeclaración de clases)
 namespace Ogre
 {
 	class Light;
@@ -23,6 +22,7 @@ namespace Ogre
 };
 
 class TerrainGenerator;
+class Entity;
 
 class OgreManager
 {
@@ -33,38 +33,22 @@ public:
 	//Devuelve la instancia
 	static OgreManager* instance();
 
+	//Destructora
 	~OgreManager();
 
 	//Renderiza la escena (deltaTime debe estar en segundos)
 	void render(unsigned int deltaTime);
-
-	
-
-	//Getters de los managers
-	Ogre::SceneManager * getSceneManager();
-	Ogre::MeshManager * getMeshManager();
-	Ogre::ResourceGroupManager* getResourceGroupManager();
-	Ogre::TextureManager* getTextureManager();
-	Ogre::RenderWindow* getWindow() { return window_; };
+	//Lanza un rayo desde la cámara hacia la posición del ratón y devuelve la entidad con la que colisiona y el punto exacto
 	std::pair<Entity*, Ogre::Vector3> raycast();
 
-	//Cración de recursos
-	Ogre::FileSystemLayer* createFileSystemLayer(std::string cfLayerSystem);
-	Ogre::Camera* createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist, 
-		bool autoAspectRatio, float AspectRatio = 1.3);	
-	Ogre::Entity* createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments,
-		Ogre::SceneNode* FatherNode);
-	TerrainGenerator* createTerrain(std::string terrainFile);
-	Entity * getEntityFromMesh(Ogre::SceneNode * n);
-
-	//Eliminación de recursos
-	void deleteFileSystemLayer(Ogre::FileSystemLayer* fsLayer);
-	
-	//Getters
-	Ogre::Light* getLight() { return light_; };
-	unsigned long gethWnd() { return hWnd; }
-
 private:
+	//Clases amigas: necesitan acceder a los managers de Ogre
+	friend class ResourceManager;
+	friend class InputManager;
+	friend class HUDManager;
+	friend class MeshRenderer;
+	friend class Camera;
+	friend class Terrain;
 
 	//Constructora privada
 	OgreManager(std::string initFileJson);
@@ -72,20 +56,57 @@ private:
 	static std::unique_ptr<OgreManager> instance_;
 	
 
+	//ATRIBUTOS
+	//Variable que toma la ventana de Ogre para aplicarla a la de SDL
+	unsigned long hWnd;
+	
+	//Raíz del árbol, gestor y ventana
 	Ogre::Root *root_;
-	Ogre::RenderWindow *window_;
 	Ogre::SceneManager *sceneMgr_;
-
+	Ogre::RenderWindow *window_;
+	
+	//Luces, cámara y acc... plano
 	Ogre::Light* light_;
-
+	Ogre::Camera* camera_;
 	Ogre::Plane* plane_;
 
-	Ogre::Camera* camera_;
-	//void ceguiInit();
-	/*Utiliza el root para crear una ventana de nombre APP_NAME , tama�o WINDOW_HEIGHT/WIDHT ademas de crear
-	una camara y asociarle un viewport a esta*/
+	//GETTERS DE LOS MANAGERS (solo los pueden coger los amigos)
+	//Devuelve el gestor de escenas de Ogre
+	Ogre::SceneManager * getSceneManager();
+	//Devuelve el gestor de mallas de Ogre
+	Ogre::MeshManager * getMeshManager();
+	//Devuelve el gestor de recursos de Ogre
+	Ogre::ResourceGroupManager* getResourceGroupManager();
+	//Devuelve el gestor de texturas de Ogre
+	Ogre::TextureManager* getTextureManager();
 
-	unsigned long hWnd; //Variable que toma la ventana de Ogre para aplicarla a la de SDL
+	//OTROS GETTERS
+	//Devuelve la ventana de Ogre
+	Ogre::RenderWindow* getWindow() { return window_; };
+	//Devuelve la luz
+	Ogre::Light* getLight() { return light_; };
+	//Devuelve la ventana
+	unsigned long gethWnd() { return hWnd; }
 
+
+	//RECURSOS
+	//Initialises window
 	void initWindow(std::string initFileJson);
+	//Crea el sistema de archivos
+	Ogre::FileSystemLayer* createFileSystemLayer(std::string cfLayerSystem);
+	//Elimina el sistema de archivos
+	void deleteFileSystemLayer(Ogre::FileSystemLayer* fsLayer);
+	//Crea una cámara
+	Ogre::Camera* createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist,
+		bool autoAspectRatio, float AspectRatio = 1.3);
+	//Crea un plano
+	Ogre::Entity* createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments,
+		Ogre::SceneNode* FatherNode);
+	//Crea un terreno
+	TerrainGenerator* createTerrain(std::string terrainFile);
+
+
+	//MÉTODOS AUXILIARES
+	//Gets a certain entity from an OgreSceneNode
+	Entity * getEntityFromNode(Ogre::SceneNode * n);
 };

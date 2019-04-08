@@ -2,13 +2,13 @@
 #define InputManager_H
 
 #include "OISIncludes.h"
-#include "OgreIncludes.h"
+
 
 class InputManager : public OIS::KeyListener, public OIS::MouseListener, public OIS::JoyStickListener {
 public:
 	virtual ~InputManager(void);
 
-	void initialise(Ogre::RenderWindow *renderWindow);
+	void initialise();
 	void capture(void);
 	bool isKeyDown(std::string accion);
 

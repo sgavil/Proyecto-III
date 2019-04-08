@@ -28,6 +28,14 @@
 		{
 			"Id": "NPC",
 			"key": "N"
+		},
+		{
+			"Id": "ConstructionMode",
+			"key": "R"
+		},
+		{
+			"Id": "Build",
+			"key": "T"
 		}
 	],
 	"Mouse":

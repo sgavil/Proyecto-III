@@ -14,7 +14,7 @@
 Game::Game(std::string basicConfig):exit(false)
 {
 	ogreManager_ = OgreManager::instance(basicConfig);
-	InputManager::getSingletonPtr()->initialise(OgreManager::instance()->getWindow());
+	InputManager::getSingletonPtr()->initialise();
 	HUDManager::instance()->init();
 	audioManager_ = AudioManager::instance();
 	sceneManager_ = SceneManager::instance();

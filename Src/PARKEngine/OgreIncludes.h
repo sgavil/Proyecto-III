@@ -17,3 +17,4 @@
 #include <OgreVector3.h>
 #include <OgreTerrainGroup.h>
 #include <OgreTerrainGroup.h>
+#include <OgreRay.h>

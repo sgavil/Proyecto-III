@@ -82,7 +82,9 @@
     <ClCompile Include="..\..\Src\PARKEngine\Component.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\PARKEngine\ButtonExit.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\ButtonExit.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PARKEngine\Entity.h">
