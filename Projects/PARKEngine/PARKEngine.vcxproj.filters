@@ -165,5 +165,11 @@
     <ClInclude Include="..\..\Src\PARKEngine\ButtonExit.h">
       <Filter>Componentes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\PARKEngine.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\PARKFoundation.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

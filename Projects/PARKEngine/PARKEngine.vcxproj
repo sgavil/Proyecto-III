@@ -213,6 +213,8 @@
     <ClInclude Include="..\..\Src\PARKEngine\OgreManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\OISIncludes.h" />
     <ClInclude Include="..\..\Src\PARKEngine\PARKComponents.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\PARKEngine.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\PARKFoundation.h" />
     <ClInclude Include="..\..\Src\PARKEngine\PARKManagers.h" />
     <ClInclude Include="..\..\Src\PARKEngine\PhysicsManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\ResourceManager.h" />

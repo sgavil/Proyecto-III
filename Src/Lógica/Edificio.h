@@ -2,7 +2,7 @@
 #include <PARKEngine/Component.h>
 #include <queue>
 #include <string>
-#include <PARKEngine/ResourceManager.h>
+
 
 class Edificio : public Component
 {

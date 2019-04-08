@@ -1,11 +1,8 @@
 #pragma once
-#include "PARKEngine/Entity.h"
-#include "PARKEngine/Transform.h"
-#include "PARKEngine/MeshRenderer.h"
-#include "PARKEngine/SceneManager.h"
-#include "Node.h"
-
+#include "PARKEngine/Component.h"
 #include <vector>
+
+class Entity;
 
 using namespace std;
 class Matrix : public Component

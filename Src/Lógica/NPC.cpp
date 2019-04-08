@@ -1,9 +1,6 @@
 #include "NPC.h"
 #include <iostream>
-#include  <PARKEngine/Entity.h>
-#include <PARKEngine/PARKComponents.h>
-#include <PARKEngine/OgreIncludes.h>
-#include <PARKEngine/PARKManagers.h>
+#include <PARKEngine/PARKEngine.h>
 #include "Matrix/Node.h"
 #include "Matrix/Matrix.h"
 #include <limits>

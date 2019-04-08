@@ -1,11 +1,8 @@
 #include "ConstructionMode.h"
 
-#include "PARKEngine/SceneManager.h"
-#include "PARKEngine/InputManager.h"
-#include "PARKEngine/OgreManager.h"
-#include "PARKEngine/Entity.h"
-#include "PARKEngine/Entity.h"
+#include "PARKEngine/PARKEngine.h"
 #include "Matrix/Matrix.h"
+#include "Matrix/Node.h"
 #include <string>
 
 

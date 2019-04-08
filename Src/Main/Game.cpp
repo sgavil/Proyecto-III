@@ -2,12 +2,8 @@
 
 //NUESTRO
 #include <PARKEngine/PARKManagers.h>
-#include <PARKEngine/EntityFactory.h>
+#include <PARKEngine/PARKFoundation.h>
 
-
-//CEGUI/OIS
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/RendererModules/Ogre/Renderer.h>
 #include "SDL.h"
 
 
@@ -33,8 +29,6 @@ Game::~Game()
 
 	if (ogreManager_ != nullptr)
 		delete ogreManager_;
-	//CEGUI::System::destroy();
-	//CEGUI::OgreRenderer::destroy(static_cast<CEGUI::OgreRenderer&>()//*d_renderer));
 }
 
 void Game::start()
