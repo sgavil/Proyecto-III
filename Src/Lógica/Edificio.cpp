@@ -1,5 +1,5 @@
 #include "Edificio.h"
-#include <PARKEngine/PARKFoundation.h>
+#include <PARKEngine/Entity.h>
 #include "NPC.h"
 #include "Matrix/Node.h"
 

@@ -91,7 +91,7 @@
       "name": "MeshRenderer",
       "parameters":
       {
-        "mesh": "Node.mesh",
+        "mesh": "Road.mesh",
         "material": "Road",
         "visible" : true
       }
@@ -109,7 +109,7 @@
           "x": 1,
           "y": 1
         },
-        "Height": -5,
+        "Height": 0,
         "Entry":
         {
           "x": 0,
@@ -123,6 +123,96 @@
         "Duration": 10,
         "Capacity": 0,
         "bName": "Road"
+      }
+    }
+  ],
+
+  "EntryRoad": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "EntryRoad.mesh",
+        "material": "EntryRoad",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 1,
+          "y": 1
+        },
+        "Height": 0,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "EntryRoad"
+      }
+    }
+  ],
+
+  "ExitRoad": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "ExitRoad.mesh",
+        "material": "ExitRoad",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 1,
+          "y": 1
+        },
+        "Height": 0,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "ExitRoad"
       }
     }
   ],

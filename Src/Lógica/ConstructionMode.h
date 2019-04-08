@@ -40,6 +40,8 @@ private:
 	Ogre::Vector3 getPosToConstruct();
 	void setNodesType();
 	void setBuilding();
+	void createEntryExitRoad(string roadName);
+	void setEntryExit();
 	void setNodeMaterial(bool enable, bool can);
 };
 

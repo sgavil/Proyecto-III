@@ -104,7 +104,7 @@ void NPC::lookForPaths()
 			if (adyacenteCorrecta(srcPos, adyPos))
 			{
 				//Amusement found
-				if (e->getComponent<Node>()->getType() == "Amusement1")
+				if (e->getComponent<Node>()->getType() == "Patitos")
 				{
 					nodoActual = e->getComponent <Node>();
 					relax(n.elem, calculateIndex(adyPos.y, adyPos.x));

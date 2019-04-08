@@ -22,8 +22,7 @@ ConstructionMode::~ConstructionMode()
 void ConstructionMode::load(json file)
 {
 	
-	for (json b : file["BuildingsNames"])
-	{
+	for (json b : file["BuildingsNames"]){
 		buildingTypes_.push_back(b["name"]);
 	}
 
@@ -65,8 +64,6 @@ bool ConstructionMode::handleEvent(unsigned int time)
 		if (canConst_) {
 			setBuilding();
 		}
-		else
-			cout << "No puedes construir" << endl;
 	}
 
 	return false;
@@ -120,11 +117,6 @@ list<Entity*> ConstructionMode::getNodesToConstruct(Entity* node, Ogre::Vector3 
 				i++;
 		}
 	}
-
-	for (Entity* e : adj) {
-		cout << "X: " << e->getComponent<Node>()->getMatrixPos().x << " ";
-		cout << "Z: " << e->getComponent<Node>()->getMatrixPos().y << endl;
-	}
 	
 	return adj;
 }
@@ -153,8 +145,6 @@ Ogre::Vector3 ConstructionMode::getPosToConstruct()
 	x += (build_->getTamX() * matrixEntity_->getComponent<Matrix>()->getNodeSize().x) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().x / 2);
 	z += (build_->getTamY() * matrixEntity_->getComponent<Matrix>()->getNodeSize().z) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().z / 2);
 
-	cout << "X: " << x << " Y: " << y << " Z: " << z << endl;
-
 	return Ogre::Vector3(x, y, z);
 }
 
@@ -173,11 +163,45 @@ void ConstructionMode::setBuilding()
 	buildingEntity_->setActive(true);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
+	if (build_->getBuildingName() != "Road") setEntryExit();
 	set = true;
 	setNodeMaterial(false, true);
 	nodes_.clear();
 	canConst_ = false;
 	constructActive_ = false;
+}
+
+void ConstructionMode::createEntryExitRoad(string roadName)
+{
+	Entity* e = EntityFactory::Instance()->createEntityFromBlueprint(roadName);
+	Ogre::Vector3 posIni = buildingEntity_->getComponent<Transform>()->getPosition();
+	Ogre::Vector3 ePos;
+	int x = 0, z = 0;
+	Matrix* m = matrixEntity_->getComponent<Matrix>();
+	if (roadName == "EntryRoad") {
+		x = build_->getEntryX() * m->getNodeSize().x + posIni.x;
+		z = build_->getEntryY() * m->getNodeSize().z + posIni.z;
+		build_->setEntryNode(e);
+	}
+	else {
+		x = build_->getExitX() * m->getNodeSize().x + posIni.x;
+		z = build_->getExitY() * m->getNodeSize().z + posIni.z;
+		build_->setExitNode(e);
+	}
+
+	x -= m->getNodeSize().x / 2;
+	z -= m->getNodeSize().z / 2;
+	ePos = Ogre::Vector3(x, e->getComponent<Edificio>()->getHeight(), z);
+	e->getComponent<Transform>()->setPosition(ePos);
+	e->getComponent<MeshRenderer>()->start();
+
+	SceneManager::instance()->currentState()->addEntity(e);
+}
+
+void ConstructionMode::setEntryExit()
+{
+	createEntryExitRoad("EntryRoad");
+	createEntryExitRoad("ExitRoad");
 }
 
 void ConstructionMode::setNodeMaterial(bool enable, bool can)

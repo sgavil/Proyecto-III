@@ -1,15 +1,15 @@
-// Road genrated by blender2ogre 0.5.8
+// ExitRoad genrated by blender2ogre 0.5.8
 
-material Road 
+material ExitRoad 
 {
     receive_shadows on 
 
     technique
     {
-        pass Road
+        pass ExitRoad
         {
-            ambient 1.0 0.38211590051651 0.019392909482121468 1.0
-            diffuse 0.800000011920929 0.3056927249683845 0.01551432781687867 1.0
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
@@ -30,6 +30,14 @@ material Road
             shading gouraud
             transparent_sorting on
 
+            texture_unit 
+            {
+                texture ExitRoad.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                tex_coord_set 0
+                colour_op modulate
+            }
         }
     }
 }

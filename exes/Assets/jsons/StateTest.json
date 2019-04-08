@@ -216,12 +216,18 @@
             {
               "name": "Restaurant"
             },
-			{
-				"name" : "Patitos"
-			},
-			{
-				"name" : "Burguer"
-			}
+      			{
+      				"name" : "Patitos"
+      			},
+      			{
+      				"name" : "Burguer"
+      			},
+            {
+              "name" : "EntryRoad"
+            },
+            {
+              "name" : "ExitRoad"
+            }
           ]
         }
       ]
