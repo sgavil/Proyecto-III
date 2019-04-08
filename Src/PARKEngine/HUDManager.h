@@ -26,7 +26,6 @@ public:
 	void changeWindow(std::string state);
 
 	void setActiveWindow(std::string state);
-	void setActiveWindow(CEGUI::Window* window);
 
 	template<typename T>
 	void createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::*function)(const CEGUI::EventArgs&), T* obj);
@@ -41,7 +40,6 @@ inline void HUDManager::createButton(float posX, float posY, float offsetX, floa
 
 	button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
 	button->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
-	//CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(wnd);
 	button->setText(text);
 
 	button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));

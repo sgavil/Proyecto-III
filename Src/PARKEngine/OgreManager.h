@@ -68,6 +68,9 @@ private:
 	//Luces, cámara y acc... plano
 	Ogre::Light* light_;
 	Ogre::Camera* camera_;
+	Ogre::SceneNode* camNode_;
+	Ogre::Viewport* viewport_;
+
 	Ogre::Plane* plane_;
 
 	//GETTERS DE LOS MANAGERS (solo los pueden coger los amigos)
@@ -96,6 +99,11 @@ private:
 	Ogre::FileSystemLayer* createFileSystemLayer(std::string cfLayerSystem);
 	//Elimina el sistema de archivos
 	void deleteFileSystemLayer(Ogre::FileSystemLayer* fsLayer);
+
+	Ogre::Camera* getCamera() { return camera_; }
+	Ogre::SceneNode* getCameraNode() { return camNode_; }
+	Ogre::Viewport* getViewport() { return viewport_; }
+
 	//Crea una cámara
 	Ogre::Camera* createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist,
 		bool autoAspectRatio, float AspectRatio = 1.3);

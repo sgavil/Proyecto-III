@@ -22,7 +22,8 @@ ConstructionMode::~ConstructionMode()
 void ConstructionMode::load(json file)
 {
 	
-	for (json b : file["BuildingsNames"]){
+	for (json b : file["BuildingsNames"])
+	{
 		buildingTypes_.push_back(b["name"]);
 	}
 

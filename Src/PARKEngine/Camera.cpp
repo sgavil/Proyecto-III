@@ -14,9 +14,10 @@
 
 Camera::Camera()
 {
-	camNode_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("camNode");
-	camera_ = OgreManager::instance()->createCamera("cam", camNode_, 5, 50000, true);
-	viewport_ = OgreManager::instance()->getWindow()->addViewport(camera_);
+	camNode_ = OgreManager::instance()->getCameraNode();
+	camera_ = OgreManager::instance()->getCamera();
+	viewport_ = OgreManager::instance()->getViewport();
+
 	viewport_->setClearEveryFrame(true);
 }
 
@@ -45,21 +46,18 @@ void Camera::update(unsigned int time)
 
 bool Camera::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->isKeyDown("Avanzar"))
-		camNode_->translate({ 0, 0, -10 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyDown("Retroceder"))
-		camNode_->translate({ 0, 0, 10 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyDown("MoverIzquierda"))
-		camNode_->translate({ -10, 0, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyDown("MoverDerecha"))
-		camNode_->translate({ 10, 0, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyDown("Ampliar"))
-		camNode_->translate({ 0, -10, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyDown("Desampliar"))
-		camNode_->translate({ 0, 10, 0 }, Ogre::Node::TS_WORLD);
-	if (InputManager::getSingletonPtr()->isKeyDown("Ray")) 	OgreManager::instance()->raycast();
-	return false;
+		if (InputManager::getSingletonPtr()->isKeyDown("Avanzar"))
+			camNode_->translate({ 0, 0, -10 }, Ogre::Node::TS_WORLD);
+		if (InputManager::getSingletonPtr()->isKeyDown("Retroceder"))
+			camNode_->translate({ 0, 0, 10 }, Ogre::Node::TS_WORLD);
+		if (InputManager::getSingletonPtr()->isKeyDown("MoverIzquierda"))
+			camNode_->translate({ -10, 0, 0 }, Ogre::Node::TS_WORLD);
+		if (InputManager::getSingletonPtr()->isKeyDown("MoverDerecha"))
+			camNode_->translate({ 10, 0, 0 }, Ogre::Node::TS_WORLD);
+		if (InputManager::getSingletonPtr()->isKeyDown("Ampliar"))
+			camNode_->translate({ 0, -10, 0 }, Ogre::Node::TS_WORLD);
+		if (InputManager::getSingletonPtr()->isKeyDown("Desampliar"))
+			camNode_->translate({ 0, 10, 0 }, Ogre::Node::TS_WORLD);
+		if (InputManager::getSingletonPtr()->isKeyDown("Ray")) 	OgreManager::instance()->raycast();
+		return false;
 }
-
-
-

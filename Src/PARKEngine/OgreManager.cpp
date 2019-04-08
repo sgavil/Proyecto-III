@@ -218,6 +218,12 @@ void OgreManager::initWindow(std::string initFileJson)
 	plane_->normal = Vector3::NEGATIVE_UNIT_Y;
 	sceneMgr_->setSkyPlane(
 		true, *plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
+
+	camNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode("camNode");
+	camera_ = createCamera("cam", camNode_, 5, 50000, true);
+
+	viewport_ = window_->addViewport(camera_);
+
 #if _DEBUG
 	sceneMgr_->showBoundingBoxes(true); //Para debuggear las aabb
 #endif
@@ -226,7 +232,7 @@ void OgreManager::initWindow(std::string initFileJson)
 
 Ogre::Camera* OgreManager::createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist, bool autoAspectRatio, float AspectRatio)
 {
-	Ogre::Camera* cam_ = getSceneManager()->createCamera(name);
+	Ogre::Camera* cam_ = sceneMgr_->createCamera(name);
 	cam_->setNearClipDistance(NearClipDist);
 	cam_->setFarClipDistance(FarClipDist);
 	FatherNode->attachObject(cam_);
@@ -235,6 +241,7 @@ Ogre::Camera* OgreManager::createCamera(std::string name, Ogre::SceneNode* Fathe
 	camera_ = cam_;
 	return cam_;
 }
+
 
 Ogre::Entity * OgreManager::createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments, Ogre::SceneNode* FatherNode)
 {
@@ -266,4 +273,3 @@ void OgreManager::deleteFileSystemLayer(Ogre::FileSystemLayer * fsLayer)
 {
 	OGRE_DELETE fsLayer;
 }
-

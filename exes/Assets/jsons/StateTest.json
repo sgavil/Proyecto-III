@@ -28,7 +28,12 @@
           "name": "Button",
           "nextState": "StateMainMenu",
           "text": "MAIN MENU",
-          "posX": 0.25
+          "posX": 0.8,
+          "posY": 0.8,
+          "sizeX": 100,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
         }
       ]
     },

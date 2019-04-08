@@ -14,13 +14,23 @@ Button::~Button()
 
 void Button::load(json file)
 {
+	float posX, posY, sizeX, sizeY, offsetX,offsetY;
+	posX = posY = sizeX = sizeY = offsetX = offsetY = 0;
+
 	addParameter(nextState, file["nextState"]);
 
 	std::string text;
 	addParameter(text, file["text"]);
 
-	float posX = file["posX"];
-	HUDManager::instance()->createButton(posX, 0.5, -50, 0, 100, 50, text, &Button::onClick, this); // &onClick if used the other function
+	addParameter(posX, file["posX"]);
+	addParameter(posY, file["posY"]);
+	addParameter(sizeX, file["sizeX"]);
+	addParameter(sizeY, file["sizeY"]);
+	addParameter(offsetX, file["offsetX"]);
+	addParameter(offsetY, file["offsetY"]);
+
+
+	HUDManager::instance()->createButton(posX, posY, offsetX, offsetY, sizeX, sizeY, text, &Button::onClick, this);
 }
 
 
