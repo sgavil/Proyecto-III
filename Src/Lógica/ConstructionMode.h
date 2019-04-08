@@ -6,6 +6,7 @@
 using namespace std;
 
 class Matrix;
+class Edificio;
 
 class ConstructionMode : public Component
 {
@@ -27,15 +28,18 @@ private:
 	bool canConst_;
 	Entity* matrixEntity_;
 	Entity* nodeEntity_;
+	Edificio* build_;
+	Entity* buildingEntity_;
 	list<Entity*> nodes_;
 	vector<string> buildingTypes_;
 
-	list<Entity*> getNodesToConstruct(Entity* node, Ogre::Vector3 mousePos, int tamX, int tamY);
+	void construct(string bName, unsigned int time);
+	list<Entity*> getNodesToConstruct(Entity* node, Ogre::Vector3 mousePos);
 	bool canConstruct(int n);
 
-	Ogre::Vector3 getPosToConstruct(int tamX, int tamY);
-	void setNodesType(string building);
-	void setBuilding(string building, int tamX, int tamY);
+	Ogre::Vector3 getPosToConstruct();
+	void setNodesType();
+	void setBuilding();
 	void setNodeMaterial(bool enable, bool can);
 };
 

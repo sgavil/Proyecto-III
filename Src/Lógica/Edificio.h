@@ -2,7 +2,7 @@
 #include <PARKEngine/Component.h>
 #include <queue>
 #include <string>
-
+#include <PARKEngine/ResourceManager.h>
 
 class Edificio : public Component
 {
@@ -28,6 +28,7 @@ private:
 	std::queue<Entity*> cola;
 	std::list<Entity*> rideing;
 	Ogre::Vector2 tam;
+	int height_;
 	Ogre::Vector2 entry;
 	Ogre::Vector2 exit;
 
@@ -68,8 +69,12 @@ public:
 	Ogre::Vector2 getEntry() { return entry; };
 	Ogre::Vector2 getExit() { return exit; };
 
+	int getHeight() { return height_; };
+
 	//Devuelve la duración de la atracción en milisegundos
 	int getDuration() { return duration_; };
+
+	std::string getBuildingName() { return bName; };
 
 	//SETTERS
 	void getPeePeeValue(int P) { PeePeeRestore_ = P; };

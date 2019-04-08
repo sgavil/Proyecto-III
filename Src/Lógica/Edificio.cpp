@@ -1,5 +1,5 @@
 #include "Edificio.h"
-#include <PARKEngine/PARKFoundation.h>
+#include <PARKEngine/Entity.h>
 #include "NPC.h"
 #include "Matrix/Node.h"
 
@@ -61,10 +61,11 @@ void Edificio::load(json file)
 	HungryRestore_ = file["Hungry"];
 	funRestore_ = file["Fun"];
 	maxCola_ = file["Tam_Cola"];
-	type_ = file["Type"];
 
 	tam.x = file["Tam"]["x"];
 	tam.y = file["Tam"]["y"];
+
+	height_ = file["Height"];
 
 	entry.x = file["Entry"]["x"];
 	entry.y = file["Entry"]["y"];

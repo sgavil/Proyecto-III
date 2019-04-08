@@ -10,8 +10,8 @@
           "name": "Transform",
           "position": {
             "x": 0,
-            "y": 1500,
-            "z": 1500
+            "y": 500,
+            "z": 500
           },
           "scale": {
             "x": 0.8,
@@ -210,7 +210,13 @@
             },
             {
               "name": "Restaurant"
-            }
+            },
+			{
+				"name" : "Patitos"
+			},
+			{
+				"name" : "Burguer"
+			}
           ]
         }
       ]

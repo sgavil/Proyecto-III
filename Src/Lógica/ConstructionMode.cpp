@@ -1,12 +1,17 @@
 #include "ConstructionMode.h"
 
-#include "PARKEngine/PARKEngine.h"
+#include "PARKEngine/SceneManager.h"
+#include "PARKEngine/InputManager.h"
+#include "PARKEngine/OgreManager.h"
+#include "PARKEngine/Entity.h"
+#include "PARKEngine/Transform.h"
+#include "PARKEngine/MeshRenderer.h"
 #include "Matrix/Matrix.h"
 #include "Matrix/Node.h"
 #include <string>
+#include "Edificio.h"
 
-
-ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), canConst_(false), constructActive_(false)
+ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false)
 {
 }
 
@@ -32,9 +37,9 @@ void ConstructionMode::update(unsigned int time)
 {
 	if (constructActive_) {
 		pair<Entity*, Ogre::Vector3> nodeAndPos= OgreManager::instance()->raycast();
-		if (nodeAndPos.first->getComponent<Node>() != nullptr) {
-			nodes_ = getNodesToConstruct(nodeAndPos.first, nodeAndPos.second, 2, 2);
-			canConst_ = canConstruct(4);
+		if (nodeAndPos.first != nullptr && nodeAndPos.first->getComponent<Node>() != nullptr) {
+			nodes_ = getNodesToConstruct(nodeAndPos.first, nodeAndPos.second);
+			canConst_ = canConstruct(build_->getTam().x * build_->getTam().x);
 			setNodeMaterial(true, canConst_);
 		}
 	}
@@ -42,14 +47,22 @@ void ConstructionMode::update(unsigned int time)
 
 bool ConstructionMode::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->isKeyDown("ConstructionMode"))
+	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_P))
 	{
-		constructActive_ = true;
+		construct("Patitos", time);
 	}
-	else if (InputManager::getSingletonPtr()->isKeyDown("Build"))
+	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_O))
+	{
+		construct("Burguer", time);
+	}
+	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_I))
+	{
+		construct("Road", time);
+	}
+	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_Y))
 	{
 		if (canConst_) {
-			setBuilding("Amusement1", 2, 2);
+			setBuilding();
 		}
 		else
 			cout << "No puedes construir" << endl;
@@ -58,14 +71,24 @@ bool ConstructionMode::handleEvent(unsigned int time)
 	return false;
 }
 
-list<Entity*> ConstructionMode::getNodesToConstruct(Entity * node, Ogre::Vector3 mousePos, int tamX, int tamY)
+void ConstructionMode::construct(string bName, unsigned int time)
 {
-	int maxAdjX = tamX / 2, maxAdjY = tamY / 2;
+	constructActive_ = true;
+	buildingEntity_ = EntityFactory::Instance()->createEntityFromBlueprint(bName);
+	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(0, -1000, 0));
+	buildingEntity_->getComponent<MeshRenderer>()->start();
+	SceneManager::instance()->currentState()->addEntity(buildingEntity_);
+	build_ = buildingEntity_->getComponent<Edificio>();
+}
+
+list<Entity*> ConstructionMode::getNodesToConstruct(Entity* node, Ogre::Vector3 mousePos)
+{
+	int maxAdjX = build_->getTamX() / 2, maxAdjY = build_->getTamY() / 2;
 	list<Entity*> adj = matrixEntity_->getComponent<Matrix>()->getAdj(node, maxAdjX, maxAdjY);
 	Ogre::Vector3 nodeSize = matrixEntity_->getComponent<Matrix>()->getNodeSize();
 	Ogre::Vector2 nodeMatrixPos = node->getComponent<Node>()->getMatrixPos();
 
-	if (tamX % 2 == 0)
+	if (build_->getTamX() % 2 == 0)
 	{
 		float x = (abs(mousePos.x) / nodeSize.x) - (int)(abs(mousePos.x) / nodeSize.x);
 		if (nodeMatrixPos.x + x > nodeMatrixPos.x + 0.5 && mousePos.x > 0 || nodeMatrixPos.x + x < nodeMatrixPos.x + 0.5 && mousePos.x < 0)
@@ -81,7 +104,7 @@ list<Entity*> ConstructionMode::getNodesToConstruct(Entity * node, Ogre::Vector3
 				i++;
 		}
 	}
-	if (tamY % 2 == 0) {
+	if (build_->getTamY() % 2 == 0) {
 		float y = (abs(mousePos.z) / nodeSize.z) - (int)(abs(mousePos.z) / nodeSize.z);
 		if (nodeMatrixPos.y + y > nodeMatrixPos.y + 0.5 && mousePos.z > 0 || nodeMatrixPos.y + y < nodeMatrixPos.y + 0.5 && mousePos.z < 0)
 			y = -maxAdjY;
@@ -115,7 +138,7 @@ bool ConstructionMode::canConstruct(int n)
 	return true;
 }
 
-Ogre::Vector3 ConstructionMode::getPosToConstruct(int tamX, int tamY)
+Ogre::Vector3 ConstructionMode::getPosToConstruct()
 {
 	int x = numeric_limits<int>::max(), y = 0, z = numeric_limits<int>::max();
 
@@ -124,43 +147,36 @@ Ogre::Vector3 ConstructionMode::getPosToConstruct(int tamX, int tamY)
 		z = min(z, (int)e->getComponent<Transform>()->getPosition().z);
 	}
 	
-	y = 100;
+	y = build_->getHeight();
 
-	x += (tamX * matrixEntity_->getComponent<Matrix>()->getNodeSize().x) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().x / 2);
-	z += (tamY * matrixEntity_->getComponent<Matrix>()->getNodeSize().z) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().z / 2);
+	x += (build_->getTamX() * matrixEntity_->getComponent<Matrix>()->getNodeSize().x) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().x / 2);
+	z += (build_->getTamY() * matrixEntity_->getComponent<Matrix>()->getNodeSize().z) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().z / 2);
 
 	cout << "X: " << x << " Y: " << y << " Z: " << z << endl;
 
 	return Ogre::Vector3(x, y, z);
 }
 
-void ConstructionMode::setNodesType(string building)
+void ConstructionMode::setNodesType()
 {
 	for (Entity* e : nodes_) {
-		e->getComponent<Node>()->setType(building);
+		e->getComponent<Node>()->setType(build_->getBuildingName());
 	}
 }
 
-void ConstructionMode::setBuilding(string building, int tamX, int tamY)
+void ConstructionMode::setBuilding()
 {
-	Entity* e = nullptr;
 	bool set = false;
-	Ogre::Vector3 pos = getPosToConstruct(tamX, tamY);
-	setNodesType(building);
-	for (int i = 0; i < buildingTypes_.size() && !set; i++) {
-		if (buildingTypes_[i] == building) {
-			e= EntityFactory::Instance()->createEntityFromBlueprint(building);
-			SceneManager::instance()->currentState()->addEntity(e);
-			e->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
-			e->getComponent<MeshRenderer>()->start();
-
-			set = true;
-			setNodeMaterial(false, true);
-			nodes_.clear();
-			canConst_ = false;
-			constructActive_ = false;
-		}
-	}
+	Ogre::Vector3 pos = getPosToConstruct();
+	setNodesType();
+	buildingEntity_->setActive(true);
+	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
+	buildingEntity_->getComponent<MeshRenderer>()->start();
+	set = true;
+	setNodeMaterial(false, true);
+	nodes_.clear();
+	canConst_ = false;
+	constructActive_ = false;
 }
 
 void ConstructionMode::setNodeMaterial(bool enable, bool can)

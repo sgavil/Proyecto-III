@@ -19,9 +19,6 @@
     <ClCompile Include="..\..\Src\Lógica\NPC.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Lógica\Edificio.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Lógica\BureaucracyManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
@@ -34,12 +31,12 @@
     <ClCompile Include="..\..\Src\Lógica\ConstructionMode.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\Edificio.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\NPC.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Lógica\Edificio.h">
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h">
@@ -53,6 +50,9 @@
       <Filter>Componentes\Matrix</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\Edificio.h">
       <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>

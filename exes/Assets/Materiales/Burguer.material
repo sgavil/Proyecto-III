@@ -1,15 +1,15 @@
-// Road genrated by blender2ogre 0.5.8
+// Burguer genrated by blender2ogre 0.5.8
 
-material Road 
+material Burguer 
 {
     receive_shadows on 
 
     technique
     {
-        pass Road
+        pass Burguer
         {
-            ambient 0.14731353521347046 0.13816456496715546 0.14217311143875122 1.0
-            diffuse 0.11785082992689055 0.11053165362077433 0.11373849084583654 1.0
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
@@ -30,6 +30,14 @@ material Road
             shading gouraud
             transparent_sorting on
 
+            texture_unit 
+            {
+                texture Burger.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                tex_coord_set 0
+                colour_op modulate
+            }
         }
     }
 }

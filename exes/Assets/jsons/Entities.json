@@ -82,6 +82,51 @@
     }
   ],
 
+  "Road": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Node.mesh",
+        "material": "Road",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 1,
+          "y": 1
+        },
+        "Height": -5,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Road"
+      }
+    }
+  ],
+
   "Amusement": 
   [
     {
@@ -94,6 +139,35 @@
         "mesh": "Amusement.mesh",
         "material": "Amusement",
         "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 1,
+          "y": 1
+        },
+        "Height": 50,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Amusement"
       }
     }
   ],
@@ -108,8 +182,38 @@
       "parameters":
       {
         "mesh": "Amusement1.mesh",
-        "material": "Amusement",
+        "material": "Amusement1",
         "visible" : true
+      }
+    }
+    ,
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 2,
+          "y": 2
+        },
+        "Height": 50,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Amusement1"
       }
     }
   ],
@@ -127,6 +231,79 @@
         "material": "Amusement",
         "visible" : true
       }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 3,
+          "y": 3
+        },
+        "Height": 50,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Amusement2"
+      }
+    }
+  ],
+  "Patitos": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Patitos.mesh",
+        "material": "Patitos",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 2,
+          "y": 2
+        },
+        "Height": 60,
+        "Entry":
+        {
+          "x": 0,
+          "y": 2
+        },
+        "Exit":
+        {
+          "x": 2,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Patitos"
+      }
     }
   ],
 
@@ -143,6 +320,35 @@
         "material": "Toilet",
         "visible" : true
       }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 1,
+          "y": 1
+        },
+        "Height": 50,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Toilet"
+      }
     }
   ],
 
@@ -155,10 +361,84 @@
       "name": "MeshRenderer",
       "parameters":
       {
-        "mesh": "Building.mesh",
+        "mesh": "Restaurant.mesh",
         "material": "Restaurant",
         "visible" : true
       }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 2,
+          "y": 2
+        },
+        "Height": 50,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Restaurant"
+      }
     }
+  ],
+
+  "Burguer": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Burguer.mesh",
+        "material": "Burguer",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 2,
+          "y": 2
+        },
+        "Height": 20,
+        "Entry":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Exit":
+        {
+          "x": 0,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Burguer"
+      }
+    }    
   ]
 }
