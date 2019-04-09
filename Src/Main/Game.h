@@ -6,6 +6,7 @@ class SceneManager;
 class AudioManager;
 class PhysicsManager;
 class InputManager;
+class HUDManager;
 
 
 class Game {
@@ -22,6 +23,7 @@ private:
 	OgreManager* ogreManager_;
 	AudioManager* audioManager_;
 	InputManager* inputManager_;
+	HUDManager* hudManager_;
 
 	bool exit;
 };

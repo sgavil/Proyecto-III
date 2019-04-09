@@ -52,7 +52,7 @@ OgreManager * OgreManager::instance()
 }
 
 
-OgreManager::OgreManager(std::string initFileJson):plane_(nullptr)
+OgreManager::OgreManager(std::string initFileJson):plane_(nullptr), camera_(nullptr)
 {	
 
 #if _DEBUG
@@ -70,8 +70,6 @@ OgreManager::OgreManager(std::string initFileJson):plane_(nullptr)
 
 	initWindow(initFileJson);		
 
-	
-	//ceguiInit();
 
 	//Inicialización de ventana de SDL que se una a la de Ogre
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -219,10 +217,6 @@ void OgreManager::initWindow(std::string initFileJson)
 	sceneMgr_->setSkyPlane(
 		true, *plane_, "SkyBox", 1500, 50, true, 1.5, 150, 150);
 
-	camNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode("camNode");
-	camera_ = createCamera("cam", camNode_, 5, 50000, true);
-
-	viewport_ = window_->addViewport(camera_);
 
 #if _DEBUG
 	sceneMgr_->showBoundingBoxes(true); //Para debuggear las aabb
@@ -230,16 +224,27 @@ void OgreManager::initWindow(std::string initFileJson)
 }
 
 
-Ogre::Camera* OgreManager::createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist, bool autoAspectRatio, float AspectRatio)
+Ogre::Camera* OgreManager::createCamera(std::string name, float NearClipDist, float FarClipDist, bool autoAspectRatio, float AspectRatio)
 {
-	Ogre::Camera* cam_ = sceneMgr_->createCamera(name);
-	cam_->setNearClipDistance(NearClipDist);
-	cam_->setFarClipDistance(FarClipDist);
-	FatherNode->attachObject(cam_);
-	if (autoAspectRatio)cam_->setAutoAspectRatio(autoAspectRatio);
-	else cam_->setAspectRatio(AspectRatio);
-	camera_ = cam_;
-	return cam_;
+	//Create Ogre node
+	Ogre::SceneNode* camNode_ = sceneMgr_->getRootSceneNode()->createChildSceneNode("camNode");
+
+	//Create Ogre camera
+	camera_ = sceneMgr_->createCamera(name);
+	camera_->setNearClipDistance(NearClipDist);
+	camera_->setFarClipDistance(FarClipDist);
+
+	//Attach object to the camera
+	camNode_->attachObject(camera_);
+	if (autoAspectRatio)
+		camera_->setAutoAspectRatio(autoAspectRatio);
+	else
+		camera_->setAspectRatio(AspectRatio);
+
+	//Update actual camera and viewport
+	viewport_ = window_->addViewport(camera_);
+
+	return camera_;
 }
 
 

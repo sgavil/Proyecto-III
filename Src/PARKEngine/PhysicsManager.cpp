@@ -11,7 +11,6 @@ std::vector<btCollisionShape*> PhysicsManager::shapes = std::vector<btCollisionS
 
 PhysicsManager::PhysicsManager()
 {
-	initPhysics();
 }
 
 
@@ -24,7 +23,7 @@ PhysicsManager * PhysicsManager::instance()
 	return instance_.get();
 }
 
-void PhysicsManager::initPhysics()
+void PhysicsManager::init()
 {
 	// collision configuration contains default setup for memory , collision setup . Advanced users can create their own configuration
 	collisionConfiguration = new btDefaultCollisionConfiguration();

@@ -16,19 +16,15 @@ public:
 
 	virtual void start();
 
-	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time);
 	virtual bool handleEvent(unsigned int time);
-	virtual void receive(Message* msg) {};
 
-	Ogre::SceneNode* getCameraNode() { return camNode_; }
-	Ogre::Camera* getCamera() { return camera_; }
-	Ogre::Viewport* getViewport() { return viewport_; }
-
+	//Ogre camera
 	Ogre::SceneNode* camNode_;
 	Ogre::Camera *camera_;
-	Ogre::Viewport *viewport_;
 
+protected:
+	//Pointer to the transform component
 	Transform* transform_;
 };
 

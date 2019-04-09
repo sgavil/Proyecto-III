@@ -10,12 +10,20 @@
 Game::Game(std::string basicConfig):exit(false)
 {
 	ogreManager_ = OgreManager::instance(basicConfig);
-	InputManager::getSingletonPtr()->initialise();
-	HUDManager::instance()->init();
+
+	inputManager_ = InputManager::getSingletonPtr();
+	inputManager_->initialise();
+
+	hudManager_ = HUDManager::instance();
+	hudManager_->init();
+
 	audioManager_ = AudioManager::instance();
+
 	sceneManager_ = SceneManager::instance();
 	sceneManager_->setExit(&exit);
+
 	physicsManager_ = PhysicsManager::instance();
+	physicsManager_->init();
 }
 
 Game::~Game()
@@ -26,7 +34,10 @@ Game::~Game()
 		delete sceneManager_;
 	if (audioManager_ != nullptr)
 		delete audioManager_;
-
+	if (hudManager_ != nullptr)
+		delete hudManager_;
+	if (inputManager_ != nullptr)
+		delete inputManager_;
 	if (ogreManager_ != nullptr)
 		delete ogreManager_;
 }
@@ -37,13 +48,8 @@ void Game::start()
 
 	AudioManager::instance()->READ_JSON_SOUNDS("AudioSource.json");
 	//AudioManager::instance()->PLAY_2D_SOUND("cochecitos");
-	//AudioManager::instance()->PLAY_SONG("MainTheme");
+	AudioManager::instance()->PLAY_SONG("MainTheme");
 	InputManager::getSingletonPtr()->addMappingValues("Input.json");
-	//Start
-	//sceneManager_->currentState()->start();
-
-	// TEST DE LOS BLUEPRINTS CON PARÁMETROS (SALE BIEN)
-	//EntityFactory::Instance()->createEntityFromBlueprint("NPC");
 }
 
 void Game::run()

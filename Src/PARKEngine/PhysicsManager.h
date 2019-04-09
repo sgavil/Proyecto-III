@@ -24,7 +24,7 @@ public:
 	static PhysicsManager* instance();
 
 	//Inicializa el sistema de físicas
-	void initPhysics();
+	void init();
 
 	//Actualiza el sistema
 	void stepSimulation(unsigned int time);

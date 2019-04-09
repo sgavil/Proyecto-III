@@ -68,7 +68,6 @@ private:
 	//Luces, cámara y acc... plano
 	Ogre::Light* light_;
 	Ogre::Camera* camera_;
-	Ogre::SceneNode* camNode_;
 	Ogre::Viewport* viewport_;
 
 	Ogre::Plane* plane_;
@@ -101,11 +100,9 @@ private:
 	void deleteFileSystemLayer(Ogre::FileSystemLayer* fsLayer);
 
 	Ogre::Camera* getCamera() { return camera_; }
-	Ogre::SceneNode* getCameraNode() { return camNode_; }
-	Ogre::Viewport* getViewport() { return viewport_; }
 
 	//Crea una cámara
-	Ogre::Camera* createCamera(std::string name, Ogre::SceneNode* FatherNode, float NearClipDist, float FarClipDist,
+	Ogre::Camera* createCamera(std::string name, float NearClipDist, float FarClipDist,
 		bool autoAspectRatio, float AspectRatio = 1.3);
 	//Crea un plano
 	Ogre::Entity* createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments,
