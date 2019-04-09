@@ -61,9 +61,9 @@ bool Camera::handleEvent(unsigned int time)
 		if (InputManager::getSingletonPtr()->isKeyDown("Retroceder"))
 			transform_->translate({ 0, 0, 10 });
 		if (InputManager::getSingletonPtr()->isKeyDown("MoverIzquierda"))
-			transform_->translate({ -10, 0, 0 });
+			transform_->translate(transform_->right() * -10);
 		if (InputManager::getSingletonPtr()->isKeyDown("MoverDerecha"))
-			transform_->translate({ 10, 0, 0 });
+			transform_->translate(transform_->right() * 10);
 		if (InputManager::getSingletonPtr()->isKeyDown("Ampliar"))
 			transform_->translate({ 0, -10, 0 });
 		if (InputManager::getSingletonPtr()->isKeyDown("Desampliar"))
@@ -75,13 +75,13 @@ bool Camera::handleEvent(unsigned int time)
 		//ZOOM OUT
 		if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel > 0)
 		{
-			transform_->translate(transform_->getRotation() * Vector3::NEGATIVE_UNIT_Z * 50); //TODO: quitar el 50 y poner un parámetro de sensibilidad
+			transform_->translate(transform_->forward() * 50); //TODO: quitar el 50 y poner un parámetro de sensibilidad
 ;			
 		//ZOOM OUT
 		}
 		else if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel < 0)
 		{
-			transform_->translate(transform_->getRotation() * Vector3::NEGATIVE_UNIT_Z * -50);
+			transform_->translate(transform_->forward() * -50);
 		}
 			
 		return false;

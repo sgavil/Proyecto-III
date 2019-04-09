@@ -2,6 +2,7 @@
 
 Transform::Transform():position_(Vector3(0,0,0)), rotation_(Ogre::Quaternion::IDENTITY), scale_(Vector3(1,1,1))
 {
+	updateAxis();
 }
 
 Transform::Transform(Vector3 position, Ogre::Quaternion rotation, Vector3 scale)
@@ -23,6 +24,7 @@ void Transform::load(json file)
 		scale_.y = scale["y"];
 		scale_.z = scale["z"];
 	}
+	updateAxis();
 }
 
 void Transform::translate(Vector3 incr)
@@ -45,6 +47,9 @@ void Transform::rotate(Vector3 axis, float degrees)
 		
 	//Normalizamos el cuaternión
 	rotation_.normalise();
+
+	//Update axis
+	updateAxis();
 }
 
 void Transform::scale(Vector3 factor)
@@ -52,41 +57,21 @@ void Transform::scale(Vector3 factor)
 	scale_ *= factor;
 }
 
+void Transform::updateAxis()
+{
+	forward_ = getRotation() * Vector3::NEGATIVE_UNIT_Z;
+	forward_.normalise();
+
+	right_ = getRotation() * Vector3::NEGATIVE_UNIT_X;
+	right_.normalise();
+
+	up_ = getRotation() * Vector3::NEGATIVE_UNIT_Y;
+	up_.normalise();
+}
+
+
+
 Transform::~Transform()
 {
 }
 
-
-//CÓDIGO DE ROTACIONES DE NODOS EN OGRE
-//void Node::rotate(const Vector3& axis, const Radian& angle, TransformSpace relativeTo)
-//{
-//	Quaternion q;
-//	q.FromAngleAxis(angle, axis);
-//	rotate(q, relativeTo);
-//}
-//
-////-----------------------------------------------------------------------
-//void Node::rotate(const Quaternion& q, TransformSpace relativeTo)
-//{
-//	switch (relativeTo)
-//	{
-//	case TS_PARENT:
-//		// Rotations are normally relative to local axes, transform up
-//		mOrientation = q * mOrientation;
-//		break;
-//	case TS_WORLD:
-//		// Rotations are normally relative to local axes, transform up
-//		mOrientation = mOrientation * _getDerivedOrientation().Inverse()
-//			* q * _getDerivedOrientation();
-//		break;
-//	case TS_LOCAL:
-//		// Note the order of the mult, i.e. q comes after
-//		mOrientation = mOrientation * q;
-//		break;
-//	}
-//
-//	// Normalise quaternion to avoid drift
-//	mOrientation.normalise();
-//
-//	needUpdate();
-//}

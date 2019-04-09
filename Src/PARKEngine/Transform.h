@@ -25,7 +25,7 @@ public:
 	//Position setter
 	void setPosition(Vector3 pos) { this->position_ = pos; };
 	//Rotation setter
-	void setRotation(Ogre::Quaternion rotation) { this->rotation_ = rotation; };
+	void setRotation(Ogre::Quaternion rotation) { this->rotation_ = rotation; updateAxis(); };
 	//Scale setter
 	void setScale(Vector3 scale) { this->scale_ = scale; };
 
@@ -37,12 +37,36 @@ public:
 	//Multiplies the component scale for a given factor
 	void scale(Vector3 factor);
 
+	//LOCAL AXIS
+	//Returns forward vector
+	Vector3 forward() { return forward_; };
+	//Returns right vector
+	Vector3 right() { return right_; };
+	//Returns up vector
+	Vector3 up() { return up_; };
+
+
+
+
 protected:
+	//Position
 	Vector3 position_;
+	//Orientation (x,y,z,w)
 	Ogre::Quaternion rotation_;
+	//Scale
 	Vector3 scale_;
 
-	//void rotate(const Quaternion& q, TransformSpace relativeTo);
+	//LOCAL AXIS
+	//Forward
+	Vector3 forward_;
+	//Right
+	Vector3 right_;
+	//Up
+	Vector3 up_;
+
+	//Updates axis
+	void updateAxis();
+
 };
 
 REGISTER_TYPE(Transform)
