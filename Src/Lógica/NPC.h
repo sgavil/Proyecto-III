@@ -2,9 +2,27 @@
 #include <PARKEngine/Component.h>
 #include "IndexPQ.h"
 #include <stack>
+#include <string>
 
 class Node;
 class Matrix;
+
+//Estadística del NPC. Indica el nombre del stat, sus valores actual y máximo, y si aumenta/disminuye con el tiempo
+struct Stat
+{
+	Stat(std::string name, float value, float maxVal, bool decreases)
+	{
+		name_ = name;
+		value_ = value;
+		MAX_VALUE = maxVal;
+		decreases_ = decreases;
+	}
+	Stat(){}
+	std::string name_;
+	float value_;
+	float MAX_VALUE;
+	bool decreases_;
+};
 
 class NPC : public Component
 {
@@ -25,36 +43,52 @@ public:
 	//Gets current node
 	Node* getNode();
 
-	//Applies dijkstra algorithm
-	void lookForPaths();
+	//Looks for a certain bulding 
+	void lookForBuildings();
+	//Walks by without a destiny
+	void deambulate();
+
+	//GETTERS
+	float getFun() { return fun_.value_; };
+	float getHunger() { return hunger_.value_; };
+	float getPeepee() { return peepee_.value_; };
+
 
 private:
+	//ATRIBUTOS DE JSON
 	//Necesidades
-	int hunger_;
-	int peepee_;
-	int fun_;
+	Stat fun_;
+	Stat hunger_;
+	Stat peepee_;
+
+
+	//Velocidad
+	float speed_;
+	//Velocidad a la que bajan las necesidades
+	float exigency_;
 
 	//Camino
 	bool hasPath;
+	//Está en una atracción
+	bool isInBuilding_;
+
+
 
 	//Puntero a la matriz
 	Matrix* matrix_;
 	//Puntero al nodo de la matriz en que se encuentra
 	Node* node_;
 
+	//PARA EL ALGORITMO
 	//Para hacer el algoritmo de Dijkstra
 	IndexPQ<int> pq; //Cola de prioridad 
 	std::vector<int > distTo; //Distancia entre el nodo inicial y los demás
 	std::vector<int > nodeTo; //Indicador del camino que hacemos
-
 	//Cola que indica los movimientos que seguirá el NPC
 	std::stack<Node*> movements;
 
-	//Velocidad
-	float speed_;
 
-
-	//Métodos auxiliares
+	//MÉTODOS AUXILIARES
 	//Relaja el camino entre el primer nodo y el segundo
 	void relax(int srcIndex, int destIndex);
 	//Calcula el índice de una posición de la matriz (PONERLO EN MATRIX)
@@ -65,6 +99,8 @@ private:
 	bool isInNode(Node* n);
 	//Mueve al NPC al nodo indicado
 	void moveToNode(Node* n, int deltaTime);
+	//Cambia una stat del NPC una cierta cantidad
+	void changeStat(Stat& stat, float incr);
 };
 
 REGISTER_TYPE(NPC);

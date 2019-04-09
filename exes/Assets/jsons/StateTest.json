@@ -55,14 +55,31 @@
         },
         {
           "name": "NPC",
-          "hunger": 0,
-          "peepee": 0,
-          "fun": 5,
-          "speed": 3
+		  "speed": 3,
+		  "exigency": 1,
+		   "stats": [
+		  {
+			"name": "fun",
+			"value": 5,
+			"maxValue": 10,
+			"decreases": true
+		  },
+		  {
+			"name": "hunger",
+			"value": 0,
+			"maxValue": 10,
+			"decreases": false
+		  },
+		  {
+			"name": "peepee",
+			"value": 0,
+			"maxValue": 10,
+			"decreases": false
+		  }
+		  ]
         }
       ]
     },
-    
     {
       "name": "Terrain",
       "Components": [
