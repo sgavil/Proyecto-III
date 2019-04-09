@@ -15,21 +15,24 @@ Matrix::~Matrix()
 
 void Matrix::load(json file)
 {
-	json matrixSize = file["matrixSize"];
-	mSize_.x = matrixSize["x"];
-	mSize_.y = matrixSize["y"];
-
 	json nodeSize = file["nodeSize"];
 	nSize_.x = nodeSize["x"];
 	nSize_.y = nodeSize["y"];
 	nSize_.z = nodeSize["z"];
 
-	for (int i = 0; i < mSize_.x; i++) {
-		matrix_.push_back(vector<Entity*>());
-		for (int j = 0; j < mSize_.y; j++) {
-			matrix_[i].push_back(nullptr);
-		}
+	//Archivo que contiene la información de la matriz
+	json matrixFile = ResourceManager::instance()->getJsonByKey(file["file"]);
+	mSize_.x = matrixFile["rows"];
+	mSize_.y = matrixFile["cols"];
+
+	json data = matrixFile["data"];
+	for (int i = 0; i < mSize_.x; i++)
+	{
+		for (int j = 0; j < mSize_.y; j++)
+			std::cout << data[mSize_.y * i + j];
+		std::cout << std::endl;
 	}
+	//Crea la matriz
 	createMatrix();
 }
 
@@ -46,15 +49,17 @@ void Matrix::start()
 	}
 }
 
-void Matrix::createMatrix()
+void Matrix::createMatrix()// (json matrixInfo)
 {
 	Vector3 posIni = getPosIni();
-	for (int j = 0; j < mSize_.y; j++) {
-		for (int i = 0; i < mSize_.x; i++) {
+	for (int i = 0; i < mSize_.x; i++) {
+		matrix_.push_back(vector<Entity*>());
+		for (int j = 0; j < mSize_.y; j++) {
 			Entity* e = EntityFactory::Instance()->createEntityFromBlueprint("Node");
-			e->getComponent<Transform>()->setPosition({ (Ogre::Real)(posIni.x + (i * nSize_.x)), (Ogre::Real)posIni.y, (Ogre::Real)(posIni.z + (j * nSize_.z)) });
+			e->getComponent<Transform>()->setPosition({ (Ogre::Real)(posIni.x + (j * nSize_.x)), (Ogre::Real)posIni.y, (Ogre::Real)(posIni.z + (i * nSize_.z)) });
 			e->getComponent<Node>()->setMatrixPos(i, j);
-			matrix_[i][j] = e;
+			//SET NODE TYPE HERE READING FROM JSON
+			matrix_[i].push_back(e);
 		}
 	}
 }
@@ -97,7 +102,7 @@ Entity * Matrix::getEntityNode(int index)
 {
 	int row = index / getSize(1);
 	int col = index % getSize(1);
-	return getEntityNode(col, row);
+	return getEntityNode(row, col);
 }
 
 Ogre::Vector3 Matrix::getNodeSize()

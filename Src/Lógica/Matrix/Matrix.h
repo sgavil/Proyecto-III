@@ -27,7 +27,7 @@ public:
 	//Devuelve adyacentes especificando indice
 	Entity* getEntityNode(int index);
 	//Pa pillar el tamaño
-	int getSize(int i) { if (i == 1) return matrix_.size(); else return matrix_.at(0).size(); };
+	int getSize(int i) { if (i == 0) return matrix_.size(); else return matrix_.at(0).size(); };
 
 	Ogre::Vector3 getNodeSize();
 	bool limits(int i, int j);

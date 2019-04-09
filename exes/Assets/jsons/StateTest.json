@@ -99,15 +99,12 @@
       "Components": [
         {
           "name": "Matrix",
-          "matrixSize": {
-            "x": 40,
-            "y": 35
-          },
-          "nodeSize": {
-            "x": 50,
-            "y": 50,
-            "z": 50
-          }
+		    "nodeSize": {
+			"x": 50,
+			"y": 50,
+			"z": 50
+			},
+		  "file": "Matrix.json"
         }
       ]
     },

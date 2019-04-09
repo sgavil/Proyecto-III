@@ -19,6 +19,7 @@ void NPC::start()
 
 	//PRUEBA
 	matrix_->getEntityNode(0)->getComponent<Node>()->setType("Road");
+	matrix_->getEntityNode(0, 2)->getComponent<MeshRenderer>()->setMaterial("Road");
 
 
 	//Get initial node
@@ -28,7 +29,7 @@ void NPC::start()
 	Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
 	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
 	//Look for buildings
-	lookForBuildings();
+	//lookForBuildings();
 }
 
 void NPC::update(unsigned int time)
@@ -104,8 +105,8 @@ void NPC::lookForBuildings()
 
 	
 	//Metemos el nodo actual con prioridad 0
-	Vector2 nodePos = node_->getMatrixPos(); //ESTO TAMBIÉN ESTÁ AL REVÉS
-	int nodeIndex = calculateIndex(nodePos.y, nodePos.x);
+	Vector2 nodePos = node_->getMatrixPos();
+	int nodeIndex = calculateIndex(nodePos.x, nodePos.y);
 	pq.push(nodeIndex, 0);
 	distTo[nodeIndex] = 0; //Distancia 0
 	nodeTo[nodeIndex] = nodeIndex;
@@ -128,16 +129,16 @@ void NPC::lookForBuildings()
 			if (adyacenteCorrecta(srcPos, adyPos))
 			{
 				//Amusement found
-				if (e->getComponent<Node>()->getType() == "Patitos")
+				if (e->getComponent<Node>()->getType() == "Patitos" || e->getComponent<Node>()->getType() == "Burguer")
 				{
 					nodoActual = e->getComponent <Node>();
-					relax(n.elem, calculateIndex(adyPos.y, adyPos.x));
+					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
 					atraccion = true;
 					break;
 				}
 				//Explore other nodes
 				else if(e->getComponent<Node>()->getType() == "Road")
-					relax(n.elem, calculateIndex(adyPos.y, adyPos.x));
+					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
 			}
 		}
 	}
@@ -145,7 +146,7 @@ void NPC::lookForBuildings()
 	//Rellenamos la cola de movimientos
 	if (atraccion)
 	{
-		int index = calculateIndex(nodoActual->getMatrixPos().y, nodoActual->getMatrixPos().x); //ESTO TAMBIÉN ESTÁ AL REVÉS
+		int index = calculateIndex(nodoActual->getMatrixPos().x, nodoActual->getMatrixPos().y); 
 		while (nodeTo[index] != index)
 		{
 			//Get node 
@@ -191,13 +192,11 @@ bool NPC::handleEvent(unsigned int time)
 {
 	if (InputManager::getSingletonPtr()->isKeyDown("NPC") && !hasPath)
 	{
-		//Get initial node
 		Entity* initialNode = matrix_->getEntityNode(0, 0); //ESTÁN AL REVÉS FILAS Y COLUMNAS
 		node_ = initialNode->getComponent<Node>();
 		//Set position to it
 		Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
 		getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
-
 		//Looks for buildings
 		lookForBuildings();
 	}

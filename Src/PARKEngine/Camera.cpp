@@ -70,7 +70,19 @@ bool Camera::handleEvent(unsigned int time)
 			transform_->translate({ 0, 10, 0 });
 		if (InputManager::getSingletonPtr()->isKeyDown("Ray")) 
 			OgreManager::instance()->raycast();
+
+		//Rueda del ratón para hacer zoom (no se como se pone esto en el archivo del input porque no son teclas como tales)
+		//ZOOM OUT
 		if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel > 0)
-			std::cout << "RUEDECITAAAA" << std::endl;
+		{
+			transform_->translate(transform_->getRotation() * Vector3::NEGATIVE_UNIT_Z * 50); //TODO: quitar el 50 y poner un parámetro de sensibilidad
+;			
+		//ZOOM OUT
+		}
+		else if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel < 0)
+		{
+			transform_->translate(transform_->getRotation() * Vector3::NEGATIVE_UNIT_Z * -50);
+		}
+			
 		return false;
 }

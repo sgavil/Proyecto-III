@@ -17,6 +17,7 @@ public:
 	virtual void receive(Message* msg) {};
 
 	void setMatrixPos(int i, int j);
+	//Devuelve la posición en la matriz (fila, columna)
 	Vector2 getMatrixPos();
 
 	string getType();

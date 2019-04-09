@@ -89,14 +89,14 @@ list<Entity*> ConstructionMode::getNodesToConstruct(Entity* node, Ogre::Vector3 
 	if (build_->getTamX() % 2 == 0)
 	{
 		float x = (abs(mousePos.x) / nodeSize.x) - (int)(abs(mousePos.x) / nodeSize.x);
-		if (nodeMatrixPos.x + x > nodeMatrixPos.x + 0.5 && mousePos.x > 0 || nodeMatrixPos.x + x < nodeMatrixPos.x + 0.5 && mousePos.x < 0)
+		if (nodeMatrixPos.y + x > nodeMatrixPos.y + 0.5 && mousePos.x > 0 || nodeMatrixPos.y + x < nodeMatrixPos.y + 0.5 && mousePos.x < 0)
 			x = maxAdjX;
 		else
 			x = -maxAdjX;
 
 		std::list<Entity*>::iterator i = adj.begin();
 		while (i != adj.end()) {
-			if ((*i)->getComponent<Node>()->getMatrixPos().x - nodeMatrixPos.x == x)
+			if ((*i)->getComponent<Node>()->getMatrixPos().y - nodeMatrixPos.y == x)
 				adj.erase(i++);
 			else
 				i++;
@@ -104,14 +104,14 @@ list<Entity*> ConstructionMode::getNodesToConstruct(Entity* node, Ogre::Vector3 
 	}
 	if (build_->getTamY() % 2 == 0) {
 		float y = (abs(mousePos.z) / nodeSize.z) - (int)(abs(mousePos.z) / nodeSize.z);
-		if (nodeMatrixPos.y + y > nodeMatrixPos.y + 0.5 && mousePos.z > 0 || nodeMatrixPos.y + y < nodeMatrixPos.y + 0.5 && mousePos.z < 0)
-			y = -maxAdjY;
-		else
+		if (nodeMatrixPos.x + y > nodeMatrixPos.x + 0.5 && mousePos.z > 0 || nodeMatrixPos.x + y < nodeMatrixPos.x + 0.5 && mousePos.z < 0)
 			y = maxAdjY;
+		else
+			y = -maxAdjY;
 
 		std::list<Entity*>::iterator i = adj.begin();
 		while (i != adj.end()) {
-			if ((*i)->getComponent<Node>()->getMatrixPos().y - nodeMatrixPos.y == y)
+			if ((*i)->getComponent<Node>()->getMatrixPos().x - nodeMatrixPos.x == y)
 				adj.erase(i++);
 			else
 				i++;

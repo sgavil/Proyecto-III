@@ -5,7 +5,6 @@
 
 class Transform;
 class Ogre::Camera;
-class Ogre::Viewport;
 class Ogre::SceneNode;
 
 class Camera : public Component
