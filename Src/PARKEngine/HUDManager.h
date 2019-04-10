@@ -1,11 +1,11 @@
 #pragma once
-#include <memory>
-#include <map>
 
 //CEGUI
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
+#include <memory>
+#include <map>
 
 class HUDManager
 {
@@ -16,33 +16,32 @@ private:
 
 	CEGUI::WindowManager* windowMgr;
 	
-
 	HUDManager();
+
 public:	
 	static HUDManager* instance();
 	CEGUI::Window* activeWindow;
 	void init();
+
+
 	void addWindow(std::string state);
 	void changeWindow(std::string state);
 
 	void setActiveWindow(std::string state);
 
 	template<typename T>
-	void createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::*function)(const CEGUI::EventArgs&), T* obj);
+	void createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::* function)(const CEGUI::EventArgs&), T* obj)
+	{
+		CEGUI::Window* button = windowMgr->createWindow("AlfiskoSkin/Button", text + "Button");
+
+		button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
+		button->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
+		button->setText(text);
+
+		button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
+
+		activeWindow->addChild(button);
+	}
 
 	~HUDManager();
 };
-
-template<typename T>
-inline void HUDManager::createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::* function)(const CEGUI::EventArgs &), T * obj)
-{
-	CEGUI::Window* button = windowMgr->createWindow("AlfiskoSkin/Button", text + "Button");
-
-	button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
-	button->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
-	button->setText(text);
-
-	button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
-
-	activeWindow->addChild(button);
-}
