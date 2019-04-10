@@ -2,22 +2,6 @@
 "Keyboard":
 	[
 		{
-			"Id": "Avanzar",
-			"key": "W"
-		},
-		{
-			"Id": "Retroceder",
-			"key": "S"
-		},
-		{
-			"Id": "MoverIzquierda",
-			"key": "A"
-		},
-		{
-			"Id": "MoverDerecha",
-			"key": "D"
-		},
-		{
 			"Id": "RotaIzquierda",
 			"key": "Q"
 		},
@@ -28,14 +12,6 @@
 		{
 			"Id": "NPC",
 			"key": "N"
-		},
-		{
-			"Id": "ConstructionMode",
-			"key": "R"
-		},
-		{
-			"Id": "Build",
-			"key": "T"
 		}
 	],
 	"Mouse":

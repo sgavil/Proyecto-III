@@ -15,3 +15,4 @@ using Vector2 = Ogre::Vector2;
 using Vector3 = Ogre::Vector3;
 using Quaternion = Ogre::Quaternion;
 using Radian = Ogre::Radian;
+using Degree = Ogre::Degree;

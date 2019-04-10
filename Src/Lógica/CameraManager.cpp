@@ -17,7 +17,7 @@ void CameraManager::start()
 	cam_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Camera>()[0]->getComponent<Camera>();
 	camTransform_ = cam_->getBrotherComponent<Transform>();
 	matrix_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Camera>()[0]->getComponent<Matrix>();
-	camTransform_->yaw(-45, REF_SYSTEM::GLOBAL);
+	camTransform_->yaw(45, REF_SYSTEM::GLOBAL);
 }
 
 bool CameraManager::handleEvent(unsigned int time)
@@ -25,11 +25,10 @@ bool CameraManager::handleEvent(unsigned int time)
 	//Pillamos la info del ratón
 	float mouseX = InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs;
 	float mouseY = InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs;
+
 	Vector3 delta = { 0,0,0 };
 
-	std::cout << "Mouse: {" << mouseX << "," << mouseY << "} \n";
-
-	//AVANZAR/RETROCEDER
+	//ADELANTE/ATRÁS
 	if (mouseY < 2 * (float)OgreManager::instance()->getWindowSize(1) / 10)
 		delta += (Vector3::UNIT_Y.crossProduct(camTransform_->right())) * 15;
 	else if (mouseY > 8 * (float)OgreManager::instance()->getWindowSize(1) / 10)
@@ -41,20 +40,7 @@ bool CameraManager::handleEvent(unsigned int time)
 	else if (mouseX > 8 * (float)OgreManager::instance()->getWindowSize(0) / 10)
 		delta += camTransform_->right() * 15;
 
-	//ROTACIONES TODO:HACER QUE ORBITE ALREDEDOR DEL CENTRO
-	if (InputManager::getSingletonPtr()->isKeyDown("RotaIzquierda") && !rotated_)
-	{
-		camTransform_->yaw(90, REF_SYSTEM::GLOBAL);
-		rotated_ = true;
-	}
-
-	else if (InputManager::getSingletonPtr()->isKeyDown("RotaDerecha") && !rotated_)
-	{
-		camTransform_->yaw(-90, REF_SYSTEM::GLOBAL);
-		rotated_ = true;
-	}
-	else
-		rotated_ = false;
+	
 
 	//RAYCAST
 	if (InputManager::getSingletonPtr()->isKeyDown("Ray")) 
@@ -70,8 +56,49 @@ bool CameraManager::handleEvent(unsigned int time)
 
 	//Move the camera
 	moveCamera(delta);
+
+	//ROTACIONES TODO:HACER QUE ORBITE ALREDEDOR DEL CENTRO
+	if (InputManager::getSingletonPtr()->isKeyDown("RotaIzquierda") && !rotated_)
+	{
+		//Vector3 focus = OgreManager::instance()->raycast().second;
+		//rotateAround(Vector3(focus.x, camTransform_->getPosition().y, focus.z), -90);
+		camTransform_->yaw(-90, REF_SYSTEM::GLOBAL);
+		rotated_ = true;
+	}
+
+	else if (InputManager::getSingletonPtr()->isKeyDown("RotaDerecha") && !rotated_)
+	{
+		camTransform_->yaw(90, REF_SYSTEM::GLOBAL);
+		rotated_ = true;
+	}
+	else
+		rotated_ = false;
 	return false;
 }
+void CameraManager::rotateAround(Vector3 center, float degrees)
+{
+	//Posición de la cámara
+	Vector3 camPos = camTransform_->getPosition();
+
+	//Hallamos el radio de la órbita
+	float radius = center.distance(camPos);
+
+	//Pasamos el ángulo a radianes
+	float angle = Radian(Degree(degrees)).valueRadians();
+
+	//Hallamos la nueva posición
+	float newX = sin(angle)*radius + camPos.x;
+	float newZ = cos(angle)*radius + camPos.z;
+
+	//Move the camera
+	Vector3 newPos = Vector3(newX, camPos.y, newZ);
+	Vector3 delta = newPos - camPos;
+	moveCamera(delta);
+
+	//Rotate the camera
+	camTransform_->yaw(degrees, REF_SYSTEM::GLOBAL);
+}
+
 
 void CameraManager::moveCamera(Vector3 deltaPos)
 {

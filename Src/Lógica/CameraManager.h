@@ -24,6 +24,8 @@ protected:
 
 	//Moves the camera a certain increment
 	virtual void moveCamera(Vector3 deltaPos);
+
+	virtual void rotateAround(Vector3 center, float degrees);
 };
 
 REGISTER_TYPE(CameraManager)
