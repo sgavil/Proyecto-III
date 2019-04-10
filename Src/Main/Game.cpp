@@ -34,8 +34,6 @@ Game::~Game()
 		delete sceneManager_;
 	if (audioManager_ != nullptr)
 		delete audioManager_;
-	if (hudManager_ != nullptr)
-		delete hudManager_;
 	if (inputManager_ != nullptr)
 		delete inputManager_;
 	if (ogreManager_ != nullptr)

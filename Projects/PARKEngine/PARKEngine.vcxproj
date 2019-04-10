@@ -23,7 +23,7 @@
     <ProjectGuid>{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>PARKEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -176,7 +176,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\PARKEngine\AudioManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Button.cpp" />
-    <ClCompile Include="..\..\Src\PARKEngine\ButtonExit.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\CallbackManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Camera.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Component.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Entity.cpp" />
@@ -198,7 +198,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\PARKEngine\AudioManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Button.h" />
-    <ClInclude Include="..\..\Src\PARKEngine\ButtonExit.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\CallbackManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Camera.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Component.h" />
     <ClInclude Include="..\..\Src\PARKEngine\ComponentCreator.h" />

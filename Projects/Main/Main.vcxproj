@@ -23,7 +23,7 @@
     <ProjectGuid>{A1700C0A-9839-4CBE-9482-0769E0F58935}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -136,6 +136,10 @@
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/WHOLEARCHIVE:PARKEngine_Deb.lib /WHOLEARCHIVE:Lógica_Deb.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -180,6 +184,10 @@
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/WHOLEARCHIVE:PARKEngine.lib /WHOLEARCHIVE:Lógica.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Main\Game.cpp" />
@@ -187,6 +195,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Main\Game.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lógica\Lógica.vcxproj">
+      <Project>{e8f42c5e-e9a0-4735-bbdb-b405fdf65574}</Project>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\PARKEngine\PARKEngine.vcxproj">
+      <Project>{9b5952b6-d23f-47c5-ad8d-22dee9e04b99}</Project>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

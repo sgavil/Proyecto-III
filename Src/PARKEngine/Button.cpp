@@ -1,11 +1,11 @@
 #include "Button.h"
 #include "SceneManager.h"
+#include "CallbackManager.h"
 #include "HUDManager.h"
 #include "InputManager.h"
 
-Button::Button()
+Button::Button(): callbackParam("")
 {
-	
 }
 
 Button::~Button()
@@ -17,7 +17,8 @@ void Button::load(json file)
 	float posX, posY, sizeX, sizeY, offsetX,offsetY;
 	posX = posY = sizeX = sizeY = offsetX = offsetY = 0;
 
-	addParameter(nextState, file["nextState"]);
+	addParameter(callback, file["callback"]);
+	addParameter(callbackParam, file["parameter"]);
 
 	std::string text;
 	addParameter(text, file["text"]);
@@ -49,7 +50,6 @@ bool Button::handleEvent(unsigned int time)
 
 bool Button::onClick(const CEGUI::EventArgs& e)
 {
-	int count = HUDManager::instance()->activeWindow->getChildCount();
-	SceneManager::instance()->changeState(nextState);
+	CallbackManager::instance()->getCallback(callback)(callbackParam);
 	return true;
 }

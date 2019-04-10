@@ -30,11 +30,11 @@ protected:
 
 
 	template<typename T>
-	bool addParameter(T& parameter, json value)
+	bool addParameter(T& callbackParam, json value)
 	{
 		if (!value.empty())
 		{
-			parameter = value;
+			callbackParam = value;
 			return true;
 		}
 		return false;

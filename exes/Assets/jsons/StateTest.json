@@ -29,7 +29,8 @@
       "Components": [
         {
           "name": "Button",
-          "nextState": "StateMainMenu",
+          "callback": "onChangeState",
+          "parameter": "StateMainMenu",
           "text": "MAIN MENU",
           "posX": 0.8,
           "posY": 0.8,
