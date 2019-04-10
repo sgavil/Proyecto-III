@@ -26,7 +26,8 @@
       "Components": [
         {
           "name": "Button",
-          "nextState": "StateTest",
+          "callback": "onChangeState",
+          "parameter": "StateTest",
           "text": "PLAY",
           "posX": 0.5,
           "posY": 0.2,
@@ -41,7 +42,8 @@
       "name": "ExitButton",
       "Components": [
         {
-          "name": "ButtonExit",
+          "name":  "Button",
+          "callback": "onExit",
           "text": "EXIT",
           "posX": 0.5,
           "posY": 0.7,

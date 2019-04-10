@@ -6,7 +6,9 @@ class Button : public Component
 {
 private:
 	std::string windowState;
-	std::string nextState;
+
+	std::string callback;
+	std::string callbackParam;
 
 public:
 	Button();
