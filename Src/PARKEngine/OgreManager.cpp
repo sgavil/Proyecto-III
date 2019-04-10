@@ -214,6 +214,13 @@ void OgreManager::initWindow(std::string initFileJson)
 #endif
 }
 
+float OgreManager::getWindowSize(int i)
+{
+	if (i == 0)
+		return viewport_->getActualWidth();
+	else
+		return viewport_->getActualHeight();
+}
 
 Ogre::Camera* OgreManager::createCamera(std::string name, float NearClipDist, float FarClipDist, bool autoAspectRatio, float AspectRatio)
 {

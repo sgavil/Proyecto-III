@@ -1,15 +1,17 @@
 #include "Camera.h"
+
 #include "Entity.h"
 #include "Transform.h"
-#include <SDL_video.h>
 
+#include "OgreManager.h"
 #include "ResourceManager.h"
 #include "InputManager.h"
 
 #include "OgreIncludes.h"
-#include "OgreManager.h"
+
 
 #include <CEGUI/CEGUI.h>
+#include <SDL_video.h>
 
 
 Camera::Camera()
@@ -33,7 +35,6 @@ void Camera::start()
 
 	camNode_ = (Ogre::SceneNode*)camera_->getParentNode();
 	camera_->getViewport()->setClearEveryFrame(true);
-
 	//Initialises it 
 	transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
@@ -52,37 +53,4 @@ void Camera::update(unsigned int time)
 {
 	camNode_->setPosition(transform_->getPosition());
 	camNode_->setOrientation(transform_->getRotation());
-}
-
-bool Camera::handleEvent(unsigned int time)
-{
-		if (InputManager::getSingletonPtr()->isKeyDown("Avanzar"))
-			transform_->translate({ 0, 0, -10 });
-		if (InputManager::getSingletonPtr()->isKeyDown("Retroceder"))
-			transform_->translate({ 0, 0, 10 });
-		if (InputManager::getSingletonPtr()->isKeyDown("MoverIzquierda"))
-			transform_->translate(transform_->right() * -10);
-		if (InputManager::getSingletonPtr()->isKeyDown("MoverDerecha"))
-			transform_->translate(transform_->right() * 10);
-		if (InputManager::getSingletonPtr()->isKeyDown("Ampliar"))
-			transform_->translate({ 0, -10, 0 });
-		if (InputManager::getSingletonPtr()->isKeyDown("Desampliar"))
-			transform_->translate({ 0, 10, 0 });
-		if (InputManager::getSingletonPtr()->isKeyDown("Ray")) 
-			OgreManager::instance()->raycast();
-
-		//Rueda del ratón para hacer zoom (no se como se pone esto en el archivo del input porque no son teclas como tales)
-		//ZOOM OUT
-		if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel > 0)
-		{
-			transform_->translate(transform_->forward() * 50); //TODO: quitar el 50 y poner un parámetro de sensibilidad
-;			
-		//ZOOM OUT
-		}
-		else if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel < 0)
-		{
-			transform_->translate(transform_->forward() * -50);
-		}
-			
-		return false;
 }

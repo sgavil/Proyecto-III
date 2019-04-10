@@ -16,15 +16,14 @@ public:
 	virtual void start();
 
 	virtual void update(unsigned int time);
-	virtual bool handleEvent(unsigned int time);
-
-	//Ogre camera
-	Ogre::SceneNode* camNode_;
-	Ogre::Camera *camera_;
 
 protected:
 	//Pointer to the transform component
 	Transform* transform_;
+
+	//Ogre camera
+	Ogre::SceneNode* camNode_;
+	Ogre::Camera *camera_;
 };
 
 REGISTER_TYPE(Camera)

@@ -18,12 +18,12 @@
 			"key": "D"
 		},
 		{
-			"Id": "Ampliar",
-			"key": "E"
+			"Id": "RotaIzquierda",
+			"key": "Q"
 		},
 		{
-			"Id": "Desampliar",
-			"key": "Q"
+			"Id": "RotaDerecha",
+			"key": "E"
 		},
 		{
 			"Id": "NPC",

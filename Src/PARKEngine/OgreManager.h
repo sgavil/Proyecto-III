@@ -41,6 +41,9 @@ public:
 	//Lanza un rayo desde la cámara hacia la posición del ratón y devuelve la entidad con la que colisiona y el punto exacto
 	std::pair<Entity*, Ogre::Vector3> raycast();
 
+	//Devuelve las dimensiones de la ventana
+	float getWindowSize(int i);
+
 private:
 	//Clases amigas: necesitan acceder a los managers de Ogre
 	friend class ResourceManager;

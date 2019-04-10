@@ -1,4 +1,5 @@
 #include "Transform.h"
+#include "Entity.h"
 
 Transform::Transform():position_(Vector3(0,0,0)), rotation_(Ogre::Quaternion::IDENTITY), scale_(Vector3(1,1,1))
 {
@@ -27,12 +28,21 @@ void Transform::load(json file)
 	updateAxis();
 }
 
-void Transform::translate(Vector3 incr)
+void Transform::translate(Vector3 incr, REF_SYSTEM refSys)
 {
-	position_ += incr;
+	switch (refSys)
+	{
+	case REF_SYSTEM::LOCAL:
+		// position is relative to parent so transform downwards
+		position_ += rotation_ * incr;
+		break;
+	case REF_SYSTEM::GLOBAL:
+		position_ += incr;
+		break;
+	}
 }
 
-void Transform::rotate(Vector3 axis, float degrees)
+void Transform::rotate(Vector3 axis, float degrees, REF_SYSTEM refSys)
 {
 	//Quaternions are fun
 	//Pasamos a radianes
@@ -42,9 +52,26 @@ void Transform::rotate(Vector3 axis, float degrees)
 	Ogre::Quaternion q;
 	q.FromAngleAxis(radianAngle, axis);
 
-	//Multiplicamos el cuaternión por la rotación
-	rotation_ = rotation_ * q;
-		
+	//Rotamos con ese cuaternión y el sistema dado
+	rotate(q, refSys);
+}
+
+
+void Transform::rotate(Quaternion q, REF_SYSTEM refSys)
+{
+	switch(refSys)
+	{
+	case REF_SYSTEM::LOCAL:
+		//Multiplicamos el cuaternión por la rotación
+		rotation_ = rotation_ * q;
+		break;
+	case REF_SYSTEM::GLOBAL:
+		// Rotations are normally relative to local axes, transform up
+		rotation_ = rotation_ * rotation_.Inverse() * q * rotation_;
+		break;
+	default:
+		break;
+	}
 	//Normalizamos el cuaternión
 	rotation_.normalise();
 
@@ -57,18 +84,43 @@ void Transform::scale(Vector3 factor)
 	scale_ *= factor;
 }
 
+void Transform::roll(float angle, REF_SYSTEM relativeTo)
+{
+	rotate(Vector3::UNIT_Z, angle, relativeTo);
+}
+
+void Transform::pitch(float angle, REF_SYSTEM relativeTo)
+{
+	rotate(Vector3::UNIT_X, angle, relativeTo);
+}
+
+void Transform::yaw(float angle, REF_SYSTEM relativeTo)
+{
+	rotate(Vector3::UNIT_Y, angle, relativeTo);
+
+}
+
 void Transform::updateAxis()
 {
 	forward_ = getRotation() * Vector3::NEGATIVE_UNIT_Z;
 	forward_.normalise();
 
-	right_ = getRotation() * Vector3::NEGATIVE_UNIT_X;
+	right_ = getRotation() * Vector3::UNIT_X;
 	right_.normalise();
 
 	up_ = getRotation() * Vector3::NEGATIVE_UNIT_Y;
 	up_.normalise();
 }
 
+std::string Transform::getInfo()
+{
+	std::string s = " ~~ Transform of Entity '" + entity_->getName() + "' ~~ \n Position: {" +
+		std::to_string(getPosition().x) + ", " + std::to_string(getPosition().y) + ", " + std::to_string(getPosition().z) + "} \n Rotation: {" +
+		std::to_string(getRotation().x) + ", " + std::to_string(getRotation().y) + ", " + std::to_string(getRotation().z) + ", " + std::to_string(getRotation().w) + "} \n Scale: {" +
+		std::to_string(getScale().x) + ", " + std::to_string(getScale().y) + ", " + std::to_string(getScale().z) + "\n"; 
+
+	return s;
+}
 
 
 Transform::~Transform()

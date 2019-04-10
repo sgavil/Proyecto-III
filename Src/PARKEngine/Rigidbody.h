@@ -69,9 +69,8 @@ public:
 	//Sets rigidbody's position
 	void setPosition(Vector3 destiny);
 
-	//Debug information
 	//Returns a string with indented information of the rigidbody
-	std::string getInfo();
+	virtual std::string getInfo();
 
 
 protected:
