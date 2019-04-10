@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Lógica\BureaucracyManager.cpp" />
+    <ClCompile Include="..\..\Src\Lógica\CameraManager.cpp" />
     <ClCompile Include="..\..\Src\Lógica\ConstructionMode.cpp" />
     <ClCompile Include="..\..\Src\Lógica\Edificio.cpp" />
     <ClCompile Include="..\..\Src\Lógica\Matrix\Matrix.cpp" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h" />
+    <ClInclude Include="..\..\Src\Lógica\CameraManager.h" />
     <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h" />
     <ClInclude Include="..\..\Src\Lógica\Edificio.h" />
     <ClInclude Include="..\..\Src\Lógica\IndexPQ.h" />

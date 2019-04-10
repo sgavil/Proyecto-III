@@ -49,6 +49,9 @@ public:
 	//Método para que los componentes e inicialicen con información de sus componentes hermanos
 	virtual void start() {};
 
+	//Devuelve información sobre el componente. Cada uno puede redefinirlo a su gusto
+	virtual std::string getInfo() { return ""; };
+
 	//Métodos principales (renderizado, lógica y eventos)
 	virtual void render(unsigned int time) {};
 	virtual void update(unsigned int time) {};
