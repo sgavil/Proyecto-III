@@ -36,7 +36,7 @@ void ConstructionMode::start()
 void ConstructionMode::update(unsigned int time)
 {
 	if (constructActive_) {
-		pair<Entity*, Ogre::Vector3> nodeAndPos= OgreManager::instance()->raycast();
+		pair<Entity*, Ogre::Vector3> nodeAndPos= OgreManager::instance()->raycastToMouse();
 		if (nodeAndPos.first != nullptr && nodeAndPos.first->getComponent<Node>() != nullptr) {
 			nodes_ = getNodesToConstruct(nodeAndPos.first, nodeAndPos.second);
 			canConst_ = canConstruct(build_->getTam().x * build_->getTam().x);

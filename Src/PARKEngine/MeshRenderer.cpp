@@ -49,11 +49,7 @@ void MeshRenderer::start()
 	transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
 		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
-}
-
-void MeshRenderer::update(unsigned int time)
-{
-	if(transform_ != nullptr)
+	else
 	{
 		node_->setPosition(transform_->getPosition());
 		node_->setOrientation(transform_->getRotation());
@@ -89,4 +85,14 @@ void MeshRenderer::getAABB(Vector3& aabbMin, Vector3& aabbMax)
 	Ogre::AxisAlignedBox box = node_->_getWorldAABB();
 	aabbMin = box.getMinimum();
 	aabbMax = box.getMaximum();
+}
+
+void MeshRenderer::receive(Message* msg)
+{
+	if (msg->mType_ == MessageId::TRANSFORM_CHANGED)
+	{
+		node_->setPosition(transform_->getPosition());
+		node_->setOrientation(transform_->getRotation());
+		node_->setScale(transform_->getScale());
+	}
 }

@@ -4,6 +4,7 @@
 class Transform;
 class Ogre::SceneNode;
 class Message;
+class OgreManager;
 
 class MeshRenderer : public Component
 {
@@ -20,12 +21,10 @@ public:
 	virtual void load(json file);
 
 	virtual void render(unsigned int time) {};
-	virtual void update(unsigned int time);
 	virtual bool handleEvent(unsigned int time) { return false; };
-	virtual void receive(Message* msg) {};
+	virtual void receive(Message* msg);
 
-	//Devuelve el nodo de Ogre
-	virtual Ogre::SceneNode* getNode(); //ESTO HAY QUE QUITARLO
+
 
 	//Vuelve visible/invisible el renderer
 	virtual void setVisible(bool b);
@@ -38,8 +37,12 @@ public:
 	virtual void getAABB(Vector3& aabbMin, Vector3& aabbMax);
 
 protected:
+	friend class OgreManager;
 	Transform * transform_ = nullptr;
 	Ogre::SceneNode* node_;
+
+	//Devuelve el nodo de Ogre
+	virtual Ogre::SceneNode* getNode();
 
 };
 

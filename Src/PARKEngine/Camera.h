@@ -17,6 +17,8 @@ public:
 
 	virtual void update(unsigned int time);
 
+	virtual void receive(Message* msg);
+
 protected:
 	//Pointer to the transform component
 	Transform* transform_;

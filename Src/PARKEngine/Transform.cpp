@@ -40,6 +40,7 @@ void Transform::translate(Vector3 incr, REF_SYSTEM refSys)
 		position_ += incr;
 		break;
 	}
+	notifyChange();
 }
 
 void Transform::rotate(Vector3 axis, float degrees, REF_SYSTEM refSys)
@@ -79,9 +80,16 @@ void Transform::rotate(Quaternion q, REF_SYSTEM refSys)
 	updateAxis();
 }
 
+void Transform::notifyChange()
+{
+	Message* m = new Message(MessageId::TRANSFORM_CHANGED);
+	send(m);
+}
+
 void Transform::scale(Vector3 factor)
 {
 	scale_ *= factor;
+	notifyChange();
 }
 
 void Transform::roll(float angle, REF_SYSTEM relativeTo)
@@ -110,6 +118,8 @@ void Transform::updateAxis()
 
 	up_ = getRotation() * Vector3::NEGATIVE_UNIT_Y;
 	up_.normalise();
+
+	notifyChange();
 }
 
 std::string Transform::getInfo()

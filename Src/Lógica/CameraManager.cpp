@@ -14,9 +14,19 @@ CameraManager::~CameraManager()
 
 void CameraManager::start()
 {
+}
+
+void CameraManager::setup(Matrix* matrix)
+{
+	//No se puede hacer en el start porque puede que la matriz no se haya creado toa
 	cam_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Camera>()[0]->getComponent<Camera>();
 	camTransform_ = cam_->getBrotherComponent<Transform>();
-	matrix_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Camera>()[0]->getComponent<Matrix>();
+
+	Vector3 minNodePos = matrix->getEntityNode(0)->getComponent<Transform>()->getPosition();
+	Vector3 maxNodePos = matrix->getEntityNode(matrix->getSize(0) * matrix->getSize(1) - 1)->getComponent<Transform>()->getPosition();
+	minCorner = { minNodePos.x, minNodePos.z };
+	maxCorner = { maxNodePos.x, maxNodePos.z };
+
 	camTransform_->yaw(45, REF_SYSTEM::GLOBAL);
 }
 
@@ -40,12 +50,6 @@ bool CameraManager::handleEvent(unsigned int time)
 	else if (mouseX > 8 * (float)OgreManager::instance()->getWindowSize(0) / 10)
 		delta += camTransform_->right() * 15;
 
-	
-
-	//RAYCAST
-	if (InputManager::getSingletonPtr()->isKeyDown("Ray")) 
-		OgreManager::instance()->raycast();
-
 	//Rueda del ratón para hacer zoom (no se como se pone esto en el archivo del input porque no son teclas como tales)
 	//ZOOM IN/OUT
 	if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel > 0)
@@ -55,7 +59,8 @@ bool CameraManager::handleEvent(unsigned int time)
 		delta += camTransform_->forward() * -50;
 
 	//Move the camera
-	moveCamera(delta);
+	if(delta.length() != 0)
+		moveCamera(delta);
 
 	//ROTACIONES TODO:HACER QUE ORBITE ALREDEDOR DEL CENTRO
 	if (InputManager::getSingletonPtr()->isKeyDown("RotaIzquierda") && !rotated_)
@@ -102,26 +107,14 @@ void CameraManager::rotateAround(Vector3 center, float degrees)
 
 void CameraManager::moveCamera(Vector3 deltaPos)
 {
-	//TODO: HACER QUE EL CAMPO DE VISIÓN DÉ LA CÁMARA SEA UNA PIRÁMIDE INVERTIDA
-	Vector3 newPos = camTransform_->getPosition() + deltaPos;
-	//Up/down
-	if (newPos.y < 50)
-		newPos.y = 50;
-	else if (newPos.y > 1000)
-		newPos.y = 1000;
+	//Note that what we want to be inside the map isn't the camera itself, but the point 
+	//which it is heading (the "focus"). Therefore, we make the calculus with this focus in mind
+	//(except for the Y coordinate)
 
-	//Left/right
-	if (newPos.x < -500)
-		newPos.x = -500;
-	else if (newPos.x > 500)
-		newPos.x = 500;
+	//Move the camera towards the desired place and throw another ray
+	camTransform_->translate(deltaPos);
 
-	//Forward/backwards
-	if (newPos.z < -600)
-		newPos.z = -600;
-	else if (newPos.z > 1000)
-		newPos.z = 1000;
-
-	//Mueve la cámara
-	camTransform_->setPosition(newPos);
+	//If the second ray is out of the matrix (get back to where you once belonged)
+	if (OgreManager::instance()->raycast(0.5, 0.5).first == nullptr)
+		camTransform_->translate(-deltaPos);
 }

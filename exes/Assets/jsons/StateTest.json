@@ -16,14 +16,6 @@
         }
       ]
     },
-	{
-      "name": "CameraManager",
-      "Components": [
-        {
-          "name": "CameraManager"
-        }
-      ]
-    },
     {
       "name": "MainMenuButton",
       "Components": [
@@ -109,6 +101,14 @@
 			"z": 50
 			},
 		  "file": "Matrix.json"
+        }
+      ]
+    },
+	{
+      "name": "CameraManager",
+      "Components": [
+        {
+          "name": "CameraManager"
         }
       ]
     },

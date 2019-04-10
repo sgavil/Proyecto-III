@@ -51,6 +51,14 @@ void Camera::start()
 
 void Camera::update(unsigned int time)
 {
-	camNode_->setPosition(transform_->getPosition());
-	camNode_->setOrientation(transform_->getRotation());
+
+}
+
+void Camera::receive(Message* msg)
+{
+	if(msg->mType_ == MessageId::TRANSFORM_CHANGED)
+	{
+		camNode_->setPosition(transform_->getPosition());
+		camNode_->setOrientation(transform_->getRotation());
+	}
 }

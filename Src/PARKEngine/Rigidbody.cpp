@@ -64,18 +64,13 @@ Rigidbody::~Rigidbody()
 void Rigidbody::update(unsigned int time)
 {
 	//std::cout << getInfo() << std::endl;
-	//Si está asociado a un transform
-	if(transform_ != nullptr)
-	{
+	//Obtenemos su posición y orientación
+	btTransform trans = getBtTransform();
 
-		//Obtenemos su posición y orientación
-		btTransform trans = getBtTransform();
-
-		//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
-		transform_->setPosition(Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
-		transform_->setRotation(Quaternion(trans.getRotation().getW(), trans.getRotation().getX(),
-			trans.getRotation().getY(), trans.getRotation().getZ()));
-	}
+	//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
+	transform_->setPosition(Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
+	transform_->setRotation(Quaternion(trans.getRotation().getW(), trans.getRotation().getX(),
+		trans.getRotation().getY(), trans.getRotation().getZ()));
 }
 
 void Rigidbody::addForce(Vector3 force)

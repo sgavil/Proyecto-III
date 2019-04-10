@@ -2,6 +2,7 @@
 
 #include "Node.h"
 #include "PARKEngine/PARKEngine.h"
+#include "../CameraManager.h"
 
 Matrix::Matrix()
 	: mSize_({ 0 ,0 }), nSize_({0, 0, 0})
@@ -34,6 +35,8 @@ void Matrix::load(json file)
 	}*/
 	//Crea la matriz
 	createMatrix();
+
+	
 }
 
 void Matrix::start()
@@ -47,6 +50,7 @@ void Matrix::start()
 			}
 		}
 	}
+	SceneManager::instance()->currentState()->getEntitiesWithComponent<CameraManager>()[0]->getComponent<CameraManager>()->setup(this);
 }
 
 void Matrix::createMatrix()// (json matrixInfo)

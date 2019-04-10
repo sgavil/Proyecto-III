@@ -123,7 +123,15 @@ Ogre::TextureManager * OgreManager::getTextureManager()
 	return &Ogre::TextureManager::getSingleton();
 }
 
-std::pair<Entity*, Ogre::Vector3> OgreManager::raycast()
+std::pair<Entity*, Ogre::Vector3> OgreManager::raycastToMouse()
+{
+	return raycast(CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x /
+		float(OgreManager::instance()->getWindow()->getWidth()),
+		CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_y /
+		float(OgreManager::instance()->getWindow()->getHeight()));
+}
+
+std::pair<Entity*, Ogre::Vector3> OgreManager::raycast(float screenX, float screenY)
 {
 	Ogre::RaySceneQuery* m_pray_scene_query = sceneMgr_->createRayQuery(Ogre::Ray(), sceneMgr_->WORLD_GEOMETRY_TYPE_MASK);
 	if (nullptr == m_pray_scene_query) return (std::pair<Entity* ,Ogre::Vector3>(nullptr,Ogre::Vector3::ZERO));
@@ -133,11 +141,7 @@ std::pair<Entity*, Ogre::Vector3> OgreManager::raycast()
 	if (m_pray_scene_query != nullptr)
 	{
 		// create a query object
-		ray = camera_->getCameraToViewportRay(
-			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x /
-			float(OgreManager::instance()->getWindow()->getWidth()),
-			CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_y /
-			float(OgreManager::instance()->getWindow()->getHeight()));
+		ray = camera_->getCameraToViewportRay(screenX, screenY);
 		m_pray_scene_query->setRay(ray);
 	}
 

@@ -26,11 +26,11 @@ public:
 
 	//SETTERS
 	//Position setter
-	void setPosition(Vector3 pos) { this->position_ = pos; };
+	void setPosition(Vector3 pos) { this->position_ = pos; notifyChange();};
 	//Rotation setter
-	void setRotation(Ogre::Quaternion rotation) { this->rotation_ = rotation; updateAxis(); };
+	void setRotation(Ogre::Quaternion rotation) { this->rotation_ = rotation; updateAxis(); notifyChange();};
 	//Scale setter
-	void setScale(Vector3 scale) { this->scale_ = scale; };
+	void setScale(Vector3 scale) { this->scale_ = scale; notifyChange();};
 
 	//TRANSFORMATIONS
 	//Translate the component given a certain increment
@@ -55,6 +55,8 @@ public:
 	Vector3 right() { return right_; };
 	//Returns up vector
 	Vector3 up() { return up_; };
+
+
 
 	//Debug information
 	virtual std::string getInfo();
@@ -82,6 +84,8 @@ protected:
 	void rotate(Quaternion q,  REF_SYSTEM refSys = REF_SYSTEM::LOCAL);
 	//Updates axis
 	void updateAxis();
+	//Avisa a los componentes de la misma entidad de que han cambiado sus atributos
+	void notifyChange();
 
 };
 

@@ -39,7 +39,9 @@ public:
 	//Renderiza la escena (deltaTime debe estar en segundos)
 	void render(unsigned int deltaTime);
 	//Lanza un rayo desde la cámara hacia la posición del ratón y devuelve la entidad con la que colisiona y el punto exacto
-	std::pair<Entity*, Ogre::Vector3> raycast();
+	std::pair<Entity*, Ogre::Vector3> raycastToMouse();
+	//Lanza un rayo desde la cámara hacia la posición de la pantalla indicada y devuelve la entidad con la que colisiona y el punto exacto
+	std::pair<Entity*, Ogre::Vector3> raycast(float screenX, float screenY);
 
 	//Devuelve las dimensiones de la ventana
 	float getWindowSize(int i);
