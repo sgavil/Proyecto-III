@@ -192,7 +192,7 @@ bool NPC::handleEvent(unsigned int time)
 {
 	if (InputManager::getSingletonPtr()->isKeyDown("NPC") && !hasPath)
 	{
-		Entity* initialNode = matrix_->getEntityNode(0, 0); //ESTÁN AL REVÉS FILAS Y COLUMNAS
+		Entity* initialNode = matrix_->getEntityNode(0, 0);
 		node_ = initialNode->getComponent<Node>();
 		//Set position to it
 		Vector3 pos = initialNode->getComponent<Transform>()->getPosition();

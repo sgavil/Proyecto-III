@@ -41,7 +41,7 @@ public:
 	//Lanza un rayo desde la cámara hacia la posición del ratón y devuelve la entidad con la que colisiona y el punto exacto
 	std::pair<Entity*, Ogre::Vector3> raycastToMouse();
 	//Lanza un rayo desde la cámara hacia la posición de la pantalla indicada y devuelve la entidad con la que colisiona y el punto exacto
-	std::pair<Entity*, Ogre::Vector3> raycast(float screenX, float screenY);
+	std::pair<Entity*, Ogre::Vector3> raycast(float screenX = 0.5, float screenY = 0.5);
 
 	//Devuelve las dimensiones de la ventana
 	float getWindowSize(int i);

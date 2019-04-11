@@ -67,7 +67,10 @@ void HUDManager::createButton(float posX, float posY, float offsetX, float offse
 
 
 
-
+CEGUI::MouseCursor& HUDManager::getMouseCursor()
+{
+	return CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor();
+}
 
 void HUDManager::addWindow(std::string state)
 {

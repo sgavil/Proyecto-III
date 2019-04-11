@@ -108,7 +108,9 @@
       "name": "CameraManager",
       "Components": [
         {
-          "name": "CameraManager"
+          "name": "CameraManager",
+		  "maxHeigth": 1000,
+		  "minHeigth": 20
         }
       ]
     },

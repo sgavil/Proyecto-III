@@ -1,27 +1,21 @@
 #include "OgreManager.h"
 
 //NUESTRO
-#include "ResourceManager.h""
-#include "SceneManager.h"
-#include "InputManager.h"
-#include "TerrainCreator.h"
+#include "PARKFoundation.h"
+#include "PARKManagers.h"
 #include "Utils.h"
+#include "TerrainCreator.h"
+#include "MeshRenderer.h"
 
-//CEGUI
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/RendererModules/Ogre/Renderer.h>
-
-//OIS
-#include "OISIncludes.h"
-#include "SDL.h"
 //OGRE
 #include "OgreIncludes.h"
+
+//Otros
 #include <iostream>
+#include "SDL.h"
 
 
-#include "Component.h"
-#include "Entity.h"
-#include "MeshRenderer.h"
+
 
 // Bootstrap CEGUI::System with an OgreRenderer object that uses the
 // default Ogre rendering window as the default output surface, an Ogre based
@@ -125,9 +119,9 @@ Ogre::TextureManager * OgreManager::getTextureManager()
 
 std::pair<Entity*, Ogre::Vector3> OgreManager::raycastToMouse()
 {
-	return raycast(CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x /
+	return raycast(HUDManager::instance()->getMouseCursor().getPosition().d_x /
 		float(OgreManager::instance()->getWindow()->getWidth()),
-		CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_y /
+		HUDManager::instance()->getMouseCursor().getPosition().d_y /
 		float(OgreManager::instance()->getWindow()->getHeight()));
 }
 
@@ -183,7 +177,7 @@ std::pair<Entity*, Ogre::Vector3> OgreManager::raycast(float screenX, float scre
 
 Ogre::FileSystemLayer * OgreManager::createFileSystemLayer(std::string cfLayerSystem)
 {
-	return OGRE_NEW Ogre::FileSystemLayer("cfLayerSystem");
+	return OGRE_NEW Ogre::FileSystemLayer(cfLayerSystem);
 }
 
 void OgreManager::initWindow(std::string initFileJson)

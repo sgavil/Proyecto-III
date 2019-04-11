@@ -50,7 +50,6 @@ void Matrix::start()
 			}
 		}
 	}
-	SceneManager::instance()->currentState()->getEntitiesWithComponent<CameraManager>()[0]->getComponent<CameraManager>()->setup(this);
 }
 
 void Matrix::createMatrix()// (json matrixInfo)

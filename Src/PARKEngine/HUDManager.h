@@ -23,6 +23,8 @@ public:
 	CEGUI::Window* activeWindow;
 	void init();
 
+	//Returns mouse cursor
+	CEGUI::MouseCursor& getMouseCursor();
 
 	void addWindow(std::string state);
 	void changeWindow(std::string state);
