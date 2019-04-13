@@ -19,6 +19,19 @@ enum MessageId {
 	ATRACCION_EMPTY,
 	THEMEPARK_EMPTY,
 	THEMEPARK_FULL,
+
+
+	//Relacionados con la burocracia
+	BANKRUPTCY,
+	COLLECT_ALL_TAXES,
+
+	//TODO: hacer structs y meter en el mensaje el tipo de tax
+	COLLEXT_ELECTRIX_TAX,
+	COLLEXT_MAINTEINANCE_TAX,
+
+	NEW_UNLOCKED_BUILDING,//Aqui igual para decir cual ha sido
+	IS_BUILDING_UNLOCKED,
+
 };
 
 typedef uint16_t header_t_;

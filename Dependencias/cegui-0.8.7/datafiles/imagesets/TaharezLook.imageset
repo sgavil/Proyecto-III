@@ -169,7 +169,6 @@
     <Image height="6" name="MultiLineEditboxBackdrop" width="6" xPos="52" yPos="89" />
     <Image height="14" name="MultiLineEditboxSelectionBrush" width="14" xPos="9" yPos="71" />
     <Image height="17" name="MouseTarget" width="17" xOffset="-8" xPos="182" yOffset="-8" yPos="127" />
-    <Image height="25" name="MouseArrow" width="31" xPos="138" yPos="127" />
     <Image height="18" name="MouseMoveCursor" width="18" xOffset="-8" xPos="201" yOffset="-8" yPos="127" />
     <Image height="18" name="MouseNoSoCursor" width="8" xOffset="-3" xPos="221" yOffset="-8" yPos="127" />
     <Image height="8" name="MouseEsWeCursor" width="18" xOffset="-8" xPos="182" yOffset="-3" yPos="150" />
@@ -242,4 +241,5 @@
     <Image height="11" name="TreeListClosed" width="7" xPos="175" yPos="111" />
     <Image height="7" name="TreeListOpened" width="11" xPos="164" yPos="111" />
     <Image height="14" name="UpArrow" width="11" xPos="27" yPos="146" />
+    <Image height="25" name="MouseArrow" width="31" xPos="104" yPos="167" />
 </Imageset>
