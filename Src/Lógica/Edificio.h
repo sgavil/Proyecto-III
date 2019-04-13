@@ -4,9 +4,13 @@
 #include <string>
 #include <PARKEngine/ResourceManager.h>
 
+
 class Edificio : public Component
 {
 public:
+	bool Edificio::operator ==(const Edificio& a) {
+		return bName == a.bName;
+	}
 	//El tipo ornament no tiene ni entrada ni salida, su cola es de 0 y no cambia valores de necesidades
 	enum type { Amusement, Shop, Toilet, Ornament };
 private:
