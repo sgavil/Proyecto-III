@@ -115,6 +115,36 @@
       ]
     },
     {
+      "name": "BureauCrazyManager",
+      "Components": 
+      [
+        {
+          "name": "BureauCrazyManager",
+          "Taxes":
+          [
+            {
+              "Type": "ELECTRIC",
+              "Id": 0,
+              "Amount" : 7
+            },
+            {
+              "Type": "MAINTEINANCE",
+              "Id": 1,
+              "Amount" : 15
+            }
+          ],
+          "BankRuptcy":
+          {
+            "ruptcyMaxTime": 7,
+            "floorRuptcyMoney": -40,
+            "InitialTime2Tax": 180,
+            "ActualMoney" : -50,
+            "InitVisitors" : 3
+          }
+        }
+      ]
+    },
+    {
       "name": "ConstructionMode",
       "Components": [
         {
