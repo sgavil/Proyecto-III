@@ -530,5 +530,49 @@
         "bName": "Burguer"
       }
     }    
+  ],
+  "Noria": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Noria.mesh",
+        "material": "NoriaTextCompleta",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "PeePee": 0,
+        "Hungry": 0,
+        "Fun": 0,
+        "Tam_Cola": 0,
+        "Tam":
+        {
+          "x": 2,
+          "y": 2
+        },
+        "Height": 60,
+        "Entry":
+        {
+          "x": 0,
+          "y": 2
+        },
+        "Exit":
+        {
+          "x": 2,
+          "y": 0
+        },
+        "Duration": 10,
+        "Capacity": 0,
+        "bName": "Noria"
+      }
+    }
   ]
 }

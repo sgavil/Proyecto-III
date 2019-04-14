@@ -59,6 +59,10 @@ bool ConstructionMode::handleEvent(unsigned int time)
 	{
 		construct("Road", time);
 	}
+	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_N))
+	{
+		construct("Noria", time);
+	}
 	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_Y))
 	{
 		if (canConst_) {
