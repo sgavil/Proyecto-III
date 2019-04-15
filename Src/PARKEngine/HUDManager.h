@@ -44,6 +44,7 @@ public:
 
 		activeWindow->addChild(button);
 	}
+	void createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text);
 
 	~HUDManager();
 };

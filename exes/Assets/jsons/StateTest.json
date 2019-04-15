@@ -34,6 +34,22 @@
       ]
     },
     {
+      "name": "TextDinero",
+      "Components": 
+      [
+        {
+          "name": "TextBox",
+          "Text": "Dinero: 143",
+          "posX": 0.2,
+          "posY": 0.8,
+          "sizeX": 100,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "NPC1",
       "Components": [
         {

@@ -194,6 +194,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\SceneManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Terrain.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\TerrainCreator.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\TextBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +225,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\SceneManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Terrain.h" />
     <ClInclude Include="..\..\Src\PARKEngine\TerrainCreator.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\TextBox.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Transform.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Utils.h" />
   </ItemGroup>
