@@ -174,6 +174,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\PARKEngine\Animation.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\AudioManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Button.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\CallbackManager.cpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\PARKEngine\Animation.h" />
     <ClInclude Include="..\..\Src\PARKEngine\AudioManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Button.h" />
     <ClInclude Include="..\..\Src\PARKEngine\CallbackManager.h" />
