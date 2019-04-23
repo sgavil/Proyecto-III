@@ -6,6 +6,7 @@
 #include <limits>
 #include <cmath>
 
+//TODO: rotar los NPC en función de la dirección a la que van
 NPC::NPC():pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr)
 {
 }
@@ -220,11 +221,11 @@ int NPC::calculateIndex(int i, int j)
 
 bool NPC::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->isKeyDown("NPC") && !hasPath)
-	{
-		//Looks for buildings
-		lookForBuildings();
-	}
+	//if (InputManager::getSingletonPtr()->isKeyDown("NPC") && !hasPath)
+	//{
+	//	//Looks for buildings
+	//	lookForBuildings();
+	//}
 	
 	return false;
 }
