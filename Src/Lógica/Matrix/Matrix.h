@@ -40,6 +40,8 @@ private:
 	
 	void createMatrix();
 	Vector3 getPosIni();
+
+	json matrixFile;
 };
 
 REGISTER_TYPE(Matrix)

@@ -73,6 +73,14 @@ bool ConstructionMode::handleEvent(unsigned int time)
 	return false;
 }
 
+void ConstructionMode::buildInMatrix(int i, int j, std::string name)
+{
+	//Contruye
+	Matrix* m = matrixEntity_->getComponent<Matrix>();
+	m->getMatrix().at(i).at(j)->getComponent<Node>()->setType(name);
+}
+
+
 void ConstructionMode::construct(string bName, unsigned int time)
 {
 	constructActive_ = true;
