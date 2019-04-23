@@ -32,6 +32,8 @@ protected:
 	//To help restraint camera movement within the matrix
 	float MIN_HEIGTH;
 	float MAX_HEIGTH;
+
+	bool rotating;
 };
 
 REGISTER_TYPE(CameraManager)
