@@ -13,6 +13,12 @@ Entity::Entity(std::vector<Component*> comps, std::string name):name_(name), act
 		addComponent(c);
 }
 
+void Entity::start() 
+{
+	for (Component* c : components_)
+		c->start();
+}
+
 
 void Entity::addComponent(Component* comp)
 {
