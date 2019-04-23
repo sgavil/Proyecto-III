@@ -4,8 +4,9 @@
 #include "Matrix/Node.h"
 #include "Matrix/Matrix.h"
 #include <limits>
+#include <cmath>
 
-NPC::NPC():pq(0), hasPath(false), isInBuilding_(false)
+NPC::NPC():pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr)
 {
 }
 
@@ -24,12 +25,10 @@ void NPC::start()
 
 	//Get initial node
 	Entity* initialNode = matrix_->getEntityNode(0, 0); //ESTÁN AL REVÉS FILAS Y COLUMNAS
-	node_ = initialNode->getComponent<Node>();
+	node_ = prevNode_ = initialNode->getComponent<Node>();
 	//Set position to it
 	Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
 	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
-	//Look for buildings
-	//lookForBuildings();
 }
 
 void NPC::update(unsigned int time)
@@ -45,28 +44,28 @@ void NPC::update(unsigned int time)
 	//std::cout << entity_->getName() << "\n" << fun_.name_ << ": " << getFun() << "\n " << 
 		//hunger_.name_ << ": " << getHunger() << "\n " << peepee_.name_ << ": " << getPeepee() << std::endl;
 
-	//NPC has an avaiable path
-	if(hasPath)
-	{
-		Node* n = movements.top();
-		//Not in that node yet
-		if(node_ != n)
-		{
-			//Move towards it
-			moveToNode(n, time);
-			//Update current node
-			if (isInNode(n))
-				setNode(n);
-		}
-		else
-		{
-			//Pop movement
-			movements.pop();
+	//1. NPC has an avaiable path
+	if (hasPath)
+		followPath(time);
+	//2. NPC is deambulating
+	else
+		deambulate(time);
+}
 
-			//If path ended
-			if (movements.empty())
-				hasPath = false;
-		}
+void NPC::followPath(unsigned int time)
+{
+	Node* n = movements.top();
+	//Not in that node yet (move towards it)
+	if (node_ != n)
+		moveToNode(n, time);
+	//Arrived to the node
+	else
+	{
+		//Pop movement
+		movements.pop();
+		//If path ended
+		if (movements.empty())
+			hasPath = false;
 	}
 }
 
@@ -119,7 +118,7 @@ void NPC::lookForBuildings()
 		IndexPQ<int>::Par n = pq.top();
 		nodoActual = matrix_->getEntityNode(n.elem)->getComponent<Node>();
 		pq.pop();
-		list<Entity*> ady = matrix_->getAdj(nodoActual->getEntity(), 1, 1); //radio de 1
+		std::list<Entity*> ady = matrix_->getAdj(nodoActual->getEntity(), 1, 1); //radio de 1
 		//Adyacentes al nodo actual
 		for (Entity* e : ady)
 		{
@@ -163,11 +162,42 @@ void NPC::lookForBuildings()
 		std::cout << "NO HAY ATRACCIONES DISPONIBLES" << std::endl;
 }
 
-void NPC::deambulate()
+void NPC::deambulate(unsigned int time)
 {
-	//HACER QUE SE MUEVA AL SIGUIENTE NODO DE FORMA RANDOM, SIN VOLVER AL SUYO
+	//Where to go?
+	if (nextNode_ == nullptr)
+	{
+		//1. FILTRAMOS LAS CASILLAS ADYACENTES
+		std::list<Entity*> ady = matrix_->getAdj(node_->getEntity(), 1, 1); //radio de 1
+		std::list<Entity*>::iterator it = ady.begin();
+		std::vector<Node*> candidates;
+		while (it != ady.end())
+		{
+			Node* adyNode = (*it)->getComponent<Node>();
+			Vector2 srcPos = node_->getMatrixPos();
+			Vector2 adyPos = adyNode->getMatrixPos();
+			//1. Adyacente correcta   2. Es un camino  3. No venimos de ahí
+			if (adyacenteCorrecta(srcPos, adyPos) && adyNode->getType() == "Road" && adyNode != prevNode_)
+				candidates.push_back(adyNode);
+			it++;
+		}
 
 
+		//2. ELEGIR UN NODO
+		//Solo hay una dirección (volvemos)
+		if (candidates.size() == 0)
+		{
+			if (prevNode_ != node_)
+				nextNode_ = prevNode_;
+		}
+		else
+		{
+			int index = std::rand() % candidates.size();
+			nextNode_ = candidates.at(index);
+		}
+	}
+	else
+		moveToNode(nextNode_, time);
 }
 
 void NPC::relax(int srcIndex, int destIndex)
@@ -192,11 +222,6 @@ bool NPC::handleEvent(unsigned int time)
 {
 	if (InputManager::getSingletonPtr()->isKeyDown("NPC") && !hasPath)
 	{
-		Entity* initialNode = matrix_->getEntityNode(0, 0);
-		node_ = initialNode->getComponent<Node>();
-		//Set position to it
-		Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
-		getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
 		//Looks for buildings
 		lookForBuildings();
 	}
@@ -237,6 +262,14 @@ void NPC::moveToNode(Node* n, int deltaTime)
 
 	//Lo movemos
 	trans->translate(delta);
+
+	//Update current node
+	if (isInNode(n))
+	{
+		prevNode_ = node_;
+		nextNode_ = nullptr;
+		setNode(n);
+	}
 }
 
 void NPC::changeStat(Stat & stat, float incr)

@@ -67,7 +67,7 @@
         },
         {
           "name": "NPC",
-		  "speed": 3,
+		  "speed": 1,
 		  "exigency": 1,
 		   "stats": [
 		  {
