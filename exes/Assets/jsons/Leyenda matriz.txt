@@ -1,0 +1,7 @@
+0 = Libre
+1 = Camino
+2 = Baño
+3 = Burguer
+4 = Patitos
+5 = Patitos
+6 = Noria

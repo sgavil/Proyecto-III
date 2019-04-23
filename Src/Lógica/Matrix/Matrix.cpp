@@ -26,13 +26,24 @@ void Matrix::load(json file)
 	mSize_.x = matrixFile["rows"];
 	mSize_.y = matrixFile["cols"];
 
-	json data = matrixFile["data"];
 	/*for (int i = 0; i < mSize_.x; i++)
 	{
 		for (int j = 0; j < mSize_.y; j++)
 			std::cout << data[mSize_.y * i + j];
 		std::cout << std::endl;
 	}*/
+
+	json data = matrixFile["data"];
+	json corresp = matrixFile["correspondence"];
+	for (int i = 0; i < mSize_.x; i++)
+	{
+		for (int j = 0; j < mSize_.y; j++)
+		{
+			int value = data[mSize_.y * i + j];
+			std::cout << corresp[std::to_string(value)];
+		}
+		std::cout << std::endl;
+	}
 	//Crea la matriz
 	createMatrix();
 

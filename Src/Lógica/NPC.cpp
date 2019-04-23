@@ -129,7 +129,7 @@ void NPC::lookForBuildings()
 			if (adyacenteCorrecta(srcPos, adyPos))
 			{
 				//Amusement found
-				if (e->getComponent<Node>()->getType() == "Patitos" || e->getComponent<Node>()->getType() == "Burguer")
+				if (e->getComponent<Node>()->getType() == "EntryRoad" || e->getComponent<Node>()->getType() == "Burguer")
 				{
 					nodoActual = e->getComponent <Node>();
 					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
