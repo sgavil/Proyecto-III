@@ -25,7 +25,11 @@ void CameraManager::load(json file)
 	addParameter(MAX_HEIGTH, file["maxHeigth"]);
 	addParameter(MIN_HEIGTH, file["minHeigth"]);
 
-	//cameraDirections_.push_back({"North", })
+	dirCamera_ = CameraDirection({ 0, 0, "North" });
+	cameraDirections_.push_back(dirCamera_);
+	cameraDirections_.push_back(CameraDirection({ 1, 90, "East" }));
+	cameraDirections_.push_back(CameraDirection({ 2, 180, "South" }));
+	cameraDirections_.push_back(CameraDirection({ 3, 270, "West" }));
 
 	addParameter(borders_, file["borders"]);
 }
@@ -100,6 +104,26 @@ void CameraManager::orbit(float degrees)
 		rotating_ = true;
 	}
 }
+void CameraManager::slowRotation()
+{
+	if (InputManager::getSingletonPtr()->isKeyDown("RotaIzquierda")) {
+		if (dirCamera_.id + 1 == cameraDirections_.size())
+			dirCamera_ = cameraDirections_[0];
+		else {
+			dirCamera_ = cameraDirections_[dirCamera_.id - 1];
+		}
+	}
+	else if (InputManager::getSingletonPtr()->isKeyDown("RotaDerecha")) {
+		if (dirCamera_.id + 1 == cameraDirections_.size())
+			dirCamera_ = cameraDirections_[0];
+		else {
+			dirCamera_ = cameraDirections_[dirCamera_.id + 1];
+		}
+	}
+	else
+		rotating_ = false;
+}
+
 void CameraManager::moveCamera(Vector3 deltaPos)
 {
 	//Note that what we want to be inside the map isn't the camera itself, but the point 
