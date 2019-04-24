@@ -77,7 +77,31 @@ void ConstructionMode::buildInMatrix(int i, int j, std::string name)
 {
 	//Contruye
 	Matrix* m = matrixEntity_->getComponent<Matrix>();
-	m->getMatrix().at(i).at(j)->getComponent<Node>()->setType(name);
+	buildingEntity_ = EntityFactory::Instance()->createEntityFromBlueprint(name);
+	SceneManager::instance()->currentState()->addEntity(buildingEntity_);
+	build_ = buildingEntity_->getComponent<Edificio>();
+
+	// Posicion espacial
+	int x = 0, z = 0;
+	x = (j * m->getNodeSize().x) - (m->getMatrix().size() / 2 * m->getNodeSize().x);
+	z = (i * m->getNodeSize().z) - (m->getMatrix()[0].size() / 2 * m->getNodeSize().z);
+
+	x += (build_->getTamX() * matrixEntity_->getComponent<Matrix>()->getNodeSize().x) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().x / 2);
+	z += (build_->getTamY() * matrixEntity_->getComponent<Matrix>()->getNodeSize().z) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().z / 2);
+
+	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(x, build_->getHeight(), z));
+	buildingEntity_->getComponent<MeshRenderer>()->start();
+
+	//Modificar el tipo de nodos de la matriz
+	for (int x = i; x < build_->getTamX() + i; x++) {
+		for (int z = j; z < build_->getTamY() + j; z++) {
+			m->getEntityNode(x, z)->getComponent<Node>()->setType(name);
+		}
+	}
+
+	// Poner la entrada y la salida
+	if (build_->getBuildingName() != "Road") setEntryExit();
+
 }
 
 
@@ -171,7 +195,7 @@ void ConstructionMode::setBuilding()
 {
 	bool set = false;
 	Ogre::Vector3 pos = getPosToConstruct();
-	setNodesType();
+
 	buildingEntity_->setActive(true);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
@@ -181,6 +205,7 @@ void ConstructionMode::setBuilding()
 	nodes_.clear();
 	canConst_ = false;
 	constructActive_ = false;
+	setNodesType();
 }
 
 void ConstructionMode::createEntryExitRoad(string roadName)
@@ -203,6 +228,10 @@ void ConstructionMode::createEntryExitRoad(string roadName)
 
 	x -= m->getNodeSize().x / 2;
 	z -= m->getNodeSize().z / 2;
+	int nX = x / m->getNodeSize().x + m->getMatrix().size() / 2;
+	int nZ = z / m->getNodeSize().z + m->getMatrix()[0].size() / 2;
+
+	m->getEntityNode(nX, nZ)->getComponent<Node>()->setType(roadName);
 	ePos = Ogre::Vector3(x, e->getComponent<Edificio>()->getHeight(), z);
 	e->getComponent<Transform>()->setPosition(ePos);
 	e->getComponent<MeshRenderer>()->start();

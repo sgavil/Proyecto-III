@@ -47,7 +47,8 @@ void Matrix::start()
 			{
 				int value = data[mSize_.y * i + j];
 				std::string buildingType = corresp[std::to_string(value)];
-				cMode->buildInMatrix(i, j, buildingType);
+				if (buildingType != "Empty")
+					cMode->buildInMatrix(i, j, buildingType);
 			}
 
 			//Añadimos la entidad a la escena y activamos sus componentes
