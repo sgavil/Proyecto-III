@@ -29,28 +29,33 @@ void NPC::start()
 	node_ = prevNode_ = initialNode->getComponent<Node>();
 	//Set position to it
 	Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
-	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
+	getBrotherComponent<Transform>()->setPosition(pos + Vector3(-200, 10, 0));
 }
 
 void NPC::update(unsigned int time)
 {
-	//Bajar las necesidades (solo si no está en una atracción)
+	//Not currently inside a building
 	if(!isInBuilding_)
 	{
+		//Update stats
 		float delta = ((float)time / 1000) * exigency_;
 		changeStat(fun_, -delta);
 		changeStat(hunger_, delta);
 		changeStat(peepee_, delta);
+
+		//1. NPC has an avaiable path
+		if (hasPath)
+			followPath(time);
+		//2. NPC realises he needs to eat/pee/he's bored
+		else if (lowStats())
+			lookForBuildings();
+		//3. He just walks around
+		else
+			deambulate(time);
 	}
+	//TODO: mostrar las necesidades visualmente
 	//std::cout << entity_->getName() << "\n" << fun_.name_ << ": " << getFun() << "\n " << 
 		//hunger_.name_ << ": " << getHunger() << "\n " << peepee_.name_ << ": " << getPeepee() << std::endl;
-
-	//1. NPC has an avaiable path
-	if (hasPath)
-		followPath(time);
-	//2. NPC is deambulating
-	else
-		deambulate(time);
 }
 
 void NPC::followPath(unsigned int time)
@@ -66,7 +71,13 @@ void NPC::followPath(unsigned int time)
 		movements.pop();
 		//If path ended
 		if (movements.empty())
+		{
 			hasPath = false;
+			isInBuilding_ = true;
+			speed_/= 1.5;
+			std::cout << "LLEGUÉ A LA ATRACCIÓN" << std::endl;
+		}
+			
 	}
 }
 
@@ -128,8 +139,8 @@ void NPC::lookForBuildings()
 			//Quitamos diagonales y la propia casilla
 			if (adyacenteCorrecta(srcPos, adyPos))
 			{
-				//Amusement found
-				if (e->getComponent<Node>()->getType() == "Patitos" || e->getComponent<Node>()->getType() == "Burguer")
+				//Building found
+				if (e->getComponent<Node>()->getType() == "EntryRoad")
 				{
 					nodoActual = e->getComponent <Node>();
 					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
@@ -158,6 +169,7 @@ void NPC::lookForBuildings()
 		}
 		std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
 		hasPath = true;
+		speed_ *= 1.5;
 	}
 	else
 		std::cout << "NO HAY ATRACCIONES DISPONIBLES" << std::endl;
@@ -203,7 +215,6 @@ void NPC::deambulate(unsigned int time)
 
 void NPC::relax(int srcIndex, int destIndex)
 {
-	//std::cout << "Relaxing from " << srcIndex << " to" << destIndex << std::endl;
 	if (distTo[destIndex] > distTo[srcIndex] + 1)
 	{
 		//Añadimos el tiempo de espera de la página en si
@@ -284,4 +295,9 @@ void NPC::changeStat(Stat & stat, float incr)
 		stat.value_ = 0;
 	else if (!stat.decreases_ && stat.value_ > stat.MAX_VALUE)
 		stat.value_ = stat.MAX_VALUE;
+}
+
+bool NPC::lowStats()
+{
+	return (fun_.value_ < 3 || peepee_.value_ > 7 || hunger_.value_ > 7);
 }

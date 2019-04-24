@@ -3,7 +3,7 @@
 #include "Matrix/Matrix.h"
 
 
-CameraManager::CameraManager(): rotating(false)
+CameraManager::CameraManager(): rotating_(false), borders_(0)
 {
 }
 
@@ -26,6 +26,8 @@ void CameraManager::load(json file)
 	addParameter(MIN_HEIGTH, file["minHeigth"]);
 
 	//cameraDirections_.push_back({"North", })
+
+	addParameter(borders_, file["borders"]);
 }
 
 
@@ -34,22 +36,25 @@ bool CameraManager::handleEvent(unsigned int time)
 	//Standard increment (for camera transfomations)
 	float stdIncr = ((float)time / 2);
 
-	//Pillamos la info del ratón
+	//Pillamos la info del ratón y de la ventana
 	float mouseX = InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs;
 	float mouseY = InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs;
+	Vector2 windowSize = { OgreManager::instance()->getWindowSize(0),  OgreManager::instance()->getWindowSize(1) };
 
+	//Incremento de la posición
 	Vector3 delta = { 0,0,0 };
 
 	//ADELANTE/ATRÁS
-	if (mouseY < 0.1 * (float)OgreManager::instance()->getWindowSize(1) / 10)
+
+	if (mouseY < windowSize.y * borders_)
 		delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * stdIncr;
-	else if (mouseY > 9.9 * (float)OgreManager::instance()->getWindowSize(1) / 10)
+	else if (mouseY > windowSize.y - windowSize.y * borders_)
 		delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -stdIncr;
 
 	//IZQUIERDA/DERECHA
-	if (mouseX < 0.1 * (float)OgreManager::instance()->getWindowSize(0) / 10)
+	if (mouseX < windowSize.x * borders_)
 		delta += camTransform_->right() * -stdIncr;
-	else if (mouseX > 9.9 * (float)OgreManager::instance()->getWindowSize(0) / 10)
+	else if (mouseX > windowSize.x - windowSize.x * borders_)
 		delta += camTransform_->right() * stdIncr;
 
 	//Rueda del ratón para hacer zoom (no se como se pone esto en el archivo del input porque no son teclas como tales)
@@ -70,7 +75,7 @@ bool CameraManager::handleEvent(unsigned int time)
 	else if (InputManager::getSingletonPtr()->isKeyDown("RotaDerecha"))
 		orbit(90);
 	else
-		rotating = false;
+		rotating_ = false;
 
 	return false;
 }
@@ -78,7 +83,7 @@ bool CameraManager::handleEvent(unsigned int time)
 
 void CameraManager::orbit(float degrees)
 {
-	if (!rotating)
+	if (!rotating_)
 	{
 		int index;
 		index = (degrees > 0) ? 1 : -1;
@@ -92,7 +97,7 @@ void CameraManager::orbit(float degrees)
 		camTransform_->translate(camTransform_->right() * index *horizDistance.length());
 		camTransform_->translate(Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -horizDistance.length());
 
-		rotating = true;
+		rotating_ = true;
 	}
 }
 void CameraManager::moveCamera(Vector3 deltaPos)

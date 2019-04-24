@@ -40,7 +40,10 @@ protected:
 	float MIN_HEIGTH;
 	float MAX_HEIGTH;
 
-	bool rotating;
+	//Fraction of the screen used to move the camera
+	float borders_;
+
+	bool rotating_;
 };
 
 REGISTER_TYPE(CameraManager)
