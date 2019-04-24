@@ -6,6 +6,7 @@
 
 class Node;
 class Matrix;
+class Edificio;
 
 //Estadística del NPC. Indica el nombre del stat, sus valores actual y máximo, la exigencia(velocidad a la que cambia y cuánto recupera)
 //, y si aumenta/disminuye con el tiempo
@@ -25,14 +26,12 @@ public:
 	void restore(float amount)
 	{
 		amount /= exigency_;
-		if (decreases_)
+
+		if (!decreases_)
 			amount *= -1;
 		value_ += amount;
 
-		if (decreases_ && value_ < 0)
-			value_ = 0;
-		else if (!decreases_ && value_ > MAX_VALUE)
-			value_ = MAX_VALUE;
+		checkValue();
 	}
 
 	//Recupera una cierta cantidad del stat
@@ -49,11 +48,10 @@ public:
 			amount *= -1;
 		value_ += amount;
 
-		if (decreases_ && value_ < 0)
-			value_ = 0;
-		else if (!decreases_ && value_ > MAX_VALUE)
-			value_ = MAX_VALUE;
+		checkValue();
 	}
+
+
 	Stat(){}
 
 	std::string name_;
@@ -61,6 +59,16 @@ public:
 	float MAX_VALUE;
 	float exigency_;
 	bool decreases_;
+
+private:
+	//Comprueba que no nos pasamos de los límites
+	void checkValue()
+	{
+		if (value_ < 0)
+			value_ = 0;
+		else if (value_ > MAX_VALUE)
+			value_ = MAX_VALUE;
+	}
 };
 
 class NPC : public Component
@@ -88,6 +96,8 @@ public:
 	void lookForBuildings();
 	//Walks by without a destiny
 	void deambulate(unsigned int time);
+	//Saca al NPC de la atracción
+	void getOutofAttraction(Edificio* attr);
 
 	//GETTERS
 	float getFun() { return fun_.value_; };
@@ -150,6 +160,8 @@ private:
 	void followPath(unsigned int time);
 	//Indica si necesitamos algo
 	bool lowStats();
+	//Entra en la atracción
+	void enterAttraction();
 };
 
 REGISTER_TYPE(NPC);

@@ -75,44 +75,56 @@ void NPC::followPath(unsigned int time)
 		movements.pop();
 		//If path ended
 		if (movements.empty())
-		{
-			std::cout << "LLEGUÉ A LA ATRACCIÓN" << std::endl;
-			hasPath = false;
-			isInBuilding_ = true;
-			speed_/= 1.5;
-
-			//All buildings in scene
-			std::vector<Entity*> builds = SceneManager::instance()->currentState()->getEntitiesWithComponent<Edificio>();
-			std::vector<Entity*>::iterator it = builds.begin();
-			Edificio* building = nullptr;
-
-			//Find the building to enter
-			bool found = false;
-			while(it != builds.end() && !found)
-			{
-				building = (*it)->getComponent<Edificio>();
-				if (building != nullptr && building->getEntryNode() != nullptr)
-					if(building->getEntryNode() == node_)
-						found = true;
-				it++;
-			}
-
-			std::cout << getInfo();
-			//Restore stats
-			peepee_.restore(building->getPeePeeValue());
-			fun_.restore(building->getFunValue());
-			hunger_.restore(building->getHungryValue());
-			std::cout << getInfo();
-
-			//Get out of the building and set position
-			node_ = prevNode_ = building->getExitNode();
-			nextNode_ = nullptr;
-			Vector3 pos = node_->getBrotherComponent<Transform>()->getPosition();
-			getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
-
-			isInBuilding_ = false;
-		}	
+			enterAttraction();
 	}
+}
+
+void NPC::enterAttraction()
+{
+	//std::cout << "LLEGUÉ A LA ATRACCIÓN" << std::endl;
+	hasPath = false;
+	isInBuilding_ = true;
+	speed_ /= 1.5;
+
+	//All buildings in scene
+	std::vector<Entity*> builds = SceneManager::instance()->currentState()->getEntitiesWithComponent<Edificio>();
+	std::vector<Entity*>::iterator it = builds.begin();
+	Edificio* building = nullptr;
+
+	//Find the building to enter
+	bool found = false;
+	while (it != builds.end() && !found)
+	{
+		building = (*it)->getComponent<Edificio>();
+		if (building != nullptr && building->getEntryNode() != nullptr)
+			if (building->getEntryNode() == node_)
+				found = true;
+		it++;
+	}
+
+	std::cout << getInfo();
+
+	//Restore stats
+	building->encolar(getEntity());
+}
+
+void NPC::getOutofAttraction(Edificio* attr)
+{
+	//Needs restored
+	peepee_.restore(attr->getPeePeeValue());
+	fun_.restore(attr->getFunValue());
+	hunger_.restore(attr->getHungryValue());
+
+	std::cout << getInfo();
+
+	//Get out of the building and set position
+	node_ = prevNode_ = attr->getExitNode();
+	nextNode_ = nullptr;
+	Vector3 pos = node_->getBrotherComponent<Transform>()->getPosition();
+	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
+
+	//Flag
+	isInBuilding_ = false;
 }
 
 void NPC::setNode(Node * node)
@@ -201,7 +213,7 @@ void NPC::lookForBuildings()
 			//Previous index
 			index = nodeTo[index];
 		}
-		std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
+		//std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
 		hasPath = true;
 		speed_ *= 1.5;
 	}

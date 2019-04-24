@@ -25,7 +25,7 @@
 		  "parameters":
 		  {
 			  "speed": 1,
-			  "exigency": 3,
+			  "exigency": 2,
 			   "stats": [
 			  {
 				"name": "fun",
@@ -390,7 +390,7 @@
         "PeePee": 0,
         "Hungry": 0,
         "Fun": 10,
-        "Tam_Cola": 0,
+        "Tam_Cola": 10,
         "Tam":
         {
           "x": 2,
@@ -407,8 +407,8 @@
           "x": 2,
           "y": 0
         },
-        "Duration": 10,
-        "Capacity": 0,
+        "Duration": 8,
+        "Capacity": 5,
         "bName": "Patitos"
       }
     }
