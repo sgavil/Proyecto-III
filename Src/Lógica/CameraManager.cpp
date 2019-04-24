@@ -17,13 +17,16 @@ void CameraManager::start()
 	//No se puede hacer en el start porque puede que la matriz no se haya creado toa
 	cam_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Camera>()[0]->getComponent<Camera>();
 	camTransform_ = cam_->getBrotherComponent<Transform>();
-	camTransform_->yaw(45, REF_SYSTEM::GLOBAL);
+	camTransform_->yaw(0, REF_SYSTEM::GLOBAL);
 }
 
 void CameraManager::load(json file)
 {
 	addParameter(MAX_HEIGTH, file["maxHeigth"]);
 	addParameter(MIN_HEIGTH, file["minHeigth"]);
+
+	//cameraDirections_.push_back({"North", })
+
 	addParameter(borders_, file["borders"]);
 }
 
@@ -42,6 +45,7 @@ bool CameraManager::handleEvent(unsigned int time)
 	Vector3 delta = { 0,0,0 };
 
 	//ADELANTE/ATRÁS
+
 	if (mouseY < windowSize.y * borders_)
 		delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * stdIncr;
 	else if (mouseY > windowSize.y - windowSize.y * borders_)

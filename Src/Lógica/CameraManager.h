@@ -1,9 +1,15 @@
 #pragma once
 #include "PARKEngine/Component.h"
+#include <vector>
 
 class Camera;
 class Transform;
 class Matrix;
+
+struct CameraDirections {
+	float degrees;
+	float direction;
+};
 
 class CameraManager : public Component
 {
@@ -28,6 +34,7 @@ protected:
 
 	////Makes the camera orbit around its focus a certain degree amount
 	virtual void orbit(float degrees);
+	std::vector<CameraDirections> cameraDirections_;
 
 	//To help restraint camera movement within the matrix
 	float MIN_HEIGTH;

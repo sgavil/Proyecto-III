@@ -187,12 +187,11 @@ void ConstructionMode::setBuilding()
 	buildingEntity_->setActive(true);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
+	setNodesType();
 	set = true;
 	setNodeMaterial(false, true);
 	nodes_.clear();
 	canConst_ = false;
-
-	setNodesType();
 
 	if (build_->getBuildingName() != "Road") {
 		setEntryExit();
