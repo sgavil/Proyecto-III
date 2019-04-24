@@ -46,7 +46,7 @@ public:
 	//Looks for a certain bulding 
 	void lookForBuildings();
 	//Walks by without a destiny
-	void deambulate();
+	void deambulate(unsigned int time);
 
 	//GETTERS
 	float getFun() { return fun_.value_; };
@@ -79,6 +79,12 @@ private:
 	//Puntero al nodo de la matriz en que se encuentra
 	Node* node_;
 
+	//Para el modo deambular
+	//Puntero al nodo anterior y siguiente
+	Node* prevNode_;
+	Node* nextNode_;
+
+
 	//PARA EL ALGORITMO
 	//Para hacer el algoritmo de Dijkstra
 	IndexPQ<int> pq; //Cola de prioridad 
@@ -99,6 +105,8 @@ private:
 	bool isInNode(Node* n);
 	//Mueve al NPC al nodo indicado
 	void moveToNode(Node* n, int deltaTime);
+	//Follows current path
+	void followPath(unsigned int time);
 	//Cambia una stat del NPC una cierta cantidad
 	void changeStat(Stat& stat, float incr);
 };

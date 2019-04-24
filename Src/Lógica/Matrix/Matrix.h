@@ -44,6 +44,8 @@ private:
 	//Crea la matriz de nodos
 	void createMatrix();
 	Vector3 getPosIni();
+
+	json matrixFile;
 };
 
 REGISTER_TYPE(Matrix)

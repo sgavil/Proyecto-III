@@ -23,6 +23,8 @@ public:
 	virtual bool handleEvent(unsigned int time);
 	virtual void receive(Message* msg) {};
 
+	virtual void buildInMatrix(int i, int j, std::string name);
+
 private:
 	bool constructActive_;
 	bool canConst_;

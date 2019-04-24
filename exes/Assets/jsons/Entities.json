@@ -1,22 +1,53 @@
 {
   "NPC": 
   [
-    {
-      "name": "Transform"  
-    },
-    {
-      "name": "Rigidbody",
-      "parameters": 
-      {
-        "dimensions": 
         {
-          "x": 10,
-          "y": 10,
-          "z": 10
+		"name": "Transform",
+	    "parameters":
+		 {
+			"position": {
+				"x": 0,
+				"y": 1000,
+				"z": 1000
+			}
+		  }
         },
-        "mass": 10
-      }
-    }
+        {
+          "name": "MeshRenderer",
+		  "parameters":
+		  {
+			"mesh": "penguin.mesh",
+			"visible": true
+		  }
+        },
+        {
+          "name": "NPC",
+		  "parameters":
+		  {
+			  "speed": 1,
+			  "exigency": 1,
+			   "stats": [
+			  {
+				"name": "fun",
+				"value": 5,
+				"maxValue": 10,
+				"decreases": true
+			  },
+			  {
+				"name": "hunger",
+				"value": 0,
+				"maxValue": 10,
+				"decreases": false
+			  },
+			  {
+				"name": "peepee",
+				"value": 0,
+				"maxValue": 10,
+				"decreases": false
+			  }
+			  ]
+		   }
+        }
   ],
 
   "Camera": 

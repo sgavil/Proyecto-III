@@ -3,7 +3,7 @@
 #include "Matrix/Matrix.h"
 
 
-CameraManager::CameraManager()
+CameraManager::CameraManager(): rotating(false)
 {
 }
 
@@ -67,6 +67,8 @@ bool CameraManager::handleEvent(unsigned int time)
 		orbit(-90);
 	else if (InputManager::getSingletonPtr()->isKeyDown("RotaDerecha"))
 		orbit(90);
+	else
+		rotating = false;
 
 	return false;
 }
@@ -74,17 +76,22 @@ bool CameraManager::handleEvent(unsigned int time)
 
 void CameraManager::orbit(float degrees)
 {
-	int index;
-	index = (degrees > 0) ? 1 : -1;
+	if (!rotating)
+	{
+		int index;
+		index = (degrees > 0) ? 1 : -1;
 
-	//Throw a ray
-	Vector3 focus = OgreManager::instance()->raycast().second;
-	Vector3 horizDistance = { focus.x - camTransform_->getPosition().x, 0 , focus.z - camTransform_->getPosition().z };
-	//Rotate the camera
-	camTransform_->yaw(degrees, REF_SYSTEM::GLOBAL);
-	//Translate the camera getting the difference betwwen the 2 vectors
-	camTransform_->translate(camTransform_->right() * index *horizDistance.length());
-	camTransform_->translate(Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -horizDistance.length());
+		//Throw a ray
+		Vector3 focus = OgreManager::instance()->raycast().second;
+		Vector3 horizDistance = { focus.x - camTransform_->getPosition().x, 0 , focus.z - camTransform_->getPosition().z };
+		//Rotate the camera
+		camTransform_->yaw(degrees, REF_SYSTEM::GLOBAL);
+		//Translate the camera getting the difference betwwen the 2 vectors
+		camTransform_->translate(camTransform_->right() * index *horizDistance.length());
+		camTransform_->translate(Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -horizDistance.length());
+
+		rotating = true;
+	}
 }
 void CameraManager::moveCamera(Vector3 deltaPos)
 {

@@ -67,7 +67,7 @@
         },
         {
           "name": "NPC",
-		  "speed": 3,
+		  "speed": 1,
 		  "exigency": 1,
 		   "stats": [
 		  {
@@ -101,6 +101,49 @@
           "Listeners": [
             {
               "name": "Camera"
+            }
+          ]
+        }
+      ]
+    },
+	{
+      "name": "ConstructionMode",
+      "Components": [
+        {
+          "name": "ConstructionMode",
+          "BuildingsNames": [
+            {
+              "name": "Empty"
+            },
+            {
+              "name": "Road"
+            },
+            {
+              "name": "Amusement"
+            },
+            {
+              "name": "Amusement1"
+            },
+            {
+              "name": "Amusement2"
+            },
+            {
+              "name": "Toilet"
+            },
+            {
+              "name": "Restaurant"
+            },
+      		{
+      		  "name" : "Patitos"
+      		},
+      		{
+      		  "name" : "Burguer"
+      		},
+            {
+              "name" : "EntryRoad"
+            },
+            {
+              "name" : "ExitRoad"
             }
           ]
         }
@@ -157,49 +200,6 @@
             "ActualMoney" : -50,
             "InitVisitors" : 3
           }
-        }
-      ]
-    },
-    {
-      "name": "ConstructionMode",
-      "Components": [
-        {
-          "name": "ConstructionMode",
-          "BuildingsNames": [
-            {
-              "name": "Empty"
-            },
-            {
-              "name": "Road"
-            },
-            {
-              "name": "Amusement"
-            },
-            {
-              "name": "Amusement1"
-            },
-            {
-              "name": "Amusement2"
-            },
-            {
-              "name": "Toilet"
-            },
-            {
-              "name": "Restaurant"
-            },
-      			{
-      				"name" : "Patitos"
-      			},
-      			{
-      				"name" : "Burguer"
-      			},
-            {
-              "name" : "EntryRoad"
-            },
-            {
-              "name" : "ExitRoad"
-            }
-          ]
         }
       ]
     }

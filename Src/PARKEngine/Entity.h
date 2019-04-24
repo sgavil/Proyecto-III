@@ -16,6 +16,8 @@ public:
 	//Constructora con los componentes ya dados en un vector
 	Entity(std::vector<Component*> comps, std::string name = "undefined"); 
 
+	//Llama al start de todos sus componentes
+	void start();
 	 //Añade un componente a la entidad
 	void addComponent(Component* comp);
 	//Elimina un componente de la entidad. Devuelve "true" si la entidad tenía ese componente, "false" e.o.c
