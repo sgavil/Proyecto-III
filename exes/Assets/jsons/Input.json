@@ -23,6 +23,10 @@
 		{
 			"Id": "ConstructBuilding",
 			"key": "MB_Left"
+		},
+		{
+			"Id": "ExitConstruct",
+			"key": "MOUSE_RIGHT"
 		}
 	]
 }
