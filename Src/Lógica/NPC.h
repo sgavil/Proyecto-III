@@ -97,7 +97,7 @@ public:
 	//Walks by without a destiny
 	void deambulate(unsigned int time);
 	//Saca al NPC de la atracción
-	void getOutofAttraction(Edificio* attr);
+	void getOutofAttraction();
 
 	//GETTERS
 	float getFun() { return fun_.value_; };
@@ -135,6 +135,9 @@ private:
 	Node* prevNode_;
 	Node* nextNode_;
 
+	//Edificio actual
+	Edificio* actualBuilding_;
+
 
 	//PARA EL ALGORITMO
 	//Para hacer el algoritmo de Dijkstra
@@ -158,8 +161,12 @@ private:
 	void moveToNode(Node* n, int deltaTime);
 	//Follows current path
 	void followPath(unsigned int time);
+	//Encuentra el edificio a partir de su nodo de entrada
+	void NPC::getBuilding(Node* eNode);
 	//Indica si necesitamos algo
 	bool lowStats();
+	//Indica la stat más baja
+	const Stat& lowerStat();
 	//Entra en la atracción
 	void enterAttraction();
 };
