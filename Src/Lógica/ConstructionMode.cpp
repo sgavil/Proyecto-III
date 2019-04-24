@@ -53,6 +53,11 @@ bool ConstructionMode::handleEvent(unsigned int time)
 			setBuilding();
 		}
 	}
+	if (InputManager::getSingletonPtr()->isKeyDown("ExitConstruct")) {
+		constructActive_ = false;
+		canConst_ = false;
+		setNodeMaterial(false, true);
+	}
 
 	return false;
 }
@@ -95,7 +100,6 @@ void ConstructionMode::construct(string bName)
 	buildingEntity_ = EntityFactory::Instance()->createEntityFromBlueprint(bName);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(0, -1000, 0));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
-	SceneManager::instance()->currentState()->addEntity(buildingEntity_);
 	build_ = buildingEntity_->getComponent<Edificio>();
 }
 
@@ -183,13 +187,22 @@ void ConstructionMode::setBuilding()
 	buildingEntity_->setActive(true);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
-	if (build_->getBuildingName() != "Road") setEntryExit();
 	set = true;
 	setNodeMaterial(false, true);
 	nodes_.clear();
 	canConst_ = false;
-	constructActive_ = false;
+
 	setNodesType();
+
+	if (build_->getBuildingName() != "Road") {
+		setEntryExit();
+		constructActive_ = false;
+	}
+	else {
+		construct(build_->getBuildingName());
+	}
+
+	SceneManager::instance()->currentState()->addEntity(buildingEntity_);
 }
 
 void ConstructionMode::createEntryExitRoad(string roadName)
