@@ -16,7 +16,8 @@ Entity::Entity(std::vector<Component*> comps, std::string name):name_(name), act
 void Entity::start() 
 {
 	for (Component* c : components_)
-		c->start();
+		if(c->isActive())
+			c->start();
 }
 
 

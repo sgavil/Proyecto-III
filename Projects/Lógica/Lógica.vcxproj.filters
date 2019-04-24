@@ -35,7 +35,7 @@
       <Filter>Componentes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Lógica\CameraManager.cpp">
-      <Filter>Componentes</Filter>
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,7 +59,7 @@
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\CameraManager.h">
-      <Filter>Componentes</Filter>
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -63,7 +63,6 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::update(unsigned int time)
 {
-	//std::cout << getInfo() << std::endl;
 	//Obtenemos su posición y orientación
 	btTransform trans = getBtTransform();
 

@@ -33,6 +33,7 @@ void Matrix::load(json file)
 
 void Matrix::start()
 {
+	std::cout << "CALLING MATRIX START" << std::endl;
 	ConstructionMode* cMode = SceneManager::instance()->currentState()->getEntity("ConstructionMode")->getComponent<ConstructionMode>();
 	json data = matrixFile["data"];
 	json corresp = matrixFile["correspondence"];
@@ -51,12 +52,18 @@ void Matrix::start()
 					cMode->buildInMatrix(i, j, buildingType);
 			}
 
-			//Añadimos la entidad a la escena y activamos sus componentes
+			//Añadimos la entidad a la escena y la activamos
 			SceneManager::instance()->currentState()->addEntity(matrix_[i][j]);
-			for (Component* c : matrix_[i][j]->getComponents())
-				if (c->isActive())
-					c->start();
-			std::cout << actualNode->getType();
+			matrix_.at(i).at(j)->start();
+		}
+	}
+
+	//Debugging
+	for (int i = 0; i < matrix_.size(); i++)
+	{
+		for (int j = 0; j < matrix_[0].size(); j++)
+		{
+			std::cout << matrix_.at(i).at(j)->getComponent<Node>()->getType();
 		}
 		std::cout << std::endl;
 	}

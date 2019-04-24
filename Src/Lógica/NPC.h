@@ -109,6 +109,8 @@ private:
 	void followPath(unsigned int time);
 	//Cambia una stat del NPC una cierta cantidad
 	void changeStat(Stat& stat, float incr);
+	//Indica si necesitamos algo
+	bool lowStats();
 };
 
 REGISTER_TYPE(NPC);

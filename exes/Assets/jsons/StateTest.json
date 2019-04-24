@@ -84,49 +84,6 @@
       ]
     },
     {
-      "name": "NPC1",
-      "Components": [
-        {
-          "name": "Transform",
-          "position": {
-            "x": 0,
-            "y": 1000,
-            "z": 1000
-          }
-        },
-        {
-          "name": "MeshRenderer",
-          "mesh": "penguin.mesh",
-          "visible": true
-        },
-        {
-          "name": "NPC",
-		  "speed": 1,
-		  "exigency": 1,
-		   "stats": [
-		  {
-			"name": "fun",
-			"value": 5,
-			"maxValue": 10,
-			"decreases": true
-		  },
-		  {
-			"name": "hunger",
-			"value": 0,
-			"maxValue": 10,
-			"decreases": false
-		  },
-		  {
-			"name": "peepee",
-			"value": 0,
-			"maxValue": 10,
-			"decreases": false
-		  }
-		  ]
-        }
-      ]
-    },
-    {
       "name": "Terrain",
       "Components": [
         {
@@ -203,7 +160,8 @@
         {
           "name": "CameraManager",
 		  "maxHeigth": 1000,
-		  "minHeigth": 20
+		  "minHeigth": 20,
+		  "borders": 0.1
         }
       ]
     },
