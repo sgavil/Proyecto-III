@@ -3,6 +3,7 @@
 #include "Entity.h"
 
 #include "SceneManager.h"
+#include "AudioManager.h"
 
 using namespace std::placeholders;
 
@@ -60,6 +61,20 @@ bool CallbackManager::onExit(std::string null)
 bool CallbackManager::onChangeState(std::string state)
 {
 	SceneManager::instance()->changeState(state);
+	return true;
+}
+
+bool CallbackManager::EffectVolumeChange(std::string vol)
+{
+	if (vol == "+") AudioManager::instance()->UP_EFFECTS_VOLUME();
+	else if (vol == "-") AudioManager::instance()->DOWN_EFFECTS_VOLUME();
+	return true;
+}
+
+bool CallbackManager::MusicVolumeChange(std::string vol)
+{
+	if (vol == "+") AudioManager::instance()->UP_MUSIC_VOLUME();
+	else if (vol == "-") AudioManager::instance()->DOWN_MUSIC_VOLUME();
 	return true;
 }
 
