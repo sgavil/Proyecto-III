@@ -3,6 +3,7 @@
 #include <vector>
 
 class Entity;
+class Node;
 
 using namespace std;
 class Matrix : public Component
@@ -15,13 +16,13 @@ public:
 
 	virtual void load(json file);
 
-	virtual void render(unsigned int time) {};
-	virtual void update(unsigned int time) {};
-	virtual bool handleEvent(unsigned int time) { return false; };
-	virtual void receive(Message* msg) {};
+	//Returns a string with matrix info
+	virtual std::string getInfo();
 
 	//Devuelve la matriz de nodos
 	vector<vector<Entity*>> getMatrix();
+	//Devuelve la entrada
+	Node* getEntrance() { return entrance_; };
 	//Devuelve la entidad nodo en una posición de la matriz
 	Entity* getEntityNode(int i, int j);
 	//Devuelve los adyacentes de una entidad con un tamaño x-y
@@ -39,6 +40,8 @@ private:
 	Ogre::Vector2 mSize_;
 	Ogre::Vector3 nSize_;
 	vector<vector<Entity*>> matrix_;
+	//Entrance to the PARK
+	Node* entrance_;
 	std::list<Component*> comps;
 	
 	//Crea la matriz de nodos

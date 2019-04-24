@@ -3,6 +3,7 @@
 #include <PARKEngine/PARKEngine.h>
 #include "Matrix/Node.h"
 #include "Matrix/Matrix.h"
+#include "Edificio.h"
 #include <limits>
 #include <cmath>
 
@@ -19,18 +20,24 @@ void NPC::start()
 	//Gets matrix
 	matrix_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Matrix>()[0]->getComponent<Matrix>();
 
-	//PRUEBA
-	matrix_->getEntityNode(0)->getComponent<Node>()->setType("Road");
-	matrix_->getEntityNode(0, 2)->getComponent<MeshRenderer>()->setMaterial("Road");
-
-
 	//Get initial node
-	Entity* initialNode = matrix_->getEntityNode(0, 0); //ESTÁN AL REVÉS FILAS Y COLUMNAS
-	node_ = prevNode_ = initialNode->getComponent<Node>();
-	//Set position to it
-	Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
+	Node* initialNode = matrix_->getEntrance();
+	node_ = prevNode_ = initialNode;
+	//Set position to it (coming outside the park)
+	Vector3 pos = initialNode->getBrotherComponent<Transform>()->getPosition();
 	getBrotherComponent<Transform>()->setPosition(pos + Vector3(-200, 10, 0));
 }
+
+std::string NPC::getInfo()
+{
+	//std::cout <<  << std::endl;
+	std::string s = entity_->getName() + "\n" + fun_.name_ + ": " + std::to_string(getFun()) + "\n" +
+		hunger_.name_ + ": " + std::to_string(getHunger()) + "\n " + peepee_.name_ + ": " + std::to_string(getPeepee()) + "\n";
+	return s;
+}
+
+//TODO: mostrar las necesidades visualmente
+
 
 void NPC::update(unsigned int time)
 {
@@ -38,10 +45,10 @@ void NPC::update(unsigned int time)
 	if(!isInBuilding_)
 	{
 		//Update stats
-		float delta = ((float)time / 1000) * exigency_;
-		changeStat(fun_, -delta);
-		changeStat(hunger_, delta);
-		changeStat(peepee_, delta);
+		float delta = ((float)time / 1000);
+		fun_.consume(delta, true);
+		hunger_.consume(delta, true);
+		peepee_.consume(delta, true);
 
 		//1. NPC has an avaiable path
 		if (hasPath)
@@ -53,9 +60,6 @@ void NPC::update(unsigned int time)
 		else
 			deambulate(time);
 	}
-	//TODO: mostrar las necesidades visualmente
-	//std::cout << entity_->getName() << "\n" << fun_.name_ << ": " << getFun() << "\n " << 
-		//hunger_.name_ << ": " << getHunger() << "\n " << peepee_.name_ << ": " << getPeepee() << std::endl;
 }
 
 void NPC::followPath(unsigned int time)
@@ -71,14 +75,56 @@ void NPC::followPath(unsigned int time)
 		movements.pop();
 		//If path ended
 		if (movements.empty())
-		{
-			hasPath = false;
-			isInBuilding_ = true;
-			speed_/= 1.5;
-			std::cout << "LLEGUÉ A LA ATRACCIÓN" << std::endl;
-		}
-			
+			enterAttraction();
 	}
+}
+
+void NPC::enterAttraction()
+{
+	//std::cout << "LLEGUÉ A LA ATRACCIÓN" << std::endl;
+	hasPath = false;
+	isInBuilding_ = true;
+	speed_ /= 1.5;
+
+	//All buildings in scene
+	std::vector<Entity*> builds = SceneManager::instance()->currentState()->getEntitiesWithComponent<Edificio>();
+	std::vector<Entity*>::iterator it = builds.begin();
+	Edificio* building = nullptr;
+
+	//Find the building to enter
+	bool found = false;
+	while (it != builds.end() && !found)
+	{
+		building = (*it)->getComponent<Edificio>();
+		if (building != nullptr && building->getEntryNode() != nullptr)
+			if (building->getEntryNode() == node_)
+				found = true;
+		it++;
+	}
+
+	std::cout << getInfo();
+
+	//Restore stats
+	building->encolar(getEntity());
+}
+
+void NPC::getOutofAttraction(Edificio* attr)
+{
+	//Needs restored
+	peepee_.restore(attr->getPeePeeValue());
+	fun_.restore(attr->getFunValue());
+	hunger_.restore(attr->getHungryValue());
+
+	std::cout << getInfo();
+
+	//Get out of the building and set position
+	node_ = prevNode_ = attr->getExitNode();
+	nextNode_ = nullptr;
+	Vector3 pos = node_->getBrotherComponent<Transform>()->getPosition();
+	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
+
+	//Flag
+	isInBuilding_ = false;
 }
 
 void NPC::setNode(Node * node)
@@ -97,9 +143,9 @@ void NPC::load(json file)
 	exigency_ = file["exigency"];
 
 	json stat = file["stats"];
-	fun_ = Stat(stat[0]["name"], stat[0]["value"], stat[0]["maxValue"], stat[0]["decreases"]);
-	hunger_ = Stat(stat[1]["name"], stat[1]["value"], stat[1]["maxValue"], stat[1]["decreases"]);
-	peepee_ = Stat(stat[2]["name"], stat[2]["value"], stat[2]["maxValue"], stat[2]["decreases"]);
+	fun_ = Stat(stat[0]["name"], stat[0]["value"], stat[0]["maxValue"], exigency_, stat[0]["decreases"]);
+	hunger_ = Stat(stat[1]["name"], stat[1]["value"], stat[1]["maxValue"], exigency_, stat[1]["decreases"]);
+	peepee_ = Stat(stat[2]["name"], stat[2]["value"], stat[2]["maxValue"], exigency_, stat[2]["decreases"]);
 }
 
 void NPC::lookForBuildings()
@@ -167,7 +213,7 @@ void NPC::lookForBuildings()
 			//Previous index
 			index = nodeTo[index];
 		}
-		std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
+		//std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
 		hasPath = true;
 		speed_ *= 1.5;
 	}
@@ -230,18 +276,6 @@ int NPC::calculateIndex(int i, int j)
 	return i * matrix_->getSize(1) + j;
 }
 
-bool NPC::handleEvent(unsigned int time)
-{
-	//if (InputManager::getSingletonPtr()->isKeyDown("NPC") && !hasPath)
-	//{
-	//	//Looks for buildings
-	//	lookForBuildings();
-	//}
-	
-	return false;
-}
-
-
 bool NPC::adyacenteCorrecta(Vector2 src, Vector2 dst)
 {
 	//Es una goddamn puerta XOR
@@ -282,19 +316,6 @@ void NPC::moveToNode(Node* n, int deltaTime)
 		nextNode_ = nullptr;
 		setNode(n);
 	}
-}
-
-void NPC::changeStat(Stat & stat, float incr)
-{
-	//Para ajustarlo a la stat en cuestión
-	incr /= stat.MAX_VALUE;
-
-	//Le quitamos el icremento y comprobamos límites
-	stat.value_ += incr;
-	if (stat.decreases_ && stat.value_ < 0)
-		stat.value_ = 0;
-	else if (!stat.decreases_ && stat.value_ > stat.MAX_VALUE)
-		stat.value_ = stat.MAX_VALUE;
 }
 
 bool NPC::lowStats()
