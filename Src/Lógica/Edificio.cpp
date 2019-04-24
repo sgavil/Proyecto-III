@@ -2,6 +2,7 @@
 #include <PARKEngine/Entity.h>
 #include "NPC.h"
 #include "Matrix/Node.h"
+#include "PARKEngine/PARKComponents.h"
 
 
 
@@ -35,6 +36,8 @@ void Edificio::montar()
 {
 	for (int i = 0; i < capacity_; i++) {
 		if (!cola.empty()) {
+			Entity* e = cola.front();
+			e->getComponent<MeshRenderer>()->setVisible(false);
 			rideing.push_back(cola.front());
 			cola.pop();
 		}
@@ -47,8 +50,8 @@ void Edificio::sacar()
 		if (!rideing.empty()) {
 			Entity* e = rideing.front();
 			rideing.pop_front();
-			e->setActive(true);
-			//e->getComponent<NPC>()->setNode(ExitNode->getComponent<Node>());
+			e->getComponent<MeshRenderer>()->setVisible(true);
+			e->getComponent<NPC>()->getOutofAttraction(this);
 		}
 	}
 }

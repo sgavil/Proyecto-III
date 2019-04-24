@@ -1,6 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <vector>
+#include <PARKEngine/Entity.h>
 
 //En este mismo fichero están las clases de Listener y Emitter para que no haya que incluir 3 ficheros, con este sera
 //suficiente ya que todo su contenido tiene que ver con mensajes y su forma de envio
@@ -10,7 +11,7 @@ enum MessageId {
 	GAME_OVER,
 	TRANSFORM_CHANGED,
 	CITIZEN_OUT,
-	CITIZEN_HUNFRY,
+	CITIZEN_HUNGRY,
 	CITIZEN_BORED,
 	CITIZEN_HAPPY,
 	CITICEN_IN,
@@ -19,6 +20,9 @@ enum MessageId {
 	ATRACCION_EMPTY,
 	THEMEPARK_EMPTY,
 	THEMEPARK_FULL,
+	CREATED_BUILDING,
+	DESTROYED_BUILDING,
+
 
 
 	//Relacionados con la burocracia
@@ -42,6 +46,13 @@ struct Message {
 	}
 	header_t_ size_;
 	uint8_t mType_;
+};
+
+struct MessageInfo : public Message {
+	MessageInfo(MessageId mType, Entity* mEntity, header_t_ size = sizeof(Message)) : 
+		mEntity_(mEntity), Message(mType, size) {
+	}
+	Entity* mEntity_;
 };
 
 //Es muy posible que para varios mensajes haya que hacer un struct para mandar al receptor algo mas que el tipo de mensaje, y por tanto

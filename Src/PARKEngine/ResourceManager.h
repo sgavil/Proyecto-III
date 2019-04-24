@@ -9,7 +9,6 @@ public:
 	static ResourceManager* instance();
 
 	void initializeResources();
-	void ceguiInit();
 
 
 	json getJsonByKey(const std::string &key);
