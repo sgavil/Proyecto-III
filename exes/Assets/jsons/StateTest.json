@@ -34,6 +34,40 @@
       ]
     },
     {
+      "name": "ConstructRoadButton",
+      "Components": [
+        {
+          "name": "Button",
+          "callback": "construct",
+          "parameter": "Road",
+          "text": "ROAD",
+          "posX": 0.8,
+          "posY": 0.2,
+          "sizeX": 100,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ConstructPatitosButton",
+      "Components": [
+        {
+          "name": "Button",
+          "callback": "construct",
+          "parameter": "Patitos",
+          "text": "PATITOS",
+          "posX": 0.8,
+          "posY": 0.3,
+          "sizeX": 100,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "TextDinero",
       "Components": 
       [

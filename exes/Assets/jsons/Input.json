@@ -19,6 +19,10 @@
 		{
 			"Id": "Ray",
 			"key": "MB_Left"
+		},
+		{
+			"Id": "ConstructBuilding",
+			"key": "MB_Left"
 		}
 	]
 }

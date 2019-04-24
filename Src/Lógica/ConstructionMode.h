@@ -24,6 +24,7 @@ public:
 	virtual void receive(Message* msg) {};
 
 	virtual void buildInMatrix(int i, int j, std::string name);
+	void construct(string bName);
 
 private:
 	bool constructActive_;
@@ -35,7 +36,6 @@ private:
 	list<Entity*> nodes_;
 	vector<string> buildingTypes_;
 
-	void construct(string bName, unsigned int time);
 	list<Entity*> getNodesToConstruct(Entity* node, Ogre::Vector3 mousePos);
 	bool canConstruct(int n);
 

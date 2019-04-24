@@ -1,4 +1,6 @@
 #include "CallbackManager.h"
+#include "Lógica/ConstructionMode.h"
+#include "Entity.h"
 
 #include "SceneManager.h"
 
@@ -41,6 +43,7 @@ void CallbackManager::initCallbacks()
 {
 	addCallback("onChangeState", &CallbackManager::onChangeState, this);
 	addCallback("onExit", &CallbackManager::onExit, this);
+	addCallback("construct", &CallbackManager::construct, this);
 }
 
 
@@ -57,5 +60,12 @@ bool CallbackManager::onExit(std::string null)
 bool CallbackManager::onChangeState(std::string state)
 {
 	SceneManager::instance()->changeState(state);
+	return true;
+}
+
+bool CallbackManager::construct(std::string buildName)
+{
+	Entity* e = SceneManager::instance()->currentState()->getEntity("ConstructionMode");
+	e->getComponent<ConstructionMode>()->construct(buildName);
 	return true;
 }

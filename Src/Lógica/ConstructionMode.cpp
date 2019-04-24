@@ -47,23 +47,7 @@ void ConstructionMode::update(unsigned int time)
 
 bool ConstructionMode::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_P))
-	{
-		construct("Patitos", time);
-	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_O))
-	{
-		construct("Burguer", time);
-	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_I))
-	{
-		construct("Road", time);
-	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_N))
-	{
-		construct("Noria", time);
-	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_Y))
+	if (InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
 	{
 		if (canConst_) {
 			setBuilding();
@@ -105,7 +89,7 @@ void ConstructionMode::buildInMatrix(int i, int j, std::string name)
 }
 
 
-void ConstructionMode::construct(string bName, unsigned int time)
+void ConstructionMode::construct(string bName)
 {
 	constructActive_ = true;
 	buildingEntity_ = EntityFactory::Instance()->createEntityFromBlueprint(bName);
