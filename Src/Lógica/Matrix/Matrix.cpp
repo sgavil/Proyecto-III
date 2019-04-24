@@ -14,6 +14,20 @@ Matrix::~Matrix()
 {
 }
 
+std::string Matrix::getInfo()
+{
+	std::string s = "Matrix Current State: \n";
+	for (int i = 0; i < matrix_.size(); i++)
+	{
+		for (int j = 0; j < matrix_[0].size(); j++)
+		{
+			s += matrix_.at(i).at(j)->getComponent<Node>()->getType();
+		}
+		s += "\n\n";
+	}
+	return s;
+}
+
 
 void Matrix::load(json file)
 {
@@ -33,7 +47,6 @@ void Matrix::load(json file)
 
 void Matrix::start()
 {
-	std::cout << "CALLING MATRIX START" << std::endl;
 	ConstructionMode* cMode = SceneManager::instance()->currentState()->getEntity("ConstructionMode")->getComponent<ConstructionMode>();
 	json data = matrixFile["data"];
 	json corresp = matrixFile["correspondence"];
@@ -58,15 +71,8 @@ void Matrix::start()
 		}
 	}
 
-	//Debugging
-	for (int i = 0; i < matrix_.size(); i++)
-	{
-		for (int j = 0; j < matrix_[0].size(); j++)
-		{
-			std::cout << matrix_.at(i).at(j)->getComponent<Node>()->getType();
-		}
-		std::cout << std::endl;
-	}
+	entrance_ = matrix_.at(0).at(0)->getComponent<Node>();
+
 }
 
 void Matrix::createMatrix()// (json matrixInfo)

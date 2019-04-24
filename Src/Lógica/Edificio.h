@@ -4,6 +4,7 @@
 #include <string>
 #include <PARKEngine/ResourceManager.h>
 
+class Node;
 
 class Edificio : public Component
 {
@@ -36,8 +37,8 @@ private:
 	Ogre::Vector2 entry;
 	Ogre::Vector2 exit;
 
-	Entity* EntryNode;
-	Entity* ExitNode;
+	Node* EntryNode;
+	Node* ExitNode;
 
 public:
 	Edificio();
@@ -72,6 +73,8 @@ public:
 	Ogre::Vector2 getTam() { return tam; };
 	Ogre::Vector2 getEntry() { return entry; };
 	Ogre::Vector2 getExit() { return exit; };
+	Node* getEntryNode() { return EntryNode; };
+	Node* getExitNode() { return ExitNode; };
 
 	int getHeight() { return height_; };
 
@@ -87,8 +90,8 @@ public:
 	//El parametro d es en segundos y automaticamente lo pasa a milisegundos que es como trabaja internamente
 	void setDuration(int D) { duration_ = D * 1000; };
 
-	void setEntryNode(Entity* e) { EntryNode = e; };
-	void setExitNode(Entity* e) { ExitNode = e; };
+	void setEntryNode(Node* e) { EntryNode = e; };
+	void setExitNode(Node* e) { ExitNode = e; };
 private:
 	//Es privado porque solo se debe establecer al Establecer de json la atracción y no en ejecución
 	void setType(type t) { type_ = t; };

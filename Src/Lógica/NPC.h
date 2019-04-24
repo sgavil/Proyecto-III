@@ -7,20 +7,59 @@
 class Node;
 class Matrix;
 
-//Estadística del NPC. Indica el nombre del stat, sus valores actual y máximo, y si aumenta/disminuye con el tiempo
-struct Stat
+//Estadística del NPC. Indica el nombre del stat, sus valores actual y máximo, la exigencia(velocidad a la que cambia y cuánto recupera)
+//, y si aumenta/disminuye con el tiempo
+class Stat
 {
-	Stat(std::string name, float value, float maxVal, bool decreases)
+public:
+	Stat(std::string name, float value, float maxVal, float exigency, bool decreases)
 	{
 		name_ = name;
 		value_ = value;
 		MAX_VALUE = maxVal;
+		exigency_ = exigency;
 		decreases_ = decreases;
 	}
+	
+	//Restaura una cierta cantidad del stat
+	void restore(float amount)
+	{
+		amount /= exigency_;
+		if (decreases_)
+			amount *= -1;
+		value_ += amount;
+
+		if (decreases_ && value_ < 0)
+			value_ = 0;
+		else if (!decreases_ && value_ > MAX_VALUE)
+			value_ = MAX_VALUE;
+	}
+
+	//Recupera una cierta cantidad del stat
+	void consume(float amount, bool relative = false)
+	{
+		amount *= exigency_;
+
+		//Para ajustarlo a la stat en cuestión
+		if (relative)
+			amount /= MAX_VALUE;
+
+		//Le quitamos el icremento y comprobamos límites
+		if (decreases_)
+			amount *= -1;
+		value_ += amount;
+
+		if (decreases_ && value_ < 0)
+			value_ = 0;
+		else if (!decreases_ && value_ > MAX_VALUE)
+			value_ = MAX_VALUE;
+	}
 	Stat(){}
+
 	std::string name_;
 	float value_;
 	float MAX_VALUE;
+	float exigency_;
 	bool decreases_;
 };
 
@@ -36,7 +75,9 @@ public:
 	
 	//Generic methods
 	virtual void update(unsigned int time);
-	virtual bool handleEvent(unsigned int time);
+
+	//Returns a string with indented information of the NPC
+	virtual std::string getInfo();
 
 	//Set current node
 	void setNode(Node* node);
@@ -107,8 +148,6 @@ private:
 	void moveToNode(Node* n, int deltaTime);
 	//Follows current path
 	void followPath(unsigned int time);
-	//Cambia una stat del NPC una cierta cantidad
-	void changeStat(Stat& stat, float incr);
 	//Indica si necesitamos algo
 	bool lowStats();
 };
