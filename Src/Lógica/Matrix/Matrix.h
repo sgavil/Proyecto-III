@@ -20,8 +20,11 @@ public:
 	virtual bool handleEvent(unsigned int time) { return false; };
 	virtual void receive(Message* msg) {};
 
+	//Devuelve la matriz de nodos
 	vector<vector<Entity*>> getMatrix();
+	//Devuelve la entidad nodo en una posición de la matriz
 	Entity* getEntityNode(int i, int j);
+	//Devuelve los adyacentes de una entidad con un tamaño x-y
 	list<Entity*> getAdj(Entity* e, int x, int y);
 
 	//Devuelve adyacentes especificando indice
@@ -38,6 +41,7 @@ private:
 	vector<vector<Entity*>> matrix_;
 	std::list<Component*> comps;
 	
+	//Crea la matriz de nodos
 	void createMatrix();
 	Vector3 getPosIni();
 };
