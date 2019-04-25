@@ -47,5 +47,7 @@ public:
 
 	void createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text);
 
+	void createBackground(std::string imageName);
+
 	~HUDManager();
 };

@@ -2,7 +2,7 @@
 #include "SceneManager.h"
 #include "OgreManager.h"
 #include "OgreIncludes.h"
-
+#include "OgreManager.h"
 
 using namespace std::placeholders;
 
@@ -11,6 +11,7 @@ std::unique_ptr<HUDManager> HUDManager::instance_;
 
 HUDManager::HUDManager()
 {
+	
 }
 
 
@@ -105,6 +106,31 @@ void HUDManager::setActiveWindow(std::string state)
 	activeWindow->addChild(textWindow);
 
 }*/
+
+void HUDManager::createBackground(std::string imageName)
+{
+
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create( imageName +"material", "General");
+	material->getTechnique(0)->getPass(0)->createTextureUnitState(imageName);
+	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+
+	Ogre::Rectangle2D* rect = new Ogre::Rectangle2D(true);
+	
+	rect->setCorners(-1.0, 1.0, 1.0, -1.0);
+	rect->setMaterial(material);
+
+
+	rect->setRenderQueueGroup(Ogre::RENDER_QUEUE_BACKGROUND);
+
+	Ogre::AxisAlignedBox aabInf;
+	aabInf.setInfinite();
+	rect->setBoundingBox(aabInf);
+
+	Ogre::SceneNode* node =  OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode(imageName + " background");
+	node->attachObject(rect);
+}
 
 HUDManager::~HUDManager()
 {

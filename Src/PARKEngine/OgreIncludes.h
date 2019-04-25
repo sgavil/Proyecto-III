@@ -18,3 +18,7 @@
 #include <OgreTerrainGroup.h>
 #include <OgreTerrainGroup.h>
 #include <OgreRay.h>
+#include <OgreMaterialManager.h>
+#include <OgreMaterial.h>
+#include <OgreTechnique.h>
+#include <OgreRectangle2D.h>
