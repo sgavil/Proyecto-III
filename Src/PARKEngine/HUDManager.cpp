@@ -2,7 +2,7 @@
 #include "SceneManager.h"
 #include "OgreManager.h"
 #include "OgreIncludes.h"
-
+#include "OgreManager.h"
 
 using namespace std::placeholders;
 
@@ -11,6 +11,7 @@ std::unique_ptr<HUDManager> HUDManager::instance_;
 
 HUDManager::HUDManager()
 {
+	
 }
 
 
@@ -51,21 +52,6 @@ void HUDManager::init()
 	windowMgr = CEGUI::WindowManager::getSingletonPtr();		// Obtenemos la ventana de renderizado
 }
 
-/*template<typename T>
-void HUDManager::createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::* function)(const CEGUI::EventArgs &), T * obj)
-{
-	CEGUI::Window* button = windowMgr->createWindow("AlfiskoSkin/Button", text + "Button");
-
-	button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
-	button->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
-	button->setText(text);
-
-	button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
-
-	activeWindow->addChild(button);
-}*/
-
-
 
 CEGUI::MouseCursor& HUDManager::getMouseCursor()
 {
@@ -93,41 +79,57 @@ void HUDManager::changeWindow(std::string state)
 void HUDManager::setActiveWindow(std::string state)
 {
 	if (activeWindow != nullptr)
-	{
-		for (size_t i = 0; i < activeWindow->getChildCount(); i++)
-		{
-			activeWindow->getChildAtIdx(i)->disable();
-			activeWindow->getChildAtIdx(i)->hide();
-		}
-	}
+		activeWindow->hide();
 
 	activeWindow = windows[state];
 
-	for (size_t i = 0; i < activeWindow->getChildCount(); i++)
-	{
-		activeWindow->getChildAtIdx(i)->enable();
-		activeWindow->getChildAtIdx(i)->show();
-	}
+	activeWindow->show();
+
 
 	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(activeWindow); // establece que sets de gui se muestra en el contexto actual, puede cambiarse de uno a otro.
 }
 
 
 
-void HUDManager::createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text)
+/*void HUDManager::createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text)
 {
-	CEGUI::Window* text_window = windowMgr->createWindow("TaharezLook/StaticText", "Textonuevo");
-	CEGUI::DefaultWindow* textWindow = static_cast<CEGUI::DefaultWindow*>(text_window);
+	CEGUI::Window* textWindow = windowMgr->createWindow("TaharezLook/StaticText", "Textonuevo");
+//	CEGUI::DefaultWindow* textWindow = static_cast<CEGUI::DefaultWindow*>(text_window);
 
-	/*Colocacion*/
+	//Colocacion
 	textWindow->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
 	textWindow->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
 
-	/*Especifico del editbox*/
+	//Especifico del editbox
 	textWindow->setText(text);
 	
 	activeWindow->addChild(textWindow);
 
+}*/
+
+void HUDManager::createBackground(std::string imageName)
+{
+
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create( imageName +"material", "General");
+	material->getTechnique(0)->getPass(0)->createTextureUnitState(imageName);
+	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+
+	Ogre::Rectangle2D* rect = new Ogre::Rectangle2D(true);
+	
+	rect->setCorners(-1.0, 1.0, 1.0, -1.0);
+	rect->setMaterial(material);
+
+
+	rect->setRenderQueueGroup(Ogre::RENDER_QUEUE_BACKGROUND);
+
+	Ogre::AxisAlignedBox aabInf;
+	aabInf.setInfinite();
+	rect->setBoundingBox(aabInf);
+
+	Ogre::SceneNode* node =  OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode(imageName + " background");
+	node->attachObject(rect);
 }
 
 HUDManager::~HUDManager()

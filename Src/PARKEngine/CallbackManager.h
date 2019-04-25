@@ -16,6 +16,11 @@ private:
 
 	bool onExit(std::string null);
 	bool onChangeState(std::string state);
+	bool EffectVolumeChange(std::string vol);
+	bool MusicVolumeChange(std::string vol);
+
+	//Callbacks para la construccion
+	bool construct(std::string buildName);
 public:
 	static CallbackManager* instance();
 	

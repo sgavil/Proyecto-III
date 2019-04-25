@@ -1,8 +1,8 @@
 #pragma once
-#include "Component.h"
+#include "Widget.h"
 #include "HUDManager.h"
 
-class TextBox : public Component
+class TextBox : public Widget
 {
 
 public:

@@ -67,6 +67,11 @@ public:
 	void PLAY_3D_SOUND(std::string AudioID, Vector3 pos); //Ejecuci�n de un sonido 3D
 	void PLAY_SONG(std::string AudioID); //Ejecuci�n de un sonido 2D
 
+	void UP_MUSIC_VOLUME();
+	void DOWN_MUSIC_VOLUME();
+	void UP_EFFECTS_VOLUME();
+	void DOWN_EFFECTS_VOLUME();
+
 	void READ_JSON_SOUNDS(std::string file);
 
 	//Establece los par�metros del medio
@@ -83,5 +88,8 @@ private:
 	//Variables del medio. Estas variables afectan a todos los sonidos del medio indiferentemente del emisor.
 	float doppler_;
 	float rolloff_;
+	float masterMusicVolume = 1;
+	float masterSoundVolume = 1;
+
 
 };

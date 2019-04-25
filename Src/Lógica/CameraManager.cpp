@@ -3,7 +3,7 @@
 #include "Matrix/Matrix.h"
 
 
-CameraManager::CameraManager()
+CameraManager::CameraManager(): rotating_(false), borders_(0)
 {
 }
 
@@ -17,13 +17,17 @@ void CameraManager::start()
 	//No se puede hacer en el start porque puede que la matriz no se haya creado toa
 	cam_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Camera>()[0]->getComponent<Camera>();
 	camTransform_ = cam_->getBrotherComponent<Transform>();
-	camTransform_->yaw(45, REF_SYSTEM::GLOBAL);
+	camTransform_->yaw(0, REF_SYSTEM::GLOBAL);
 }
 
 void CameraManager::load(json file)
 {
 	addParameter(MAX_HEIGTH, file["maxHeigth"]);
 	addParameter(MIN_HEIGTH, file["minHeigth"]);
+
+	//cameraDirections_.push_back({"North", })
+
+	addParameter(borders_, file["borders"]);
 }
 
 
@@ -32,22 +36,25 @@ bool CameraManager::handleEvent(unsigned int time)
 	//Standard increment (for camera transfomations)
 	float stdIncr = ((float)time / 2);
 
-	//Pillamos la info del ratón
+	//Pillamos la info del ratón y de la ventana
 	float mouseX = InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs;
 	float mouseY = InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs;
+	Vector2 windowSize = { OgreManager::instance()->getWindowSize(0),  OgreManager::instance()->getWindowSize(1) };
 
+	//Incremento de la posición
 	Vector3 delta = { 0,0,0 };
 
 	//ADELANTE/ATRÁS
-	if (mouseY < 2 * (float)OgreManager::instance()->getWindowSize(1) / 10)
+
+	if (mouseY < windowSize.y * borders_)
 		delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * stdIncr;
-	else if (mouseY > 8 * (float)OgreManager::instance()->getWindowSize(1) / 10)
+	else if (mouseY > windowSize.y - windowSize.y * borders_)
 		delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -stdIncr;
 
 	//IZQUIERDA/DERECHA
-	if (mouseX < 2 * (float)OgreManager::instance()->getWindowSize(0) / 10)
+	if (mouseX < windowSize.x * borders_)
 		delta += camTransform_->right() * -stdIncr;
-	else if (mouseX > 8 * (float)OgreManager::instance()->getWindowSize(0) / 10)
+	else if (mouseX > windowSize.x - windowSize.x * borders_)
 		delta += camTransform_->right() * stdIncr;
 
 	//Rueda del ratón para hacer zoom (no se como se pone esto en el archivo del input porque no son teclas como tales)
@@ -67,6 +74,8 @@ bool CameraManager::handleEvent(unsigned int time)
 		orbit(-90);
 	else if (InputManager::getSingletonPtr()->isKeyDown("RotaDerecha"))
 		orbit(90);
+	else
+		rotating_ = false;
 
 	return false;
 }
@@ -74,17 +83,22 @@ bool CameraManager::handleEvent(unsigned int time)
 
 void CameraManager::orbit(float degrees)
 {
-	int index;
-	index = (degrees > 0) ? 1 : -1;
+	if (!rotating_)
+	{
+		int index;
+		index = (degrees > 0) ? 1 : -1;
 
-	//Throw a ray
-	Vector3 focus = OgreManager::instance()->raycast().second;
-	Vector3 horizDistance = { focus.x - camTransform_->getPosition().x, 0 , focus.z - camTransform_->getPosition().z };
-	//Rotate the camera
-	camTransform_->yaw(degrees, REF_SYSTEM::GLOBAL);
-	//Translate the camera getting the difference betwwen the 2 vectors
-	camTransform_->translate(camTransform_->right() * index *horizDistance.length());
-	camTransform_->translate(Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -horizDistance.length());
+		//Throw a ray
+		Vector3 focus = OgreManager::instance()->raycast().second;
+		Vector3 horizDistance = { focus.x - camTransform_->getPosition().x, 0 , focus.z - camTransform_->getPosition().z };
+		//Rotate the camera
+		camTransform_->yaw(degrees, REF_SYSTEM::GLOBAL);
+		//Translate the camera getting the difference betwwen the 2 vectors
+		camTransform_->translate(camTransform_->right() * index *horizDistance.length());
+		camTransform_->translate(Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -horizDistance.length());
+
+		rotating_ = true;
+	}
 }
 void CameraManager::moveCamera(Vector3 deltaPos)
 {

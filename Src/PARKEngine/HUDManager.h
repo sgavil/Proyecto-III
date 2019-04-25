@@ -31,20 +31,23 @@ public:
 
 	void setActiveWindow(std::string state);
 
-	template<typename T>
-	void createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::* function)(const CEGUI::EventArgs&), T* obj)
+	
+	CEGUI::Window* createWidget(std::string name, std::string type, float posX, float posY, float offX, float offY, float tamX, float tamY/*, std::string txt, bool(T::* func)(const CEGUI::EventArgs&), T* obj*/)
 	{
-		CEGUI::Window* button = windowMgr->createWindow("AlfiskoSkin/Button", text + "Button");
+		CEGUI::Window* widget = windowMgr->createWindow(type, name);
 
-		button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
-		button->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
-		button->setText(text);
+		widget->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offX), CEGUI::UDim(posY, offY)));
+		widget->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
+		//widgtet->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(func, obj));
 
-		button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
+		activeWindow->addChild(widget);
 
-		activeWindow->addChild(button);
+		return widget;
 	}
+
 	void createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text);
+
+	void createBackground(std::string imageName);
 
 	~HUDManager();
 };

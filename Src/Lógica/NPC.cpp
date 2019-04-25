@@ -3,9 +3,12 @@
 #include <PARKEngine/PARKEngine.h>
 #include "Matrix/Node.h"
 #include "Matrix/Matrix.h"
+#include "Edificio.h"
 #include <limits>
+#include <cmath>
 
-NPC::NPC():pq(0), hasPath(false), isInBuilding_(false)
+//TODO: rotar los NPC en función de la dirección a la que van
+NPC::NPC():pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr)
 {
 }
 
@@ -17,57 +20,119 @@ void NPC::start()
 	//Gets matrix
 	matrix_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Matrix>()[0]->getComponent<Matrix>();
 
-	//PRUEBA
-	matrix_->getEntityNode(0)->getComponent<Node>()->setType("Road");
-	matrix_->getEntityNode(0, 2)->getComponent<MeshRenderer>()->setMaterial("Road");
-
-
 	//Get initial node
-	Entity* initialNode = matrix_->getEntityNode(0, 0); //ESTÁN AL REVÉS FILAS Y COLUMNAS
-	node_ = initialNode->getComponent<Node>();
-	//Set position to it
-	Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
-	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
-	//Look for buildings
-	//lookForBuildings();
+	Node* initialNode = matrix_->getEntrance();
+	node_ = prevNode_ = initialNode;
+	//Set position to it (coming outside the park)
+	Vector3 pos = initialNode->getBrotherComponent<Transform>()->getPosition();
+	getBrotherComponent<Transform>()->setPosition(pos + Vector3(-200, 10, 0));
 }
+
+std::string NPC::getInfo()
+{
+	//std::cout <<  << std::endl;
+	std::string s = entity_->getName() + "\n" + fun_.name_ + ": " + std::to_string(getFun()) + "\n" +
+		hunger_.name_ + ": " + std::to_string(getHunger()) + "\n " + peepee_.name_ + ": " + std::to_string(getPeepee()) + "\n";
+	return s;
+}
+
+//TODO: mostrar las necesidades visualmente
+
 
 void NPC::update(unsigned int time)
 {
-	//Bajar las necesidades (solo si no está en una atracción)
+	//Not currently inside a building
 	if(!isInBuilding_)
 	{
-		float delta = ((float)time / 1000) * exigency_;
-		changeStat(fun_, -delta);
-		changeStat(hunger_, delta);
-		changeStat(peepee_, delta);
-	}
-	//std::cout << entity_->getName() << "\n" << fun_.name_ << ": " << getFun() << "\n " << 
-		//hunger_.name_ << ": " << getHunger() << "\n " << peepee_.name_ << ": " << getPeepee() << std::endl;
+		//Update stats
+		float delta = ((float)time / 1000);
+		fun_.consume(delta, true);
+		hunger_.consume(delta, true);
+		peepee_.consume(delta, true);
 
-	//NPC has an avaiable path
-	if(hasPath)
-	{
-		Node* n = movements.top();
-		//Not in that node yet
-		if(node_ != n)
+		//1. NPC has an avaiable path
+		if (hasPath)
+			followPath(time);
+		//2. NPC realises he needs to eat/pee/he's bored
+		else if (lowStats())
 		{
-			//Move towards it
-			moveToNode(n, time);
-			//Update current node
-			if (isInNode(n))
-				setNode(n);
+			lookForBuildings();
 		}
+			
+		//3. He just walks around
 		else
-		{
-			//Pop movement
-			movements.pop();
-
-			//If path ended
-			if (movements.empty())
-				hasPath = false;
-		}
+			deambulate(time);
 	}
+}
+
+void NPC::followPath(unsigned int time)
+{
+	Node* n = movements.top();
+	//Not in that node yet (move towards it)
+	if (node_ != n)
+		moveToNode(n, time);
+	//Arrived to the node
+	else
+	{
+		//Pop movement
+		movements.pop();
+		//If path ended
+		if (movements.empty())
+			enterAttraction();
+	}
+}
+
+void NPC::enterAttraction()
+{
+	//std::cout << "LLEGUÉ A LA ATRACCIÓN" << std::endl;
+	hasPath = false;
+	isInBuilding_ = true;
+	speed_ /= 1.5;
+
+	std::cout << getInfo();
+
+	//Restore stats
+	actualBuilding_->encolar(getEntity());
+}
+
+void NPC::getBuilding(Node* eNode)
+{
+	//All buildings in scene
+	std::vector<Entity*> builds = SceneManager::instance()->currentState()->getEntitiesWithComponent<Edificio>();
+	std::vector<Entity*>::iterator it = builds.begin();
+	Edificio* building = nullptr;
+
+	//Find the building to enter
+	bool found = false;
+	while (it != builds.end() && !found)
+	{
+		building = (*it)->getComponent<Edificio>();
+		if (building != nullptr && building->getEntryNode() == eNode)
+			found = true;
+		it++;
+	}
+
+	actualBuilding_ = building;
+}
+
+void NPC::getOutofAttraction()
+{
+	//Needs restored
+	peepee_.restore(actualBuilding_->getPeePeeValue());
+	fun_.restore(actualBuilding_->getFunValue());
+	hunger_.restore(actualBuilding_->getHungryValue());
+
+	std::cout << getInfo();
+
+	//Get out of the building and set position
+	node_ = prevNode_ = actualBuilding_->getExitNode();
+	nextNode_ = nullptr;
+	Vector3 pos = node_->getBrotherComponent<Transform>()->getPosition();
+	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
+
+	//Flags
+	actualBuilding_ = nullptr;
+	isInBuilding_ = false;
 }
 
 void NPC::setNode(Node * node)
@@ -86,9 +151,9 @@ void NPC::load(json file)
 	exigency_ = file["exigency"];
 
 	json stat = file["stats"];
-	fun_ = Stat(stat[0]["name"], stat[0]["value"], stat[0]["maxValue"], stat[0]["decreases"]);
-	hunger_ = Stat(stat[1]["name"], stat[1]["value"], stat[1]["maxValue"], stat[1]["decreases"]);
-	peepee_ = Stat(stat[2]["name"], stat[2]["value"], stat[2]["maxValue"], stat[2]["decreases"]);
+	fun_ = Stat(stat[0]["name"], stat[0]["value"], stat[0]["maxValue"], exigency_, stat[0]["decreases"]);
+	hunger_ = Stat(stat[1]["name"], stat[1]["value"], stat[1]["maxValue"], exigency_, stat[1]["decreases"]);
+	peepee_ = Stat(stat[2]["name"], stat[2]["value"], stat[2]["maxValue"], exigency_, stat[2]["decreases"]);
 }
 
 void NPC::lookForBuildings()
@@ -119,7 +184,7 @@ void NPC::lookForBuildings()
 		IndexPQ<int>::Par n = pq.top();
 		nodoActual = matrix_->getEntityNode(n.elem)->getComponent<Node>();
 		pq.pop();
-		list<Entity*> ady = matrix_->getAdj(nodoActual->getEntity(), 1, 1); //radio de 1
+		std::list<Entity*> ady = matrix_->getAdj(nodoActual->getEntity(), 1, 1); //radio de 1
 		//Adyacentes al nodo actual
 		for (Entity* e : ady)
 		{
@@ -128,11 +193,12 @@ void NPC::lookForBuildings()
 			//Quitamos diagonales y la propia casilla
 			if (adyacenteCorrecta(srcPos, adyPos))
 			{
-				//Amusement found
-				if (e->getComponent<Node>()->getType() == "Patitos" || e->getComponent<Node>()->getType() == "Burguer")
+				//Building found
+				if (e->getComponent<Node>()->getType() == "EntryRoad")
 				{
 					nodoActual = e->getComponent <Node>();
 					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
+					getBuilding(nodoActual);
 					atraccion = true;
 					break;
 				}
@@ -156,23 +222,54 @@ void NPC::lookForBuildings()
 			//Previous index
 			index = nodeTo[index];
 		}
-		std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
+		//std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
 		hasPath = true;
+		speed_ *= 1.5;
 	}
 	else
 		std::cout << "NO HAY ATRACCIONES DISPONIBLES" << std::endl;
 }
 
-void NPC::deambulate()
+void NPC::deambulate(unsigned int time)
 {
-	//HACER QUE SE MUEVA AL SIGUIENTE NODO DE FORMA RANDOM, SIN VOLVER AL SUYO
+	//Where to go?
+	if (nextNode_ == nullptr)
+	{
+		//1. FILTRAMOS LAS CASILLAS ADYACENTES
+		std::list<Entity*> ady = matrix_->getAdj(node_->getEntity(), 1, 1); //radio de 1
+		std::list<Entity*>::iterator it = ady.begin();
+		std::vector<Node*> candidates;
+		while (it != ady.end())
+		{
+			Node* adyNode = (*it)->getComponent<Node>();
+			Vector2 srcPos = node_->getMatrixPos();
+			Vector2 adyPos = adyNode->getMatrixPos();
+			//1. Adyacente correcta   2. Es un camino  3. No venimos de ahí
+			if (adyacenteCorrecta(srcPos, adyPos) && adyNode->getType() == "Road" && adyNode != prevNode_)
+				candidates.push_back(adyNode);
+			it++;
+		}
 
 
+		//2. ELEGIR UN NODO
+		//Solo hay una dirección (volvemos)
+		if (candidates.size() == 0)
+		{
+			if (prevNode_ != node_)
+				nextNode_ = prevNode_;
+		}
+		else
+		{
+			int index = std::rand() % candidates.size();
+			nextNode_ = candidates.at(index);
+		}
+	}
+	else
+		moveToNode(nextNode_, time);
 }
 
 void NPC::relax(int srcIndex, int destIndex)
 {
-	//std::cout << "Relaxing from " << srcIndex << " to" << destIndex << std::endl;
 	if (distTo[destIndex] > distTo[srcIndex] + 1)
 	{
 		//Añadimos el tiempo de espera de la página en si
@@ -187,23 +284,6 @@ int NPC::calculateIndex(int i, int j)
 {
 	return i * matrix_->getSize(1) + j;
 }
-
-bool NPC::handleEvent(unsigned int time)
-{
-	if (InputManager::getSingletonPtr()->isKeyDown("NPC") && !hasPath)
-	{
-		Entity* initialNode = matrix_->getEntityNode(0, 0);
-		node_ = initialNode->getComponent<Node>();
-		//Set position to it
-		Vector3 pos = initialNode->getComponent<Transform>()->getPosition();
-		getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
-		//Looks for buildings
-		lookForBuildings();
-	}
-	
-	return false;
-}
-
 
 bool NPC::adyacenteCorrecta(Vector2 src, Vector2 dst)
 {
@@ -237,17 +317,27 @@ void NPC::moveToNode(Node* n, int deltaTime)
 
 	//Lo movemos
 	trans->translate(delta);
+
+	//Update current node
+	if (isInNode(n))
+	{
+		prevNode_ = node_;
+		nextNode_ = nullptr;
+		setNode(n);
+	}
 }
 
-void NPC::changeStat(Stat & stat, float incr)
+bool NPC::lowStats()
 {
-	//Para ajustarlo a la stat en cuestión
-	incr /= stat.MAX_VALUE;
+	return (fun_.value_ < (fun_.MAX_VALUE / 10) * 3 || peepee_.value_ > (peepee_.MAX_VALUE / 10) * 7 || hunger_.value_ > (hunger_.MAX_VALUE / 10) * 7);
+}
 
-	//Le quitamos el icremento y comprobamos límites
-	stat.value_ += incr;
-	if (stat.decreases_ && stat.value_ < 0)
-		stat.value_ = 0;
-	else if (!stat.decreases_ && stat.value_ > stat.MAX_VALUE)
-		stat.value_ = stat.MAX_VALUE;
+const Stat& NPC::lowerStat()
+{
+	if (fun_.value_ < peepee_.value_ && fun_.value_ < hunger_.value_)
+		return fun_;
+	else if (peepee_.value_ < fun_.value_ && peepee_.value_ < hunger_.value_)
+		return peepee_;
+	else
+		return hunger_;
 }

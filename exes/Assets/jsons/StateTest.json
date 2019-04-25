@@ -21,6 +21,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "onChangeState",
           "parameter": "StateMainMenu",
           "text": "MAIN MENU",
@@ -34,12 +35,49 @@
       ]
     },
     {
+      "name": "ConstructRoadButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "AlfiskoSkin/Button",
+          "callback": "construct",
+          "parameter": "Road",
+          "text": "ROAD",
+          "posX": 0.8,
+          "posY": 0.2,
+          "sizeX": 100,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ConstructPatitosButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "AlfiskoSkin/Button",
+          "callback": "construct",
+          "parameter": "Patitos",
+          "text": "PATITOS",
+          "posX": 0.8,
+          "posY": 0.3,
+          "sizeX": 100,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "TextDinero",
       "Components": 
       [
         {
           "name": "TextBox",
-          "Text": "Dinero: 143",
+          "type": "TaharezLook/StaticText",
+          "text": "Dinero: 143",
           "posX": 0.2,
           "posY": 0.8,
           "sizeX": 100,
@@ -50,45 +88,11 @@
       ]
     },
     {
-      "name": "NPC1",
-      "Components": [
+      "name": "ReproductorAudio",
+      "Components": 
+      [
         {
-          "name": "Transform",
-          "position": {
-            "x": 0,
-            "y": 1000,
-            "z": 1000
-          }
-        },
-        {
-          "name": "MeshRenderer",
-          "mesh": "penguin.mesh",
-          "visible": true
-        },
-        {
-          "name": "NPC",
-		  "speed": 3,
-		  "exigency": 1,
-		   "stats": [
-		  {
-			"name": "fun",
-			"value": 5,
-			"maxValue": 10,
-			"decreases": true
-		  },
-		  {
-			"name": "hunger",
-			"value": 0,
-			"maxValue": 10,
-			"decreases": false
-		  },
-		  {
-			"name": "peepee",
-			"value": 0,
-			"maxValue": 10,
-			"decreases": false
-		  }
-		  ]
+          "name": "Reproductor"
         }
       ]
     },
@@ -102,6 +106,55 @@
             {
               "name": "Camera"
             }
+          ]
+        }
+      ]
+    },
+	{
+      "name": "ConstructionMode",
+      "Components": [
+        {
+          "name": "ConstructionMode",
+          "Listeners": [
+            {
+              "name": "Reproductor"
+            }
+          ],
+          "BuildingsNames": [
+            {
+              "name": "Empty"
+            },
+            {
+              "name": "Road"
+            },
+            {
+              "name": "Amusement"
+            },
+            {
+              "name": "Amusement1"
+            },
+            {
+              "name": "Amusement2"
+            },
+            {
+              "name": "Toilet"
+            },
+            {
+              "name": "Restaurant"
+            },
+      		{
+      		  "name" : "Patitos"
+      		},
+      		{
+      		  "name" : "Burguer"
+      		},
+            {
+              "name" : "EntryRoad"
+            },
+            {
+              "name" : "ExitRoad"
+            }
+            
           ]
         }
       ]
@@ -126,7 +179,8 @@
         {
           "name": "CameraManager",
 		  "maxHeigth": 1000,
-		  "minHeigth": 20
+		  "minHeigth": 20,
+		  "borders": 0.1
         }
       ]
     },
@@ -157,49 +211,6 @@
             "ActualMoney" : -50,
             "InitVisitors" : 3
           }
-        }
-      ]
-    },
-    {
-      "name": "ConstructionMode",
-      "Components": [
-        {
-          "name": "ConstructionMode",
-          "BuildingsNames": [
-            {
-              "name": "Empty"
-            },
-            {
-              "name": "Road"
-            },
-            {
-              "name": "Amusement"
-            },
-            {
-              "name": "Amusement1"
-            },
-            {
-              "name": "Amusement2"
-            },
-            {
-              "name": "Toilet"
-            },
-            {
-              "name": "Restaurant"
-            },
-      			{
-      				"name" : "Patitos"
-      			},
-      			{
-      				"name" : "Burguer"
-      			},
-            {
-              "name" : "EntryRoad"
-            },
-            {
-              "name" : "ExitRoad"
-            }
-          ]
         }
       ]
     }

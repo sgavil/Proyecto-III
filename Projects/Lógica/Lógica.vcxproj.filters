@@ -35,6 +35,9 @@
       <Filter>Componentes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Lógica\CameraManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\Reproductor.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,6 +62,9 @@
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\CameraManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\Reproductor.h">
       <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>

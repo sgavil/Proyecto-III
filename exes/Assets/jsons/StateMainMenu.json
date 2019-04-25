@@ -26,6 +26,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "onChangeState",
           "parameter": "StateTest",
           "text": "PLAY",
@@ -42,7 +43,8 @@
       "name": "ExitButton",
       "Components": [
         {
-          "name":  "Button",
+          "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "onExit",
           "text": "EXIT",
           "posX": 0.5,
@@ -51,6 +53,33 @@
           "sizeY": 50,
           "offsetX": -100,
           "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "OptionsButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "AlfiskoSkin/Button",
+          "callback": "onChangeState",
+          "parameter": "StateOptions",
+          "text": "OPTIONS",
+          "posX": 0.5,
+          "posY": 0.45,
+          "sizeX": 200,
+          "sizeY": 50,
+          "offsetX": -100,
+          "offsetY": 0 
+        }
+      ]
+    },
+    {
+      "name": "Background",
+      "Components": [
+        {
+          "name":  "BackgroundImage",
+          "ImageName": "MainMenuBack.jpg"
         }
       ]
     }

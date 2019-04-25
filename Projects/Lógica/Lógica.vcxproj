@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\Src\Lógica\Matrix\Matrix.cpp" />
     <ClCompile Include="..\..\Src\Lógica\Matrix\Node.cpp" />
     <ClCompile Include="..\..\Src\Lógica\NPC.cpp" />
+    <ClCompile Include="..\..\Src\Lógica\Reproductor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="..\..\Src\Lógica\Matrix\Matrix.h" />
     <ClInclude Include="..\..\Src\Lógica\Matrix\Node.h" />
     <ClInclude Include="..\..\Src\Lógica\NPC.h" />
+    <ClInclude Include="..\..\Src\Lógica\Reproductor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

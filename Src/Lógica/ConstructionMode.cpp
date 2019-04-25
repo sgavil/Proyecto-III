@@ -47,39 +47,65 @@ void ConstructionMode::update(unsigned int time)
 
 bool ConstructionMode::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_P))
-	{
-		construct("Patitos", time);
-	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_O))
-	{
-		construct("Burguer", time);
-	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_I))
-	{
-		construct("Road", time);
-	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_N))
-	{
-		construct("Noria", time);
-	}
-	else if (InputManager::getSingletonPtr()->getKeyboard()->isKeyDown(OIS::KC_Y))
+	if (InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
 	{
 		if (canConst_) {
 			setBuilding();
+			matrixEntity_->getComponent<Matrix>()->getInfo();
 		}
+		else
+		{
+			MessageInfo m(CANNOT_BUILD, entity_);
+			send(&m);			
+		}
+	}
+	if (InputManager::getSingletonPtr()->isKeyDown("ExitConstruct")) {
+		constructActive_ = false;
+		canConst_ = false;
+		setNodeMaterial(false, true);
 	}
 
 	return false;
 }
 
-void ConstructionMode::construct(string bName, unsigned int time)
+void ConstructionMode::buildInMatrix(int i, int j, std::string name)
+{
+	//Contruye
+	Matrix* m = matrixEntity_->getComponent<Matrix>();
+	buildingEntity_ = EntityFactory::Instance()->createEntityFromBlueprint(name);
+	SceneManager::instance()->currentState()->addEntity(buildingEntity_);
+	build_ = buildingEntity_->getComponent<Edificio>();
+
+	// Posicion espacial
+	int x = 0, z = 0;
+	x = (j * m->getNodeSize().x) - (m->getMatrix().size() / 2 * m->getNodeSize().x);
+	z = (i * m->getNodeSize().z) - (m->getMatrix()[0].size() / 2 * m->getNodeSize().z);
+
+	x += (build_->getTamX() * matrixEntity_->getComponent<Matrix>()->getNodeSize().x) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().x / 2);
+	z += (build_->getTamY() * matrixEntity_->getComponent<Matrix>()->getNodeSize().z) / 2 - (matrixEntity_->getComponent<Matrix>()->getNodeSize().z / 2);
+
+	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(x, build_->getHeight(), z));
+	buildingEntity_->getComponent<MeshRenderer>()->start();
+
+	//Modificar el tipo de nodos de la matriz
+	for (int x = i; x < build_->getTamX() + i; x++) {
+		for (int z = j; z < build_->getTamY() + j; z++) {
+			m->getEntityNode(x, z)->getComponent<Node>()->setType(name);
+		}
+	}
+
+	// Poner la entrada y la salida
+	if (build_->getBuildingName() != "Road") setEntryExit();
+
+}
+
+
+void ConstructionMode::construct(string bName)
 {
 	constructActive_ = true;
 	buildingEntity_ = EntityFactory::Instance()->createEntityFromBlueprint(bName);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(0, -1000, 0));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
-	SceneManager::instance()->currentState()->addEntity(buildingEntity_);
 	build_ = buildingEntity_->getComponent<Edificio>();
 }
 
@@ -163,16 +189,30 @@ void ConstructionMode::setBuilding()
 {
 	bool set = false;
 	Ogre::Vector3 pos = getPosToConstruct();
-	setNodesType();
+
 	buildingEntity_->setActive(true);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
-	if (build_->getBuildingName() != "Road") setEntryExit();
+
+	MessageInfo m(CREATED_BUILDING, buildingEntity_);
+	send(&m);
+
+	setNodesType();
 	set = true;
 	setNodeMaterial(false, true);
 	nodes_.clear();
 	canConst_ = false;
-	constructActive_ = false;
+
+
+	if (build_->getBuildingName() != "Road") {
+		setEntryExit();
+		constructActive_ = false;
+	}
+	else {
+		construct(build_->getBuildingName());
+	}
+
+	SceneManager::instance()->currentState()->addEntity(buildingEntity_);
 }
 
 void ConstructionMode::createEntryExitRoad(string roadName)
@@ -185,16 +225,22 @@ void ConstructionMode::createEntryExitRoad(string roadName)
 	if (roadName == "EntryRoad") {
 		x = build_->getEntryX() * m->getNodeSize().x + posIni.x;
 		z = build_->getEntryY() * m->getNodeSize().z + posIni.z;
-		build_->setEntryNode(e);
 	}
 	else {
 		x = build_->getExitX() * m->getNodeSize().x + posIni.x;
 		z = build_->getExitY() * m->getNodeSize().z + posIni.z;
-		build_->setExitNode(e);
 	}
 
 	x -= m->getNodeSize().x / 2;
 	z -= m->getNodeSize().z / 2;
+	int nX = x / m->getNodeSize().x + m->getMatrix().size() / 2;
+	int nZ = z / m->getNodeSize().z + m->getMatrix()[0].size() / 2;
+	//Nodo de la matriz
+	Node* node = m->getEntityNode(nZ, nX)->getComponent<Node>();
+	node->setType(roadName);
+	//LO PONGO AQUI PROVISIONALMENTE
+	if (roadName == "EntryRoad") build_->setEntryNode(node);
+	else build_->setExitNode(node);
 	ePos = Ogre::Vector3(x, e->getComponent<Edificio>()->getHeight(), z);
 	e->getComponent<Transform>()->setPosition(ePos);
 	e->getComponent<MeshRenderer>()->start();

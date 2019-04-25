@@ -102,7 +102,7 @@ void AudioManager::PLAY_2D_SOUND(std::string AudioID)
 	if (it != soundList_.end()) {
 		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
 
-		chn->setVolume((*it).second.volume);
+		chn->setVolume((*it).second.volume*masterSoundVolume); //Se multiplica por el sonido master para que se le aplique el volumen seleccionado
 		chn->setPan((*it).second.pan);
 		chn->setLoopCount((*it).second.loopCount);
 
@@ -116,16 +116,16 @@ void AudioManager::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 	auto it = soundList3D_.find(AudioID);
 
 	if (it != soundList3D_.end()) {
-		result_ = system_->playSound((*it).second.snd, 0, true, &chn);
+		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
 		(*it).second.emitter.x = &pos_.x; (*it).second.emitter.y = &pos_.y; (*it).second.emitter.z = &pos_.z;
-		*(*it).second.vel = { 0,0,0 };
 
 		FMOD_VECTOR pos = { pos_.x, pos_.y, pos_.z };
 
-		chn->setVolume((*it).second.volume);
+		chn->setVolume((*it).second.volume*masterSoundVolume); //Se multiplica por el sonido master para que se le aplique el volumen seleccionado
 		chn->setLoopCount((*it).second.loopCount);
-		chn->set3DAttributes(&pos, (*it).second.vel);
-
+		FMOD_VECTOR* vel = new FMOD_VECTOR { 0,0,0 };
+		chn->set3DAttributes(&pos, vel);
+		
 		FMOD_OK_ERROR_CHECK();
 	}
 }
@@ -137,12 +137,36 @@ void AudioManager::PLAY_SONG(std::string AudioID)
 	if (it != Songs_.end()) {
 		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
 
-		chn->setVolume((*it).second.volume);
+		chn->setVolume((*it).second.volume*masterMusicVolume); //Se multiplica por el sonido master para que se le aplique el volumen seleccionado
 		chn->setPan((*it).second.pan);
 		chn->setLoopCount((*it).second.loopCount);
 
 		FMOD_OK_ERROR_CHECK();
 	}
+}
+
+void AudioManager::UP_MUSIC_VOLUME()
+{
+	masterMusicVolume += 0.1; 
+	if (masterMusicVolume > 1) masterMusicVolume = 1;
+}
+
+void AudioManager::DOWN_MUSIC_VOLUME()
+{
+	masterMusicVolume -= 0.1;
+	if (masterMusicVolume < 0) masterMusicVolume = 0;
+}
+
+void AudioManager::UP_EFFECTS_VOLUME()
+{
+	masterSoundVolume += 0.1;
+	if (masterSoundVolume > 1) masterSoundVolume = 1;
+}
+
+void AudioManager::DOWN_EFFECTS_VOLUME()
+{
+	masterSoundVolume -= 0.1;
+	if (masterSoundVolume < 0) masterSoundVolume = 0;
 }
 
 void AudioManager::READ_JSON_SOUNDS(std::string file)

@@ -18,7 +18,13 @@
 	],
 	"3DSounds":
 	[
-
+		{
+			"Id": "cochecitos3d",
+			"rute": "Assets\\Audio\\Cochecitos.mp3",
+			"loopCount": 0,
+			"Volume": 1,
+			"Pan": 0
+		}
 	],
 	"Songs":
 	[

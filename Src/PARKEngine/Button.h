@@ -1,12 +1,9 @@
 #pragma once
-#include "Component.h"
-#include "HUDManager.h"
+#include "Widget.h"
 
-class Button : public Component
+class Button : public Widget
 {
 private:
-	std::string windowState;
-
 	std::string callback;
 	std::string callbackParam;
 

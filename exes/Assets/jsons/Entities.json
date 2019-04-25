@@ -1,22 +1,53 @@
 {
   "NPC": 
   [
-    {
-      "name": "Transform"  
-    },
-    {
-      "name": "Rigidbody",
-      "parameters": 
-      {
-        "dimensions": 
         {
-          "x": 10,
-          "y": 10,
-          "z": 10
+		"name": "Transform",
+	    "parameters":
+		 {
+			"position": {
+				"x": 0,
+				"y": 1000,
+				"z": 1000
+			}
+		  }
         },
-        "mass": 10
-      }
-    }
+        {
+          "name": "MeshRenderer",
+		  "parameters":
+		  {
+			"mesh": "penguin.mesh",
+			"visible": true
+		  }
+        },
+        {
+          "name": "NPC",
+		  "parameters":
+		  {
+			  "speed": 1,
+			  "exigency": 2,
+			   "stats": [
+			  {
+				"name": "fun",
+				"value": 5,
+				"maxValue": 10,
+				"decreases": true
+			  },
+			  {
+				"name": "hunger",
+				"value": 0,
+				"maxValue": 10,
+				"decreases": false
+			  },
+			  {
+				"name": "peepee",
+				"value": 0,
+				"maxValue": 10,
+				"decreases": false
+			  }
+			  ]
+		   }
+        }
   ],
 
   "Camera": 
@@ -26,20 +57,6 @@
     },
     {
       "name": "Transform"
-    }
-  ],
-
-
-  "OgreHead": 
-  [
-    {
-      "name": "Transform"
-    },
-    {
-      "name": "MeshRenderer"
-    },
-    {
-      "name": "Rigidbody"
     }
   ],
 
@@ -109,7 +126,7 @@
           "x": 1,
           "y": 1
         },
-        "Height": 0,
+        "Height": 5,
         "Entry":
         {
           "x": 0,
@@ -154,7 +171,7 @@
           "x": 1,
           "y": 1
         },
-        "Height": 0,
+        "Height": 5,
         "Entry":
         {
           "x": 0,
@@ -199,7 +216,7 @@
           "x": 1,
           "y": 1
         },
-        "Height": 0,
+        "Height": 5,
         "Entry":
         {
           "x": 0,
@@ -372,8 +389,8 @@
       {
         "PeePee": 0,
         "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
+        "Fun": 10,
+        "Tam_Cola": 10,
         "Tam":
         {
           "x": 2,
@@ -390,8 +407,8 @@
           "x": 2,
           "y": 0
         },
-        "Duration": 10,
-        "Capacity": 0,
+        "Duration": 8,
+        "Capacity": 5,
         "bName": "Patitos"
       }
     }
