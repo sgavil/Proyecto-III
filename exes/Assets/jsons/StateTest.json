@@ -21,6 +21,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "onChangeState",
           "parameter": "StateMainMenu",
           "text": "MAIN MENU",
@@ -38,6 +39,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "construct",
           "parameter": "Road",
           "text": "ROAD",
@@ -55,6 +57,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "construct",
           "parameter": "Patitos",
           "text": "PATITOS",
@@ -73,7 +76,8 @@
       [
         {
           "name": "TextBox",
-          "Text": "Dinero: 143",
+          "type": "TaharezLook/StaticText",
+          "text": "Dinero: 143",
           "posX": 0.2,
           "posY": 0.8,
           "sizeX": 100,

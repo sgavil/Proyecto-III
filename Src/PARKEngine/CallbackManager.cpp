@@ -45,6 +45,8 @@ void CallbackManager::initCallbacks()
 	addCallback("onChangeState", &CallbackManager::onChangeState, this);
 	addCallback("onExit", &CallbackManager::onExit, this);
 	addCallback("construct", &CallbackManager::construct, this);
+	addCallback("EffectVolumeChange", &CallbackManager::EffectVolumeChange, this);
+	addCallback("MusicVolumeChange", &CallbackManager::MusicVolumeChange, this);
 }
 
 

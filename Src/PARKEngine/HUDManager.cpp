@@ -90,21 +90,21 @@ void HUDManager::setActiveWindow(std::string state)
 
 
 
-void HUDManager::createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text)
+/*void HUDManager::createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text)
 {
-	CEGUI::Window* text_window = windowMgr->createWindow("TaharezLook/StaticText", "Textonuevo");
-	CEGUI::DefaultWindow* textWindow = static_cast<CEGUI::DefaultWindow*>(text_window);
+	CEGUI::Window* textWindow = windowMgr->createWindow("TaharezLook/StaticText", "Textonuevo");
+//	CEGUI::DefaultWindow* textWindow = static_cast<CEGUI::DefaultWindow*>(text_window);
 
-	/*Colocacion*/
+	//Colocacion
 	textWindow->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
 	textWindow->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
 
-	/*Especifico del editbox*/
+	//Especifico del editbox
 	textWindow->setText(text);
 	
 	activeWindow->addChild(textWindow);
 
-}
+}*/
 
 HUDManager::~HUDManager()
 {

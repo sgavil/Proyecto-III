@@ -1,26 +1,26 @@
 #pragma once
-#include "Widget.h"
+#include "Component.h"
+#include "HUDManager.h"
 
-class Button : public Widget
+class Widget : public Component
 {
-private:
-	std::string callback;
-	std::string callbackParam;
+protected:
+
+	CEGUI::Window* window;
+	std::string type;
 
 public:
-	Button();
-	~Button();
+	Widget();
+	~Widget();
 
-	void load(json file);
+	virtual void load(json file);
 
 	//Métodos principales
 	virtual void render(unsigned int time) {}
 	virtual void update(unsigned int time) {}
 	virtual bool handleEvent(unsigned int time);
 
-	virtual bool onClick(const CEGUI::EventArgs& e);
-
 	virtual void receive(Message* msg) {};
 };
 
-REGISTER_TYPE(Button)
+REGISTER_TYPE(Widget)

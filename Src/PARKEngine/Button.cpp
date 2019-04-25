@@ -1,11 +1,11 @@
 #include "Button.h"
 #include "SceneManager.h"
 #include "CallbackManager.h"
-#include "HUDManager.h"
 #include "InputManager.h"
 
-Button::Button(): callbackParam("")
+Button::Button() : callbackParam("")
 {
+	type = "AlfiskoSkin/Button";
 }
 
 Button::~Button()
@@ -14,26 +14,20 @@ Button::~Button()
 
 void Button::load(json file)
 {
-	float posX, posY, sizeX, sizeY, offsetX,offsetY;
-	posX = posY = sizeX = sizeY = offsetX = offsetY = 0;
+	Widget::load(file);
+
+	std::string text;
+	addParameter(text, file["text"]);
 
 	addParameter(callback, file["callback"]);
 	addParameter(callbackParam, file["parameter"]);
 
-	std::string name = getEntity()->getName();
-	
-	std::string text;
-	addParameter(text, file["text"]);
+	CEGUI::PushButton* pushButton = static_cast<CEGUI::PushButton*>(window);
 
-	addParameter(posX, file["posX"]);
-	addParameter(posY, file["posY"]);
-	addParameter(sizeX, file["sizeX"]);
-	addParameter(sizeY, file["sizeY"]);
-	addParameter(offsetX, file["offsetX"]);
-	addParameter(offsetY, file["offsetY"]);
+	pushButton->subscribeEvent(CEGUI::PushButton::EventClicked, &Button::onClick, this);
+	pushButton->setText(text);
 
-
-	HUDManager::instance()->createButton(name, posX, posY, offsetX, offsetY, sizeX, sizeY, text, &Button::onClick, this);
+	//pushButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Button::onClick, this)); // Si el otro fallara, probar con éste
 }
 
 
