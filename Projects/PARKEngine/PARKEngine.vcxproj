@@ -192,6 +192,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\ResourceManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Rigidbody.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\SceneManager.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\BackgroundImage.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Terrain.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\TerrainCreator.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\TextBox.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\ResourceManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Rigidbody.h" />
     <ClInclude Include="..\..\Src\PARKEngine\SceneManager.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\BackgroundImage.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Terrain.h" />
     <ClInclude Include="..\..\Src\PARKEngine\TerrainCreator.h" />
     <ClInclude Include="..\..\Src\PARKEngine\TextBox.h" />

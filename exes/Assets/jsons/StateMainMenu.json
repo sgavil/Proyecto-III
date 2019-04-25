@@ -67,7 +67,16 @@
           "sizeX": 200,
           "sizeY": 50,
           "offsetX": -100,
-          "offsetY": 0
+          "offsetY": 0 
+        }
+      ]
+    },
+    {
+      "name": "Background",
+      "Components": [
+        {
+          "name":  "BackgroundImage",
+          "ImageName": "MainMenuBack.jpg"
         }
       ]
     }

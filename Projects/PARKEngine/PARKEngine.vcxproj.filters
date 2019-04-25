@@ -91,6 +91,9 @@
     <ClCompile Include="..\..\Src\PARKEngine\TextBox.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\BackgroundImage.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PARKEngine\Entity.h">
@@ -181,6 +184,9 @@
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\TextBox.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\BackgroundImage.h">
       <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>
