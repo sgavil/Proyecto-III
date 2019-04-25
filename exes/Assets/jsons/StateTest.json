@@ -84,6 +84,15 @@
       ]
     },
     {
+      "name": "ReproductorAudio",
+      "Components": 
+      [
+        {
+          "name": "Reproductor"
+        }
+      ]
+    },
+    {
       "name": "Terrain",
       "Components": [
         {
@@ -102,6 +111,11 @@
       "Components": [
         {
           "name": "ConstructionMode",
+          "Listeners": [
+            {
+              "name": "Reproductor"
+            }
+          ],
           "BuildingsNames": [
             {
               "name": "Empty"
@@ -136,6 +150,7 @@
             {
               "name" : "ExitRoad"
             }
+            
           ]
         }
       ]

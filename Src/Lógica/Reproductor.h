@@ -2,7 +2,7 @@
 #include <PARKEngine/AudioManager.h>
 #include <PARKEngine/Component.h>
 
-class Reproductor : public Component, Listener
+class Reproductor : public Component
 {
 public:
 	Reproductor();
@@ -13,7 +13,9 @@ public:
 	virtual bool handleEvent(unsigned int time) { return false; };
 
 	virtual void receive(Message* msg);
+
+	virtual void load(json file) {};
 };
 
-REGISTER_TYPE(Reproductor);
+REGISTER_TYPE(Reproductor)
 

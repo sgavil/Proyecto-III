@@ -116,16 +116,16 @@ void AudioManager::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 	auto it = soundList3D_.find(AudioID);
 
 	if (it != soundList3D_.end()) {
-		result_ = system_->playSound((*it).second.snd, 0, true, &chn);
+		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
 		(*it).second.emitter.x = &pos_.x; (*it).second.emitter.y = &pos_.y; (*it).second.emitter.z = &pos_.z;
-		*(*it).second.vel = { 0,0,0 };
 
 		FMOD_VECTOR pos = { pos_.x, pos_.y, pos_.z };
 
 		chn->setVolume((*it).second.volume*masterSoundVolume); //Se multiplica por el sonido master para que se le aplique el volumen seleccionado
 		chn->setLoopCount((*it).second.loopCount);
-		chn->set3DAttributes(&pos, (*it).second.vel);
-
+		FMOD_VECTOR* vel = new FMOD_VECTOR { 0,0,0 };
+		chn->set3DAttributes(&pos, vel);
+		
 		FMOD_OK_ERROR_CHECK();
 	}
 }

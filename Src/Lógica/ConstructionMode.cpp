@@ -53,6 +53,11 @@ bool ConstructionMode::handleEvent(unsigned int time)
 			setBuilding();
 			matrixEntity_->getComponent<Matrix>()->getInfo();
 		}
+		else
+		{
+			MessageInfo m(CANNOT_BUILD, entity_);
+			send(&m);			
+		}
 	}
 	if (InputManager::getSingletonPtr()->isKeyDown("ExitConstruct")) {
 		constructActive_ = false;
@@ -188,6 +193,9 @@ void ConstructionMode::setBuilding()
 	buildingEntity_->setActive(true);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
+
+	MessageInfo m(CREATED_BUILDING, buildingEntity_);
+	send(&m);
 
 	setNodesType();
 	set = true;
