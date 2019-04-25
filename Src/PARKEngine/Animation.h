@@ -13,6 +13,8 @@ public:
 
 	virtual void load(json file);
 
+	virtual void save(json file) {};
+
 	void changeAnimation(std::string anim);
 
 	void disableAnimation();

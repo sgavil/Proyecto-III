@@ -5,7 +5,7 @@
       "Components": [
         {
           "name": "Camera"
-        },
+        },  
         {
           "name": "Transform",
           "position": {

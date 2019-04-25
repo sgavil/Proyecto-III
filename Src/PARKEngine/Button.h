@@ -24,6 +24,8 @@ public:
 	virtual bool onClick(const CEGUI::EventArgs& e);
 
 	virtual void receive(Message* msg) {};
+
+	virtual void save(json file) {};
 };
 
 REGISTER_TYPE(Button)

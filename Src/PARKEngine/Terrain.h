@@ -11,6 +11,8 @@ public:
 
 	virtual void load(json file);
 
+	virtual void save(json file) {};
+
 	TerrainGenerator* terrainCreator_;
 };
 
