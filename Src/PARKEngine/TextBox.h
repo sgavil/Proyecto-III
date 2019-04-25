@@ -13,6 +13,8 @@ public:
 
 	virtual void receive(Message* msg) {};
 
+	virtual void save(json file) {};
+
 private:
 	std::string text;
 
