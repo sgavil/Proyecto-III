@@ -55,7 +55,10 @@ void NPC::update(unsigned int time)
 			followPath(time);
 		//2. NPC realises he needs to eat/pee/he's bored
 		else if (lowStats())
+		{
 			lookForBuildings();
+		}
+			
 		//3. He just walks around
 		else
 			deambulate(time);
@@ -86,6 +89,14 @@ void NPC::enterAttraction()
 	isInBuilding_ = true;
 	speed_ /= 1.5;
 
+	std::cout << getInfo();
+
+	//Restore stats
+	actualBuilding_->encolar(getEntity());
+}
+
+void NPC::getBuilding(Node* eNode)
+{
 	//All buildings in scene
 	std::vector<Entity*> builds = SceneManager::instance()->currentState()->getEntitiesWithComponent<Edificio>();
 	std::vector<Entity*>::iterator it = builds.begin();
@@ -96,34 +107,31 @@ void NPC::enterAttraction()
 	while (it != builds.end() && !found)
 	{
 		building = (*it)->getComponent<Edificio>();
-		if (building != nullptr && building->getEntryNode() != nullptr)
-			if (building->getEntryNode() == node_)
-				found = true;
+		if (building != nullptr && building->getEntryNode() == eNode)
+			found = true;
 		it++;
 	}
 
-	std::cout << getInfo();
-
-	//Restore stats
-	building->encolar(getEntity());
+	actualBuilding_ = building;
 }
 
-void NPC::getOutofAttraction(Edificio* attr)
+void NPC::getOutofAttraction()
 {
 	//Needs restored
-	peepee_.restore(attr->getPeePeeValue());
-	fun_.restore(attr->getFunValue());
-	hunger_.restore(attr->getHungryValue());
+	peepee_.restore(actualBuilding_->getPeePeeValue());
+	fun_.restore(actualBuilding_->getFunValue());
+	hunger_.restore(actualBuilding_->getHungryValue());
 
 	std::cout << getInfo();
 
 	//Get out of the building and set position
-	node_ = prevNode_ = attr->getExitNode();
+	node_ = prevNode_ = actualBuilding_->getExitNode();
 	nextNode_ = nullptr;
 	Vector3 pos = node_->getBrotherComponent<Transform>()->getPosition();
 	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 0));
 
-	//Flag
+	//Flags
+	actualBuilding_ = nullptr;
 	isInBuilding_ = false;
 }
 
@@ -190,6 +198,7 @@ void NPC::lookForBuildings()
 				{
 					nodoActual = e->getComponent <Node>();
 					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
+					getBuilding(nodoActual);
 					atraccion = true;
 					break;
 				}
@@ -320,5 +329,15 @@ void NPC::moveToNode(Node* n, int deltaTime)
 
 bool NPC::lowStats()
 {
-	return (fun_.value_ < 3 || peepee_.value_ > 7 || hunger_.value_ > 7);
+	return (fun_.value_ < (fun_.MAX_VALUE / 10) * 3 || peepee_.value_ > (peepee_.MAX_VALUE / 10) * 7 || hunger_.value_ > (hunger_.MAX_VALUE / 10) * 7);
+}
+
+const Stat& NPC::lowerStat()
+{
+	if (fun_.value_ < peepee_.value_ && fun_.value_ < hunger_.value_)
+		return fun_;
+	else if (peepee_.value_ < fun_.value_ && peepee_.value_ < hunger_.value_)
+		return peepee_;
+	else
+		return hunger_;
 }

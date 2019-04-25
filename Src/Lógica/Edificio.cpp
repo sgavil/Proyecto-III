@@ -46,13 +46,11 @@ void Edificio::montar()
 
 void Edificio::sacar()
 {
-	for (int i = 0; i < rideing.size(); i++) {
-		if (!rideing.empty()) {
-			Entity* e = rideing.front();
-			rideing.pop_front();
-			e->getComponent<MeshRenderer>()->setVisible(true);
-			e->getComponent<NPC>()->getOutofAttraction(this);
-		}
+	while (!rideing.empty()) {
+		Entity* e = rideing.front();
+		rideing.pop_front();
+		e->getComponent<MeshRenderer>()->setVisible(true);
+		e->getComponent<NPC>()->getOutofAttraction();
 	}
 }
 
