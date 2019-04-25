@@ -20,6 +20,8 @@ void Button::load(json file)
 	addParameter(callback, file["callback"]);
 	addParameter(callbackParam, file["parameter"]);
 
+	std::string name = getEntity()->getName();
+	
 	std::string text;
 	addParameter(text, file["text"]);
 
@@ -31,7 +33,7 @@ void Button::load(json file)
 	addParameter(offsetY, file["offsetY"]);
 
 
-	HUDManager::instance()->createButton(posX, posY, offsetX, offsetY, sizeX, sizeY, text, &Button::onClick, this);
+	HUDManager::instance()->createButton(name, posX, posY, offsetX, offsetY, sizeX, sizeY, text, &Button::onClick, this);
 }
 
 

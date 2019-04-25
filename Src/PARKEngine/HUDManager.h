@@ -32,15 +32,15 @@ public:
 	void setActiveWindow(std::string state);
 
 	template<typename T>
-	void createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::* function)(const CEGUI::EventArgs&), T* obj)
+	void createButton(std::string name, float posX, float posY, float offX, float offY, float tamX, float tamY, std::string txt, bool(T::* func)(const CEGUI::EventArgs&), T* obj)
 	{
-		CEGUI::Window* button = windowMgr->createWindow("AlfiskoSkin/Button", text + "Button");
+		CEGUI::Window* button = windowMgr->createWindow("AlfiskoSkin/Button", name);
 
-		button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
+		button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offX), CEGUI::UDim(posY, offY)));
 		button->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
-		button->setText(text);
+		button->setText(txt);
 
-		button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
+		button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(func, obj));
 
 		activeWindow->addChild(button);
 	}

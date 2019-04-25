@@ -51,21 +51,6 @@ void HUDManager::init()
 	windowMgr = CEGUI::WindowManager::getSingletonPtr();		// Obtenemos la ventana de renderizado
 }
 
-/*template<typename T>
-void HUDManager::createButton(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text, bool(T::* function)(const CEGUI::EventArgs &), T * obj)
-{
-	CEGUI::Window* button = windowMgr->createWindow("AlfiskoSkin/Button", text + "Button");
-
-	button->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offsetX), CEGUI::UDim(posY, offsetY)));
-	button->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
-	button->setText(text);
-
-	button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(function, obj));
-
-	activeWindow->addChild(button);
-}*/
-
-
 
 CEGUI::MouseCursor& HUDManager::getMouseCursor()
 {
@@ -93,21 +78,12 @@ void HUDManager::changeWindow(std::string state)
 void HUDManager::setActiveWindow(std::string state)
 {
 	if (activeWindow != nullptr)
-	{
-		for (size_t i = 0; i < activeWindow->getChildCount(); i++)
-		{
-			activeWindow->getChildAtIdx(i)->disable();
-			activeWindow->getChildAtIdx(i)->hide();
-		}
-	}
+		activeWindow->hide();
 
 	activeWindow = windows[state];
 
-	for (size_t i = 0; i < activeWindow->getChildCount(); i++)
-	{
-		activeWindow->getChildAtIdx(i)->enable();
-		activeWindow->getChildAtIdx(i)->show();
-	}
+	activeWindow->show();
+
 
 	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(activeWindow); // establece que sets de gui se muestra en el contexto actual, puede cambiarse de uno a otro.
 }
