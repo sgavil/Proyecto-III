@@ -9,7 +9,7 @@ class Matrix;
 struct CameraDirection {
 	int id;
 	float degrees;
-	string direction;
+	std::string direction;
 };
 
 class CameraManager : public Component
