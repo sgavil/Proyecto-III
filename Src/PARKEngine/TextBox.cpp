@@ -14,4 +14,6 @@ void TextBox::load(json file)
 	Widget::load(file);
 
 	addParameter(text, file["text"]);
+
+	window->setText(text);
 }

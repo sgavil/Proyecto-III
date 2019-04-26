@@ -46,7 +46,7 @@ void Game::start()
 
 	AudioManager::instance()->READ_JSON_SOUNDS("AudioSource.json");
 	//AudioManager::instance()->PLAY_2D_SOUND("cochecitos");
-	//AudioManager::instance()->PLAY_SONG("MainTheme");
+	AudioManager::instance()->PLAY_SONG("Menu");
 	InputManager::getSingletonPtr()->addMappingValues("Input.json");
 }
 

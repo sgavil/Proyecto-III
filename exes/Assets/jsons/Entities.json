@@ -523,9 +523,9 @@
       "parameters":
       {
         "PeePee": 0,
-        "Hungry": 0,
+        "Hungry": 10,
         "Fun": 0,
-        "Tam_Cola": 0,
+        "Tam_Cola": 5,
         "Tam":
         {
           "x": 2,
@@ -534,16 +534,16 @@
         "Height": 20,
         "Entry":
         {
-          "x": 0,
+          "x": 2,
           "y": 0
         },
         "Exit":
         {
-          "x": 0,
-          "y": 0
+          "x": 2,
+          "y": 1
         },
-        "Duration": 10,
-        "Capacity": 0,
+        "Duration": 5,
+        "Capacity": 1,
         "bName": "Burguer"
       }
     }    
