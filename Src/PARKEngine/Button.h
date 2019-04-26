@@ -1,12 +1,9 @@
 #pragma once
-#include "Component.h"
-#include "HUDManager.h"
+#include "Widget.h"
 
-class Button : public Component
+class Button : public Widget
 {
 private:
-	std::string windowState;
-
 	std::string callback;
 	std::string callbackParam;
 
@@ -24,6 +21,8 @@ public:
 	virtual bool onClick(const CEGUI::EventArgs& e);
 
 	virtual void receive(Message* msg) {};
+
+	virtual void save(json file) {};
 };
 
 REGISTER_TYPE(Button)

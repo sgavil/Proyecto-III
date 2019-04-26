@@ -1,8 +1,8 @@
 #pragma once
-#include "Component.h"
+#include "Widget.h"
 #include "HUDManager.h"
 
-class TextBox : public Component
+class TextBox : public Widget
 {
 
 public:
@@ -12,6 +12,8 @@ public:
 	void load(json file);
 
 	virtual void receive(Message* msg) {};
+
+	virtual void save(json file) {};
 
 private:
 	std::string text;

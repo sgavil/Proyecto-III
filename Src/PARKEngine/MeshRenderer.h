@@ -24,6 +24,8 @@ public:
 	virtual bool handleEvent(unsigned int time) { return false; };
 	virtual void receive(Message* msg);
 
+	virtual void save(json file) {};
+
 
 
 	//Vuelve visible/invisible el renderer

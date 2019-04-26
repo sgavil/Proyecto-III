@@ -61,7 +61,7 @@ public:
 	//Debug information
 	virtual std::string getInfo();
 
-
+	virtual void save(json file) {};
 
 
 protected:

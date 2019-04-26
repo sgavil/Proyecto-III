@@ -26,6 +26,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "onChangeState",
           "parameter": "StateMainMenu",
           "text": "BACK TO MENU",
@@ -43,6 +44,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "EffectVolumeChange",
           "parameter": "+",
           "text": "Subir efectos",
@@ -76,6 +78,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "EffectVolumeChange",
           "parameter": "-",
           "text": "Bajar efectos",
@@ -93,6 +96,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "MusicVolumeChange",
           "parameter": "+",
           "text": "Subir Musica",
@@ -110,6 +114,7 @@
       "Components": [
         {
           "name": "Button",
+          "type": "AlfiskoSkin/Button",
           "callback": "MusicVolumeChange",
           "parameter": "-",
           "text": "Bajar Musica",

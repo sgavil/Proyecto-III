@@ -1,0 +1,26 @@
+#pragma once
+#include "Component.h"
+#include "HUDManager.h"
+
+class Widget : public Component
+{
+protected:
+
+	CEGUI::Window* window;
+	std::string type;
+
+public:
+	Widget();
+	~Widget();
+
+	virtual void load(json file);
+
+	//Métodos principales
+	virtual void render(unsigned int time) {}
+	virtual void update(unsigned int time) {}
+	virtual bool handleEvent(unsigned int time);
+
+	virtual void receive(Message* msg) {};
+};
+
+REGISTER_TYPE(Widget)

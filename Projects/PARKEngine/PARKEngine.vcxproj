@@ -23,7 +23,7 @@
     <ProjectGuid>{9B5952B6-D23F-47C5-AD8D-22DEE9E04B99}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>PARKEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -192,10 +192,12 @@
     <ClCompile Include="..\..\Src\PARKEngine\ResourceManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Rigidbody.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\SceneManager.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\BackgroundImage.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Terrain.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\TerrainCreator.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\TextBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Transform.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PARKEngine\Animation.h" />
@@ -223,11 +225,13 @@
     <ClInclude Include="..\..\Src\PARKEngine\ResourceManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Rigidbody.h" />
     <ClInclude Include="..\..\Src\PARKEngine\SceneManager.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\BackgroundImage.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Terrain.h" />
     <ClInclude Include="..\..\Src\PARKEngine\TerrainCreator.h" />
     <ClInclude Include="..\..\Src\PARKEngine\TextBox.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Transform.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Utils.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\Widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
