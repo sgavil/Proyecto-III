@@ -34,7 +34,13 @@
 			"loopCount": 100,
 			"Volume": 1,
 			"Pan": 0
+		},
+		{
+			"Id": "Menu",
+			"rute": "Assets\\Audio\\Menu.mp3",
+			"loopCount": 100,
+			"Volume": 1,
+			"Pan": 0
 		}
-
 	]
 }
