@@ -70,6 +70,24 @@
         }
       ]
     },
+        {
+      "name": "ConstructBurguerButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "AlfiskoSkin/Button",
+          "callback": "construct",
+          "parameter": "Burguer",
+          "text": "BURGUER",
+          "posX": 0.8,
+          "posY": 0.4,
+          "sizeX": 100,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
     {
       "name": "TextDinero",
       "Components": 
