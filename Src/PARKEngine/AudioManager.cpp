@@ -3,6 +3,7 @@
 #include <fmod_errors.h>
 #include <fmod.h>
 
+
 #include "ResourceManager.h"
 
 std::unique_ptr<AudioManager> AudioManager::instance_;
@@ -97,7 +98,12 @@ void AudioManager::ADD_3D_SOUND(std::string fileName, std::string id, int loopCo
 
 void AudioManager::PLAY_2D_SOUND(std::string AudioID)
 {
+	auto iter = Channels_.find(AudioID);
+	if (iter != Channels_.end()) {
+		Channels_.erase(AudioID);
+	}
 	FMOD::Channel* chn;
+
 	auto it = soundList_.find(AudioID);
 	if (it != soundList_.end()) {
 		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
@@ -107,14 +113,20 @@ void AudioManager::PLAY_2D_SOUND(std::string AudioID)
 		chn->setLoopCount((*it).second.loopCount);
 
 		FMOD_OK_ERROR_CHECK();
+		Channels_.insert(std::make_pair(AudioID, chn));
 	}
+	
 }
 
 void AudioManager::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 {
+	auto iter = Channels_.find(AudioID);
+	if (iter != Channels_.end()) {
+		Channels_.erase(AudioID);
+	}
 	FMOD::Channel* chn;
+	
 	auto it = soundList3D_.find(AudioID);
-
 	if (it != soundList3D_.end()) {
 		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
 		(*it).second.emitter.x = &pos_.x; (*it).second.emitter.y = &pos_.y; (*it).second.emitter.z = &pos_.z;
@@ -127,12 +139,18 @@ void AudioManager::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 		chn->set3DAttributes(&pos, vel);
 		
 		FMOD_OK_ERROR_CHECK();
+		Channels_.insert(std::make_pair(AudioID, chn));
 	}
 }
 
 void AudioManager::PLAY_SONG(std::string AudioID)
 {
+	auto iter = Channels_.find(AudioID);
+	if (iter != Channels_.end()) {
+		Channels_.erase(AudioID);
+	}
 	FMOD::Channel* chn;
+
 	auto it = Songs_.find(AudioID);
 	if (it != Songs_.end()) {
 		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
@@ -140,10 +158,29 @@ void AudioManager::PLAY_SONG(std::string AudioID)
 		chn->setVolume((*it).second.volume*masterMusicVolume); //Se multiplica por el sonido master para que se le aplique el volumen seleccionado
 		chn->setPan((*it).second.pan);
 		chn->setLoopCount((*it).second.loopCount);
-
 		FMOD_OK_ERROR_CHECK();
+		Channels_.insert(std::make_pair(AudioID, chn));
 	}
 }
+
+void AudioManager::STOP_ALL_SOUNDS()
+{
+	for (auto it = Channels_.begin(); it != Channels_.end(); it++)
+	{
+		(*it).second->stop();
+	}
+	Channels_.clear();
+}
+
+void AudioManager::STOP_SOUND(std::string AudioID)
+{
+	auto it = Channels_.find(AudioID);
+	if (it != Channels_.end()) {
+		(*it).second->stop();
+		Channels_.erase(AudioID);
+	}
+}
+
 
 void AudioManager::UP_MUSIC_VOLUME()
 {
