@@ -46,6 +46,8 @@ class AudioManager
 	std::map<std::string, soundValues3D> soundList3D_;
 	std::map<std::string, soundValues> Songs_;
 
+	std::map<std::string, FMOD::Channel*> Channels_;
+
 public:
 
 	//"Constructora" de la instancia
@@ -66,6 +68,10 @@ public:
 	void PLAY_2D_SOUND(std::string AudioID); //Ejecuci�n de un sonido 2D
 	void PLAY_3D_SOUND(std::string AudioID, Vector3 pos); //Ejecuci�n de un sonido 3D
 	void PLAY_SONG(std::string AudioID); //Ejecuci�n de un sonido 2D
+
+	void STOP_ALL_SOUNDS();
+	void STOP_SOUND(std::string AudioID); //Parar de un sonido
+
 
 	void UP_MUSIC_VOLUME();
 	void DOWN_MUSIC_VOLUME();
