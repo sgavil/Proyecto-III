@@ -27,7 +27,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
-           "font": "DejaVuSans-10",
+          "font": "DejaVuSans-10",
           "callback": "onChangeState",
           "parameter": "StateTest",
           "text": "PLAY",

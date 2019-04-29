@@ -67,6 +67,14 @@
           "name": "TextBox",
           "font": "DejaVuSans-10",
           "text": "10",
+          "alignText": "Centre",
+          "backgroundEnabled": "True",
+          "textColor": {
+              "topLeft": "FFFFFFFF",
+              "topRight": "FFFFFFFF",
+              "botLeft": "FFFFFFFF",
+              "botRight": "FFFFFFFF"
+           },
           "posX": 0.47,
           "posY": 0.2,
           "sizeX": 50,
@@ -84,6 +92,14 @@
           "name": "TextBox",
           "font": "DejaVuSans-10",
           "text": "10",
+          "alignText": "Centre",
+          "backgroundEnabled": "True",
+          "textColor": {
+              "topLeft": "FFFFFFFF",
+              "topRight": "FFFFFFFF",
+              "botLeft": "FFFFFFFF",
+              "botRight": "FFFFFFFF"
+           },
           "posX": 0.47,
           "posY": 0.3,
           "sizeX": 50,

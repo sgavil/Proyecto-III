@@ -16,9 +16,10 @@ void TextBox::load(json file)
 	addParameter(text, file["text"]);
 
 	window->setText(text);
-	centreText("Centre");
-
-
+	centreText(file["alignText"]);
+	setBackgroundVisible(file["backgroundEnabled"]);
+	json color = file["textColor"];
+	setColorText(color["topLeft"], color["topRight"], color["botLeft"], color["botRight"]);
 }
 
 void TextBox::centreText(std::string s)

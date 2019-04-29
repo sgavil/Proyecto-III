@@ -120,6 +120,15 @@
           "type": "TaharezLook/StaticText",
           "font": "Jura-18",
           "text": "Dinero: 143",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
           "posX": 0.01,
           "posY": 0.01,
           "sizeX": 100,
