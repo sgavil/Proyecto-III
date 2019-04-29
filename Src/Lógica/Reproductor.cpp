@@ -21,7 +21,7 @@ void Reproductor::receive(Message * msg)
 	case CREATED_BUILDING:
 	{
 		MessageInfo* inf = static_cast<MessageInfo*>(msg);
-		AudioManager::instance()->PLAY_3D_SOUND("cochecitos3d", inf->mEntity_->getComponent<Transform>()->getPosition());
+		AudioManager::instance()->PLAY_3D_SOUND("build3d", inf->mEntity_->getComponent<Transform>()->getPosition());
 	}
 	case GAME_START:
 	{

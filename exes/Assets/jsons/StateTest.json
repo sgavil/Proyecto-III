@@ -249,7 +249,7 @@
             "ruptcyMaxTime": 7,
             "floorRuptcyMoney": -40,
             "InitialTime2Tax": 180,
-            "ActualMoney" : 500,
+            "ActualMoney" : 2000,
             "InitVisitors" : 3
           }
         }

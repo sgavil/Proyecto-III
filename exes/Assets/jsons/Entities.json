@@ -16,7 +16,7 @@
           "name": "MeshRenderer",
 		  "parameters":
 		  {
-			"mesh": "penguin.mesh",
+			"mesh": "NPC1.mesh",
 			"visible": true
 		  }
         },

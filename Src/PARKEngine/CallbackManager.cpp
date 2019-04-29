@@ -4,6 +4,7 @@
 
 #include "SceneManager.h"
 #include "AudioManager.h"
+#include "TextBox.h"
 
 using namespace std::placeholders;
 
@@ -77,6 +78,7 @@ bool CallbackManager::EffectVolumeChange(std::string vol)
 {
 	if (vol == "+") AudioManager::instance()->UP_EFFECTS_VOLUME();
 	else if (vol == "-") AudioManager::instance()->DOWN_EFFECTS_VOLUME();
+	SceneManager::instance()->currentState()->getEntity("TextVolumeEffects")->getComponent<TextBox>()->setText(std::to_string((int)AudioManager::instance()->getSoundVolume()));
 	return true;
 }
 
@@ -84,6 +86,7 @@ bool CallbackManager::MusicVolumeChange(std::string vol)
 {
 	if (vol == "+") AudioManager::instance()->UP_MUSIC_VOLUME();
 	else if (vol == "-") AudioManager::instance()->DOWN_MUSIC_VOLUME();
+	SceneManager::instance()->currentState()->getEntity("TextVolumeMusic")->getComponent<TextBox>()->setText(std::to_string((int)AudioManager::instance()->getMusicVolume()));
 	return true;
 }
 

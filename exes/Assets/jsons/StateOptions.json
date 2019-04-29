@@ -49,10 +49,10 @@
           "font": "DejaVuSans-10",
           "callback": "EffectVolumeChange",
           "parameter": "+",
-          "text": "Subir efectos",
+          "text": "+",
           "posX": 0.55,
           "posY": 0.2,
-          "sizeX": 100,
+          "sizeX": 50,
           "sizeY": 50,
           "offsetX": 0,
           "offsetY": 0
@@ -76,6 +76,23 @@
         }
       ]
     },
+	{
+      "name": "TextVolumeMusic",
+      "Components": 
+      [
+        { 
+          "name": "TextBox",
+          "font": "DejaVuSans-10",
+          "text": "10",
+          "posX": 0.47,
+          "posY": 0.3,
+          "sizeX": 50,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
     {
       "name": "DownEffectsVolumeButton",
       "Components": [
@@ -85,10 +102,10 @@
           "font": "DejaVuSans-10",
           "callback": "EffectVolumeChange",
           "parameter": "-",
-          "text": "Bajar efectos",
-          "posX": 0.33,
+          "text": "-",
+          "posX": 0.39,
           "posY": 0.2,
-          "sizeX": 100,
+          "sizeX": 50,
           "sizeY": 50,
           "offsetX": 0,
           "offsetY": 0
@@ -104,10 +121,10 @@
           "font": "DejaVuSans-10",
           "callback": "MusicVolumeChange",
           "parameter": "+",
-          "text": "Subir Musica",
+          "text": "+",
           "posX": 0.55,
           "posY": 0.3,
-          "sizeX": 100,
+          "sizeX": 50,
           "sizeY": 50,
           "offsetX": 0,
           "offsetY": 0
@@ -123,10 +140,10 @@
           "font": "DejaVuSans-10",
           "callback": "MusicVolumeChange",
           "parameter": "-",
-          "text": "Bajar Musica",
-          "posX": 0.33,
+          "text": "-",
+          "posX": 0.39,
           "posY": 0.3,
-          "sizeX": 100,
+          "sizeX": 50,
           "sizeY": 50,
           "offsetX": 0,
           "offsetY": 0
