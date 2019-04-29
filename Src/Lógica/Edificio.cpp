@@ -58,6 +58,8 @@ void Edificio::sacar()
 
 void Edificio::load(json file)
 {
+	price_ = file["Price"];
+
 	PeePeeRestore_ = file["PeePee"];
 	HungryRestore_ = file["Hungry"];
 	funRestore_ = file["Fun"];

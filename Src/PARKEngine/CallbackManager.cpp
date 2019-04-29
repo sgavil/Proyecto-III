@@ -45,6 +45,7 @@ void CallbackManager::initCallbacks()
 	addCallback("onChangeState", &CallbackManager::onChangeState, this);
 	addCallback("onExit", &CallbackManager::onExit, this);
 	addCallback("construct", &CallbackManager::construct, this);
+	addCallback("setConstructModeActive", &CallbackManager::setConstructModeActive, this);
 	addCallback("EffectVolumeChange", &CallbackManager::EffectVolumeChange, this);
 	addCallback("MusicVolumeChange", &CallbackManager::MusicVolumeChange, this);
 }
@@ -83,6 +84,13 @@ bool CallbackManager::MusicVolumeChange(std::string vol)
 {
 	if (vol == "+") AudioManager::instance()->UP_MUSIC_VOLUME();
 	else if (vol == "-") AudioManager::instance()->DOWN_MUSIC_VOLUME();
+	return true;
+}
+
+bool CallbackManager::setConstructModeActive(std::string s)
+{
+	Entity* e = SceneManager::instance()->currentState()->getEntity("ConstructionMode");
+	e->getComponent<ConstructionMode>()->setConstructModeActive();
 	return true;
 }
 

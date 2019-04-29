@@ -15,6 +15,7 @@ public:
 	//El tipo ornament no tiene ni entrada ni salida, su cola es de 0 y no cambia valores de necesidades
 	enum type { Amusement, Shop, Toilet, Ornament };
 private:
+	int price_;
 	//Estos son los valores que un edificio modifica de un NPC
 	//si estos son negativos disminuiran la necesidad del NPC
 	//en caso de ser nulos no afectan y positivo la aumenta
@@ -57,6 +58,8 @@ public:
 	void load(json file);
 
 	//GETTERS
+	int getPrice() { return price_; };
+
 	int getPeePeeValue() { return PeePeeRestore_; };
 	int getHungryValue() { return HungryRestore_; };
 	int getFunValue() { return funRestore_; };

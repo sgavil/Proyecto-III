@@ -35,6 +35,24 @@
       ]
     },
     {
+      "name": "ConstructButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "AlfiskoSkin/Button",
+          "callback": "setConstructModeActive",
+          "parameter": " ",
+          "text": "CONSTRUIR",
+          "posX": 0.45,
+          "posY": 0.8,
+          "sizeX": 100,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "ConstructRoadButton",
       "Components": [
         {
@@ -43,10 +61,10 @@
           "callback": "construct",
           "parameter": "Road",
           "text": "ROAD",
-          "posX": 0.8,
-          "posY": 0.2,
-          "sizeX": 100,
-          "sizeY": 50,
+          "posX": 0.35,
+          "posY": 0.8,
+          "sizeX": 80,
+          "sizeY": 40,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -61,28 +79,10 @@
           "callback": "construct",
           "parameter": "Patitos",
           "text": "PATITOS",
-          "posX": 0.8,
-          "posY": 0.3,
-          "sizeX": 100,
-          "sizeY": 50,
-          "offsetX": 0,
-          "offsetY": 0
-        }
-      ]
-    },
-        {
-      "name": "ConstructBurguerButton",
-      "Components": [
-        {
-          "name": "Button",
-          "type": "AlfiskoSkin/Button",
-          "callback": "construct",
-          "parameter": "Burguer",
-          "text": "BURGUER",
-          "posX": 0.8,
-          "posY": 0.4,
-          "sizeX": 100,
-          "sizeY": 50,
+          "posX": 0.45,
+          "posY": 0.8,
+          "sizeX": 80,
+          "sizeY": 40,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -97,10 +97,10 @@
           "callback": "construct",
           "parameter": "Burguer",
           "text": "BURGUER",
-          "posX": 0.8,
-          "posY": 0.4,
-          "sizeX": 100,
-          "sizeY": 50,
+          "posX": 0.55,
+          "posY": 0.8,
+          "sizeX": 80,
+          "sizeY": 40,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -114,8 +114,8 @@
           "name": "TextBox",
           "type": "TaharezLook/StaticText",
           "text": "Dinero: 143",
-          "posX": 0.2,
-          "posY": 0.8,
+          "posX": 0.01,
+          "posY": 0.01,
           "sizeX": 100,
           "sizeY": 50,
           "offsetX": 0,
@@ -178,19 +178,18 @@
             {
               "name": "Restaurant"
             },
-      		{
-      		  "name" : "Patitos"
-      		},
-      		{
-      		  "name" : "Burguer"
-      		},
+        		{
+        		  "name" : "Patitos"
+        		},
+        		{
+        		  "name" : "Burguer"
+        		},
             {
               "name" : "EntryRoad"
             },
             {
               "name" : "ExitRoad"
             }
-            
           ]
         }
       ]
@@ -244,7 +243,7 @@
             "ruptcyMaxTime": 7,
             "floorRuptcyMoney": -40,
             "InitialTime2Tax": 180,
-            "ActualMoney" : -50,
+            "ActualMoney" : 500,
             "InitVisitors" : 3
           }
         }

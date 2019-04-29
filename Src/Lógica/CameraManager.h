@@ -6,12 +6,6 @@ class Camera;
 class Transform;
 class Matrix;
 
-struct CameraDirection {
-	int id;
-	float degrees;
-	std::string direction;
-};
-
 class CameraManager : public Component
 {
 public:
@@ -35,10 +29,6 @@ protected:
 
 	////Makes the camera orbit around its focus a certain degree amount
 	virtual void orbit(float degrees);
-	void slowRotation();
-	CameraDirection dirCamera_;
-	std::vector<CameraDirection> cameraDirections_;
-
 
 	//To help restraint camera movement within the matrix
 	float MIN_HEIGTH;

@@ -117,6 +117,7 @@
       "name": "Edificio",
       "parameters":
       {
+        "Price": 100,
         "PeePee": 0,
         "Hungry": 0,
         "Fun": 0,
@@ -162,6 +163,7 @@
       "name": "Edificio",
       "parameters":
       {
+        "Price": 0,
         "PeePee": 0,
         "Hungry": 0,
         "Fun": 0,
@@ -207,6 +209,7 @@
       "name": "Edificio",
       "parameters":
       {
+        "Price": 0,
         "PeePee": 0,
         "Hungry": 0,
         "Fun": 0,
@@ -233,142 +236,6 @@
       }
     }
   ],
-
-  "Amusement": 
-  [
-    {
-      "name": "Transform"
-    },
-    {
-      "name": "MeshRenderer",
-      "parameters":
-      {
-        "mesh": "Amusement.mesh",
-        "material": "Amusement",
-        "visible" : true
-      }
-    },
-    {
-      "name": "Edificio",
-      "parameters":
-      {
-        "PeePee": 0,
-        "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
-        "Tam":
-        {
-          "x": 1,
-          "y": 1
-        },
-        "Height": 50,
-        "Entry":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Exit":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Duration": 10,
-        "Capacity": 0,
-        "bName": "Amusement"
-      }
-    }
-  ],
-
-  "Amusement1": 
-  [
-    {
-      "name": "Transform"
-    },
-    {
-      "name": "MeshRenderer",
-      "parameters":
-      {
-        "mesh": "Amusement1.mesh",
-        "material": "Amusement1",
-        "visible" : true
-      }
-    }
-    ,
-    {
-      "name": "Edificio",
-      "parameters":
-      {
-        "PeePee": 0,
-        "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
-        "Tam":
-        {
-          "x": 2,
-          "y": 2
-        },
-        "Height": 50,
-        "Entry":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Exit":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Duration": 10,
-        "Capacity": 0,
-        "bName": "Amusement1"
-      }
-    }
-  ],
-
-  "Amusement2": 
-  [
-    {
-      "name": "Transform"
-    },
-    {
-      "name": "MeshRenderer",
-      "parameters":
-      {
-        "mesh": "Amusement2.mesh",
-        "material": "Amusement",
-        "visible" : true
-      }
-    },
-    {
-      "name": "Edificio",
-      "parameters":
-      {
-        "PeePee": 0,
-        "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
-        "Tam":
-        {
-          "x": 3,
-          "y": 3
-        },
-        "Height": 50,
-        "Entry":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Exit":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Duration": 10,
-        "Capacity": 0,
-        "bName": "Amusement2"
-      }
-    }
-  ],
   "Patitos": 
   [
     {
@@ -387,6 +254,7 @@
       "name": "Edificio",
       "parameters":
       {
+        "Price": 300,
         "PeePee": 0,
         "Hungry": 0,
         "Fun": 10,
@@ -413,97 +281,6 @@
       }
     }
   ],
-
-  "Toilet": 
-  [
-    {
-      "name": "Transform"
-    },
-    {
-      "name": "MeshRenderer",
-      "parameters":
-      {
-        "mesh": "Building.mesh",
-        "material": "Toilet",
-        "visible" : true
-      }
-    },
-    {
-      "name": "Edificio",
-      "parameters":
-      {
-        "PeePee": 0,
-        "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
-        "Tam":
-        {
-          "x": 1,
-          "y": 1
-        },
-        "Height": 50,
-        "Entry":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Exit":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Duration": 10,
-        "Capacity": 0,
-        "bName": "Toilet"
-      }
-    }
-  ],
-
-  "Restaurant": 
-  [
-    {
-      "name": "Transform"
-    },
-    {
-      "name": "MeshRenderer",
-      "parameters":
-      {
-        "mesh": "Restaurant.mesh",
-        "material": "Restaurant",
-        "visible" : true
-      }
-    },
-    {
-      "name": "Edificio",
-      "parameters":
-      {
-        "PeePee": 0,
-        "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
-        "Tam":
-        {
-          "x": 2,
-          "y": 2
-        },
-        "Height": 50,
-        "Entry":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Exit":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Duration": 10,
-        "Capacity": 0,
-        "bName": "Restaurant"
-      }
-    }
-  ],
-
   "Burguer": 
   [
     {
@@ -522,6 +299,7 @@
       "name": "Edificio",
       "parameters":
       {
+        "Price": 200,
         "PeePee": 0,
         "Hungry": 10,
         "Fun": 0,
@@ -566,6 +344,7 @@
       "name": "Edificio",
       "parameters":
       {
+        "Price": 400,
         "PeePee": 0,
         "Hungry": 0,
         "Fun": 0,

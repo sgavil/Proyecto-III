@@ -22,7 +22,7 @@ void Button::load(json file)
 	addParameter(callback, file["callback"]);
 	addParameter(callbackParam, file["parameter"]);
 
-	CEGUI::PushButton* pushButton = static_cast<CEGUI::PushButton*>(window);
+	pushButton = static_cast<CEGUI::PushButton*>(window);
 
 	pushButton->subscribeEvent(CEGUI::PushButton::EventClicked, &Button::onClick, this);
 	pushButton->setText(text);

@@ -5,11 +5,14 @@
 #include "PARKEngine/OgreManager.h"
 #include "PARKEngine/Entity.h"
 #include "PARKEngine/Transform.h"
+#include "PARKEngine/Button.h"
 #include "PARKEngine/MeshRenderer.h"
 #include "Matrix/Matrix.h"
 #include "Matrix/Node.h"
 #include <string>
 #include "Edificio.h"
+#include "BureaucracyManager.h"
+
 
 ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false)
 {
@@ -31,17 +34,34 @@ void ConstructionMode::load(json file)
 void ConstructionMode::start()
 {
 	matrixEntity_ = SceneManager::instance()->currentState()->getEntity("Matrix");
+
+	for (Entity* e : SceneManager::instance()->currentState()->getEntitiesWithComponent<Button>()) {
+		if (e->getComponent<Button>()->getCallback() == "construct")
+			constructButtons.push_back(e);
+		else if (e->getComponent<Button>()->getCallback() == "setConstructModeActive")
+			constructButton = e;
+	}
+
+	for (Entity* e : constructButtons)
+		e->getComponent<Button>()->getPushButton()->hide();
 }
 
 void ConstructionMode::update(unsigned int time)
 {
-	if (constructActive_) {
+	if (bureauCrazyManager_ == nullptr) {
+		bureauCrazyManager_ = SceneManager::instance()->currentState()->getEntity("BureauCrazyManager")->getComponent<BureauCrazyManager>();
+	}
+
+	if (constructActive_ && !notEnoughMoney_) {
 		pair<Entity*, Ogre::Vector3> nodeAndPos= OgreManager::instance()->raycastToMouse();
 		if (nodeAndPos.first != nullptr && nodeAndPos.first->getComponent<Node>() != nullptr) {
 			nodes_ = getNodesToConstruct(nodeAndPos.first, nodeAndPos.second);
 			canConst_ = canConstruct(build_->getTam().x * build_->getTam().x);
 			setNodeMaterial(true, canConst_);
 		}
+	}
+	else if (notEnoughMoney_) {
+		deactivateThisConstruction();
 	}
 }
 
@@ -59,11 +79,14 @@ bool ConstructionMode::handleEvent(unsigned int time)
 			send(&m);			
 		}
 	}
-	if (InputManager::getSingletonPtr()->isKeyDown("ExitConstruct")) {
-		constructActive_ = false;
-		canConst_ = false;
-		setNodeMaterial(false, true);
+	if (InputManager::getSingletonPtr()->isKeyDown("FinishConstruct")) {
+		deactivateThisConstruction();
 	}
+	if (constructButtonsActive && InputManager::getSingletonPtr()->isKeyDown("ExitConstruct")) {
+		deactivateThisConstruction();
+		setConstructModeActive();
+	}
+
 
 	return false;
 }
@@ -107,6 +130,30 @@ void ConstructionMode::construct(string bName)
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(0, -1000, 0));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
 	build_ = buildingEntity_->getComponent<Edificio>();
+
+	notEnoughMoney_ = bureauCrazyManager_->getActualMoney() < build_->getPrice();
+}
+
+void ConstructionMode::setConstructModeActive()
+{
+	constructButtonsActive = !constructButtonsActive;
+
+	for (Entity* e : constructButtons) {
+		if (constructButtonsActive) {
+			e->getComponent<Button>()->getPushButton()->show();
+			constructButton->getComponent<Button>()->getPushButton()->hide();
+		}
+		else {
+			e->getComponent<Button>()->getPushButton()->hide();
+			constructButton->getComponent<Button>()->getPushButton()->show();
+		}
+	}
+}
+
+void ConstructionMode::deactivateThisConstruction() {
+	constructActive_ = false;
+	canConst_ = false;
+	setNodeMaterial(false, true);
 }
 
 list<Entity*> ConstructionMode::getNodesToConstruct(Entity* node, Ogre::Vector3 mousePos)
@@ -202,6 +249,8 @@ void ConstructionMode::setBuilding()
 	setNodeMaterial(false, true);
 	nodes_.clear();
 	canConst_ = false;
+
+	bureauCrazyManager_->setActualMoney(-build_->getPrice());
 
 
 	if (build_->getBuildingName() != "Road") {

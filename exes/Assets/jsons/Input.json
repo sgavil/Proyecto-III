@@ -12,6 +12,10 @@
 		{
 			"Id": "NPC",
 			"key": "V"
+		},
+		{
+			"Id": "ExitConstruct",
+			"key": "ESC"
 		}
 	],
 	"Mouse":
@@ -25,7 +29,7 @@
 			"key": "MB_Left"
 		},
 		{
-			"Id": "ExitConstruct",
+			"Id": "FinishConstruct",
 			"key": "MOUSE_RIGHT"
 		}
 	]

@@ -7,6 +7,7 @@ using namespace std;
 
 class Matrix;
 class Edificio;
+class BureauCrazyManager;
 
 class ConstructionMode : public Component
 {
@@ -25,14 +26,22 @@ public:
 
 	virtual void buildInMatrix(int i, int j, std::string name);
 	void construct(string bName);
+	void setConstructModeActive();
+	void deactivateThisConstruction();
 
 private:
+	bool notEnoughMoney_ = true;
 	bool constructActive_;
 	bool canConst_;
+
+	BureauCrazyManager* bureauCrazyManager_;
+
 	Entity* matrixEntity_;
 	Entity* nodeEntity_;
-	Edificio* build_;
+
 	Entity* buildingEntity_;
+	Edificio* build_;
+
 	list<Entity*> nodes_;
 	vector<string> buildingTypes_;
 
@@ -45,6 +54,10 @@ private:
 	void createEntryExitRoad(string roadName);
 	void setEntryExit();
 	void setNodeMaterial(bool enable, bool can);
+
+	bool constructButtonsActive = false;
+	Entity* constructButton;
+	list<Entity*> constructButtons;
 };
 
 REGISTER_TYPE(ConstructionMode)

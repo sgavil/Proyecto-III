@@ -20,6 +20,7 @@ private:
 	bool MusicVolumeChange(std::string vol);
 
 	//Callbacks para la construccion
+	bool setConstructModeActive(std::string s);
 	bool construct(std::string buildName);
 public:
 	static CallbackManager* instance();

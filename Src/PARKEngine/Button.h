@@ -23,6 +23,13 @@ public:
 	virtual void receive(Message* msg) {};
 
 	virtual void save(json file) {};
+
+	//Getter
+	std::string getCallback() { return callback; };
+	CEGUI::PushButton* getPushButton() { return pushButton; };
+
+private:
+	CEGUI::PushButton* pushButton;
 };
 
 REGISTER_TYPE(Button)
