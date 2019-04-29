@@ -15,9 +15,11 @@ public:
 
 	virtual void save(json file) {};
 
+	void centreText(std::string s);
+	void setBackgroundVisible(string boolean);
+
 private:
 	std::string text;
-
 };
 
 REGISTER_TYPE(TextBox)

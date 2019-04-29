@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "HUDManager.h"
 
+using namespace std;
+
 class Widget : public Component
 {
 protected:
@@ -24,6 +26,7 @@ public:
 
 	void setText(std::string s);
 	void setFont(std::string s);
+	void setColorText(string topLeft, string topRight, string botLeft, string botRight);
 
 };
 

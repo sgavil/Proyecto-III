@@ -41,5 +41,10 @@ void Widget::setText(std::string s)
 
 void Widget::setFont(std::string s)
 {
-	window->getGUIContext().setDefaultFont(s);
+	window->setFont(s);
+}
+
+void Widget::setColorText(string topLeft, string topRight, string botLeft, string botRight)
+{
+	window->setProperty("TextColours", "tl:" + topLeft + " tr:" + topRight + " bl:" + botLeft + " br:" + botRight);
 }
