@@ -41,5 +41,5 @@ void Widget::setText(std::string s)
 
 void Widget::setFont(std::string s)
 {
-	window->getGUIContext().setDefaultFont(s);
+	window->setFont(s);
 }

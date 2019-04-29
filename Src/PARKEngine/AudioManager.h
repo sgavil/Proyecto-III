@@ -46,7 +46,8 @@ class AudioManager
 	std::map<std::string, soundValues3D> soundList3D_;
 	std::map<std::string, soundValues> Songs_;
 
-	std::map<std::string, FMOD::Channel*> Channels_;
+	std::map<std::string, FMOD::Channel*> SongChannels_;
+	std::map<std::string, FMOD::Channel*> SoundsChannels_;
 
 public:
 
@@ -83,10 +84,16 @@ public:
 	//Establece los par�metros del medio
 	void set3DFactors(float doppler, float rolloff);
 
+	float getSoundVolume() { return masterSoundVolume * 10; }
+	float getMusicVolume() { return masterMusicVolume * 10; }
+
+	
 
 
 private:
 	void FMOD_OK_ERROR_CHECK(); //Comprueba que la variable result es OK lo que significa que todo funciona correctamente
+	void SET_MUSIC_VOLUME();
+	void SET_SOUND_VOLUME();
 	
 	FMOD_RESULT result_; 
 	FMOD::System* system_;

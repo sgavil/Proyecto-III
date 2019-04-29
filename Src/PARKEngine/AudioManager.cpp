@@ -98,14 +98,15 @@ void AudioManager::ADD_3D_SOUND(std::string fileName, std::string id, int loopCo
 
 void AudioManager::PLAY_2D_SOUND(std::string AudioID)
 {
-	auto iter = Channels_.find(AudioID);
-	if (iter != Channels_.end()) {
-		Channels_.erase(AudioID);
+	auto iter = SoundsChannels_.find(AudioID);
+	if (iter != SoundsChannels_.end()) {
+		SoundsChannels_.erase(AudioID);
 	}
 	FMOD::Channel* chn;
 
 	auto it = soundList_.find(AudioID);
 	if (it != soundList_.end()) {
+
 		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
 
 		chn->setVolume((*it).second.volume*masterSoundVolume); //Se multiplica por el sonido master para que se le aplique el volumen seleccionado
@@ -113,71 +114,86 @@ void AudioManager::PLAY_2D_SOUND(std::string AudioID)
 		chn->setLoopCount((*it).second.loopCount);
 
 		FMOD_OK_ERROR_CHECK();
-		Channels_.insert(std::make_pair(AudioID, chn));
+		SoundsChannels_.insert(std::make_pair(AudioID, chn));
 	}
 	
 }
 
 void AudioManager::PLAY_3D_SOUND(std::string AudioID, Vector3 pos_)
 {
-	auto iter = Channels_.find(AudioID);
-	if (iter != Channels_.end()) {
-		Channels_.erase(AudioID);
+	auto iter = SoundsChannels_.find(AudioID);
+	if (iter != SoundsChannels_.end()) {
+		SoundsChannels_.erase(AudioID);
 	}
 	FMOD::Channel* chn;
 	
 	auto it = soundList3D_.find(AudioID);
 	if (it != soundList3D_.end()) {
+
 		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
-		(*it).second.emitter.x = &pos_.x; (*it).second.emitter.y = &pos_.y; (*it).second.emitter.z = &pos_.z;
 
 		FMOD_VECTOR pos = { pos_.x, pos_.y, pos_.z };
-
 		chn->setVolume((*it).second.volume*masterSoundVolume); //Se multiplica por el sonido master para que se le aplique el volumen seleccionado
 		chn->setLoopCount((*it).second.loopCount);
-		FMOD_VECTOR* vel = new FMOD_VECTOR { 0,0,0 };
+		FMOD_VECTOR* vel = new FMOD_VECTOR{ 0,0,0 };
 		chn->set3DAttributes(&pos, vel);
+
+		(*it).second.emitter.x = &pos_.x; (*it).second.emitter.y = &pos_.y; (*it).second.emitter.z = &pos_.z;
+
 		
+	
 		FMOD_OK_ERROR_CHECK();
-		Channels_.insert(std::make_pair(AudioID, chn));
+		SoundsChannels_.insert(std::make_pair(AudioID, chn));
 	}
 }
 
 void AudioManager::PLAY_SONG(std::string AudioID)
 {
-	auto iter = Channels_.find(AudioID);
-	if (iter != Channels_.end()) {
-		Channels_.erase(AudioID);
+	auto iter = SongChannels_.find(AudioID);
+	if (iter != SongChannels_.end()) {
+		SongChannels_.erase(AudioID);
 	}
 	FMOD::Channel* chn;
 
 	auto it = Songs_.find(AudioID);
 	if (it != Songs_.end()) {
+
 		result_ = system_->playSound((*it).second.snd, 0, false, &chn);
 
 		chn->setVolume((*it).second.volume*masterMusicVolume); //Se multiplica por el sonido master para que se le aplique el volumen seleccionado
 		chn->setPan((*it).second.pan);
 		chn->setLoopCount((*it).second.loopCount);
+
 		FMOD_OK_ERROR_CHECK();
-		Channels_.insert(std::make_pair(AudioID, chn));
+		SongChannels_.insert(std::make_pair(AudioID, chn));
 	}
 }
 
 void AudioManager::STOP_ALL_SOUNDS()
 {
-	for (auto it = Channels_.begin(); it != Channels_.end(); it++)
+	for (auto it = SoundsChannels_.begin(); it != SoundsChannels_.end(); it++)
 	{
 		(*it).second->stop();
 	}
-	Channels_.clear();
+	SoundsChannels_.clear();
+	for (auto it = SongChannels_.begin(); it != SongChannels_.end(); it++)
+	{
+		(*it).second->stop();
+	}
+	SongChannels_.clear();
 }
 
 void AudioManager::STOP_SOUND(std::string AudioID)
 {
-	auto it = Channels_.find(AudioID);
-	if (it != Channels_.end()) {
+	auto it = SoundsChannels_.find(AudioID);
+	if (it != SoundsChannels_.end()) {
 		(*it).second->stop();
-		Channels_.erase(AudioID);
+		SoundsChannels_.erase(AudioID);
+	}
+	auto it2 = SongChannels_.find(AudioID);
+	if (it2 != SongChannels_.end()) {
+		(*it2).second->stop();
+		SongChannels_.erase(AudioID);
 	}
 }
 
@@ -186,24 +202,47 @@ void AudioManager::UP_MUSIC_VOLUME()
 {
 	masterMusicVolume += 0.1; 
 	if (masterMusicVolume > 1) masterMusicVolume = 1;
+	SET_MUSIC_VOLUME();
 }
 
 void AudioManager::DOWN_MUSIC_VOLUME()
 {
 	masterMusicVolume -= 0.1;
+	if (masterMusicVolume < 0.1) masterMusicVolume = 0;
 	if (masterMusicVolume < 0) masterMusicVolume = 0;
+	SET_MUSIC_VOLUME();
 }
 
 void AudioManager::UP_EFFECTS_VOLUME()
 {
 	masterSoundVolume += 0.1;
 	if (masterSoundVolume > 1) masterSoundVolume = 1;
+	SET_SOUND_VOLUME();
 }
 
 void AudioManager::DOWN_EFFECTS_VOLUME()
 {
 	masterSoundVolume -= 0.1;
+	if (masterSoundVolume < 0.1) masterSoundVolume = 0;
 	if (masterSoundVolume < 0) masterSoundVolume = 0;
+	SET_SOUND_VOLUME();
+}
+
+
+void AudioManager::SET_SOUND_VOLUME()
+{
+	for (auto it = SoundsChannels_.begin(); it != SoundsChannels_.end(); it++)
+	{
+		(*it).second->setVolume(masterSoundVolume);
+	}
+}
+
+void AudioManager::SET_MUSIC_VOLUME()
+{
+	for (auto it = SongChannels_.begin(); it != SongChannels_.end(); it++)
+	{
+		(*it).second->setVolume(masterMusicVolume);
+	}
 }
 
 void AudioManager::READ_JSON_SOUNDS(std::string file)
