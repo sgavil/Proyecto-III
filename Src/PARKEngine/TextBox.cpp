@@ -16,4 +16,18 @@ void TextBox::load(json file)
 	addParameter(text, file["text"]);
 
 	window->setText(text);
+	centreText("Centre");
+
+
+}
+
+void TextBox::centreText(std::string s)
+{
+	window->setProperty("HorzFormatting", s + "Aligned");
+}
+
+void TextBox::setBackgroundVisible(string boolean)
+{
+	window->setProperty("BackgroundEnabled", boolean);
+	window->setProperty("FrameEnabled", boolean);
 }
