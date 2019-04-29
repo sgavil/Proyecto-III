@@ -41,6 +41,7 @@ void HUDManager::init()
 	// be a default set - if we want the "DejaVuSans-10" font to definitely
 	// be the default, we should set the default explicitly afterwards.
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-10.font");
+	CEGUI::FontManager::getSingleton().createFromFile("Jura-18.font");
 
 	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DejaVuSans-10");
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");

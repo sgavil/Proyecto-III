@@ -25,9 +25,21 @@ void Widget::load(json file)
 	addParameter(offsetY, file["offsetY"]);
 
 	window = HUDManager::instance()->createWidget(name, type, posX, posY, offsetX, offsetY, sizeX, sizeY);
+
+	setFont(file["font"]);
 }
 
 bool Widget::handleEvent(unsigned int time)
 {
 	return false;
+}
+
+void Widget::setText(std::string s)
+{
+	window->setText(s);
+}
+
+void Widget::setFont(std::string s)
+{
+	window->getGUIContext().setDefaultFont(s);
 }

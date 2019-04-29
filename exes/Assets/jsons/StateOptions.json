@@ -27,6 +27,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "onChangeState",
           "parameter": "StateMainMenu",
           "text": "BACK TO MENU",
@@ -45,6 +46,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "EffectVolumeChange",
           "parameter": "+",
           "text": "Subir efectos",
@@ -63,7 +65,8 @@
       [
         { 
           "name": "TextBox",
-          "Text": "10",
+          "font": "DejaVuSans-10",
+          "text": "10",
           "posX": 0.47,
           "posY": 0.2,
           "sizeX": 50,
@@ -79,6 +82,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "EffectVolumeChange",
           "parameter": "-",
           "text": "Bajar efectos",
@@ -97,6 +101,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "MusicVolumeChange",
           "parameter": "+",
           "text": "Subir Musica",
@@ -115,6 +120,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "MusicVolumeChange",
           "parameter": "-",
           "text": "Bajar Musica",

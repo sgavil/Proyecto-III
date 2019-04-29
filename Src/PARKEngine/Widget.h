@@ -21,6 +21,10 @@ public:
 	virtual bool handleEvent(unsigned int time);
 
 	virtual void receive(Message* msg) {};
+
+	void setText(std::string s);
+	void setFont(std::string s);
+
 };
 
 REGISTER_TYPE(Widget)
