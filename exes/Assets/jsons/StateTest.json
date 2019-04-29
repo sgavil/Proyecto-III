@@ -22,6 +22,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "onChangeState",
           "parameter": "StateMainMenu",
           "text": "MAIN MENU",
@@ -40,6 +41,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "setConstructModeActive",
           "parameter": " ",
           "text": "CONSTRUIR",
@@ -58,6 +60,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "construct",
           "parameter": "Road",
           "text": "ROAD",
@@ -76,6 +79,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "construct",
           "parameter": "Patitos",
           "text": "PATITOS",
@@ -94,6 +98,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
+          "font": "DejaVuSans-10",
           "callback": "construct",
           "parameter": "Burguer",
           "text": "BURGUER",
@@ -113,6 +118,7 @@
         {
           "name": "TextBox",
           "type": "TaharezLook/StaticText",
+          "font": "Jura-18",
           "text": "Dinero: 143",
           "posX": 0.01,
           "posY": 0.01,

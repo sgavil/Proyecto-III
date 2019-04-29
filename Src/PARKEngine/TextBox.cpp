@@ -17,8 +17,3 @@ void TextBox::load(json file)
 
 	window->setText(text);
 }
-
-void TextBox::setText(std::string s)
-{
-	window->setText(s);
-}
