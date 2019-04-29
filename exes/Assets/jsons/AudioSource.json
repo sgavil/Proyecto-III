@@ -24,6 +24,13 @@
 			"loopCount": 0,
 			"Volume": 1,
 			"Pan": 0
+		},
+		{
+			"Id": "build3d",
+			"rute": "Assets\\Audio\\Build.wav",
+			"loopCount": 0,
+			"Volume": 1,
+			"Pan": 0
 		}
 	],
 	"Songs":
