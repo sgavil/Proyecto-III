@@ -15,6 +15,8 @@ public:
 
 	virtual void save(json file) {};
 
+	void setText(std::string s);
+
 private:
 	std::string text;
 
