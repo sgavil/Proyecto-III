@@ -149,6 +149,15 @@
           "offsetY": 0
         }
       ]
+    },
+	 {
+      "name": "Background",
+      "Components": [
+        {
+          "name":  "BackgroundImage",
+          "ImageName": "OptionsBG.jpg"
+        }
+      ]
     }
   ]
 }
