@@ -22,7 +22,7 @@ public:
 
 	virtual void receive(Message* msg) {};
 
-	virtual void save(json file) {};
+	virtual void save(json& file) {};
 
 	//Getter
 	std::string getCallback() { return callback; };

@@ -13,7 +13,7 @@ public:
 
 	virtual void receive(Message* msg) {};
 
-	virtual void save(json file) {};
+	virtual void save(json& file) {};
 
 	void centreText(std::string s);
 	void setBackgroundVisible(string boolean);

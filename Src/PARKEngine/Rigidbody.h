@@ -25,7 +25,7 @@ public:
 	//Generic methods
 	virtual void update(unsigned int time);
 
-	virtual void save(json file) {};
+	virtual void save(json& file) {};
 
 	//API
 	//Add a force to the rigidBody

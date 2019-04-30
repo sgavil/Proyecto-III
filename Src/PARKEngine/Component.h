@@ -58,7 +58,7 @@ public:
 	virtual bool handleEvent(unsigned int time) { return false; };
 
 	//Guardar Estado
-	virtual void save(json file) {};
+	virtual void save(json& file) {};
 
 	//Returns activity flag
 	bool isActive() { return active_; };
