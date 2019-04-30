@@ -17,6 +17,8 @@ public:
 
 	void centreText(std::string s);
 	void setBackgroundVisible(string boolean);
+	void setColorText(string topLeft, string topRight, string botLeft, string botRight);
+
 
 private:
 	std::string text;
