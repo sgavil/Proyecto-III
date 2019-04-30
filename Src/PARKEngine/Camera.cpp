@@ -61,7 +61,7 @@ void Camera::receive(Message* msg)
 	}
 }
 
-void Camera::save(json file)
+void Camera::save(json& file)
 {
 	////guardar el nombre de la entidad en caso de que no exista
 	//bool found = false;

@@ -19,7 +19,7 @@ public:
 
 	virtual void receive(Message* msg);
 
-	virtual void save(json file);
+	virtual void save(json& file);
 protected:
 	//Pointer to the transform component
 	Transform* transform_;

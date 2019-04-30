@@ -24,6 +24,8 @@ public:
 
 	virtual void receive(Message* msg) {};
 
+	virtual void save(json& file) {};
+
 	void setText(std::string s);
 	void setFont(std::string s);
 };
