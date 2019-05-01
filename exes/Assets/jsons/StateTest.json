@@ -41,13 +41,13 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
-          "font": "DejaVuSans-14",
+          "font": "Carnevalee Freakshow-22",
           "callback": "setConstructModeActive",
           "parameter": " ",
           "text": "CONSTRUIR",
           "posX": 0.45,
           "posY": 0.8,
-          "sizeX": 100,
+          "sizeX": 170,
           "sizeY": 50,
           "offsetX": 0,
           "offsetY": 0

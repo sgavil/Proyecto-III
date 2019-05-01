@@ -27,7 +27,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
-          "font": "DejaVuSans-14",
+          "font": "Carnevalee Freakshow-32",
           "callback": "onChangeState",
           "parameter": "StateTest",
           "text": "PLAY",
@@ -46,7 +46,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
-          "font": "DejaVuSans-14",
+          "font": "Carnevalee Freakshow-32",
           "callback": "onExit",
           "text": "EXIT",
           "posX": 0.5,
@@ -64,7 +64,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
-          "font": "DejaVuSans-14",
+          "font": "Carnevalee Freakshow-32",
           "callback": "onChangeState",
           "parameter": "StateOptions",
           "text": "OPTIONS",
