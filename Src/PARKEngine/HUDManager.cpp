@@ -4,6 +4,7 @@
 #include "OgreIncludes.h"
 #include "OgreManager.h"
 
+
 using namespace std::placeholders;
 
 std::unique_ptr<HUDManager> HUDManager::instance_;
@@ -32,24 +33,18 @@ void HUDManager::init()
 	//Carga de cosas
 	// create (load) the TaharezLook scheme file
 	// (this auto-loads the TaharezLook looknfeel and imageset files)
-	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
-	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
+	for (std::string s : ResourceManager::instance()->getSchemesPaths()) {
+		CEGUI::SchemeManager::getSingleton().createFromFile(s);
+	}
 
 	// create (load) a font.
 	// The first font loaded automatically becomes the default font, but note
 	// that the scheme might have already loaded a font, so there may already
 	// be a default set - if we want the "DejaVuSans-10" font to definitely
 	// be the default, we should set the default explicitly afterwards.
-	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-10.font");
-	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-14.font");
-	CEGUI::FontManager::getSingleton().createFromFile("Jura-18.font");
-	CEGUI::FontManager::getSingleton().createFromFile("Jura-32.font");
-	CEGUI::FontManager::getSingleton().createFromFile("Jura-40.font");
-	CEGUI::FontManager::getSingleton().createFromFile("98bottlesbold-40.font");
-	CEGUI::FontManager::getSingleton().createFromFile("Carnevalee Freakshow-14.font");
-	CEGUI::FontManager::getSingleton().createFromFile("Carnevalee Freakshow-22.font");
-	CEGUI::FontManager::getSingleton().createFromFile("Carnevalee Freakshow-32.font");
-	CEGUI::FontManager::getSingleton().createFromFile("Carnevalee Freakshow-40.font");
+	for (std::string s : ResourceManager::instance()->getFontsPaths()) {
+		CEGUI::FontManager::getSingleton().createFromFile(s);
+	}
 
 	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DejaVuSans-14");
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
@@ -120,3 +115,5 @@ void HUDManager::setActiveWindow(std::string state)
 HUDManager::~HUDManager()
 {
 }
+
+

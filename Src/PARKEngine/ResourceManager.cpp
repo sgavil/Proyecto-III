@@ -81,6 +81,8 @@ void ResourceManager::initializeResources()
 
 	OgreManager::instance()->deleteFileSystemLayer(mFSLayer);
 
+	loadFonts(jsonPath);
+	loadSchemes(jsonPath);
 	loadJsonsFiles(jsonPath);
 
 }
@@ -100,7 +102,7 @@ json ResourceManager::getJsonByKey(const std::string & key)
 void ResourceManager::loadJsonsFiles(const std::string resourcesPath)
 {
 	//Se le añade al path exes la carpeta Assets\\jsons
-	std::string filePath = resourcesPath + FOLDER_PATH;
+	std::string filePath = resourcesPath + FOLDER_JSON_PATH;
 	const char* filePathC = filePath.c_str();
 
 	DIR *dir;
@@ -131,6 +133,56 @@ void ResourceManager::loadJson(const std::string & streamFilePath, const std::st
 	stream_ >> j;
 	//Se inserta los json que se van encontrando en el dir al diccionario
 	jsonMap.insert(std::pair<std::string, json>(fileName, j));
+}
+
+void ResourceManager::loadFonts(const std::string resourcesPath)
+{
+	//Se le añade al path exes la carpeta Assets\\HUD\\Fonts
+	std::string filePath = resourcesPath + FOLDER_FONTS_PATH;
+	const char* filePathC = filePath.c_str();
+
+	DIR *dir;
+	struct dirent *ent;
+	std::string fontExt = ".font";
+
+	//Se busca todos los archivos que existen el el directorio filePathPc
+	if ((dir = opendir(filePathC)) != NULL) {
+
+		while ((ent = readdir(dir)) != NULL) {
+			//No se procesa el dir actual ni el padre
+			if ((strcmp(ent->d_name, ".") == 1) && (strcmp(ent->d_name, "..") == 1)) {
+				std::string fName = ent->d_name;
+				if (fName.find(fontExt, (fName.size() - fontExt.size())) != std::string::npos)
+					fontsPaths.push_back(fName);
+			}
+		}
+		closedir(dir);
+	}
+}
+
+void ResourceManager::loadSchemes(const std::string resourcesPath)
+{
+	//Se le añade al path exes la carpeta Assets\\HUD\\Fonts
+	std::string filePath = resourcesPath + FOLDER_SCHEMES_PATH;
+	const char* filePathC = filePath.c_str();
+
+	DIR *dir;
+	struct dirent *ent;
+	std::string schemeExt = ".scheme";
+
+	//Se busca todos los archivos que existen el el directorio filePathPc
+	if ((dir = opendir(filePathC)) != NULL) {
+
+		while ((ent = readdir(dir)) != NULL) {
+			//No se procesa el dir actual ni el padre
+			if ((strcmp(ent->d_name, ".") == 1) && (strcmp(ent->d_name, "..") == 1)) {
+				std::string fName = ent->d_name;
+				if (fName.find(schemeExt, (fName.size() - schemeExt.size())) != std::string::npos)
+					schemesPaths.push_back(fName);
+			}
+		}
+		closedir(dir);
+	}
 }
 
 
