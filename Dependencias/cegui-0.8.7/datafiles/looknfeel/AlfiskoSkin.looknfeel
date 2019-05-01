@@ -65,6 +65,7 @@
             </TextComponent>
         </ImagerySection>
         <ImagerySection name="normal">
+            <Property name="MouseCursorImage" value="TaharezLook/MouseArrow"/>
             <FrameComponent>
                 <Image component="TopLeftCorner" name="AlfiskoSkin/ButtonNormalTL"/>
                 <Image component="TopRightCorner" name="AlfiskoSkin/ButtonNormalTR"/>
@@ -124,6 +125,7 @@
             </ImageryComponent>
         </ImagerySection>
         <ImagerySection name="hover">
+            <Property name="MouseCursorImage" value="TaharezLook/MousePointer"/>
             <FrameComponent>
                 <Image component="TopLeftCorner" name="AlfiskoSkin/ButtonHoverTL"/>
                 <Image component="TopRightCorner" name="AlfiskoSkin/ButtonHoverTR"/>
