@@ -7,7 +7,7 @@
 #include "OgreIncludes.h"
 #include "OgreManager.h"
 #include <iostream>
-
+#include "GameState.h"
 
 MeshRenderer::MeshRenderer(): node_(nullptr), transform_(nullptr)
 {
@@ -16,7 +16,8 @@ MeshRenderer::MeshRenderer(): node_(nullptr), transform_(nullptr)
 MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 {
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
-	node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
+	node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
+	//node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setVisible(visible);
 }
@@ -28,7 +29,9 @@ void MeshRenderer::load(json file)
 
 //	std::string meshName = file["mesh"];
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
-	node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
+		node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
+
+	//node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode(); //AQUI TIENE QUE COLGAR DEL NODO SCENA
 	node_->attachObject(ogreEntity);
 
 	std::string material;

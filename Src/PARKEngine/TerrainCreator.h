@@ -20,4 +20,6 @@ public:
 	bool mTerrainsImported_;
 	Ogre::TerrainGroup* mTerrainGroup_;
 	Ogre::TerrainGlobalOptions* mTerrainGlobals_;
+
+	
 };

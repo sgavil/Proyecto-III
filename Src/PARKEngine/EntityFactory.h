@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 
+class GameState;
 class Entity;
 class Component;
 
@@ -24,6 +25,8 @@ private:
 
 	// ·> Crea un componente según su nombre
 	Component* createComponent(std::string name);
+
+	GameState* currentlyCreatingState = nullptr;
 	
 public:
 	// ·> Devuelve un puntero a la factoría, o la crea si no lo estaba ya
@@ -34,8 +37,10 @@ public:
 	static void registerType(std::string creatorName, BaseCreator* pCreator);
 
 	// ·> Crea las entidades de una escena leyendo de su archivo json correspondiente
-	std::vector<Entity*> createEntities(std::string stateID);
+	std::vector<Entity*> createEntities(std::string stateID,GameState* currState);
 
 	// ·> Crea una entidad con los componentes correspondientes de su prefab
 	Entity* createEntityFromBlueprint(std::string name);
+
+	GameState* get_currentState();
 };

@@ -14,6 +14,8 @@ private:
 
 	bool* exit;
 
+	void disableOtherStatesNodes();
+
 public:
 	SceneManager();
 	virtual ~SceneManager();
