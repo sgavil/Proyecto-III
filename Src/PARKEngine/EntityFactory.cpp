@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "Component.h"
 #include "ResourceManager.h"
+#include "GameState.h"
+
 std::unique_ptr<EntityFactory> EntityFactory::instance_;
 
 EntityFactory::EntityFactory()
@@ -28,9 +30,11 @@ void EntityFactory::registerType(std::string creatorName, BaseCreator* pCreator)
 }
 
 
-std::vector<Entity*> EntityFactory::createEntities(std::string stateID)
+std::vector<Entity*> EntityFactory::createEntities(std::string stateID,GameState* currState)
 {
 	json file = ResourceManager::instance()->getJsonByKey(stateID + ".json");
+
+	currentlyCreatingState = currState;
 
 	std::vector<Entity*> entities;
 	std::map<std::string, Component*> dic;
@@ -75,6 +79,11 @@ Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 	}
 	
 	return entity;
+}
+
+GameState * EntityFactory::get_currentState()
+{
+	return currentlyCreatingState;
 }
 
 

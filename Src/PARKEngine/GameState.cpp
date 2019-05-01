@@ -4,10 +4,15 @@
 #include "Entity.h"
 #include "Component.h"
 #include "Button.h"
+#include "OgreIncludes.h"
 
 GameState::GameState(std::string stateID)
 {
-	addEntities(EntityFactory::Instance()->createEntities(stateID));
+	stateNode = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
+
+	addEntities(EntityFactory::Instance()->createEntities(stateID,this));
+
+
 }
 
 
@@ -124,4 +129,9 @@ Entity* GameState::getEntity(std::string name)
 std::list<Component*> GameState::getScene()
 {
 	return scene;
+}
+
+Ogre::SceneNode * GameState::getStateNode()
+{
+	return stateNode;
 }

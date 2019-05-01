@@ -1,12 +1,16 @@
 #pragma once
 #include <vector>
 #include <list>
+#include <OgreSceneNode.h>
 
 class Component;
 class Entity;
 
 class GameState
 {
+private:
+	Ogre::SceneNode* stateNode;
+
 protected:
 	std::list<Component*> scene; // Componentes de la escena
 
@@ -48,4 +52,6 @@ public:
 
 	// �> Devuelve la escena
 	std::list<Component*> getScene();
+
+	Ogre::SceneNode* getStateNode();
 };

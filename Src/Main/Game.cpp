@@ -46,7 +46,7 @@ void Game::start()
 
 	AudioManager::instance()->READ_JSON_SOUNDS("AudioSource.json");
 	//AudioManager::instance()->PLAY_2D_SOUND("cochecitos");
-	AudioManager::instance()->PLAY_SONG("Menu");
+	//AudioManager::instance()->PLAY_SONG("Menu");
 	InputManager::getSingletonPtr()->addMappingValues("Input.json");
 }
 
@@ -67,5 +67,12 @@ void Game::run()
 		//Actualiza el deltaTime
 		deltaTime = SDL_GetTicks() - actualTime;
 		actualTime = SDL_GetTicks();	
+
+		//std::vector<Ogre::MovableObject*> nn = SceneManager::instance()->currentState()->getStateNode()->numAttachedObjects();
+		/*for each (Ogre::MovableObject* var in nn)
+		{
+			std::cout << var->getName() << std::endl;
+		}*/
+		//std::cout << SceneManager::instance()->currentState()->getStateNode()->numAttachedObjects() << std::endl;
 	}
 }

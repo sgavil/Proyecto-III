@@ -4,6 +4,13 @@
 
 std::unique_ptr<SceneManager> SceneManager::instance_;
 
+void SceneManager::disableOtherStatesNodes()
+{
+	for (auto s = states.begin(); s != states.end(); s++) {
+		(*s).second->getStateNode()->setVisible((*s).second == currentState_);
+	}
+}
+
 SceneManager::SceneManager()
 {
 }
@@ -59,4 +66,6 @@ void SceneManager::changeState(std::string stateID)
 		currentState_ = addState(stateID);
 	else
 		currentState_ = it->second;
+
+	disableOtherStatesNodes();
 }

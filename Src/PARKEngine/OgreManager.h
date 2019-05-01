@@ -54,6 +54,8 @@ private:
 	friend class MeshRenderer;
 	friend class Camera;
 	friend class Terrain;
+	friend class GameState;
+	friend class BackgroundImage;
 
 	//Constructora privada
 	OgreManager(std::string initFileJson);

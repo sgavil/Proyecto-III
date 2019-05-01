@@ -1,4 +1,8 @@
 #include "BackgroundImage.h"
+#include "OgreIncludes.h"
+#include "OgreManager.h"
+#include "EntityFactory.h"
+#include "GameState.h"
 
 BackgroundImage::BackgroundImage()
 {
@@ -14,5 +18,24 @@ void BackgroundImage::load(json file)
 
 	nombre = file["ImageName"].get<std::string>();
 
-	HUDManager::instance()->createBackground(nombre);
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(nombre + "material", "General");
+	material->getTechnique(0)->getPass(0)->createTextureUnitState(nombre);
+	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+
+	Ogre::Rectangle2D* rect = new Ogre::Rectangle2D(true);
+
+	rect->setCorners(-1.0, 1.0, 1.0, -1.0);
+	rect->setMaterial(material);
+
+
+	rect->setRenderQueueGroup(Ogre::RENDER_QUEUE_BACKGROUND);
+
+	Ogre::AxisAlignedBox aabInf;
+	aabInf.setInfinite();
+	rect->setBoundingBox(aabInf);
+
+	Ogre::SceneNode* node = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
+	node->attachObject(rect);
 }
