@@ -45,6 +45,7 @@ void HUDManager::init()
 	CEGUI::FontManager::getSingleton().createFromFile("Jura-18.font");
 	CEGUI::FontManager::getSingleton().createFromFile("Jura-32.font");
 	CEGUI::FontManager::getSingleton().createFromFile("Jura-40.font");
+	CEGUI::FontManager::getSingleton().createFromFile("98bottlesbold-40.font");
 
 	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DejaVuSans-14");
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");

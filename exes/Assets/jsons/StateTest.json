@@ -118,7 +118,7 @@
         {
           "name": "TextBox",
           "type": "TaharezLook/StaticText",
-          "font": "Jura-40",
+          "font": "98bottlesbold-40",
           "text": "Dinero: 143",
           "alignText": "Centre",
           "backgroundEnabled": "False",
