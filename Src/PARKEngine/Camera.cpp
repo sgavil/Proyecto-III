@@ -32,7 +32,6 @@ void Camera::start()
 	else
 		camera_ = OgreManager::instance()->createCamera("Camera", 5, 50000, true);
 
-
 	camNode_ = (Ogre::SceneNode*)camera_->getParentNode();
 	camera_->getViewport()->setClearEveryFrame(true);
 	//Initialises it 
@@ -51,7 +50,6 @@ void Camera::start()
 
 void Camera::update(unsigned int time)
 {
-
 }
 
 void Camera::receive(Message* msg)

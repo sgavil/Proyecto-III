@@ -41,13 +41,15 @@ void HUDManager::init()
 	// be a default set - if we want the "DejaVuSans-10" font to definitely
 	// be the default, we should set the default explicitly afterwards.
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-10.font");
+	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-14.font");
 	CEGUI::FontManager::getSingleton().createFromFile("Jura-18.font");
+	CEGUI::FontManager::getSingleton().createFromFile("Jura-32.font");
+	CEGUI::FontManager::getSingleton().createFromFile("Jura-40.font");
 
-	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DejaVuSans-10");
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DejaVuSans-14");
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setImage("TaharezLook/MouseArrow");
 	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("TaharezLook/Tooltip");
-
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
 
 	windowMgr = CEGUI::WindowManager::getSingletonPtr();		// Obtenemos la ventana de renderizado

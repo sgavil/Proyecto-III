@@ -22,7 +22,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
-          "font": "DejaVuSans-10",
+          "font": "DejaVuSans-14",
           "callback": "onChangeState",
           "parameter": "StateMainMenu",
           "text": "MAIN MENU",
@@ -41,7 +41,7 @@
         {
           "name": "Button",
           "type": "AlfiskoSkin/Button",
-          "font": "DejaVuSans-10",
+          "font": "DejaVuSans-14",
           "callback": "setConstructModeActive",
           "parameter": " ",
           "text": "CONSTRUIR",
@@ -118,7 +118,7 @@
         {
           "name": "TextBox",
           "type": "TaharezLook/StaticText",
-          "font": "Jura-18",
+          "font": "Jura-40",
           "text": "Dinero: 143",
           "alignText": "Centre",
           "backgroundEnabled": "False",
@@ -129,10 +129,10 @@
             "botLeft": "FFFF0000",
             "botRight": "FFFF0000"
           },
-          "posX": 0.01,
-          "posY": 0.01,
-          "sizeX": 100,
-          "sizeY": 50,
+          "posX": 0.015,
+          "posY": 0.005,
+          "sizeX": 150,
+          "sizeY": 75,
           "offsetX": 0,
           "offsetY": 0
         }

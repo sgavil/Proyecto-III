@@ -1,6 +1,7 @@
 #include "CallbackManager.h"
 #include "Lógica/ConstructionMode.h"
 #include "Entity.h"
+#include "Camera.h"
 
 #include "SceneManager.h"
 #include "AudioManager.h"
