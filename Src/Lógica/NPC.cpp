@@ -8,7 +8,7 @@
 #include <cmath>
 
 //TODO: rotar los NPC en función de la dirección a la que van
-NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr)
+NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr), waitingForQueue_(false)
 {
 }
 
@@ -31,8 +31,8 @@ void NPC::start()
 std::string NPC::getInfo()
 {
 	//std::cout <<  << std::endl;
-	std::string s = entity_->getName() + "\n" + fun_.name_ + ": " + std::to_string(getFun()) + "\n" +
-		hunger_.name_ + ": " + std::to_string(getHunger()) + "\n " + peepee_.name_ + ": " + std::to_string(getPeepee()) + "\n";
+	std::string s = entity_->getName() + "\n" + fun_.name_ + ": " + std::to_string(getFun().value_) + "\n" +
+		hunger_.name_ + ": " + std::to_string(getHunger().value_) + "\n " + peepee_.name_ + ": " + std::to_string(getPeepee().value_) + "\n";
 	return s;
 }
 
@@ -53,7 +53,10 @@ void NPC::update(unsigned int time)
 		//1. NPC has an avaiable path
 		if (hasPath)
 			followPath(time);
-		//2. NPC realises he needs to eat/pee/he's bored
+		//2. NPC is waiting to enter a queue
+		else if (waitingForQueue_)
+			enterAttraction();
+		//3. NPC realises he needs to eat/pee/he's bored
 		else if (lowStats())
 		{
 			lookForBuildings();
@@ -62,7 +65,7 @@ void NPC::update(unsigned int time)
 				exitPARK();
 		}
 
-		//3. He just walks around
+		//4. He just walks around
 		else
 			deambulate(time);
 	}
@@ -101,16 +104,18 @@ void NPC::followPath(unsigned int time)
 	}
 }
 
+//'tries' to enter an attraction
 void NPC::enterAttraction()
 {
-	//std::cout << "LLEGUÉ A LA ATRACCIÓN" << std::endl;
-	isInBuilding_ = true;
-	speed_ /= 1.5;
-
-	std::cout << getInfo();
-
-	//Restore stats
-	actualBuilding_->encolar(getEntity());
+	//Hay hueco en la cola
+	if (actualBuilding_->encolar(getEntity()))
+	{
+		waitingForQueue_ = false;
+		isInBuilding_ = true;
+		speed_ /= 1.5;
+	}
+	else
+		waitingForQueue_ = true;
 }
 
 Edificio* NPC::getBuilding(Node* eNode)
@@ -139,8 +144,6 @@ void NPC::getOutofAttraction()
 	peepee_.restore(actualBuilding_->getPeePeeValue());
 	fun_.restore(actualBuilding_->getFunValue());
 	hunger_.restore(actualBuilding_->getHungryValue());
-
-	std::cout << getInfo();
 
 	//Get out of the building and set position
 	node_ = prevNode_ = actualBuilding_->getExitNode();
@@ -244,7 +247,7 @@ void NPC::lookForBuildings()
 	if (atraccion)
 	{
 		int index = calculateIndex(nodoActual->getMatrixPos().x, nodoActual->getMatrixPos().y);
-		while (nodeTo[index] != index)
+		do
 		{
 			//Get node 
 			Node* n = matrix_->getEntityNode(index)->getComponent<Node>();
@@ -252,8 +255,7 @@ void NPC::lookForBuildings()
 			movements.push(n);
 			//Previous index
 			index = nodeTo[index];
-		}
-		//std::cout << "YENDO A LA ATRACCIÓN" << std::endl;
+		} while (nodeTo[index] != index);
 		hasPath = true;
 		speed_ *= 1.5;
 	}

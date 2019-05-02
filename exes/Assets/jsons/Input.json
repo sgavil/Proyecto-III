@@ -10,7 +10,7 @@
 			"key": "E"
 		},
 		{
-			"Id": "NPC",
+			"Id": "SpamNPC",
 			"key": "V"
 		},
 		{
@@ -26,6 +26,10 @@
 		},
 		{
 			"Id": "ConstructBuilding",
+			"key": "MB_Left"
+		},
+		{
+			"Id": "SelectNPC",
 			"key": "MB_Left"
 		},
 		{

@@ -587,7 +587,7 @@
           "name": "CameraManager",
 		  "maxHeigth": 1000,
 		  "minHeigth": 20,
-		  "borders": 0.1
+		  "borders": 0.02
         }
       ]
     },

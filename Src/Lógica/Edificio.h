@@ -51,7 +51,7 @@ public:
 	virtual bool handleEvent(unsigned int time) { return false; };
 	virtual void receive(Message* msg) {};
 
-	void encolar(Entity* e);
+	bool encolar(Entity* e);
 	void montar();
 	void sacar();
 

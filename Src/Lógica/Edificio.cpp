@@ -34,10 +34,13 @@ void Edificio::update(unsigned int time)
 	}
 }
 
-void Edificio::encolar(Entity * e)
+bool Edificio::encolar(Entity * e)
 {
 	if (cola.size() < maxCola_)
 		cola.push(e);
+	else
+		return false;
+	return true;
 }
 
 void Edificio::montar()

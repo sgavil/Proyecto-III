@@ -106,9 +106,9 @@ public:
 	void getOutofAttraction();
 
 	//GETTERS
-	float getFun() { return fun_.value_; };
-	float getHunger() { return hunger_.value_; };
-	float getPeepee() { return peepee_.value_; };
+	Stat getFun() { return fun_; };
+	Stat getHunger() { return hunger_; };
+	Stat getPeepee() { return peepee_; };
 
 
 private:
@@ -128,6 +128,8 @@ private:
 	bool hasPath;
 	//Está en una atracción
 	bool isInBuilding_;
+	//Esperando para entrar en la cola
+	bool waitingForQueue_;
 
 
 
