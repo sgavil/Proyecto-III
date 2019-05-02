@@ -21,7 +21,7 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-14",
           "callback": "onChangeState",
           "parameter": "StateMainMenu",
@@ -40,16 +40,174 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "Carnevalee Freakshow-22",
-          "callback": "setConstructModeActive",
-          "parameter": " ",
+          "callback": "setConstructPanelActive",
+          "parameter": "True",
           "text": "CONSTRUIR",
-          "posX": 0.45,
-          "posY": 0.8,
-          "sizeX": 170,
+          "posX": 0.025,
+          "posY": 0.1,
+          "sizeX": 150,
           "sizeY": 50,
           "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "InfoButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "Carnevalee Freakshow-22",
+          "callback": "setInfoPanelActive",
+          "parameter": "True",
+          "text": "GESTION",
+          "posX": 0.50,
+          "posY": 0.1,
+          "sizeX": 150,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+    "name": "ToolsPanel",
+      "Components": [
+        {
+          "name": "WindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "True",
+          "closeEnabled": "False",
+          "titleEnabled": "False",
+          "font": "Carnevalee Freakshow-32",
+          "Hijos": [
+            {
+              "name": "ConstructButton"
+            },
+            {
+              "name": "InfoButton"
+            }
+          ],
+          "posX": 0.425,
+          "posY": 0.75,
+          "sizeX": 320,
+          "sizeY": 120,
+          "offsetX": -100,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "RoadButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "Carnevalee Freakshow-14",
+          "callback": "setRoadConstructionActive",
+          "parameter": "True",
+          "text": "CARRETERAS",
+          "posX": 0.01,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "AmusementButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "Carnevalee Freakshow-14",
+          "callback": "setAmusementsConstructionActive",
+          "parameter": "True",
+          "text": "ATRACCIONES",
+          "posX": 0.255,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "RestaurantButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "Carnevalee Freakshow-14",
+          "callback": "setRestaurantsConstructionActive",
+          "parameter": "True",
+          "text": "RESTAURANTES",
+          "posX": 0.50,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ToiletButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "Carnevalee Freakshow-14",
+          "callback": "setToiletsConstructionActive",
+          "parameter": "True",
+          "text": "W.C",
+          "posX": 0.745,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ConstructPanel",
+      "Components": [
+        {
+          "name": "WindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "False",
+          "closeEnabled": "True",
+          "callback": "setConstructPanelActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "CONSTRUCCION",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "RoadButton"
+            },
+            {
+              "name": "AmusementButton"
+            },
+            {
+              "name": "RestaurantButton"
+            },
+            {
+              "name": "ToiletButton"
+            }
+          ],
+          "posX": 0.3,
+          "posY": 0.825,
+          "sizeX": 500,
+          "sizeY": 100,
+          "offsetX": -100,
           "offsetY": 0
         }
       ]
@@ -59,16 +217,43 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-10",
           "callback": "construct",
           "parameter": "Road",
-          "text": "ROAD",
-          "posX": 0.35,
-          "posY": 0.8,
+          "text": "CARRETERA NORMAL",
+          "posX": 0.01,
+          "posY": 0.05,
           "sizeX": 80,
           "sizeY": 40,
           "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "RoadsPanel",
+      "Components": [
+        {
+          "name": "WindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "False",
+          "closeEnabled": "True",
+          "callback": "setRoadConstructionActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "CARRETERAS",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "ConstructRoadButton"
+            }
+          ],
+          "posX": 0.3,
+          "posY": 0.825,
+          "sizeX": 500,
+          "sizeY": 100,
+          "offsetX": -100,
           "offsetY": 0
         }
       ]
@@ -78,16 +263,65 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-10",
           "callback": "construct",
           "parameter": "Patitos",
           "text": "PATITOS",
-          "posX": 0.45,
-          "posY": 0.8,
-          "sizeX": 80,
+          "posX": 0.01,
+          "posY": 0.05,
+          "sizeX": 120,
           "sizeY": 40,
           "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ConstructNoriaButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "DejaVuSans-10",
+          "callback": "construct",
+          "parameter": "Noria",
+          "text": "NORIA",
+          "posX": 0.255,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "AmusementsPanel",
+      "Components": [
+        {
+          "name": "WindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "False",
+          "closeEnabled": "True",
+          "callback": "setAmusementsConstructionActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "ATRACCIONES",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "ConstructPatitosButton"
+            },
+            {
+              "name": "ConstructNoriaButton"
+            }
+          ],
+          "posX": 0.3,
+          "posY": 0.825,
+          "sizeX": 500,
+          "sizeY": 100,
+          "offsetX": -100,
           "offsetY": 0
         }
       ]
@@ -97,16 +331,67 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-10",
           "callback": "construct",
           "parameter": "Burguer",
           "text": "BURGUER",
-          "posX": 0.55,
-          "posY": 0.8,
-          "sizeX": 80,
+          "posX": 0.01,
+          "posY": 0.05,
+          "sizeX": 120,
           "sizeY": 40,
           "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "RestaurantsPanel",
+      "Components": [
+        {
+          "name": "WindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "False",
+          "closeEnabled": "True",
+          "callback": "setRestaurantsConstructionActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "RESTAURANTES",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "ConstructBurguerButton"
+            }
+          ],
+          "posX": 0.3,
+          "posY": 0.825,
+          "sizeX": 500,
+          "sizeY": 100,
+          "offsetX": -100,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ToiletsPanel",
+      "Components": [
+        {
+          "name": "WindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "False",
+          "closeEnabled": "True",
+          "callback": "setToiletsConstructionActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "W.C",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+          ],
+          "posX": 0.3,
+          "posY": 0.825,
+          "sizeX": 500,
+          "sizeY": 100,
+          "offsetX": -100,
           "offsetY": 0
         }
       ]
@@ -117,7 +402,7 @@
       [
         {
           "name": "TextBox",
-          "type": "TaharezLook/StaticText",
+          "type": "Vanilla/StaticText",
           "font": "98bottlesbold-40",
           "text": "Dinero: 143",
           "alignText": "Centre",
@@ -134,6 +419,90 @@
           "sizeX": 150,
           "sizeY": 75,
           "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "InfoDinero",
+      "Components": 
+      [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "Jura-18",
+          "text": "Dinero actual: 2000 $",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.05,
+          "posY": 0.0,
+          "sizeX": 400,
+          "sizeY": 75,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "InfoNumPersonas",
+      "Components": 
+      [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "Jura-18",
+          "text": "Turistas Actuales: 15",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.05,
+          "posY": 0.1,
+          "sizeX": 400,
+          "sizeY": 75,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+    "name": "InfoPanel",
+      "Components": [
+        {
+          "name": "WindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "False",
+          "closeEnabled": "True",
+          "callback": "setInfoPanelActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "GESTION DEL P.A.R.K",
+          "font": "Carnevalee Freakshow-32",
+          "Hijos": [
+            {
+              "name": "InfoDinero"
+            },
+            {
+              "name": "InfoNumPersonas"
+            }
+          ],
+          "posX": 0.3,
+          "posY": 0.1,
+          "sizeX": 500,
+          "sizeY": 500,
+          "offsetX": -100,
           "offsetY": 0
         }
       ]

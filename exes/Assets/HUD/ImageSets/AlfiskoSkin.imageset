@@ -1,5 +1,5 @@
 <Imageset autoScaled="vertical" imagefile="AlfiskoSkin.png" name="AlfiskoSkin" nativeHorzRes="800" nativeVertRes="600" version="2">
-    <Image height="7" name="WindowB" width="663" xPos="9" yPos="246" />
+    <Image height="8" name="WindowB" width="663" xPos="9" yPos="248" />
     <Image height="22" name="WindowL" width="8" xPos="0" yPos="225" />
     <Image height="20" name="WindowR" width="8" xPos="674" yPos="226" />
     <Image height="8" name="WindowT" width="663" xPos="9" yPos="216" />
@@ -21,42 +21,42 @@
     <Image height="23" name="MouseArrow" width="14" xPos="85" yPos="548" />
     <Image height="24" name="WindowFill" width="663" xPos="9" yPos="224" />
     <Image height="12" name="EditboxFill" width="132" xPos="545" yPos="262" />
-    <Image height="1" name="WindowClipB" width="663" xPos="9" yPos="252" />
+    <Image height="4" name="WindowClipB" width="663" xPos="9" yPos="252" />
     <Image height="22" name="WindowClipL" width="4" xPos="0" yPos="225" />
     <Image height="20" name="WindowClipR" width="4" xPos="678" yPos="226" />
     <Image height="4" name="WindowClipT" width="663" xPos="9" yPos="216" />
-    <Image height="3" name="ButtonHoverB" width="57" xPos="402" yPos="305" />
+    <Image height="3" name="ButtonHoverB" width="58" xPos="402" yPos="305" />
     <Image height="13" name="ButtonHoverL" width="3" xPos="398" yPos="291" />
-    <Image height="13" name="ButtonHoverR" width="3" xPos="460" yPos="291" />
-    <Image height="3" name="ButtonHoverT" width="57" xPos="402" yPos="287" />
+    <Image height="13" name="ButtonHoverR" width="3" xPos="461" yPos="291" />
+    <Image height="3" name="ButtonHoverT" width="58" xPos="402" yPos="287" />
     <Image height="7" name="GenericBrush" width="7" xPos="86" yPos="603" />
     <Image height="23" name="MouseTextBar" width="11" xPos="169" yPos="548" />
     <Image height="4" name="ButtonHoverBL" width="4" xPos="398" yPos="304" />
-    <Image height="4" name="ButtonHoverBR" width="4" xPos="459" yPos="304" />
+    <Image height="4" name="ButtonHoverBR" width="4" xPos="460" yPos="304" />
     <Image height="4" name="ButtonHoverTL" width="4" xPos="398" yPos="287" />
-    <Image height="4" name="ButtonHoverTR" width="4" xPos="459" yPos="287" />
-    <Image height="3" name="ButtonNormalB" width="56" xPos="403" yPos="276" />
-    <Image height="12" name="ButtonNormalL" width="3" xPos="399" yPos="263" />
-    <Image height="12" name="ButtonNormalR" width="3" xPos="460" yPos="263" />
-    <Image height="3" name="ButtonNormalT" width="56" xPos="403" yPos="259" />
-    <Image height="3" name="ButtonPushedB" width="57" xPos="402" yPos="333" />
-    <Image height="12" name="ButtonPushedL" width="3" xPos="398" yPos="320" />
-    <Image height="12" name="ButtonPushedR" width="3" xPos="460" yPos="330" />
-    <Image height="3" name="ButtonPushedT" width="57" xPos="402" yPos="316" />
+    <Image height="4" name="ButtonHoverTR" width="4" xPos="460" yPos="287" />
+    <Image height="3" name="ButtonNormalB" width="58" xPos="402" yPos="277" />
+    <Image height="14" name="ButtonNormalL" width="3" xPos="398" yPos="262" />
+    <Image height="14" name="ButtonNormalR" width="3" xPos="461" yPos="262" />
+    <Image height="3" name="ButtonNormalT" width="58" xPos="402" yPos="258" />
+    <Image height="3" name="ButtonPushedB" width="58" xPos="402" yPos="334" />
+    <Image height="14" name="ButtonPushedL" width="3" xPos="398" yPos="319" />
+    <Image height="14" name="ButtonPushedR" width="3" xPos="461" yPos="319" />
+    <Image height="3" name="ButtonPushedT" width="58" xPos="402" yPos="315" />
     <Image height="13" name="CheckboxHover" width="13" xPos="398" yPos="359" />
     <Image height="6" name="ProgressFullB" width="284" xPos="6" yPos="269" />
     <Image height="6" name="ProgressFullL" width="6" xPos="0" yPos="263" />
     <Image height="6" name="ProgressFullR" width="8" xPos="290" yPos="263" />
     <Image height="6" name="ProgressFullT" width="284" xPos="6" yPos="257" />
     <Image height="14" name="ScrollUpHover" width="15" xPos="46" yPos="490" />
-    <Image height="4" name="ButtonNormalBL" width="4" xPos="399" yPos="275" />
-    <Image height="4" name="ButtonNormalBR" width="4" xPos="459" yPos="275" />
-    <Image height="4" name="ButtonNormalTL" width="4" xPos="399" yPos="259" />
-    <Image height="4" name="ButtonNormalTR" width="4" xPos="459" yPos="259" />
-    <Image height="4" name="ButtonPushedBL" width="4" xPos="398" yPos="332" />
-    <Image height="4" name="ButtonPushedBR" width="4" xPos="459" yPos="332" />
-    <Image height="4" name="ButtonPushedTL" width="4" xPos="398" yPos="316" />
-    <Image height="4" name="ButtonPushedTR" width="4" xPos="459" yPos="316" />
+    <Image height="4" name="ButtonNormalBL" width="4" xPos="398" yPos="276" />
+    <Image height="4" name="ButtonNormalBR" width="4" xPos="460" yPos="276" />
+    <Image height="4" name="ButtonNormalTL" width="4" xPos="398" yPos="258" />
+    <Image height="4" name="ButtonNormalTR" width="4" xPos="460" yPos="258" />
+    <Image height="4" name="ButtonPushedBL" width="4" xPos="398" yPos="333" />
+    <Image height="4" name="ButtonPushedBR" width="4" xPos="460" yPos="333" />
+    <Image height="4" name="ButtonPushedTL" width="4" xPos="398" yPos="315" />
+    <Image height="4" name="ButtonPushedTR" width="4" xPos="460" yPos="315" />
     <Image height="13" name="CheckboxNormal" width="13" xPos="398" yPos="376" />
     <Image height="2" name="HorzScrollbarB" width="8" xPos="98" yPos="503" />
     <Image height="2" name="HorzScrollbarT" width="8" xPos="98" yPos="490" />
@@ -89,8 +89,8 @@
     <Image height="4" name="TitlebarActiveT" width="665" xPos="8" yPos="145" />
     <Image height="26" name="VertThumbHoverL" width="6" xPos="47" yPos="549" />
     <Image height="26" name="VertThumbHoverR" width="7" xPos="53" yPos="549" />
-    <Image height="8" name="ButtonHoverFill1" width="59" xPos="401" yPos="290" />
-    <Image height="7" name="ButtonHoverFill2" width="59" xPos="401" yPos="298" />
+    <Image height="8" name="ButtonHoverFill1" width="60" xPos="401" yPos="290" />
+    <Image height="7" name="ButtonHoverFill2" width="60" xPos="401" yPos="298" />
     <Image height="7" name="HorzSliderTrackL" width="7" xPos="27" yPos="320" />
     <Image height="7" name="HorzSliderTrackR" width="7" xPos="318" yPos="320" />
     <Image height="7" name="HorzThumbHoverBL" width="7" xPos="131" yPos="515" />
@@ -126,10 +126,10 @@
     <Image height="26" name="VertThumbPushedR" width="7" xPos="35" yPos="549" />
     <Image height="11" name="VertThumbShadowB" width="13" xPos="47" yPos="582" />
     <Image height="13" name="VertThumbShadowT" width="13" xPos="47" yPos="528" />
-    <Image height="7" name="ButtonNormalFill1" width="58" xPos="402" yPos="262" />
-    <Image height="8" name="ButtonNormalFill2" width="58" xPos="402" yPos="268" />
-    <Image height="7" name="ButtonPushedFill1" width="59" xPos="401" yPos="319" />
-    <Image height="7" name="ButtonPushedFill2" width="59" xPos="401" yPos="326" />
+    <Image height="8" name="ButtonNormalFill1" width="60" xPos="401" yPos="261" />
+    <Image height="8" name="ButtonNormalFill2" width="60" xPos="401" yPos="269" />
+    <Image height="8" name="ButtonPushedFill1" width="60" xPos="401" yPos="318" />
+    <Image height="8" name="ButtonPushedFill2" width="60" xPos="401" yPos="326" />
     <Image height="16" name="CloseButtonNormal" width="17" xPos="84" yPos="576" />
     <Image height="17" name="CloseButtonPushed" width="17" xPos="104" yPos="575" />
     <Image height="7" name="HorzSliderShadowL" width="32" xPos="50" yPos="320" />

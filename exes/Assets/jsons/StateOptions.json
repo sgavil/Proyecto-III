@@ -26,7 +26,7 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-10",
           "callback": "onChangeState",
           "parameter": "StateMainMenu",
@@ -45,7 +45,7 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-10",
           "callback": "EffectVolumeChange",
           "parameter": "+",
@@ -65,6 +65,7 @@
       [
         { 
           "name": "TextBox",
+          "type": "Vanilla/StaticText",
           "font": "DejaVuSans-10",
           "text": "10",
           "alignText": "Centre",
@@ -90,6 +91,7 @@
       [
         { 
           "name": "TextBox",
+          "type": "Vanilla/StaticText",
           "font": "DejaVuSans-10",
           "text": "10",
           "alignText": "Centre",
@@ -114,7 +116,7 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-10",
           "callback": "EffectVolumeChange",
           "parameter": "-",
@@ -133,7 +135,7 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-10",
           "callback": "MusicVolumeChange",
           "parameter": "+",
@@ -152,7 +154,7 @@
       "Components": [
         {
           "name": "Button",
-          "type": "AlfiskoSkin/Button",
+          "type": "Vanilla/Button",
           "font": "DejaVuSans-10",
           "callback": "MusicVolumeChange",
           "parameter": "-",

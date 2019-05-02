@@ -215,6 +215,7 @@
             </TextComponent>
         </ImagerySection>
         <ImagerySection name="normal_image">
+            <Property name="MouseCursorImage" value="TaharezLook/MouseArrow"/>
             <ImageryComponent>
                 <Area>
                     <Dim type="LeftEdge">
@@ -236,6 +237,7 @@
             </ImageryComponent>
         </ImagerySection>
         <ImagerySection name="hover_image">
+            <Property name="MouseCursorImage" value="TaharezLook/MousePointer"/>
             <ImageryComponent>
                 <Area>
                     <Dim type="LeftEdge">
@@ -417,18 +419,20 @@
             <Property name="AlwaysOnTop" value="false"/>
         </Child>
         <Child nameSuffix="__auto_closebutton__" type="Vanilla/Button">
+            <Property name="NormalImage" value="AlfiskoSkin/CloseButtonNormal"/>
+            <Property name="PushedImage" value="AlfiskoSkin/CloseButtonPushed"/>
             <Area>
                 <Dim type="LeftEdge">
-                    <AbsoluteDim value="-7"/>
+                    <AbsoluteDim value="-15"/>
                 </Dim>
                 <Dim type="TopEdge">
-                    <AbsoluteDim value="7"/>
+                    <AbsoluteDim value="15"/>
                 </Dim>
                 <Dim type="Width">
-                    <AbsoluteDim value="7"/>
+                    <AbsoluteDim value="15"/>
                 </Dim>
                 <Dim type="Height">
-                    <AbsoluteDim value="7"/>
+                    <AbsoluteDim value="15"/>
                 </Dim>
             </Area>
             <HorzAlignment type="RightAligned"/>
