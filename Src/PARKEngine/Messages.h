@@ -3,6 +3,8 @@
 #include <vector>
 #include <PARKEngine/Entity.h>
 
+
+
 //En este mismo fichero están las clases de Listener y Emitter para que no haya que incluir 3 ficheros, con este sera
 //suficiente ya que todo su contenido tiene que ver con mensajes y su forma de envio
 
@@ -36,6 +38,8 @@ enum MessageId {
 
 	NEW_UNLOCKED_BUILDING,//Aqui igual para decir cual ha sido
 	IS_BUILDING_UNLOCKED,
+	BUILDING_NOT_UNLOCKED,
+	BUILDING_UNLOCKED,
 
 };
 
@@ -54,6 +58,29 @@ struct MessageInfo : public Message {
 		mEntity_(mEntity), Message(mType, size) {
 	}
 	Entity* mEntity_;
+};
+
+class Edificio;
+
+struct IsBuildingUnlocked : public Message {
+	IsBuildingUnlocked(MessageId mType, Edificio* edificio, header_t_ size = sizeof(Message)) :
+		 Message(mType, size) , edificio_(edificio){
+	}
+	Edificio* edificio_;
+};
+
+struct BuildingNotUnlocked : public Message {
+	BuildingNotUnlocked(MessageId mType, Edificio* edificio, header_t_ size = sizeof(Message)) :
+		Message(mType, size), edificio_(edificio) {
+	}
+	Edificio* edificio_;
+};
+
+struct BuildingUnlocked : public Message {
+	BuildingUnlocked(MessageId mType, Edificio* edificio, header_t_ size = sizeof(Message)) :
+		Message(mType, size), edificio_(edificio) {
+	}
+	Edificio* edificio_;
 };
 
 //Es muy posible que para varios mensajes haya que hacer un struct para mandar al receptor algo mas que el tipo de mensaje, y por tanto
