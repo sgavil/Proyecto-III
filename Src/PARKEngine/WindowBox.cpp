@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "Button.h"
 #include "TextBox.h"
+#include "ProgressBar.h"
 #include "CallbackManager.h"
 
 WindowBox::WindowBox()
@@ -60,6 +61,8 @@ void WindowBox::start()
 			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<Button>()->getPushButton());
 		else if (e->getComponent<TextBox>() != nullptr)
 			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<TextBox>()->getStaticText());
+		else if (e->getComponent<ProgressBar>() != nullptr)
+			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<ProgressBar>()->getProgressBar());
 	}
 }
 

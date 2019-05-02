@@ -508,6 +508,180 @@
       ]
     },
     {
+      "name": "FunText",
+      "Components": 
+      [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "FELICIDAD",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "F0000000",
+            "topRight": "F0000000",
+            "botLeft": "F0000000",
+            "botRight": "F0000000"
+          },
+          "posX": 0.05,
+          "posY": 0.051,
+          "sizeX": 110,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "FunBar",
+      "Components": [
+        {
+          "name": "ProgressBar",
+          "type": "Vanilla/ProgressBar",
+          "font": "Carnevalee Freakshow-32",
+          "BarColor": "FF00FF00",
+          "posX": 0.01,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "HungerText",
+      "Components": 
+      [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "COMIDA",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "F0000000",
+            "topRight": "F0000000",
+            "botLeft": "F0000000",
+            "botRight": "F0000000"
+          },
+          "posX": 0.05,
+          "posY": 0.351,
+          "sizeX": 110,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "HungerBar",
+      "Components": [
+        {
+          "name": "ProgressBar",
+          "type": "Vanilla/ProgressBar",
+          "font": "Carnevalee Freakshow-32",
+          "BarColor": "FFFF0000",
+          "posX": 0.01,
+          "posY": 0.35,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "PeePeeText",
+      "Components": 
+      [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "PIPI",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "F0000000",
+            "topRight": "F0000000",
+            "botLeft": "F0000000",
+            "botRight": "F0000000"
+          },
+          "posX": 0.05,
+          "posY": 0.701,
+          "sizeX": 110,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "PeePeeBar",
+      "Components": [
+        {
+          "name": "ProgressBar",
+          "type": "Vanilla/ProgressBar",
+          "font": "Carnevalee Freakshow-32",
+          "BarColor": "FFF7FF00",
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+    "name": "NPCInfoPanel",
+      "Components": [
+        {
+          "name": "WindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "True",
+          "closeEnabled": "True",
+          "callback": "setNPCInfoPanelActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "Juan",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "FunBar"
+            },
+            {
+              "name": "FunText"
+            },
+            {
+              "name": "HungerBar"
+            },
+            {
+              "name": "HungerText"
+            },
+            {
+              "name": "PeePeeBar"
+            },
+            {
+              "name": "PeePeeText"
+            }
+          ],
+          "posX": 0.15,
+          "posY": 0.75,
+          "sizeX": 140,
+          "sizeY": 120,
+          "offsetX": -100,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "ReproductorAudio",
       "Components": 
       [
