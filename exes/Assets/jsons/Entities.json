@@ -9,6 +9,11 @@
 				"x": 0,
 				"y": 1000,
 				"z": 1000
+			},
+			"scale":{
+				"x":2.5,
+				"y":2.5,
+				"z":2.5
 			}
 		  }
         },
@@ -118,28 +123,13 @@
       "parameters":
       {
         "Price": 100,
-        "PeePee": 0,
-        "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
+		"Type": 0,
         "Tam":
         {
           "x": 1,
           "y": 1
         },
         "Height": 5,
-        "Entry":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Exit":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Duration": 10,
-        "Capacity": 0,
         "bName": "Road"
       }
     }
@@ -163,29 +153,14 @@
       "name": "Edificio",
       "parameters":
       {
-        "Price": 0,
-        "PeePee": 0,
-        "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
+	    "Price": 100,
+		"Type": 0,
         "Tam":
         {
           "x": 1,
           "y": 1
         },
         "Height": 5,
-        "Entry":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Exit":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Duration": 10,
-        "Capacity": 0,
         "bName": "EntryRoad"
       }
     }
@@ -209,35 +184,20 @@
       "name": "Edificio",
       "parameters":
       {
-        "Price": 0,
-        "PeePee": 0,
-        "Hungry": 0,
-        "Fun": 0,
-        "Tam_Cola": 0,
+	    "Price": 100,
+		"Type": 0,
         "Tam":
         {
           "x": 1,
           "y": 1
         },
         "Height": 5,
-        "Entry":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Exit":
-        {
-          "x": 0,
-          "y": 0
-        },
-        "Duration": 10,
-        "Capacity": 0,
         "bName": "ExitRoad"
       }
     }
   ],
   "Patitos": 
-  [
+   [
     {
       "name": "Transform"
     },
@@ -255,6 +215,7 @@
       "parameters":
       {
         "Price": 300,
+		"Type": 1,
         "PeePee": 0,
         "Hungry": 0,
         "Fun": 10,
@@ -300,6 +261,7 @@
       "parameters":
       {
         "Price": 200,
+		"Type": 2,
         "PeePee": 0,
         "Hungry": 10,
         "Fun": 0,
@@ -344,31 +306,32 @@
       "name": "Edificio",
       "parameters":
       {
-        "Price": 400,
+        "Price": 200,
+		"Type": 2,
         "PeePee": 0,
-        "Hungry": 0,
+        "Hungry": 10,
         "Fun": 0,
-        "Tam_Cola": 0,
+        "Tam_Cola": 5,
         "Tam":
         {
           "x": 2,
           "y": 2
         },
-        "Height": 60,
+        "Height": 20,
         "Entry":
-        {
-          "x": 0,
-          "y": 2
-        },
-        "Exit":
         {
           "x": 2,
           "y": 0
         },
-        "Duration": 10,
-        "Capacity": 0,
+        "Exit":
+        {
+          "x": 2,
+          "y": 1
+        },
+        "Duration": 5,
+        "Capacity": 2,
         "bName": "Noria"
       }
-    }
+    }    
   ]
 }

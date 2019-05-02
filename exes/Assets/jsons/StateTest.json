@@ -548,19 +548,7 @@
               "name": "Road"
             },
             {
-              "name": "Amusement"
-            },
-            {
-              "name": "Amusement1"
-            },
-            {
-              "name": "Amusement2"
-            },
-            {
               "name": "Toilet"
-            },
-            {
-              "name": "Restaurant"
             },
         		{
         		  "name" : "Patitos"
@@ -627,7 +615,7 @@
             "ruptcyMaxTime": 7,
             "floorRuptcyMoney": -40,
             "InitialTime2Tax": 180,
-            "ActualMoney" : 2000,
+            "ActualMoney" : 100000,
             "InitVisitors" : 3
           }
         }
