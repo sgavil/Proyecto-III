@@ -13,7 +13,7 @@ public:
 		return bName == a.bName;
 	}
 	//El tipo ornament no tiene ni entrada ni salida, su cola es de 0 y no cambia valores de necesidades
-	enum type { Amusement, Shop, Toilet, Ornament };
+	enum BuildingType { Ornament, Amusement, Restaurant, Toilet };
 private:
 	int price_;
 	//Estos son los valores que un edificio modifica de un NPC
@@ -29,7 +29,7 @@ private:
 	int actDuration_;
 	int capacity_; //La de ornament debe ser 0
 
-	type type_; //El tipo d ela atracción
+	BuildingType type_; //El tipo d ela atracción
 
 	std::queue<Entity*> cola;
 	std::list<Entity*> rideing;
@@ -59,6 +59,8 @@ public:
 
 	//GETTERS
 	int getPrice() { return price_; };
+
+	BuildingType getType() { return type_; };
 
 	int getPeePeeValue() { return PeePeeRestore_; };
 	int getHungryValue() { return HungryRestore_; };
@@ -97,9 +99,9 @@ public:
 	void setExitNode(Node* e) { ExitNode = e; };
 private:
 	//Es privado porque solo se debe establecer al Establecer de json la atracción y no en ejecución
-	void setType(type t) { type_ = t; };
+	void setType(BuildingType t) { type_ = t; };
 	//Es mejor que en el Json al ser solo 4 tipos de valores lea un int para no tener que ir interpretando el string constantemente
-	void setTypeByInt(int t) { if (t < sizeof(type)) type_ = type(t); };
+	void setTypeByInt(int t) { if (t < sizeof(BuildingType)) type_ = BuildingType(t); };
 	//establece el nombre del edificio
 	void setName(std::string s) { bName = s; };
 };

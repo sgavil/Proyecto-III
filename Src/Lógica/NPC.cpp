@@ -95,7 +95,7 @@ void NPC::enterAttraction()
 	actualBuilding_->encolar(getEntity());
 }
 
-void NPC::getBuilding(Node* eNode)
+Edificio* NPC::getBuilding(Node* eNode)
 {
 	//All buildings in scene
 	std::vector<Entity*> builds = SceneManager::instance()->currentState()->getEntitiesWithComponent<Edificio>();
@@ -112,7 +112,7 @@ void NPC::getBuilding(Node* eNode)
 		it++;
 	}
 
-	actualBuilding_ = building;
+	return building;
 }
 
 void NPC::getOutofAttraction()
@@ -168,7 +168,7 @@ void NPC::lookForBuildings()
 	for (int v = 0; v < N; v++)
 		distTo[v] = numeric_limits<int>::max();
 
-	
+
 	//Metemos el nodo actual con prioridad 0
 	Vector2 nodePos = node_->getMatrixPos();
 	int nodeIndex = calculateIndex(nodePos.x, nodePos.y);
@@ -185,25 +185,30 @@ void NPC::lookForBuildings()
 		nodoActual = matrix_->getEntityNode(n.elem)->getComponent<Node>();
 		pq.pop();
 		std::list<Entity*> ady = matrix_->getAdj(nodoActual->getEntity(), 1, 1); //radio de 1
-		//Adyacentes al nodo actual
+																				 //Adyacentes al nodo actual
 		for (Entity* e : ady)
 		{
+			Node* adyNode = e->getComponent<Node>();
 			Vector2 srcPos = nodoActual->getMatrixPos();
-			Vector2 adyPos = e->getComponent<Node>()->getMatrixPos();
+			Vector2 adyPos = adyNode->getMatrixPos();
 			//Quitamos diagonales y la propia casilla
 			if (adyacenteCorrecta(srcPos, adyPos))
 			{
-				//Building found
-				if (e->getComponent<Node>()->getType() == "EntryRoad")
+				if (adyNode->getType() == "EntryRoad") //&& me satisface
 				{
-					nodoActual = e->getComponent <Node>();
 					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
-					getBuilding(nodoActual);
-					atraccion = true;
-					break;
+					Edificio* b = getBuilding(adyNode);
+
+					if(b->getType() != Edificio::BuildingType::Ornament)
+					{
+						nodoActual = adyNode;
+						actualBuilding_ = b;
+						atraccion = true;
+						break;
+					}
 				}
 				//Explore other nodes
-				else if(e->getComponent<Node>()->getType() == "Road")
+				else if (adyNode->getType() == "Road" || adyNode->getType() == "ExitRoad") //|| adyNode->getType() == "Road")
 					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
 			}
 		}
@@ -212,7 +217,7 @@ void NPC::lookForBuildings()
 	//Rellenamos la cola de movimientos
 	if (atraccion)
 	{
-		int index = calculateIndex(nodoActual->getMatrixPos().x, nodoActual->getMatrixPos().y); 
+		int index = calculateIndex(nodoActual->getMatrixPos().x, nodoActual->getMatrixPos().y);
 		while (nodeTo[index] != index)
 		{
 			//Get node 
@@ -227,8 +232,9 @@ void NPC::lookForBuildings()
 		speed_ *= 1.5;
 	}
 	else
-		std::cout << "NO HAY ATRACCIONES DISPONIBLES" << std::endl;
+		std::cout << "NO HAY ATRACCIONES DISPONIBLES: ME VOY DEL PARQUE" << std::endl;
 }
+
 
 void NPC::deambulate(unsigned int time)
 {
@@ -245,7 +251,9 @@ void NPC::deambulate(unsigned int time)
 			Vector2 srcPos = node_->getMatrixPos();
 			Vector2 adyPos = adyNode->getMatrixPos();
 			//1. Adyacente correcta   2. Es un camino  3. No venimos de ahí
-			if (adyacenteCorrecta(srcPos, adyPos) && adyNode->getType() == "Road" && adyNode != prevNode_)
+			if (adyacenteCorrecta(srcPos, adyPos) && 
+				(adyNode->getType() == "Road" || adyNode->getType() == "EntryRoad" || adyNode->getType() == "ExitRoad") && 
+				adyNode != prevNode_)
 				candidates.push_back(adyNode);
 			it++;
 		}

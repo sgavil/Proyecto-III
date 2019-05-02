@@ -162,7 +162,7 @@ private:
 	//Follows current path
 	void followPath(unsigned int time);
 	//Encuentra el edificio a partir de su nodo de entrada
-	void NPC::getBuilding(Node* eNode);
+	Edificio* NPC::getBuilding(Node* eNode);
 	//Indica si necesitamos algo
 	bool lowStats();
 	//Indica la stat más baja
