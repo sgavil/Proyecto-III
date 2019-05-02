@@ -97,6 +97,9 @@
     <ClCompile Include="..\..\Src\PARKEngine\Widget.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\WindowBox.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PARKEngine\Entity.h">
@@ -193,6 +196,9 @@
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\BackgroundImage.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\WindowBox.h">
       <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>

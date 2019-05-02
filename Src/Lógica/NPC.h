@@ -21,7 +21,7 @@ public:
 		exigency_ = exigency;
 		decreases_ = decreases;
 	}
-	
+
 	//Restaura una cierta cantidad del stat
 	void restore(float amount)
 	{
@@ -52,7 +52,7 @@ public:
 	}
 
 
-	Stat(){}
+	Stat() {}
 
 	std::string name_;
 	float value_;
@@ -80,7 +80,7 @@ public:
 	//Load and start methods
 	void load(json file);
 	void start();
-	
+
 	//Generic methods
 	virtual void update(unsigned int time);
 
@@ -162,7 +162,7 @@ private:
 	//Follows current path
 	void followPath(unsigned int time);
 	//Encuentra el edificio a partir de su nodo de entrada
-	void NPC::getBuilding(Node* eNode);
+	Edificio* NPC::getBuilding(Node* eNode);
 	//Indica si necesitamos algo
 	bool lowStats();
 	//Indica la stat más baja

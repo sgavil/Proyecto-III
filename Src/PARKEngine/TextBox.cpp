@@ -12,6 +12,7 @@ TextBox::~TextBox()
 void TextBox::load(json file)
 {
 	Widget::load(file);
+	staticText_ = static_cast<CEGUI::Window*>(window);
 
 	addParameter(text, file["text"]);
 

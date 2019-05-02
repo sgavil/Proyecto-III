@@ -26,6 +26,8 @@ public:
 
 	virtual void save(json& file) {};
 
+	CEGUI::Window* getWindow() { return window; };
+
 	void setText(std::string s);
 	void setFont(std::string s);
 };

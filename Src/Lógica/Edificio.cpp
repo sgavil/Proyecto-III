@@ -1,6 +1,9 @@
 #include "Edificio.h"
 #include <PARKEngine/Entity.h>
 #include "NPC.h"
+#include "Edificio.h"
+#include <PARKEngine/Entity.h>
+#include "NPC.h"
 #include "Matrix/Node.h"
 #include "PARKEngine/PARKComponents.h"
 
@@ -17,12 +20,16 @@ Edificio::~Edificio()
 
 void Edificio::update(unsigned int time)
 {
-	actDuration_ -= time;
+	//Tiene cola, aforo, etc. (no es un camino)
+	if (type_ != BuildingType::Ornament)
+	{
+		actDuration_ -= time;
 
-	if (actDuration_ <= 0) {
-		sacar();
-		montar();
-		actDuration_ = duration_;
+		if (actDuration_ <= 0) {
+			sacar();
+			montar();
+			actDuration_ = duration_;
+		}
 	}
 }
 
@@ -58,26 +65,32 @@ void Edificio::sacar()
 
 void Edificio::load(json file)
 {
-	price_ = file["Price"];
+	addParameter(price_, file["Price"]);
+	setTypeByInt(file["Type"]);
 
-	PeePeeRestore_ = file["PeePee"];
-	HungryRestore_ = file["Hungry"];
-	funRestore_ = file["Fun"];
-	maxCola_ = file["Tam_Cola"];
+	addParameter(PeePeeRestore_, file["PeePee"]);
+	addParameter(HungryRestore_, file["Hungry"]);
+	addParameter(funRestore_, file["Fun"]);
 
-	tam.x = file["Tam"]["x"];
-	tam.y = file["Tam"]["y"];
+	addParameter(maxCola_, file["Tam_Cola"]);
 
-	height_ = file["Height"];
+	addParameter(tam.x, file["Tam"]["x"]);
+	addParameter(tam.y, file["Tam"]["y"]);
 
-	entry.x = file["Entry"]["x"];
-	entry.y = file["Entry"]["y"];
+	addParameter(height_, file["Height"]);
 
-	exit.x = file["Exit"]["x"];
-	exit.y = file["Exit"]["y"];
+	addParameter(entry.x, file["Entry"]["x"]);
+	addParameter(entry.y, file["Entry"]["y"]);
 
-	duration_ = file["Duration"] * 1000; //Conversión a milisegundos;
-	actDuration_ = duration_;
-	capacity_ = file["Capacity"];
-	setName(file["bName"]);
+	addParameter(exit.x, file["Exit"]["x"]);
+	addParameter(exit.y, file["Exit"]["y"]);
+
+	if (addParameter(duration_, file["Duration"]))
+	{
+		duration_ *= 1000; //Conversión a milisegundos;
+		actDuration_ = duration_;
+	}
+
+	addParameter(capacity_, file["Capacity"]);
+	addParameter(bName, file["bName"]);
 }

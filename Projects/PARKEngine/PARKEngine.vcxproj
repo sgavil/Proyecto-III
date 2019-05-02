@@ -198,6 +198,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\TextBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Transform.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Widget.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\WindowBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PARKEngine\Animation.h" />
@@ -232,6 +233,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\Transform.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Utils.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Widget.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\WindowBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -26,7 +26,6 @@ public:
 
 	virtual void buildInMatrix(int i, int j, std::string name);
 	void construct(string bName);
-	void setConstructModeActive();
 	void deactivateThisConstruction();
 
 private:
@@ -54,10 +53,6 @@ private:
 	void createEntryExitRoad(string roadName);
 	void setEntryExit();
 	void setNodeMaterial(bool enable, bool can);
-
-	bool constructButtonsActive = false;
-	Entity* constructButton;
-	list<Entity*> constructButtons;
 };
 
 REGISTER_TYPE(ConstructionMode)

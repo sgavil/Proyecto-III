@@ -6,6 +6,7 @@
 #include "SceneManager.h"
 #include "AudioManager.h"
 #include "TextBox.h"
+#include "WindowBox.h"
 
 using namespace std::placeholders;
 
@@ -47,9 +48,23 @@ void CallbackManager::initCallbacks()
 	addCallback("onChangeState", &CallbackManager::onChangeState, this);
 	addCallback("onExit", &CallbackManager::onExit, this);
 	addCallback("construct", &CallbackManager::construct, this);
-	addCallback("setConstructModeActive", &CallbackManager::setConstructModeActive, this);
 	addCallback("EffectVolumeChange", &CallbackManager::EffectVolumeChange, this);
 	addCallback("MusicVolumeChange", &CallbackManager::MusicVolumeChange, this);
+
+	// Para los paneles
+	//Panel de las herramientas de Construccion y Gestion
+	addCallback("setToolsPanelActive", &CallbackManager::setConstructPanelActive, this);
+
+	//Paneles de Construccion y Gestion
+	addCallback("setConstructPanelActive", &CallbackManager::setConstructPanelActive, this);
+	addCallback("setInfoPanelActive", &CallbackManager::setInfoPanelActive, this);
+
+	//Paneles de Tipos de Construccion
+	addCallback("setRoadConstructionActive", &CallbackManager::setRoadConstructionActive, this);
+	addCallback("setAmusementsConstructionActive", &CallbackManager::setAmusementsConstructionActive, this);
+	addCallback("setRestaurantsConstructionActive", &CallbackManager::setRestaurantsConstructionActive, this);
+	addCallback("setToiletsConstructionActive", &CallbackManager::setToiletsConstructionActive, this);
+
 }
 
 
@@ -68,8 +83,8 @@ bool CallbackManager::onChangeState(std::string state)
 	SceneManager::instance()->changeState(state);
 	if(state == "StateTest")
 	{
-		AudioManager::instance()->STOP_SOUND("Menu");
-		AudioManager::instance()->PLAY_SONG("MainTheme");	
+		/*AudioManager::instance()->STOP_SOUND("Menu");
+		AudioManager::instance()->PLAY_SONG("MainTheme");	*/
 	}
 		
 	return true;
@@ -91,16 +106,122 @@ bool CallbackManager::MusicVolumeChange(std::string vol)
 	return true;
 }
 
-bool CallbackManager::setConstructModeActive(std::string s)
-{
-	Entity* e = SceneManager::instance()->currentState()->getEntity("ConstructionMode");
-	e->getComponent<ConstructionMode>()->setConstructModeActive();
-	return true;
-}
-
 bool CallbackManager::construct(std::string buildName)
 {
 	Entity* e = SceneManager::instance()->currentState()->getEntity("ConstructionMode");
 	e->getComponent<ConstructionMode>()->construct(buildName);
+	return true;
+}
+
+
+//PANEL DE LAS HERRAMIENTAS
+bool CallbackManager::setToolsPanelActive(std::string boolean)
+{
+	WindowBox* w = SceneManager::instance()->currentState()->getEntity("ToolsPanel")->getComponent<WindowBox>();
+	if (boolean == "True")
+		w->getWindow()->show();
+	else
+		w->getWindow()->hide();
+
+	return true;
+}
+
+//PANEL DE CONSTRUCCION
+bool CallbackManager::setConstructPanelActive(std::string boolean)
+{
+	WindowBox* w = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<WindowBox>();
+	if (boolean == "True") {
+		w->getWindow()->show();
+		setToolsPanelActive("False");
+	}
+	else {
+		w->getWindow()->hide();
+		setToolsPanelActive("True");
+	}
+
+	return true;
+}
+
+//PANEL DE GESTION
+bool CallbackManager::setInfoPanelActive(std::string boolean)
+{
+	WindowBox* w = SceneManager::instance()->currentState()->getEntity("InfoPanel")->getComponent<WindowBox>();
+	if (boolean == "True") {
+		w->getWindow()->show();
+		setToolsPanelActive("False");
+	}
+	else {
+		w->getWindow()->hide();
+		setToolsPanelActive("True");
+	}
+
+	return true;
+}
+
+//PANEL DE LOS TIPOS DE CARRETERA
+bool CallbackManager::setRoadConstructionActive(std::string boolean)
+{
+	WindowBox* w = SceneManager::instance()->currentState()->getEntity("RoadsPanel")->getComponent<WindowBox>();
+	WindowBox* c = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<WindowBox>();
+	if (boolean == "True") {
+		w->getWindow()->show();
+		c->getWindow()->hide();
+	}
+	else {
+		w->getWindow()->hide();
+		c->getWindow()->show();
+	}
+
+	return true;
+}
+
+// PANEL DE LOS TIPOS DE ATRACCIONES
+bool CallbackManager::setAmusementsConstructionActive(std::string boolean)
+{
+	WindowBox* w = SceneManager::instance()->currentState()->getEntity("AmusementsPanel")->getComponent<WindowBox>();
+	WindowBox* c = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<WindowBox>();
+	if (boolean == "True") {
+		w->getWindow()->show();
+		c->getWindow()->hide();
+	}
+	else {
+		w->getWindow()->hide();
+		c->getWindow()->show();
+	}
+
+	return true;
+}
+
+// PANEL DE LOS TIPOS DE RESTAURANTES
+bool CallbackManager::setRestaurantsConstructionActive(std::string boolean)
+{
+	WindowBox* w = SceneManager::instance()->currentState()->getEntity("RestaurantsPanel")->getComponent<WindowBox>();
+	WindowBox* c = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<WindowBox>();
+	if (boolean == "True") {
+		w->getWindow()->show();
+		c->getWindow()->hide();
+	}
+	else {
+		w->getWindow()->hide();
+		c->getWindow()->show();
+	}
+
+	return true;
+}
+
+// PANEL DE LOS TIPOS DE BAÑOS
+bool CallbackManager::setToiletsConstructionActive(std::string boolean)
+{
+	WindowBox* w = SceneManager::instance()->currentState()->getEntity("ToiletsPanel")->getComponent<WindowBox>();
+	WindowBox* c = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<WindowBox>();
+	if (boolean == "True") {
+		w->getWindow()->show();
+		c->getWindow()->hide();
+	}
+	else {
+		w->getWindow()->hide();
+		c->getWindow()->show();
+	}
+
 	return true;
 }

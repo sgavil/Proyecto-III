@@ -19,9 +19,11 @@ public:
 	void setBackgroundVisible(string boolean);
 	void setColorText(string topLeft, string topRight, string botLeft, string botRight);
 
+	CEGUI::Window* getStaticText() { return staticText_; };
 
 private:
 	std::string text;
+	CEGUI::Window* staticText_;
 };
 
 REGISTER_TYPE(TextBox)

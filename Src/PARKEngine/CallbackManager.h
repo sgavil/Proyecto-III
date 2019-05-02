@@ -20,8 +20,16 @@ private:
 	bool MusicVolumeChange(std::string vol);
 
 	//Callbacks para la construccion
-	bool setConstructModeActive(std::string s);
 	bool construct(std::string buildName);
+
+	//Callbacks para activar y desactivar paneles
+	bool setToolsPanelActive(std::string boolean);
+	bool setConstructPanelActive(std::string boolean);
+	bool setRoadConstructionActive(std::string boolean);
+	bool setAmusementsConstructionActive(std::string boolean);
+	bool setRestaurantsConstructionActive(std::string boolean);
+	bool setToiletsConstructionActive(std::string boolean);
+	bool setInfoPanelActive(std::string boolean);
 public:
 	static CallbackManager* instance();
 	
