@@ -251,6 +251,7 @@ void NPC::deambulate(unsigned int time)
 			Vector2 srcPos = node_->getMatrixPos();
 			Vector2 adyPos = adyNode->getMatrixPos();
 			//1. Adyacente correcta   2. Es un camino  3. No venimos de ahí
+
 			if (adyacenteCorrecta(srcPos, adyPos) &&
 				(adyNode->getType() == "Road" || adyNode->getType() == "EntryRoad" || adyNode->getType() == "ExitRoad") &&
 				adyNode != prevNode_)

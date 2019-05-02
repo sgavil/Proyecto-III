@@ -21,6 +21,7 @@ Edificio::~Edificio()
 void Edificio::update(unsigned int time)
 {
 	//Tiene cola, aforo, etc. (no es un camino)
+
 	if (type_ != BuildingType::Ornament)
 	{
 		actDuration_ -= time;
