@@ -103,12 +103,16 @@ void ConstructionMode::buildInMatrix(int i, int j, std::string name)
 	//Modificar el tipo de nodos de la matriz
 	for (int x = i; x < build_->getTamX() + i; x++) {
 		for (int z = j; z < build_->getTamY() + j; z++) {
-			m->getEntityNode(x, z)->getComponent<Node>()->setType(name);
+			if (name == "Road")
+				m->getEntityNode(x, z)->getComponent<Node>()->setType(Node::NodeType::Road);
+			else
+				m->getEntityNode(x, z)->getComponent<Node>()->setType(Node::NodeType::Building);
 		}
 	}
 
 	// Poner la entrada y la salida
-	if (build_->getBuildingName() != "Road") setEntryExit();
+	if (build_->getType() != Edificio::BuildingType::Ornament)
+		setEntryExit();
 
 }
 
@@ -176,7 +180,7 @@ bool ConstructionMode::canConstruct(int n)
 {
 	if (nodes_.size() < n) return false;
 	for (Entity* e : nodes_)
-		if (e->getComponent<Node>()->getType() != "Empty")
+		if (e->getComponent<Node>()->getType() != Node::NodeType::Empty)
 			return false;
 
 	return true;
@@ -202,7 +206,14 @@ Ogre::Vector3 ConstructionMode::getPosToConstruct()
 void ConstructionMode::setNodesType()
 {
 	for (Entity* e : nodes_) {
-		e->getComponent<Node>()->setType(build_->getBuildingName());
+		
+			Edificio::BuildingType bType = build_->getType();
+			//Camino
+			if (bType == Edificio::BuildingType::Ornament)
+				e->getComponent<Node>()->setType(Node::NodeType::Empty);
+			//Edificio de verdad
+			else
+				e->getComponent<Node>()->setType(Node::NodeType::Building);
 	}
 }
 
@@ -227,7 +238,7 @@ void ConstructionMode::setBuilding()
 	bureauCrazyManager_->setActualMoney(-build_->getPrice());
 
 
-	if (build_->getBuildingName() != "Road") {
+	if (build_->getType() != Edificio::BuildingType::Ornament) {
 		setEntryExit();
 		constructActive_ = false;
 	}
@@ -260,10 +271,17 @@ void ConstructionMode::createEntryExitRoad(string roadName)
 	int nZ = z / m->getNodeSize().z + m->getMatrix()[0].size() / 2;
 	//Nodo de la matriz
 	Node* node = m->getEntityNode(nZ, nX)->getComponent<Node>();
-	node->setType(roadName);
 	//LO PONGO AQUI PROVISIONALMENTE
-	if (roadName == "EntryRoad") build_->setEntryNode(node);
-	else build_->setExitNode(node);
+	if (roadName == "EntryRoad")
+	{
+		node->setType(Node::NodeType::EntryRoad);
+		build_->setEntryNode(node);
+	}
+	else
+	{
+		node->setType(Node::NodeType::ExitRoad);
+		build_->setExitNode(node);
+	}
 	ePos = Ogre::Vector3(x, e->getComponent<Edificio>()->getHeight(), z);
 	e->getComponent<Transform>()->setPosition(ePos);
 	e->getComponent<MeshRenderer>()->start();

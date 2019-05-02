@@ -33,19 +33,19 @@
 			  "exigency": 2,
 			   "stats": [
 			  {
-				"name": "fun",
+				"name": "Fun",
 				"value": 5,
 				"maxValue": 10,
 				"decreases": true
 			  },
 			  {
-				"name": "hunger",
-				"value": 0,
+				"name": "Hunger",
+				"value": 6,
 				"maxValue": 10,
 				"decreases": false
 			  },
 			  {
-				"name": "peepee",
+				"name": "Peepee",
 				"value": 0,
 				"maxValue": 10,
 				"decreases": false
@@ -96,11 +96,7 @@
       }
     },
     {
-      "name": "Node",
-      "parameters": 
-      {
-        "nodeType": "EMPTY"
-      }
+      "name": "Node"
     }
   ],
 

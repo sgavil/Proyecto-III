@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node() : posMatrix_({0, 0}), nodeType_("Empty")
+Node::Node() : posMatrix_({ 0, 0 }), nodeType_(NodeType::Empty)
 {
 }
 
@@ -10,8 +10,7 @@ Node::~Node()
 
 void Node::load(json file)
 {
-	//json type = file["nodeType"];
-	nodeType_ = "Empty";
+	nodeType_ = NodeType::Empty;
 }
 
 void Node::setMatrixPos(int i, int j)
@@ -24,12 +23,12 @@ Vector2 Node::getMatrixPos()
 	return posMatrix_;
 }
 
-string Node::getType()
+Node::NodeType Node::getType()
 {
 	return nodeType_;
 }
 
-void Node::setType(string t)
+void Node::setType(NodeType t)
 {
 	nodeType_ = t;
 }

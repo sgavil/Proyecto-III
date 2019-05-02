@@ -1,12 +1,11 @@
 #pragma once
-#include <PARKEngine/Component.h>
+#include "Edificio.h"
 #include "IndexPQ.h"
 #include <stack>
 #include <string>
 
 class Node;
 class Matrix;
-class Edificio;
 
 //Estadística del NPC. Indica el nombre del stat, sus valores actual y máximo, la exigencia(velocidad a la que cambia y cuánto recupera)
 //, y si aumenta/disminuye con el tiempo
@@ -16,6 +15,12 @@ public:
 	Stat(std::string name, float value, float maxVal, float exigency, bool decreases)
 	{
 		name_ = name;
+		if (name == "Hunger")
+			restorer_ = Edificio::BuildingType::Restaurant;
+		else if (name == "Peepee")
+			restorer_ = Edificio::BuildingType::Toilet;
+		else if (name == "Fun")
+			restorer_ = Edificio::BuildingType::Amusement;
 		value_ = value;
 		MAX_VALUE = maxVal;
 		exigency_ = exigency;
@@ -55,6 +60,7 @@ public:
 	Stat() {}
 
 	std::string name_;
+	Edificio::BuildingType restorer_;
 	float value_;
 	float MAX_VALUE;
 	float exigency_;
@@ -144,7 +150,7 @@ private:
 	IndexPQ<int> pq; //Cola de prioridad 
 	std::vector<int > distTo; //Distancia entre el nodo inicial y los demás
 	std::vector<int > nodeTo; //Indicador del camino que hacemos
-	//Cola que indica los movimientos que seguirá el NPC
+							  //Cola que indica los movimientos que seguirá el NPC
 	std::stack<Node*> movements;
 
 
@@ -161,6 +167,8 @@ private:
 	void moveToNode(Node* n, int deltaTime);
 	//Follows current path
 	void followPath(unsigned int time);
+	//Intenta salir del parque
+	void exitPARK();
 	//Encuentra el edificio a partir de su nodo de entrada
 	Edificio* NPC::getBuilding(Node* eNode);
 	//Indica si necesitamos algo

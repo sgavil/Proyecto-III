@@ -6,7 +6,7 @@
 #include "../ConstructionMode.h"
 
 Matrix::Matrix()
-	: mSize_({ 0 ,0 }), nSize_({0, 0, 0})
+	: mSize_({ 0 ,0 }), nSize_({ 0, 0, 0 })
 {
 }
 
@@ -51,13 +51,13 @@ void Matrix::start()
 	json data = matrixFile["data"];
 	json corresp = matrixFile["correspondence"];
 
-	for (int i = 0; i < matrix_.size(); i++) 
+	for (int i = 0; i < matrix_.size(); i++)
 	{
-		for (int j = 0; j < matrix_[0].size(); j++) 
+		for (int j = 0; j < matrix_[0].size(); j++)
 		{
 			Node* actualNode = matrix_.at(i).at(j)->getComponent<Node>();
 			//Si no hemos construido en ese nodo (para las atracciones, que ocupan más de una casilla)
-			if (actualNode->getType() == "Empty")
+			if (actualNode->getType() == Node::NodeType::Empty)
 			{
 				int value = data[mSize_.y * i + j];
 				std::string buildingType = corresp[std::to_string(value)];

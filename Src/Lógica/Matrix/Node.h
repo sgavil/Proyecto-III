@@ -6,6 +6,7 @@ using namespace std;
 class Node : public Component
 {
 public:
+	enum NodeType { Empty, Road, EntryRoad, ExitRoad, Building };
 	Node();
 	~Node();
 
@@ -20,12 +21,12 @@ public:
 	//Devuelve la posición en la matriz (fila, columna)
 	Vector2 getMatrixPos();
 
-	string getType();
-	void setType(string t);
+	NodeType getType();
+	void setType(NodeType t);
 
 private:
 	Ogre::Vector2 posMatrix_;
-	string nodeType_;
+	NodeType nodeType_;
 
 	//Componente asociado al edificio
 

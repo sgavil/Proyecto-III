@@ -57,6 +57,9 @@ void NPC::update(unsigned int time)
 		else if (lowStats())
 		{
 			lookForBuildings();
+			//He can't reach the building he needs (get out of the park)
+			if (!hasPath)
+				exitPARK();
 		}
 
 		//3. He just walks around
@@ -67,6 +70,9 @@ void NPC::update(unsigned int time)
 
 void NPC::followPath(unsigned int time)
 {
+	//We can be in a path when...
+	//1. We're going to a certain building
+	//2. We're getting out of the park
 	Node* n = movements.top();
 	//Not in that node yet (move towards it)
 	if (node_ != n)
@@ -78,14 +84,26 @@ void NPC::followPath(unsigned int time)
 		movements.pop();
 		//If path ended
 		if (movements.empty())
-			enterAttraction();
+		{
+			hasPath = false;
+			//We arrived to the building
+			if (actualBuilding_ != nullptr)
+				enterAttraction();
+			//We arrived to the PARK entrance
+			else //TODO: esto se deja basura seguro
+			{
+				getBrotherComponent<MeshRenderer>()->setVisible(false);
+				entity_->setActive(false);
+			}
+				
+			//SceneManager::instance()->currentState()->removeEntity(getEntity()->getName()); //remove from scene
+		}
 	}
 }
 
 void NPC::enterAttraction()
 {
 	//std::cout << "LLEGUÉ A LA ATRACCIÓN" << std::endl;
-	hasPath = false;
 	isInBuilding_ = true;
 	speed_ /= 1.5;
 
@@ -133,6 +151,13 @@ void NPC::getOutofAttraction()
 	//Flags
 	actualBuilding_ = nullptr;
 	isInBuilding_ = false;
+}
+
+void NPC::exitPARK()
+{
+	hasPath = true;
+	speed_ *= 1.5;
+	movements.push(matrix_->getEntrance());
 }
 
 void NPC::setNode(Node * node)
@@ -194,12 +219,13 @@ void NPC::lookForBuildings()
 			//Quitamos diagonales y la propia casilla
 			if (adyacenteCorrecta(srcPos, adyPos))
 			{
-				if (adyNode->getType() == "EntryRoad") //&& me satisface
+				if (adyNode->getType() == Node::NodeType::EntryRoad)
 				{
 					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
 					Edificio* b = getBuilding(adyNode);
 
-					if (b->getType() != Edificio::BuildingType::Ornament)
+					//The building provides us what we need
+					if (b->getType() == lowerStat().restorer_)
 					{
 						nodoActual = adyNode;
 						actualBuilding_ = b;
@@ -208,7 +234,7 @@ void NPC::lookForBuildings()
 					}
 				}
 				//Explore other nodes
-				else if (adyNode->getType() == "Road" || adyNode->getType() == "ExitRoad") //|| adyNode->getType() == "Road")
+				else if (adyNode->getType() == Node::NodeType::Road || adyNode->getType() == Node::NodeType::ExitRoad)
 					relax(n.elem, calculateIndex(adyPos.x, adyPos.y));
 			}
 		}
@@ -232,7 +258,7 @@ void NPC::lookForBuildings()
 		speed_ *= 1.5;
 	}
 	else
-		std::cout << "NO HAY ATRACCIONES DISPONIBLES: ME VOY DEL PARQUE" << std::endl;
+		std::cout << "Can't restore: " << lowerStat().name_ << ". I'm leaving PARK" << std::endl;
 }
 
 
@@ -251,9 +277,8 @@ void NPC::deambulate(unsigned int time)
 			Vector2 srcPos = node_->getMatrixPos();
 			Vector2 adyPos = adyNode->getMatrixPos();
 			//1. Adyacente correcta   2. Es un camino  3. No venimos de ahí
-
 			if (adyacenteCorrecta(srcPos, adyPos) &&
-				(adyNode->getType() == "Road" || adyNode->getType() == "EntryRoad" || adyNode->getType() == "ExitRoad") &&
+				(adyNode->getType() == Node::NodeType::Road || adyNode->getType() == Node::NodeType::EntryRoad || adyNode->getType() == Node::NodeType::ExitRoad) &&
 				adyNode != prevNode_)
 				candidates.push_back(adyNode);
 			it++;
@@ -324,7 +349,7 @@ void NPC::moveToNode(Node* n, int deltaTime)
 	delta = delta * speed_ * ((float)deltaTime / 10);
 	delta.y = 0;//We dont want to move in that axis
 
-	//Lo movemos
+				//Lo movemos
 	trans->translate(delta);
 
 	//Update current node
@@ -343,9 +368,13 @@ bool NPC::lowStats()
 
 const Stat& NPC::lowerStat()
 {
-	if (fun_.value_ < peepee_.value_ && fun_.value_ < hunger_.value_)
+	float funPriority = fun_.value_;
+	float hungerPriority = hunger_.MAX_VALUE - hunger_.value_;
+	float peepeePriority = peepee_.MAX_VALUE - peepee_.value_;
+
+	if (funPriority < peepeePriority && funPriority < hungerPriority)
 		return fun_;
-	else if (peepee_.value_ < fun_.value_ && peepee_.value_ < hunger_.value_)
+	else if (peepeePriority < funPriority && peepeePriority < hungerPriority)
 		return peepee_;
 	else
 		return hunger_;
