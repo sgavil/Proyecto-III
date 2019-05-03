@@ -69,6 +69,13 @@ void NPC::update(unsigned int time)
 		else
 			deambulate(time);
 	}
+	else
+	{
+		//Needs restoring
+		peepee_.restore((float)actualBuilding_->getPeePeeValue() / (float)actualBuilding_->getDuration() * time);
+		fun_.restore((float)actualBuilding_->getFunValue() / (float)actualBuilding_->getDuration() * time);
+		hunger_.restore((float)actualBuilding_->getHungryValue() / (float)actualBuilding_->getDuration() * time);
+	}
 }
 
 void NPC::followPath(unsigned int time)
@@ -140,11 +147,6 @@ Edificio* NPC::getBuilding(Node* eNode)
 
 void NPC::getOutofAttraction()
 {
-	//Needs restored
-	peepee_.restore(actualBuilding_->getPeePeeValue());
-	fun_.restore(actualBuilding_->getFunValue());
-	hunger_.restore(actualBuilding_->getHungryValue());
-
 	//Get out of the building and set position
 	node_ = prevNode_ = actualBuilding_->getExitNode();
 	nextNode_ = nullptr;
@@ -182,6 +184,11 @@ void NPC::load(json file)
 	fun_ = Stat(stat[0]["name"], stat[0]["value"], stat[0]["maxValue"], exigency_, stat[0]["decreases"]);
 	hunger_ = Stat(stat[1]["name"], stat[1]["value"], stat[1]["maxValue"], exigency_, stat[1]["decreases"]);
 	peepee_ = Stat(stat[2]["name"], stat[2]["value"], stat[2]["maxValue"], exigency_, stat[2]["decreases"]);
+
+	//Nombre aleatorio del archivo
+	json names =  ResourceManager::instance()->getJsonByKey(file["nameFile"]);
+	int rnd = std::rand() % names.size();
+	entity_->setName(names[rnd]);
 }
 
 void NPC::lookForBuildings()

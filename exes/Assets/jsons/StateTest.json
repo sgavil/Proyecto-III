@@ -515,7 +515,7 @@
           "name": "TextBox",
           "type": "Vanilla/StaticText",
           "font": "DejaVuSans-10",
-          "text": "FELICIDAD",
+          "text": "DIVERSION",
           "alignText": "Left",
           "backgroundEnabled": "False",
           "textColor":
@@ -559,7 +559,7 @@
           "name": "TextBox",
           "type": "Vanilla/StaticText",
           "font": "DejaVuSans-10",
-          "text": "COMIDA",
+          "text": "HAMBRE",
           "alignText": "Left",
           "backgroundEnabled": "False",
           "textColor":
@@ -672,11 +672,11 @@
               "name": "PeePeeText"
             }
           ],
-          "posX": 0.15,
-          "posY": 0.75,
-          "sizeX": 140,
+          "posX": 0.75,
+          "posY": 0.05,
+          "sizeX": 160,
           "sizeY": 120,
-          "offsetX": -100,
+          "offsetX": 0,
           "offsetY": 0
         }
       ]

@@ -31,6 +31,7 @@
 		  {
 			  "speed": 1,
 			  "exigency": 2,
+			  "nameFile": "NPCNames.json",
 			   "stats": [
 			  {
 				"name": "Fun",
@@ -40,7 +41,7 @@
 			  },
 			  {
 				"name": "Hunger",
-				"value": 6,
+				"value": 0,
 				"maxValue": 10,
 				"decreases": false
 			  },
