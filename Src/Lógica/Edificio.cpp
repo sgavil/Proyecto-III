@@ -49,6 +49,7 @@ void Edificio::montar()
 		if (!cola.empty()) {
 			Entity* e = cola.front();
 			e->getComponent<MeshRenderer>()->setVisible(false);
+			e->getComponent<NPC>()->enterAttraction();
 			rideing.push_back(cola.front());
 			cola.pop();
 		}

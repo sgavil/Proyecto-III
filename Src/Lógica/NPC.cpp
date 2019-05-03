@@ -8,7 +8,7 @@
 #include <cmath>
 
 //TODO: rotar los NPC en función de la dirección a la que van
-NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr), waitingForQueue_(false)
+NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr), isInQueue_(false)
 {
 }
 
@@ -53,10 +53,8 @@ void NPC::update(unsigned int time)
 		//1. NPC has an avaiable path
 		if (hasPath)
 			followPath(time);
-		//2. NPC is waiting to enter a queue
-		else if (waitingForQueue_)
-			enterAttraction();
-		//3. NPC realises he needs to eat/pee/he's bored
+		else if (isInQueue_) {}
+		//2. NPC realises he needs to eat/pee/he's bored
 		else if (lowStats())
 		{
 			lookForBuildings();
@@ -65,7 +63,7 @@ void NPC::update(unsigned int time)
 				exitPARK();
 		}
 
-		//4. He just walks around
+		//3. He just walks around
 		else
 			deambulate(time);
 	}
@@ -98,7 +96,7 @@ void NPC::followPath(unsigned int time)
 			hasPath = false;
 			//We arrived to the building
 			if (actualBuilding_ != nullptr)
-				enterAttraction();
+				enterQueue(); //Tries to enter
 			//We arrived to the PARK entrance
 			else //TODO: esto se deja basura seguro
 			{
@@ -111,18 +109,20 @@ void NPC::followPath(unsigned int time)
 	}
 }
 
-//'tries' to enter an attraction
-void NPC::enterAttraction()
+void NPC::enterQueue()
 {
 	//Hay hueco en la cola
 	if (actualBuilding_->encolar(getEntity()))
 	{
-		waitingForQueue_ = false;
-		isInBuilding_ = true;
+		isInQueue_ = true;
 		speed_ /= 1.5;
 	}
-	else
-		waitingForQueue_ = true;
+}
+
+void NPC::enterAttraction()
+{
+	isInBuilding_ = true;
+	isInQueue_ = false;
 }
 
 Edificio* NPC::getBuilding(Node* eNode)
@@ -337,8 +337,8 @@ bool NPC::adyacenteCorrecta(Vector2 src, Vector2 dst)
 bool NPC::isInNode(Node* n)
 {
 	Vector3 nodeSize = matrix_->getNodeSize();
-	Vector3 newNodeMin = n->getBrotherComponent<Transform>()->getPosition() - nodeSize / 4;
-	Vector3 newNodeMax = n->getBrotherComponent<Transform>()->getPosition() + nodeSize / 4;
+	Vector3 newNodeMin = n->getBrotherComponent<Transform>()->getPosition() - nodeSize / 3;
+	Vector3 newNodeMax = n->getBrotherComponent<Transform>()->getPosition() + nodeSize / 3;
 
 	//Check AABB
 	Vector3 actualPos = getBrotherComponent<Transform>()->getPosition();
@@ -351,6 +351,11 @@ void NPC::moveToNode(Node* n, int deltaTime)
 	Transform* trans = getBrotherComponent<Transform>();
 	Transform* nextTrans = n->getBrotherComponent<Transform>();
 
+	//Posición destino
+	//TODO: movimiento menos lineal
+	//float random = static_cast <float> (std::rand()) / static_cast <float> (RAND_MAX); //random de 0 - 1
+	//Vector3 nodeSize = matrix_->getNodeSize();
+	//Vector3 dstPos = (nextTrans->getPosition() - nodeSize / 2) + Vector3(nodeSize.x * random, 0, nodeSize.z * random);
 	//Vector unitario de la dirección
 	Vector3 delta = (nextTrans->getPosition() - trans->getPosition());
 	delta.normalise();
@@ -358,7 +363,7 @@ void NPC::moveToNode(Node* n, int deltaTime)
 	delta = delta * speed_ * ((float)deltaTime / 10);
 	delta.y = 0;//We dont want to move in that axis
 
-				//Lo movemos
+	//Lo movemos
 	trans->translate(delta);
 
 	//Update current node

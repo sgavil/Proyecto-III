@@ -110,6 +110,9 @@ public:
 	Stat getHunger() { return hunger_; };
 	Stat getPeepee() { return peepee_; };
 
+	//Entra en la atracción
+	void enterAttraction();
+
 
 private:
 	//ATRIBUTOS DE JSON
@@ -129,7 +132,7 @@ private:
 	//Está en una atracción
 	bool isInBuilding_;
 	//Esperando para entrar en la cola
-	bool waitingForQueue_;
+	bool isInQueue_;
 
 
 
@@ -177,8 +180,9 @@ private:
 	bool lowStats();
 	//Indica la stat más baja
 	const Stat& lowerStat();
-	//Entra en la atracción
-	void enterAttraction();
+	//Se pone a esperar en la cola
+	void enterQueue();
+
 };
 
 REGISTER_TYPE(NPC);
