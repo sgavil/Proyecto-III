@@ -60,7 +60,7 @@ bool ConstructionMode::handleEvent(unsigned int time)
 	if (InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
 	{
 		CEGUI::Window* w = CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse();
-		if (canConst_ && w->getName() == "StateTest") {
+		if (canConst_ && w->getName() == "StatePlay") {
 			setBuilding();
 			matrixEntity_->getComponent<Matrix>()->getInfo();
 		}
