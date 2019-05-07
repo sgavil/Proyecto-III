@@ -25,8 +25,8 @@ ConstructionMode::~ConstructionMode()
 void ConstructionMode::load(json file)
 {
 	
-	for (json b : file["BuildingsNames"]){
-		buildingTypes_.push_back(b["name"]);
+	for (std::string s : file["BuildingsNames"]){
+		buildingTypes_.push_back(s);
 	}
 
 }

@@ -13,66 +13,12 @@
             "y": 500,
             "z": 500
          }
-        }
-      ]
-    },
-	{
-      "name": "Simbad1",
-      "Components": [
-        {
-          "name": "Transform",
-		  "position": 
-		  {
-            "x": 0,
-            "y": 600,
-            "z": 100
-          },
-		  "scale": 
-		  {
-			"x": 2,
-			"y": 1,
-			"z": 2
-		  }
-		},
-		{
-		 "name": "MeshRenderer",
-		 "mesh": "ogrehead.mesh",
-		 "visible" : true
-		},
-		{
-		 "name": "Rigidbody",
-		 "mass": 0
-		}
-     ]
-    },
-	{
-      "name": "Simbad2",
-      "Components": [
-        {
-          "name": "Transform",
-		  "position": 
-		  {
-            "x": 0,
-            "y": 500,
-            "z": 100
-          },
-		  "scale": 
-		  {
-			"x": 2,
-			"y": 0.5,
-			"z": 2
-		  }
-		},
-		{
-		 "name": "MeshRenderer",
-		 "mesh": "ogrehead.mesh",
-		 "visible" : true
-		},
+        },
 		{
 		 "name": "Rigidbody",
 		 "mass": 10
 		}
-     ]
+      ]
     },
     {
       "name": "MainMenuButton",
@@ -773,27 +719,13 @@
             }
           ],
           "BuildingsNames": [
-            {
-              "name": "Empty"
-            },
-            {
-              "name": "Road"
-            },
-            {
-              "name": "Toilet"
-            },
-        		{
-        		  "name" : "Patitos"
-        		},
-        		{
-        		  "name" : "Burguer"
-        		},
-            {
-              "name" : "EntryRoad"
-            },
-            {
-              "name" : "ExitRoad"
-            }
+			  "Empty",
+			  "Road",
+			  "Toilet",
+			  "Patitos",
+			  "Burguer",
+			  "EntryRoad",
+			  "ExitRoad"
           ]
         }
       ]
@@ -804,17 +736,6 @@
         {
           "name": "Matrix",
 		  "file": "Matrix.json"
-        }
-      ]
-    },
-	{
-      "name": "CameraManager",
-      "Components": [
-        {
-          "name": "CameraManager",
-		  "maxHeigth": 1000,
-		  "minHeigth": 20,
-		  "borders": 0.02
         }
       ]
     },
@@ -845,6 +766,22 @@
             "ActualMoney" : 100000,
             "InitVisitors" : 3
           }
+        }
+      ]
+    },
+	{
+      "name": "CameraManager",
+      "Components": [
+        {
+          "name": "CameraManager",
+		  "maxHeigth": 1000,
+		  "minHeigth": 20,
+		  "borders": 0.02,
+		  "Listeners": [
+		   {
+		      "name": "BureauCrazyManager"
+	       }
+          ]
         }
       ]
     }

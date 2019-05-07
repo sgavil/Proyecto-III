@@ -9,7 +9,7 @@
 
 
 
-Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr)
+Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr), mass_(0), dims_(nullptr)
 {
 }
 
@@ -23,29 +23,29 @@ Rigidbody::Rigidbody(Transform* transform, Shape shape, float mass) : transform_
 
 void Rigidbody::load(json file)
 {
-	//json dimensions = file["dimensions"];
-	//Vector3 dims;
-	//dims.x = dimensions["x"];
-	//dims.y = dimensions["y"];
-	//dims.z = dimensions["z"];
+	addParameter(mass_, file["mass"]);
 
-	mass_ = file["mass"];
+	if(file.contains("dimensions"))
+	{
+		json dimensions = file["dimensions"];
+		dims_ = new Vector3(dimensions["x"], dimensions["y"], dimensions["z"]);
+	}
 }
 
 void Rigidbody::start()
 {
 	MeshRenderer* renderer = entity_->getComponent<MeshRenderer>();
-	Vector3 dims;
-	//Create the rigidbody
-	if (renderer != nullptr)
+	//Create the rigidbody from mesh
+	if (dims_ == nullptr && renderer != nullptr)
 	{
 		Vector3 aabbMin, aabbMax; renderer->getAABB(aabbMin, aabbMax); //¿CUANDO TIENE VALOR VALIDO?
-		dims = aabbMax - aabbMin;
+		dims_ = new Vector3(aabbMax - aabbMin);
 	}
-	else
-		dims = Vector3(1, 1, 1);
+	else if (dims_ == nullptr)
+		dims_ = new Vector3(1, 1, 1);
 
-	rigid_ = PhysicsManager::createRigidBody(BoxShape, dims, mass_);
+	rigid_ = PhysicsManager::createRigidBody(BoxShape, *dims_, mass_);
+
 	//Set position
 	transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
@@ -65,7 +65,8 @@ void Rigidbody::start()
 
 Rigidbody::~Rigidbody()
 {
-
+	delete dims_;
+	dims_ = nullptr;
 }
 
 void Rigidbody::update(unsigned int time)
@@ -168,6 +169,39 @@ void Rigidbody::setPosition(Vector3 destiny)
 
 	//Set it
 	rigid_->setWorldTransform(trans);
+}
+
+Transform* Rigidbody::getTransform()
+{
+	btTransform btTrans = getBtTransform();
+	Quaternion rot = btTrans.getRotation();
+
+	Transform t = Transform(getPosition(), rot, transform_->getScale());
+	return &t;
+}
+
+void Rigidbody::setTransform(Transform* transform)
+{
+	Vector3 pos = transform->getPosition();
+	Quaternion rot = transform->getRotation();
+
+	//Get actual transform and change position
+	btTransform btTrans = getBtTransform();
+	btTrans.setOrigin(btVector3(pos.x, pos.y, pos.z));
+	btTrans.setRotation(btQuaternion(rot.x, rot.y, rot.z, rot.w));
+
+	//Set it
+	rigid_->setWorldTransform(btTrans);
+}
+
+float Rigidbody::getRestitution()
+{
+	return rigid_->getRestitution();
+}
+
+void Rigidbody::setRestitution(float restitution)
+{
+	rigid_->setRestitution(restitution);
 }
 
 btTransform Rigidbody::getBtTransform()

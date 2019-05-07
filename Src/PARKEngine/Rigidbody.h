@@ -71,6 +71,18 @@ public:
 	//Sets rigidbody's position
 	void setPosition(Vector3 destiny);
 
+	//Position
+	//Returns rigidbody's position
+	Transform* getTransform();
+	//Sets rigidbody's position
+	void setTransform(Transform* transform);
+
+	//Restitution
+	//Returns rigidbody's position
+	float getRestitution();
+	//Sets rigidbody's position
+	void setRestitution(float restitution);
+
 	//Returns a string with indented information of the rigidbody
 	virtual std::string getInfo();
 
@@ -79,6 +91,7 @@ protected:
 	btRigidBody* rigid_;
 	Transform* transform_;
 	float mass_;
+	Vector3* dims_;
 
 	btTransform getBtTransform();
 };

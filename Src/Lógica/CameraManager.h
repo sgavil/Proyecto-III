@@ -5,6 +5,7 @@
 class Camera;
 class Transform;
 class Matrix;
+class Rigidbody;
 
 class CameraManager : public Component
 {
@@ -23,6 +24,7 @@ protected:
 	//References to Camera's components
 	Camera * cam_;
 	Transform* camTransform_;
+	Rigidbody* camRigid_;
 
 	//Moves the camera a certain increment
 	virtual void moveCamera(Vector3 deltaPos);
@@ -38,6 +40,8 @@ protected:
 	float borders_;
 
 	bool rotating_;
+	bool firstPerson_;
+
 };
 
 REGISTER_TYPE(CameraManager)

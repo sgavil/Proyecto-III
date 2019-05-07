@@ -96,6 +96,10 @@
         "visible" : false
       }
     },
+	{
+		 "name": "Rigidbody",
+		 "mass": 0
+	},
     {
       "name": "Node"
     }
