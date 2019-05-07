@@ -63,6 +63,12 @@ void Camera::receive(Message* msg)
 
 void Camera::save(json& file)
 {
+	//Comprobamos si existe o no el nombre y si no es así , lo creamos
+	
+	auto j3 = json::parse("{ \"happy\": true, \"pi\": 3.141 }");
+	file["Entities"][0] = json::parse("\"name\": Camera");
+	//Guardamos el componente y si no existe el array de componentes, lo creamos
+
 	////guardar el nombre de la entidad en caso de que no exista
 	//bool found = false;
 	//json entidad;
