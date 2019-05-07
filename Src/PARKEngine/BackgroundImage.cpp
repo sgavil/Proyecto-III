@@ -30,7 +30,8 @@ void BackgroundImage::load(json file)
 	rect->setMaterial(material);
 
 
-	rect->setRenderQueueGroup(Ogre::RENDER_QUEUE_BACKGROUND);
+	rect->setRenderQueueGroup(Ogre::RENDER_QUEUE_OVERLAY);
+	
 
 	Ogre::AxisAlignedBox aabInf;
 	aabInf.setInfinite();

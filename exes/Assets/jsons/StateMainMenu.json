@@ -29,7 +29,7 @@
           "type": "Vanilla/Button",
           "font": "Carnevalee Freakshow-32",
           "callback": "onChangeState",
-          "parameter": "StateTest",
+          "parameter": "StatePlay",
           "text": "PLAY",
           "posX": 0.5,
           "posY": 0.2,
