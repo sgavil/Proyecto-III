@@ -12,7 +12,7 @@
             "x": 0,
             "y": 500,
             "z": 500
-          }
+         }
         }
       ]
     },
@@ -745,11 +745,6 @@
       "Components": [
         {
           "name": "Matrix",
-		    "nodeSize": {
-			"x": 50,
-			"y": 50,
-			"z": 50
-			},
 		  "file": "Matrix.json"
         }
       ]
