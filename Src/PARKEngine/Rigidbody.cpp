@@ -34,10 +34,17 @@ void Rigidbody::load(json file)
 
 void Rigidbody::start()
 {
-	//Create the rigidbody
 	MeshRenderer* renderer = entity_->getComponent<MeshRenderer>();
-	Vector3 aabbMin, aabbMax; renderer->getAABB(aabbMin, aabbMax); //¿CUANDO TIENE VALOR VALIDO?
-	Vector3 dims = aabbMax - aabbMin;
+	Vector3 dims;
+	//Create the rigidbody
+	if (renderer != nullptr)
+	{
+		Vector3 aabbMin, aabbMax; renderer->getAABB(aabbMin, aabbMax); //¿CUANDO TIENE VALOR VALIDO?
+		dims = aabbMax - aabbMin;
+	}
+	else
+		dims = Vector3(1, 1, 1);
+
 	rigid_ = PhysicsManager::createRigidBody(BoxShape, dims, mass_);
 	//Set position
 	transform_ = entity_->getComponent<Transform>();
