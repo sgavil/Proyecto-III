@@ -389,6 +389,53 @@
       ]
     },
     {
+      "name": "ConstructLanzaderaButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "DejaVuSans-10",
+          "callback": "construct",
+          "parameter": "Lanzadera",
+          "text": "LANZADERA",
+          "posX": 0.5,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextPriceLanzadera",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Lanzadera",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "700 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.5,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "AmusementsPanel",
       "Components": [
         {
@@ -405,6 +452,7 @@
             {
               "name": "ConstructPatitosButton"
             },
+            
             {
               "name": "TextPricePatitos"
             },
@@ -413,6 +461,12 @@
             },
             {
               "name": "TextPriceNoria"
+            },
+            {
+              "name": "ConstructLanzaderaButton"
+            },
+            {
+              "name": "TextPriceLanzadera"
             }
           ],
           "posX": 0.3,

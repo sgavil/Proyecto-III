@@ -18,6 +18,36 @@
             }
         },
         {
+          "parameters":
+          {
+            "Price": 500,
+            "Type": 2,
+            "PeePee": 0,
+            "Hungry": 10,
+            "Fun": 20,
+            "Tam_Cola": 5,
+            "Tam":
+            {
+              "x": 2,
+              "y": 2
+            },
+            "Height": 20,
+            "Entry":
+            {
+              "x": 2,
+              "y": 0
+            },
+            "Exit":
+            {
+              "x": 2,
+              "y": 1
+            },
+            "Duration": 5,
+            "Capacity": 2,
+            "bName": "Lanzadera"
+          }
+      },
+        {
             "parameters":
             {
                 "bName": "ExitRoad",
@@ -110,6 +140,38 @@
               "Capacity": 2
             }
         },
+        {
+          "parameters":
+          {
+            "bName": "Lanzadera",
+            "Price": 500,
+            "LockedPrice": 700,
+            "Locked": false,
+            "Type": 2,
+            "PeePee": 0,
+            "Hungry": 10,
+            "Fun": 0,
+            "Tam_Cola": 5,
+            "Tam":
+            {
+              "x": 2,
+              "y": 2
+            },
+            "Height": 20,
+            "Entry":
+            {
+              "x": 2,
+              "y": 0
+            },
+            "Exit":
+            {
+              "x": 2,
+              "y": 1
+            },
+            "Duration": 5,
+            "Capacity": 2
+          }
+      },
         {
             "parameters":
             {

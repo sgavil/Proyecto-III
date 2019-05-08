@@ -199,6 +199,29 @@
       }
     }
   ],
+  "Lanzadera": 
+   [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Lanzadera.mesh",
+        "material": "MaterialLanzadera",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "Lanzadera",
+		    "Type": 2
+      }
+    }
+  ],
   "Burguer": 
   [
     {
@@ -236,11 +259,36 @@
         "visible" : true
       }
     },
+    
     {
       "name": "Edificio",
       "parameters":
       {
         "bName": "Noria",
+		    "Type": 2
+      }
+    }    
+  ],
+  "Lanzadera": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Lanzadera.mesh",
+        "material": "MaterialLanzadera",
+        "visible" : true
+      }
+    },
+    
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "Lanzadera",
 		    "Type": 2
       }
     }    
