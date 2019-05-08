@@ -205,13 +205,13 @@ void ConstructionMode::setNodesType()
 {
 	for (Entity* e : nodes_) {
 		
-			Edificio::BuildingType bType = build_->getType();
-			//Camino
-			if (bType == Edificio::BuildingType::Ornament)
-				e->getComponent<Node>()->setType(Node::NodeType::Empty);
-			//Edificio de verdad
-			else
-				e->getComponent<Node>()->setType(Node::NodeType::Building);
+		Edificio::BuildingType bType = build_->getType();
+		//Camino
+		if (bType == Edificio::BuildingType::Ornament)
+			e->getComponent<Node>()->setType(Node::NodeType::Road);
+		//Edificio de verdad
+		else
+			e->getComponent<Node>()->setType(Node::NodeType::Building);
 	}
 }
 
