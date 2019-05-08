@@ -209,7 +209,7 @@
             }
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.82,
           "sizeX": 500,
           "sizeY": 100,
           "offsetX": -100,
@@ -229,8 +229,36 @@
           "text": "CARRETERA NORMAL",
           "posX": 0.01,
           "posY": 0.05,
-          "sizeX": 80,
+          "sizeX": 120,
           "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextPriceRoad",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Road",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -252,12 +280,15 @@
           "Hijos": [
             {
               "name": "ConstructRoadButton"
+            },
+            {
+              "name": "TextPriceRoad"
             }
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.8,
           "sizeX": 500,
-          "sizeY": 100,
+          "sizeY": 110,
           "offsetX": -100,
           "offsetY": 0
         }
@@ -283,19 +314,28 @@
       ]
     },
     {
-      "name": "ConstructLanzaderaButton",
-      "Components": [
+      "name": "TextPricePatitos",
+      "Components": 
+      [
         {
-          "name": "Button",
-          "type": "Vanilla/Button",
+          "name": "PriceTextBox",
+          "bName": "Patitos",
+          "type": "Vanilla/StaticText",
           "font": "DejaVuSans-10",
-          "callback": "construct",
-          "parameter": "Lanzadera",
-          "text": "LANZADERA",
-          "posX": 0.5,
-          "posY": 0.05,
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -321,6 +361,81 @@
       ]
     },
     {
+      "name": "TextPriceNoria",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Noria",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.255,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ConstructLanzaderaButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "DejaVuSans-10",
+          "callback": "construct",
+          "parameter": "Lanzadera",
+          "text": "LANZADERA",
+          "posX": 0.5,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextPriceLanzadera",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Lanzadera",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "700 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.5,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "AmusementsPanel",
       "Components": [
         {
@@ -339,16 +454,25 @@
             },
             
             {
+              "name": "TextPricePatitos"
+            },
+            {
               "name": "ConstructNoriaButton"
             },
             {
+              "name": "TextPriceNoria"
+            },
+            {
               "name": "ConstructLanzaderaButton"
+            },
+            {
+              "name": "TextPriceLanzadera"
             }
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.8,
           "sizeX": 500,
-          "sizeY": 100,
+          "sizeY": 110,
           "offsetX": -100,
           "offsetY": 0
         }
@@ -374,6 +498,34 @@
       ]
     },
     {
+      "name": "TextPriceBurger",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Burguer",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "RestaurantsPanel",
       "Components": [
         {
@@ -389,12 +541,15 @@
           "Hijos": [
             {
               "name": "ConstructBurguerButton"
+            },
+            {
+              "name": "TextPriceBurger"
             }
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.8,
           "sizeX": 500,
-          "sizeY": 100,
+          "sizeY": 110,
           "offsetX": -100,
           "offsetY": 0
         }
@@ -416,7 +571,7 @@
           "Hijos": [
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.8,
           "sizeX": 500,
           "sizeY": 100,
           "offsetX": -100,
@@ -431,9 +586,9 @@
         {
           "name": "TextBox",
           "type": "Vanilla/StaticText",
-          "font": "98bottlesbold-40",
+          "font": "Carnevalee Freakshow-40",
           "text": "Dinero: 143",
-          "alignText": "Centre",
+          "alignText": "Left",
           "backgroundEnabled": "False",
           "textColor":
           {
@@ -444,7 +599,7 @@
           },
           "posX": 0.015,
           "posY": 0.005,
-          "sizeX": 150,
+          "sizeX": 400,
           "sizeY": 75,
           "offsetX": 0,
           "offsetY": 0
@@ -787,7 +942,7 @@
             "ruptcyMaxTime": 7,
             "floorRuptcyMoney": -40,
             "InitialTime2Tax": 180,
-            "ActualMoney" : 100000,
+            "ActualMoney" : 1500,
             "InitVisitors" : 3
           }
         }

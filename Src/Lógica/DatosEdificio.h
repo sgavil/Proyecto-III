@@ -61,6 +61,8 @@ public:
 	};
 
 	bool getLocked(std::string s) { return findData(s)->Locked_; };
+	void setLocked(std::string s, bool b);
+
 	int getPeePeeRestore(std::string s) { return  findData(s)->PeePeeRestore_; };
 	int getHungryRestore(std::string s) { return  findData(s)->HungryRestore_; };
 	int getFunRestore(std::string s) { return  findData(s)->funRestore_; };

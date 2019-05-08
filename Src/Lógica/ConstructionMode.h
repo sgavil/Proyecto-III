@@ -29,7 +29,6 @@ public:
 	void deactivateThisConstruction();
 
 private:
-	bool notEnoughMoney_ = true;
 	bool constructActive_;
 	bool canConst_;
 

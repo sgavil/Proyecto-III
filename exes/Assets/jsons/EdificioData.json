@@ -4,31 +4,17 @@
         {
             "parameters":
             {
-              "Price": 200,
-              "Type": 2,
-              "PeePee": 0,
-              "Hungry": 10,
-              "Fun": 0,
-              "Tam_Cola": 5,
-              "Tam":
-              {
-                "x": 3,
-                "y": 3
-              },
-              "Height": 20,
-              "Entry":
-              {
-                "x": 1,
-                "y": 2
-              },
-              "Exit":
-              {
-                "x": 1,
-                "y": 0
-              },
-              "Duration": 5,
-              "Capacity": 2,
-              "bName": "Noria"
+                "bName": "Road",
+                "Price": 100,
+                "LockedPrice": 300,
+                "Locked": false,
+                "Type": 0,
+                "Tam":
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                "Height": 5
             }
         },
         {
@@ -64,37 +50,39 @@
         {
             "parameters":
             {
-                "Price": 200,
-                "Type": 2,
-                "PeePee": 0,
-                "Hungry": 10,
-                "Fun": 0,
-                "Tam_Cola": 5,
+                "bName": "ExitRoad",
+                "Price": 0,
+                "Type": 0,
                 "Tam":
                 {
-                  "x": 2,
-                  "y": 2
-                },
-                "Height": 20,
-                "Entry":
-                {
-                  "x": 2,
-                  "y": 0
-                },
-                "Exit":
-                {
-                  "x": 2,
+                  "x": 1,
                   "y": 1
                 },
-                "Duration": 5,
-                "Capacity": 2,
-                "bName": "Burguer"
+                "Height": 5,
+                "bName": "ExitRoad"
             }
         },
         {
             "parameters":
             {
-                "Price": 300,
+                "bName": "EntryRoad",
+                "Price": 0,
+                "Type": 0,
+                "Tam":
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                "Height": 5
+            }
+        },
+        {
+            "parameters":
+            {
+                "bName": "Patitos",
+                "Price": 200,
+                "LockedPrice": 600,
+                "Locked": false,
                 "Type": 1,
                 "PeePee": 0,
                 "Hungry": 0,
@@ -117,50 +105,103 @@
                   "y": 0
                 },
                 "Duration": 8,
-                "Capacity": 5,
-                "bName": "Patitos"
+                "Capacity": 5
             }
         },
         {
             "parameters":
             {
-                "Price": 100,
-                "Type": 0,
-                "Tam":
-                {
-                  "x": 1,
-                  "y": 1
-                },
-                "Height": 5,
-                "bName": "ExitRoad"
+              "bName": "Noria",
+              "Price": 400,
+              "LockedPrice": 1200,
+              "Locked": true,
+              "Type": 2,
+              "PeePee": 0,
+              "Hungry": 10,
+              "Fun": 0,
+              "Tam_Cola": 5,
+              "Tam":
+              {
+                "x": 2,
+                "y": 2
+              },
+              "Height": 20,
+              "Entry":
+              {
+                "x": 2,
+                "y": 0
+              },
+              "Exit":
+              {
+                "x": 2,
+                "y": 1
+              },
+              "Duration": 5,
+              "Capacity": 2
             }
         },
         {
-            "parameters":
+          "parameters":
+          {
+            "bName": "Lanzadera",
+            "Price": 500,
+            "LockedPrice": 700,
+            "Locked": false,
+            "Type": 2,
+            "PeePee": 0,
+            "Hungry": 10,
+            "Fun": 0,
+            "Tam_Cola": 5,
+            "Tam":
             {
-                "Price": 100,
-                "Type": 0,
-                "Tam":
-                {
-                  "x": 1,
-                  "y": 1
-                },
-                "Height": 5,
-                "bName": "EntryRoad"
-            }
-        },
+              "x": 2,
+              "y": 2
+            },
+            "Height": 20,
+            "Entry":
+            {
+              "x": 2,
+              "y": 0
+            },
+            "Exit":
+            {
+              "x": 2,
+              "y": 1
+            },
+            "Duration": 5,
+            "Capacity": 2
+          }
+      },
         {
             "parameters":
             {
-                "Price": 100,
-                "Type": 0,
+                "bName": "Burguer",
+                "Price": 200,
+                "LockedPrice": 600,
+                "Locked": false,
+                "Type": 2,
+                "PeePee": 0,
+                "Hungry": 10,
+                "Fun": 0,
+                "Tam_Cola": 5,
                 "Tam":
                 {
-                  "x": 1,
+                  "x": 2,
+                  "y": 2
+                },
+                "Height": 20,
+                "Entry":
+                {
+                  "x": 2,
+                  "y": 0
+                },
+                "Exit":
+                {
+                  "x": 2,
                   "y": 1
                 },
-                "Height": 5,
-                "bName": "Road"
+                "Duration": 5,
+                "Capacity": 2
             }
         }
     ]

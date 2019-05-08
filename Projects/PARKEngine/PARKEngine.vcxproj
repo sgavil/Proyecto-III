@@ -189,6 +189,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\Messages.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\OgreManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\PhysicsManager.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\PriceTextBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\ResourceManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Rigidbody.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\SceneManager.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\PARKFoundation.h" />
     <ClInclude Include="..\..\Src\PARKEngine\PARKManagers.h" />
     <ClInclude Include="..\..\Src\PARKEngine\PhysicsManager.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\PriceTextBox.h" />
     <ClInclude Include="..\..\Src\PARKEngine\ResourceManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Rigidbody.h" />
     <ClInclude Include="..\..\Src\PARKEngine\SceneManager.h" />
