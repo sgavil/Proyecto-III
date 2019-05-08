@@ -229,8 +229,36 @@
           "text": "CARRETERA NORMAL",
           "posX": 0.01,
           "posY": 0.05,
-          "sizeX": 80,
+          "sizeX": 120,
           "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextPriceRoad",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Road",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -252,12 +280,15 @@
           "Hijos": [
             {
               "name": "ConstructRoadButton"
+            },
+            {
+              "name": "TextPriceRoad"
             }
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.8,
           "sizeX": 500,
-          "sizeY": 100,
+          "sizeY": 110,
           "offsetX": -100,
           "offsetY": 0
         }
@@ -283,6 +314,34 @@
       ]
     },
     {
+      "name": "TextPricePatitos",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Patitos",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "ConstructNoriaButton",
       "Components": [
         {
@@ -296,6 +355,34 @@
           "posY": 0.05,
           "sizeX": 120,
           "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextPriceNoria",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Noria",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.255,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -319,13 +406,19 @@
               "name": "ConstructPatitosButton"
             },
             {
+              "name": "TextPricePatitos"
+            },
+            {
               "name": "ConstructNoriaButton"
+            },
+            {
+              "name": "TextPriceNoria"
             }
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.8,
           "sizeX": 500,
-          "sizeY": 100,
+          "sizeY": 110,
           "offsetX": -100,
           "offsetY": 0
         }
@@ -351,6 +444,34 @@
       ]
     },
     {
+      "name": "TextPriceBurger",
+      "Components": 
+      [
+        {
+          "name": "PriceTextBox",
+          "bName": "Burguer",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "RestaurantsPanel",
       "Components": [
         {
@@ -366,12 +487,15 @@
           "Hijos": [
             {
               "name": "ConstructBurguerButton"
+            },
+            {
+              "name": "TextPriceBurger"
             }
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.8,
           "sizeX": 500,
-          "sizeY": 100,
+          "sizeY": 110,
           "offsetX": -100,
           "offsetY": 0
         }
@@ -393,7 +517,7 @@
           "Hijos": [
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.8,
           "sizeX": 500,
           "sizeY": 100,
           "offsetX": -100,
@@ -764,7 +888,7 @@
             "ruptcyMaxTime": 7,
             "floorRuptcyMoney": -40,
             "InitialTime2Tax": 180,
-            "ActualMoney" : 100000,
+            "ActualMoney" : 1500,
             "InitVisitors" : 3
           }
         }

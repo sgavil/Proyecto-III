@@ -1,5 +1,7 @@
 #include "CallbackManager.h"
+#include "Lógica/BureaucracyManager.h"
 #include "Lógica/ConstructionMode.h"
+#include "Lógica/DatosEdificio.h"
 #include "Entity.h"
 #include "Camera.h"
 
@@ -59,6 +61,9 @@ void CallbackManager::initCallbacks()
 	addCallback("setConstructPanelActive", &CallbackManager::setConstructPanelActive, this);
 	addCallback("setInfoPanelActive", &CallbackManager::setInfoPanelActive, this);
 
+	// Panel con la informacion de los NPCs
+	addCallback("setNPCInfoPanelActive", &CallbackManager::setNPCInfoPanelActive, this);
+
 	//Paneles de Tipos de Construccion
 	addCallback("setRoadConstructionActive", &CallbackManager::setRoadConstructionActive, this);
 	addCallback("setAmusementsConstructionActive", &CallbackManager::setAmusementsConstructionActive, this);
@@ -108,8 +113,18 @@ bool CallbackManager::MusicVolumeChange(std::string vol)
 
 bool CallbackManager::construct(std::string buildName)
 {
-	Entity* e = SceneManager::instance()->currentState()->getEntity("ConstructionMode");
-	e->getComponent<ConstructionMode>()->construct(buildName);
+	BureauCrazyManager* bureauCrazyManager_ = SceneManager::instance()->currentState()->getEntity("BureauCrazyManager")->getComponent<BureauCrazyManager>();
+	ConstructionMode* constructionMode = SceneManager::instance()->currentState()->getEntity("ConstructionMode")->getComponent<ConstructionMode>();
+	DatosEdificio* datosEdificio = SceneManager::instance()->currentState()->getEntity("DatosEdificios")->getComponent<DatosEdificio>();
+	if (bureauCrazyManager_->getActualMoney() > datosEdificio->getPrice(buildName)) {
+		if (datosEdificio->getLocked(buildName)) {
+			bureauCrazyManager_->setActualMoney(-datosEdificio->getPrice(buildName));
+			datosEdificio->setLocked(buildName, false);
+		}
+		else {
+			constructionMode->construct(buildName);
+		}
+	}
 	return true;
 }
 
@@ -153,6 +168,19 @@ bool CallbackManager::setInfoPanelActive(std::string boolean)
 	else {
 		w->getWindow()->hide();
 		setToolsPanelActive("True");
+	}
+
+	return true;
+}
+
+bool CallbackManager::setNPCInfoPanelActive(std::string boolean)
+{
+	WindowBox* w = SceneManager::instance()->currentState()->getEntity("NPCInfoPanel")->getComponent<WindowBox>();
+	if (boolean == "True") {
+		w->getWindow()->show();
+	}
+	else {
+		w->getWindow()->hide();
 	}
 
 	return true;

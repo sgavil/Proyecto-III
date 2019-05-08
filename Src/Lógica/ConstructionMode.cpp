@@ -42,7 +42,7 @@ void ConstructionMode::update(unsigned int time)
 		bureauCrazyManager_ = SceneManager::instance()->currentState()->getEntity("BureauCrazyManager")->getComponent<BureauCrazyManager>();
 	}
 
-	if (constructActive_ && !notEnoughMoney_) {
+	if (constructActive_) {
 		pair<Entity*, Ogre::Vector3> nodeAndPos= OgreManager::instance()->raycastToMouse();
 		if (nodeAndPos.first != nullptr && nodeAndPos.first->getComponent<Node>() != nullptr) {
 			nodes_ = getNodesToConstruct(nodeAndPos.first, nodeAndPos.second);
@@ -50,7 +50,7 @@ void ConstructionMode::update(unsigned int time)
 			setNodeMaterial(true, canConst_);
 		}
 	}
-	else if (notEnoughMoney_) {
+	else {
 		deactivateThisConstruction();
 	}
 }
@@ -124,8 +124,6 @@ void ConstructionMode::construct(string bName)
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(0, -1000, 0));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
 	build_ = buildingEntity_->getComponent<Edificio>();
-
-	notEnoughMoney_ = bureauCrazyManager_->getActualMoney() < build_->getPrice();
 }
 
 void ConstructionMode::deactivateThisConstruction() {
