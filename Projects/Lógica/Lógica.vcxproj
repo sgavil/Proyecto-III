@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\Src\Lógica\BureaucracyManager.cpp" />
     <ClCompile Include="..\..\Src\Lógica\CameraManager.cpp" />
     <ClCompile Include="..\..\Src\Lógica\ConstructionMode.cpp" />
+    <ClCompile Include="..\..\Src\Lógica\DatosEdificio.cpp" />
     <ClCompile Include="..\..\Src\Lógica\Edificio.cpp" />
     <ClCompile Include="..\..\Src\Lógica\Matrix\Matrix.cpp" />
     <ClCompile Include="..\..\Src\Lógica\Matrix\Node.cpp" />
@@ -32,6 +33,7 @@
     <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h" />
     <ClInclude Include="..\..\Src\Lógica\CameraManager.h" />
     <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h" />
+    <ClInclude Include="..\..\Src\Lógica\DatosEdificio.h" />
     <ClInclude Include="..\..\Src\Lógica\Edificio.h" />
     <ClInclude Include="..\..\Src\Lógica\IndexPQ.h" />
     <ClInclude Include="..\..\Src\Lógica\Matrix\Matrix.h" />

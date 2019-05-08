@@ -283,6 +283,25 @@
       ]
     },
     {
+      "name": "ConstructLanzaderaButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "DejaVuSans-10",
+          "callback": "construct",
+          "parameter": "Lanzadera",
+          "text": "LANZADERA",
+          "posX": 0.5,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "ConstructNoriaButton",
       "Components": [
         {
@@ -318,8 +337,12 @@
             {
               "name": "ConstructPatitosButton"
             },
+            
             {
               "name": "ConstructNoriaButton"
+            },
+            {
+              "name": "ConstructLanzaderaButton"
             }
           ],
           "posX": 0.3,
