@@ -113,10 +113,11 @@ bool CallbackManager::MusicVolumeChange(std::string vol)
 
 bool CallbackManager::construct(std::string buildName)
 {
+
 	BureauCrazyManager* bureauCrazyManager_ = SceneManager::instance()->currentState()->getEntity("BureauCrazyManager")->getComponent<BureauCrazyManager>();
 	ConstructionMode* constructionMode = SceneManager::instance()->currentState()->getEntity("ConstructionMode")->getComponent<ConstructionMode>();
 	DatosEdificio* datosEdificio = SceneManager::instance()->currentState()->getEntity("DatosEdificios")->getComponent<DatosEdificio>();
-	if (bureauCrazyManager_->getActualMoney() > datosEdificio->getPrice(buildName)) {
+	if (bureauCrazyManager_->getActualMoney() >= datosEdificio->getPrice(buildName)) {
 		if (datosEdificio->getLocked(buildName)) {
 			bureauCrazyManager_->setActualMoney(-datosEdificio->getPrice(buildName));
 			datosEdificio->setLocked(buildName, false);

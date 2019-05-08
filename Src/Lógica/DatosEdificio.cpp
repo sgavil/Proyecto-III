@@ -82,7 +82,5 @@ Datos * DatosEdificio::findData(std::string s)
 
 void DatosEdificio::setLocked(std::string s, bool b) {
 	findData(s)->Locked_ = b;
-	if (findData(s)->priceTextBox_ != nullptr)
-		findData(s)->priceTextBox_->changeTextPrice();
 }
 

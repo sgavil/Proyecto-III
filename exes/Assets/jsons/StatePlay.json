@@ -209,7 +209,7 @@
             }
           ],
           "posX": 0.3,
-          "posY": 0.825,
+          "posY": 0.82,
           "sizeX": 500,
           "sizeY": 100,
           "offsetX": -100,
@@ -532,9 +532,9 @@
         {
           "name": "TextBox",
           "type": "Vanilla/StaticText",
-          "font": "98bottlesbold-40",
+          "font": "Carnevalee Freakshow-40",
           "text": "Dinero: 143",
-          "alignText": "Centre",
+          "alignText": "Left",
           "backgroundEnabled": "False",
           "textColor":
           {
@@ -545,7 +545,7 @@
           },
           "posX": 0.015,
           "posY": 0.005,
-          "sizeX": 150,
+          "sizeX": 400,
           "sizeY": 75,
           "offsetX": 0,
           "offsetY": 0

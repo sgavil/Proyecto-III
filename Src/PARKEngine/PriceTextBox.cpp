@@ -22,8 +22,6 @@ void PriceTextBox::update(unsigned int time)
 	if (datosEdificio_ == nullptr) {
 		datosEdificio_ = SceneManager::instance()->currentState()->getEntity("DatosEdificios")->getComponent<DatosEdificio>();
 		datos_ = SceneManager::instance()->currentState()->getEntity("DatosEdificios")->getComponent<DatosEdificio>()->findData(buildName_);
-		datos_->priceTextBox_ = this;
-		datos_->priceTextBox_->changeTextPrice();
 	}
 
 	if (bureauCrazyManager_ == nullptr)

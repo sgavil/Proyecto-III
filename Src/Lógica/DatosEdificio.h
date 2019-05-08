@@ -6,7 +6,6 @@
 #include <PARKEngine/ResourceManager.h>
 #include <map>
 
-class PriceTextBox;
 struct Datos
 {
 	//Esta variable es importante ya que es la clave por 
@@ -33,8 +32,6 @@ struct Datos
 	int duration_; //En milisegundos, La de Ornament debe ser 0
 	int actDuration_; //Duración que lleva por el momento la atracción.
 	int capacity_; //La de ornament debe ser 0
-
-	PriceTextBox* priceTextBox_ = nullptr;
 };
 
 class DatosEdificio : public Component
