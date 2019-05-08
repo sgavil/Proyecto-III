@@ -637,26 +637,17 @@
       ]
     },
     {
-      "name": "FunText",
+      "name": "FunImage",
       "Components": 
       [
         {
-          "name": "TextBox",
-          "type": "Vanilla/StaticText",
+          "name": "ImageBox",
+          "type": "Vanilla/StaticImage",
           "font": "DejaVuSans-10",
-          "text": "DIVERSION",
-          "alignText": "Left",
-          "backgroundEnabled": "False",
-          "textColor":
-          {
-            "topLeft": "F0000000",
-            "topRight": "F0000000",
-            "botLeft": "F0000000",
-            "botRight": "F0000000"
-          },
-          "posX": 0.05,
-          "posY": 0.051,
-          "sizeX": 110,
+          "imageName": "happyIcon.png",
+          "posX": 0.01,
+          "posY": 0.05,
+          "sizeX": 20,
           "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
@@ -670,10 +661,10 @@
           "name": "ProgressBar",
           "type": "Vanilla/ProgressBar",
           "font": "Carnevalee Freakshow-32",
-          "BarColor": "FF00FF00",
-          "posX": 0.01,
+          "BarColor": "FF1D9E53",
+          "posX": 0.2,
           "posY": 0.05,
-          "sizeX": 120,
+          "sizeX": 110,
           "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
@@ -681,26 +672,17 @@
       ]
     },
     {
-      "name": "HungerText",
+      "name": "HungerImage",
       "Components": 
       [
         {
-          "name": "TextBox",
-          "type": "Vanilla/StaticText",
+          "name": "ImageBox",
+          "type": "Vanilla/StaticImage",
           "font": "DejaVuSans-10",
-          "text": "HAMBRE",
-          "alignText": "Left",
-          "backgroundEnabled": "False",
-          "textColor":
-          {
-            "topLeft": "F0000000",
-            "topRight": "F0000000",
-            "botLeft": "F0000000",
-            "botRight": "F0000000"
-          },
-          "posX": 0.05,
-          "posY": 0.351,
-          "sizeX": 110,
+          "imageName": "burgerIcon.png",
+          "posX": 0.01,
+          "posY": 0.375,
+          "sizeX": 20,
           "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
@@ -714,10 +696,10 @@
           "name": "ProgressBar",
           "type": "Vanilla/ProgressBar",
           "font": "Carnevalee Freakshow-32",
-          "BarColor": "FFFF0000",
-          "posX": 0.01,
-          "posY": 0.35,
-          "sizeX": 120,
+          "BarColor": "FFFF3535",
+          "posX": 0.2,
+          "posY": 0.375,
+          "sizeX": 110,
           "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
@@ -725,26 +707,17 @@
       ]
     },
     {
-      "name": "PeePeeText",
+      "name": "PeePeeImage",
       "Components": 
       [
         {
-          "name": "TextBox",
-          "type": "Vanilla/StaticText",
+          "name": "ImageBox",
+          "type": "Vanilla/StaticImage",
           "font": "DejaVuSans-10",
-          "text": "PIPI",
-          "alignText": "Left",
-          "backgroundEnabled": "False",
-          "textColor":
-          {
-            "topLeft": "F0000000",
-            "topRight": "F0000000",
-            "botLeft": "F0000000",
-            "botRight": "F0000000"
-          },
-          "posX": 0.05,
-          "posY": 0.701,
-          "sizeX": 110,
+          "imageName": "toiletIcon.png",
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 20,
           "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
@@ -758,10 +731,10 @@
           "name": "ProgressBar",
           "type": "Vanilla/ProgressBar",
           "font": "Carnevalee Freakshow-32",
-          "BarColor": "FFF7FF00",
-          "posX": 0.01,
+          "BarColor": "FF3578FF",
+          "posX": 0.2,
           "posY": 0.7,
-          "sizeX": 120,
+          "sizeX": 110,
           "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
@@ -786,19 +759,19 @@
               "name": "FunBar"
             },
             {
-              "name": "FunText"
+              "name": "FunImage"
             },
             {
               "name": "HungerBar"
             },
             {
-              "name": "HungerText"
+              "name": "HungerImage"
             },
             {
               "name": "PeePeeBar"
             },
             {
-              "name": "PeePeeText"
+              "name": "PeePeeImage"
             }
           ],
           "posX": 0.75,
