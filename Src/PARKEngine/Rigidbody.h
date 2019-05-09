@@ -38,53 +38,53 @@ public:
 
 	//Getters
 	//Returns bounding box of the rigidbody, especified by minimum and maximum vectors
-	void getAABB(Vector3& min, Vector3& max);
+	virtual void getAABB(Vector3& min, Vector3& max);
 	//Returns mass of the rigidbody
-	float getMass();
+	virtual float getMass();
 
 	//Returns linear velocity of the rigidbody
-	Vector3 getLinearVelocity();
+	virtual Vector3 getLinearVelocity();
 	//Returns angular velocity of the rigidbody
-	Vector3 getAngularVelocity();
+	virtual Vector3 getAngularVelocity();
 
 
 	//Returns total force of the rigidbody
-	Vector3 getTotalForce();
+	virtual Vector3 getTotalForce();
 	//Returns total torque of the rigidbody
-	Vector3 getTotalTorque();
+	virtual Vector3 getTotalTorque();
 
 	//Tells whether the object is kinematic or not
-	bool isKinematic();
+	virtual bool isKinematic();
 	//Tells whether the object is static or not
-	bool isStatic();
+	virtual bool isStatic();
 
 
 	//Setters
 	//Sets linear velocity of the rigidbody
-	void setLinearVelocity(Vector3 linearVel);
+	virtual void setLinearVelocity(Vector3 linearVel);
 	//Sets angular velocity of the rigidbody
-	void setAngularVelocity(Vector3 angVel);
+	virtual void setAngularVelocity(Vector3 angVel);
 
 	//Position
 	//Returns rigidbody's position
-	Vector3 getPosition();
+	virtual Vector3 getPosition();
 	//Sets rigidbody's position
-	void setPosition(Vector3 destiny);
+	virtual void setPosition(Vector3 destiny);
 
 	//Position
 	//Returns rigidbody's position
-	Transform* getTransform();
+	virtual Transform* getTransform();
 	//Sets rigidbody's position
-	void setTransform(Transform* transform);
+	virtual void setTransform(Transform* transform);
 
 	//Restitution
 	//Returns rigidbody's position
-	float getRestitution();
+	virtual float getRestitution();
 	//Sets rigidbody's position
-	void setRestitution(float restitution);
+	virtual void setRestitution(float restitution);
 
 	//Returns a string with indented information of the rigidbody
-	virtual std::string getInfo();
+	virtual virtual std::string getInfo();
 
 
 protected:
@@ -93,7 +93,8 @@ protected:
 	float mass_;
 	Vector3* dims_;
 
-	btTransform getBtTransform();
+	virtual btTransform getBtTransform();
+	virtual void updateTransform();
 };
 
 REGISTER_TYPE(Rigidbody)

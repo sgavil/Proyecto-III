@@ -3,7 +3,7 @@
 #include "Matrix/Matrix.h"
 
 
-CameraManager::CameraManager(): camTransform_(nullptr), camRigid_(nullptr), rotating_(false), borders_(0), firstPerson_(false)
+CameraManager::CameraManager(): camTransform_(nullptr), camRigid_(nullptr), rotating_(false), borders_(0), firstPerson_(false), prevMouse_(0,0)
 {
 }
 
@@ -35,9 +35,7 @@ bool CameraManager::handleEvent(unsigned int time)
 	//Standard increment (for camera transfomations)
 	float stdIncr = ((float)time / 2);
 	//Pillamos la info del ratón y de la ventana
-	float mouseX = InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs;
-	float mouseY = InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs;
-
+	Vector2 mouse = { (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs, (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs };
 	Vector2 windowSize = { OgreManager::instance()->getWindowSize(0),  OgreManager::instance()->getWindowSize(1) };
 
 	//Incremento de la posición
@@ -72,16 +70,27 @@ bool CameraManager::handleEvent(unsigned int time)
 	//First person
 	else if(firstPerson_)
 	{
+		//Movimiento en las 4 direcciones
 		if (InputManager::getSingletonPtr()->isKeyDown("MoveForwards"))
-			camRigid_->setPosition(camTransform_->getPosition() + camTransform_->forward() * 1);
+			delta += camTransform_->forward() * stdIncr * 0.5;
 		else if (InputManager::getSingletonPtr()->isKeyDown("MoveBack"))
-			camRigid_->setPosition(camTransform_->getPosition() + camTransform_->forward() * -1);
+			delta += camTransform_->forward() * stdIncr * -0.5;
 		if (InputManager::getSingletonPtr()->isKeyDown("MoveLeft"))
-			camRigid_->setPosition(camTransform_->getPosition() + camTransform_->right() * -1);
+			delta += camTransform_->right() * stdIncr * -0.5;
 		else if (InputManager::getSingletonPtr()->isKeyDown("MoveRight"))
-			camRigid_->setPosition(camTransform_->getPosition() + camTransform_->right() * 1);
+			delta += camTransform_->right() * stdIncr * 0.5;
+
+		//Salto
 		if (InputManager::getSingletonPtr()->isKeyDown("Jump"))
 			camRigid_->addForce(Vector3(0, 200, 0));
+
+		//Rotaciones de la cámara 
+		//Izquierda/derecha
+		if (mouse.x < prevMouse_.x)
+			camTransform_->yaw(prevMouse_.x - mouse.x);
+		else if(mouse.x > prevMouse_.x)
+			camTransform_->yaw(mouse.x - prevMouse_.x);
+			
 	}
 
 	//Third person
@@ -89,15 +98,15 @@ bool CameraManager::handleEvent(unsigned int time)
 	{
 
 		//ADELANTE/ATRÁS
-		if (mouseY < windowSize.y * borders_)
+		if (mouse.y < windowSize.y * borders_)
 			delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * stdIncr;
-		else if (mouseY > windowSize.y - windowSize.y * borders_)
+		else if (mouse.y > windowSize.y - windowSize.y * borders_)
 			delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -stdIncr;
 
 		//IZQUIERDA/DERECHA
-		if (mouseX < windowSize.x * borders_)
+		if (mouse.x < windowSize.x * borders_)
 			delta += camTransform_->right() * -stdIncr;
-		else if (mouseX > windowSize.x - windowSize.x * borders_)
+		else if (mouse.x > windowSize.x - windowSize.x * borders_)
 			delta += camTransform_->right() * stdIncr;
 
 		//Rueda del ratón para hacer zoom (no se como se pone esto en el archivo del input porque no son teclas como tales)
@@ -120,6 +129,8 @@ bool CameraManager::handleEvent(unsigned int time)
 	//Move the camera
 	if (delta.length() != 0)
 		moveCamera(delta);
+
+	prevMouse_ = mouse;
 
 	return false;
 }
@@ -152,10 +163,15 @@ void CameraManager::moveCamera(Vector3 deltaPos)
 	//(except for the Y coordinate)
 
 	//Move the camera towards the desired place and throw another ray
-	camTransform_->translate(deltaPos);
+	
 
-	if(!firstPerson_)
+	if(firstPerson_)
 	{
+		camRigid_->setPosition(camTransform_->getPosition() + deltaPos);
+	}
+	else
+	{
+		camTransform_->translate(deltaPos);
 		//If the ray is out of the matrix or we want to go too up/down
 		float y = camTransform_->getPosition().y;
 		if (OgreManager::instance()->raycast().first == nullptr || y > MAX_HEIGTH || y < MIN_HEIGTH)

@@ -42,6 +42,8 @@ protected:
 	bool rotating_;
 	bool firstPerson_;
 
+	Vector2 prevMouse_;
+
 };
 
 REGISTER_TYPE(CameraManager)

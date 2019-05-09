@@ -71,13 +71,7 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::update(unsigned int time)
 {
-	//Obtenemos su posición y orientación
-	btTransform trans = getBtTransform();
-
-	//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
-	transform_->setPosition(Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
-	transform_->setRotation(Quaternion(trans.getRotation().getW(), trans.getRotation().getX(),
-		trans.getRotation().getY(), trans.getRotation().getZ()));
+	updateTransform();
 }
 
 void Rigidbody::addForce(Vector3 force)
@@ -169,6 +163,7 @@ void Rigidbody::setPosition(Vector3 destiny)
 
 	//Set it
 	rigid_->setWorldTransform(trans);
+	updateTransform();
 }
 
 Transform* Rigidbody::getTransform()
@@ -215,6 +210,17 @@ btTransform Rigidbody::getBtTransform()
 		trans = rigid_->getWorldTransform();
 
 	return trans;
+}
+
+void Rigidbody::updateTransform()
+{
+	//Obtenemos su posición y orientación
+	btTransform trans = getBtTransform();
+
+	//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
+	transform_->setPosition(Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
+	transform_->setRotation(Quaternion(trans.getRotation().getW(), trans.getRotation().getX(),
+		trans.getRotation().getY(), trans.getRotation().getZ()));
 }
 
 
