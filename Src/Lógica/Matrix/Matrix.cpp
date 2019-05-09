@@ -2,7 +2,7 @@
 
 #include "Node.h"
 #include "PARKEngine/PARKEngine.h"
-#include "../CameraManager.h"
+#include "../ThirdPersonCamera.h"
 #include "../ConstructionMode.h"
 
 Matrix::Matrix()

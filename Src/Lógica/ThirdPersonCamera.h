@@ -7,17 +7,19 @@ class Transform;
 class Matrix;
 class Rigidbody;
 
-class CameraManager : public Component
+class ThirdPersonCamera : public Component
 {
 public:
-	CameraManager();
-	~CameraManager();
+	ThirdPersonCamera();
+	~ThirdPersonCamera();
 
 
 	virtual void load(json file);
 
 	virtual void start();
 
+	virtual void receive(Message * msg);
+	
 	virtual bool handleEvent(unsigned int time);
 
 protected:
@@ -40,10 +42,6 @@ protected:
 	float borders_;
 
 	bool rotating_;
-	bool firstPerson_;
-
-	Vector2 prevMouse_;
-
 };
 
-REGISTER_TYPE(CameraManager)
+REGISTER_TYPE(ThirdPersonCamera)

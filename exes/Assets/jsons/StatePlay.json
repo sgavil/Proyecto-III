@@ -925,10 +925,18 @@
       "name": "CameraManager",
       "Components": [
         {
-          "name": "CameraManager",
+          "name": "ThirdPersonCamera",
 		  "maxHeigth": 1000,
 		  "minHeigth": 20,
 		  "borders": 0.02,
+		  "Listeners": [
+		   {
+		      "name": "BureauCrazyManager"
+	       }
+          ]
+        },
+		{
+          "name": "FirstPersonCamera",
 		  "Listeners": [
 		   {
 		      "name": "BureauCrazyManager"
