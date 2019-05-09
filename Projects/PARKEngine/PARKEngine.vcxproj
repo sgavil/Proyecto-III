@@ -184,11 +184,13 @@
     <ClCompile Include="..\..\Src\PARKEngine\EntityFactory.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\GameState.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\HUDManager.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\ImageBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\InputManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\MeshRenderer.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Messages.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\OgreManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\PhysicsManager.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\PriceTextBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\ResourceManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Rigidbody.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\SceneManager.cpp" />
@@ -213,6 +215,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\EntityFactory.h" />
     <ClInclude Include="..\..\Src\PARKEngine\GameState.h" />
     <ClInclude Include="..\..\Src\PARKEngine\HUDManager.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\ImageBox.h" />
     <ClInclude Include="..\..\Src\PARKEngine\InputManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\MeshRenderer.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Messages.h" />
@@ -224,6 +227,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\PARKFoundation.h" />
     <ClInclude Include="..\..\Src\PARKEngine\PARKManagers.h" />
     <ClInclude Include="..\..\Src\PARKEngine\PhysicsManager.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\PriceTextBox.h" />
     <ClInclude Include="..\..\Src\PARKEngine\ResourceManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Rigidbody.h" />
     <ClInclude Include="..\..\Src\PARKEngine\SceneManager.h" />

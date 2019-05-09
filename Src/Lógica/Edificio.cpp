@@ -6,6 +6,7 @@
 #include "NPC.h"
 #include "Matrix/Node.h"
 #include "PARKEngine/PARKComponents.h"
+#include <PARKEngine/SceneManager.h>
 
 
 
@@ -24,19 +25,19 @@ void Edificio::update(unsigned int time)
 
 	if (type_ != BuildingType::Ornament)
 	{
-		actDuration_ -= time;
+		datos->actDuration_ -= time;
 
-		if (actDuration_ <= 0) {
+		if (datos->actDuration_ <= 0) {
 			sacar();
 			montar();
-			actDuration_ = duration_;
+			datos->actDuration_ = datos->duration_;
 		}
 	}
 }
 
 bool Edificio::encolar(Entity * e)
 {
-	if (cola.size() < maxCola_)
+	if (cola.size() < datos->maxCola_)
 		cola.push(e);
 	else
 		return false;
@@ -45,7 +46,7 @@ bool Edificio::encolar(Entity * e)
 
 void Edificio::montar()
 {
-	for (int i = 0; i < capacity_; i++) {
+	for (int i = 0; i < datos->capacity_; i++) {
 		if (!cola.empty()) {
 			Entity* e = cola.front();
 			e->getComponent<MeshRenderer>()->setVisible(false);
@@ -70,32 +71,9 @@ void Edificio::sacar()
 
 void Edificio::load(json file)
 {
-	addParameter(price_, file["Price"]);
+
 	setTypeByInt(file["Type"]);
 
-	addParameter(PeePeeRestore_, file["PeePee"]);
-	addParameter(HungryRestore_, file["Hungry"]);
-	addParameter(funRestore_, file["Fun"]);
 
-	addParameter(maxCola_, file["Tam_Cola"]);
-
-	addParameter(tam.x, file["Tam"]["x"]);
-	addParameter(tam.y, file["Tam"]["y"]);
-
-	addParameter(height_, file["Height"]);
-
-	addParameter(entry.x, file["Entry"]["x"]);
-	addParameter(entry.y, file["Entry"]["y"]);
-
-	addParameter(exit.x, file["Exit"]["x"]);
-	addParameter(exit.y, file["Exit"]["y"]);
-
-	if (addParameter(duration_, file["Duration"]))
-	{
-		duration_ *= 1000; //Conversión a milisegundos;
-		actDuration_ = duration_;
-	}
-
-	addParameter(capacity_, file["Capacity"]);
-	addParameter(bName, file["bName"]);
+	datos = SceneManager::instance()->currentState()->getEntity("DatosEdificios")->getComponent<DatosEdificio>()->findData(file["bName"]);
 }

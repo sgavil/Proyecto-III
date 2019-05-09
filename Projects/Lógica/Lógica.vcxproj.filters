@@ -40,6 +40,9 @@
     <ClCompile Include="..\..\Src\Lógica\Reproductor.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\DatosEdificio.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\NPC.h">
@@ -65,6 +68,9 @@
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\Reproductor.h">
+      <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\DatosEdificio.h">
       <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>
