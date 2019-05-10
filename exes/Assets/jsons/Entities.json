@@ -292,5 +292,28 @@
 		    "Type": 2
       }
     }    
+  ],
+  "Burguer": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "HotDog.mesh",
+        "material": "HotDogMaterial",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "Burguer",
+		    "Type": 2
+      }
+    }    
   ]
 }

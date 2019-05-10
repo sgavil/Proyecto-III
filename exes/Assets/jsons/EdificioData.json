@@ -203,6 +203,38 @@
                 "Duration": 5,
                 "Capacity": 2
             }
+        },
+		 {
+            "parameters":
+            {
+                "bName": "HotDog",
+                "Price": 250,
+                "LockedPrice": 800,
+                "Locked": false,
+                "Type": 2,
+                "PeePee": 0,
+                "Hungry": 12,
+                "Fun": 0,
+                "Tam_Cola": 5,
+                "Tam":
+                {
+                  "x": 2,
+                  "y": 2
+                },
+                "Height": 20,
+                "Entry":
+                {
+                  "x": 2,
+                  "y": 0
+                },
+                "Exit":
+                {
+                  "x": 2,
+                  "y": 1
+                },
+                "Duration": 5,
+                "Capacity": 2
+            }
         }
     ]
 }
