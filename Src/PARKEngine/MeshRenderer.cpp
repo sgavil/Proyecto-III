@@ -58,6 +58,7 @@ void MeshRenderer::start()
 		node_->setOrientation(transform_->getRotation());
 		node_->setScale(transform_->getScale());
 	}
+	node_->_update(false, false);
 }
 
 Ogre::SceneNode * MeshRenderer::getNode()

@@ -2,7 +2,7 @@
 
 #include "Node.h"
 #include "PARKEngine/PARKEngine.h"
-#include "../CameraManager.h"
+#include "../ThirdPersonCamera.h"
 #include "../ConstructionMode.h"
 
 Matrix::Matrix()
@@ -31,13 +31,14 @@ std::string Matrix::getInfo()
 
 void Matrix::load(json file)
 {
-	json nodeSize = file["nodeSize"];
+	//Archivo que contiene la información de la matriz
+	matrixFile = ResourceManager::instance()->getJsonByKey(file["file"]);
+
+	json nodeSize = matrixFile["nodeSize"];
 	nSize_.x = nodeSize["x"];
 	nSize_.y = nodeSize["y"];
 	nSize_.z = nodeSize["z"];
 
-	//Archivo que contiene la información de la matriz
-	matrixFile = ResourceManager::instance()->getJsonByKey(file["file"]);
 	mSize_.x = matrixFile["rows"];
 	mSize_.y = matrixFile["cols"];
 

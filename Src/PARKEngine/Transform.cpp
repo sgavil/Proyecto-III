@@ -14,16 +14,16 @@ Transform::Transform(Vector3 position, Ogre::Quaternion rotation, Vector3 scale)
 void Transform::load(json file)
 {
 	json pos = file["position"];
-	position_.x = pos["x"];
-	position_.y = pos["y"];
-	position_.z = pos["z"];
+	addParameter(position_.x, pos["x"]);
+	addParameter(position_.y, pos["y"]);
+	addParameter(position_.z, pos["z"]);
 
 	if (file.contains("scale"))
 	{
 		json scale = file["scale"];
-		scale_.x = scale["x"];
-		scale_.y = scale["y"];
-		scale_.z = scale["z"];
+		addParameter(scale_.x, scale["x"]);
+		addParameter(scale_.y, scale["y"]);
+		addParameter(scale_.z, scale["z"]);
 	}
 	updateAxis();
 }

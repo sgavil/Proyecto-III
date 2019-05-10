@@ -163,7 +163,7 @@ btRigidBody * PhysicsManager::createRigidBody( Shape forma, Vector3 dimensions, 
 		rigid = new btRigidBody(mass, motionState, shape, localInertia); //, localInertia)
 	else
 		rigid = new btRigidBody(mass, nullptr, shape, localInertia);
-	rigid->setRestitution(1);
+	rigid->setRestitution(0);
 	dynamicsWorld->addRigidBody(rigid);
 
 	//Lo devolvemos

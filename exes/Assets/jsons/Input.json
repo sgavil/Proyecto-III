@@ -2,11 +2,11 @@
 "Keyboard":
 	[
 		{
-			"Id": "RotaIzquierda",
+			"Id": "RotateLeft",
 			"key": "Q"
 		},
 		{
-			"Id": "RotaDerecha",
+			"Id": "RotateRight",
 			"key": "E"
 		},
 		{
@@ -16,6 +16,30 @@
 		{
 			"Id": "ExitConstruct",
 			"key": "ESC"
+		},
+		{
+			"Id": "ChangeCamera",
+			"key": "P"
+		},
+		{
+			"Id": "MoveForwards",
+			"key": "W"
+		},
+		{
+			"Id": "MoveBack",
+			"key": "S"
+		},
+		{
+			"Id": "MoveLeft",
+			"key": "A"
+		},
+		{
+			"Id": "MoveRight",
+			"key": "D"
+		},
+		{
+			"Id": "Jump",
+			"key": "Space"
 		}
 	],
 	"Mouse":

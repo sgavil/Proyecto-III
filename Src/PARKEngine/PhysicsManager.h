@@ -3,7 +3,7 @@
 
 //Tipo enumerado para los tipos de formas de los RigidBody
 enum Shape{ EmptyShape, BoxShape, SphereShape, CapsuleShape, PlaneShape, CylinderShape, ConeShape};
-const Vector3 DEFAULT_GRAVITY = { 0, -10, 0 };
+const Vector3 DEFAULT_GRAVITY = { 0, -100, 0 };
 
 //Forward-declarations
 class btRigidBody;

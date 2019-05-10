@@ -9,7 +9,7 @@
 
 
 
-Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr)
+Rigidbody::Rigidbody() : transform_(nullptr), rigid_(nullptr), mass_(0), dims_(nullptr)
 {
 }
 
@@ -23,22 +23,29 @@ Rigidbody::Rigidbody(Transform* transform, Shape shape, float mass) : transform_
 
 void Rigidbody::load(json file)
 {
-	//json dimensions = file["dimensions"];
-	//Vector3 dims;
-	//dims.x = dimensions["x"];
-	//dims.y = dimensions["y"];
-	//dims.z = dimensions["z"];
+	addParameter(mass_, file["mass"]);
 
-	mass_ = file["mass"];
+	if(file.contains("dimensions"))
+	{
+		json dimensions = file["dimensions"];
+		dims_ = new Vector3(dimensions["x"], dimensions["y"], dimensions["z"]);
+	}
 }
 
 void Rigidbody::start()
 {
-	//Create the rigidbody
 	MeshRenderer* renderer = entity_->getComponent<MeshRenderer>();
-	Vector3 aabbMin, aabbMax; renderer->getAABB(aabbMin, aabbMax); //¿CUANDO TIENE VALOR VALIDO?
-	Vector3 dims = aabbMax - aabbMin;
-	rigid_ = PhysicsManager::createRigidBody(BoxShape, dims, mass_);
+	//Create the rigidbody from mesh
+	if (dims_ == nullptr && renderer != nullptr)
+	{
+		Vector3 aabbMin, aabbMax; renderer->getAABB(aabbMin, aabbMax); //¿CUANDO TIENE VALOR VALIDO?
+		dims_ = new Vector3(aabbMax - aabbMin);
+	}
+	else if (dims_ == nullptr)
+		dims_ = new Vector3(1, 1, 1);
+
+	rigid_ = PhysicsManager::createRigidBody(BoxShape, *dims_, mass_);
+
 	//Set position
 	transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
@@ -58,18 +65,13 @@ void Rigidbody::start()
 
 Rigidbody::~Rigidbody()
 {
-
+	delete dims_;
+	dims_ = nullptr;
 }
 
 void Rigidbody::update(unsigned int time)
 {
-	//Obtenemos su posición y orientación
-	btTransform trans = getBtTransform();
-
-	//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
-	transform_->setPosition(Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
-	transform_->setRotation(Quaternion(trans.getRotation().getW(), trans.getRotation().getX(),
-		trans.getRotation().getY(), trans.getRotation().getZ()));
+	updateTransform();
 }
 
 void Rigidbody::addForce(Vector3 force)
@@ -161,6 +163,40 @@ void Rigidbody::setPosition(Vector3 destiny)
 
 	//Set it
 	rigid_->setWorldTransform(trans);
+	updateTransform();
+}
+
+Transform* Rigidbody::getTransform()
+{
+	btTransform btTrans = getBtTransform();
+	Quaternion rot = btTrans.getRotation();
+
+	Transform t = Transform(getPosition(), rot, transform_->getScale());
+	return &t;
+}
+
+void Rigidbody::setTransform(Transform* transform)
+{
+	Vector3 pos = transform->getPosition();
+	Quaternion rot = transform->getRotation();
+
+	//Get actual transform and change position
+	btTransform btTrans = getBtTransform();
+	btTrans.setOrigin(btVector3(pos.x, pos.y, pos.z));
+	btTrans.setRotation(btQuaternion(rot.x, rot.y, rot.z, rot.w));
+
+	//Set it
+	rigid_->setWorldTransform(btTrans);
+}
+
+float Rigidbody::getRestitution()
+{
+	return rigid_->getRestitution();
+}
+
+void Rigidbody::setRestitution(float restitution)
+{
+	rigid_->setRestitution(restitution);
 }
 
 btTransform Rigidbody::getBtTransform()
@@ -174,6 +210,17 @@ btTransform Rigidbody::getBtTransform()
 		trans = rigid_->getWorldTransform();
 
 	return trans;
+}
+
+void Rigidbody::updateTransform()
+{
+	//Obtenemos su posición y orientación
+	btTransform trans = getBtTransform();
+
+	//Actualizamos la posición y orientación del nodo de Ogre en función a las del Rigidbody
+	transform_->setPosition(Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
+	transform_->setRotation(Quaternion(trans.getRotation().getW(), trans.getRotation().getX(),
+		trans.getRotation().getY(), trans.getRotation().getZ()));
 }
 
 

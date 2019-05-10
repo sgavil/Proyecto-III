@@ -30,6 +30,7 @@ private:
 	bool setRestaurantsConstructionActive(std::string boolean);
 	bool setToiletsConstructionActive(std::string boolean);
 	bool setInfoPanelActive(std::string boolean);
+	bool setNPCInfoPanelActive(std::string boolean);
 public:
 	static CallbackManager* instance();
 	

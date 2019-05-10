@@ -3,6 +3,7 @@
 #include "Button.h"
 #include "TextBox.h"
 #include "ProgressBar.h"
+#include "ImageBox.h"
 #include "CallbackManager.h"
 
 WindowBox::WindowBox()
@@ -63,6 +64,8 @@ void WindowBox::start()
 			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<TextBox>()->getStaticText());
 		else if (e->getComponent<ProgressBar>() != nullptr)
 			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<ProgressBar>()->getProgressBar());
+		else if (e->getComponent<ImageBox>() != nullptr)
+			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<ImageBox>()->getStaticImage());
 	}
 }
 

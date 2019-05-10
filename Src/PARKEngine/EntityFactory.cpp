@@ -56,6 +56,12 @@ std::vector<Entity*> EntityFactory::createEntities(std::string stateID,GameState
 		}
 
 		entities.push_back(entity);
+
+		//Registramos a todos los componentes como listeners
+		for (Component* c : entity->getComponents())
+			for (Component* c2 : entity->getComponents())
+				if (c != c2)
+					c->registerListener(c2);		
 	}
 
 	return entities;

@@ -47,7 +47,7 @@ public:
 	virtual void load(json file) {};
 
 	//Método para que los componentes e inicialicen con información de sus componentes hermanos
-	virtual void start();
+	virtual void start() {};
 
 	//Devuelve información sobre el componente. Cada uno puede redefinirlo a su gusto
 	virtual std::string getInfo() { return "This component hasn't got an implementation for 'getInfo()' \n"; };

@@ -25,8 +25,8 @@ ConstructionMode::~ConstructionMode()
 void ConstructionMode::load(json file)
 {
 	
-	for (json b : file["BuildingsNames"]){
-		buildingTypes_.push_back(b["name"]);
+	for (std::string s : file["BuildingsNames"]){
+		buildingTypes_.push_back(s);
 	}
 
 }
@@ -42,7 +42,7 @@ void ConstructionMode::update(unsigned int time)
 		bureauCrazyManager_ = SceneManager::instance()->currentState()->getEntity("BureauCrazyManager")->getComponent<BureauCrazyManager>();
 	}
 
-	if (constructActive_ && !notEnoughMoney_) {
+	if (constructActive_) {
 		pair<Entity*, Ogre::Vector3> nodeAndPos= OgreManager::instance()->raycastToMouse();
 		if (nodeAndPos.first != nullptr && nodeAndPos.first->getComponent<Node>() != nullptr) {
 			nodes_ = getNodesToConstruct(nodeAndPos.first, nodeAndPos.second);
@@ -50,7 +50,7 @@ void ConstructionMode::update(unsigned int time)
 			setNodeMaterial(true, canConst_);
 		}
 	}
-	else if (notEnoughMoney_) {
+	else {
 		deactivateThisConstruction();
 	}
 }
@@ -60,7 +60,7 @@ bool ConstructionMode::handleEvent(unsigned int time)
 	if (InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
 	{
 		CEGUI::Window* w = CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse();
-		if (canConst_ && w->getName() == "StateTest") {
+		if (canConst_ && w->getName() == "StatePlay") {
 			setBuilding();
 			matrixEntity_->getComponent<Matrix>()->getInfo();
 		}
@@ -124,8 +124,6 @@ void ConstructionMode::construct(string bName)
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(0, -1000, 0));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
 	build_ = buildingEntity_->getComponent<Edificio>();
-
-	notEnoughMoney_ = bureauCrazyManager_->getActualMoney() < build_->getPrice();
 }
 
 void ConstructionMode::deactivateThisConstruction() {
@@ -207,13 +205,13 @@ void ConstructionMode::setNodesType()
 {
 	for (Entity* e : nodes_) {
 		
-			Edificio::BuildingType bType = build_->getType();
-			//Camino
-			if (bType == Edificio::BuildingType::Ornament)
-				e->getComponent<Node>()->setType(Node::NodeType::Empty);
-			//Edificio de verdad
-			else
-				e->getComponent<Node>()->setType(Node::NodeType::Building);
+		Edificio::BuildingType bType = build_->getType();
+		//Camino
+		if (bType == Edificio::BuildingType::Ornament)
+			e->getComponent<Node>()->setType(Node::NodeType::Road);
+		//Edificio de verdad
+		else
+			e->getComponent<Node>()->setType(Node::NodeType::Building);
 	}
 }
 
