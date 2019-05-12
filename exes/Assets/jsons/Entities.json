@@ -312,7 +312,30 @@
       "parameters":
       {
         "bName": "Burguer",
-		    "Type": 2
+		 "Type": 2
+      }
+    }    
+  ],
+  "Entrada": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Entrada.mesh",
+        "material": "EntradaMaterial",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "Entrada",
+		"Type": 4
       }
     }    
   ]

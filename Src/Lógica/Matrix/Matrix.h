@@ -42,6 +42,7 @@ private:
 	vector<vector<Entity*>> matrix_;
 	//Entrance to the PARK
 	Node* entrance_;
+	int entX, entY;
 	std::list<Component*> comps;
 	
 	//Crea la matriz de nodos
