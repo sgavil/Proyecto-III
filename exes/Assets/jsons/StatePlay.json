@@ -82,7 +82,7 @@
     "name": "ToolsPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "True",
           "closeEnabled": "False",
@@ -185,7 +185,7 @@
       "name": "ConstructPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -230,7 +230,7 @@
           "posX": 0.01,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -258,7 +258,31 @@
           "posX": 0.01,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "RoadsScrollablePane",
+      "Components":[
+        {
+          "name": "ScrollablePaneBox",
+          "type": "TaharezLook/ScrollablePane",
+          "font": "DejaVuSans-10",
+          "Hijos": [
+            {
+              "name": "ConstructRoadButton"
+            },
+            {
+              "name": "TextPriceRoad"
+            }
+          ],
+          "posX": 0.0,
+          "posY": 0.0,
+          "sizeX": 500,
+          "sizeY": 60,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -268,7 +292,7 @@
       "name": "RoadsPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -279,14 +303,11 @@
           "font": "Carnevalee Freakshow-22",
           "Hijos": [
             {
-              "name": "ConstructRoadButton"
-            },
-            {
-              "name": "TextPriceRoad"
+              "name": "RoadsScrollablePane"
             }
           ],
           "posX": 0.3,
-          "posY": 0.8,
+          "posY": 0.81,
           "sizeX": 500,
           "sizeY": 110,
           "offsetX": -100,
@@ -307,7 +328,7 @@
           "posX": 0.01,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -335,7 +356,7 @@
           "posX": 0.01,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -354,7 +375,7 @@
           "posX": 0.255,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -382,7 +403,7 @@
           "posX": 0.255,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -401,7 +422,7 @@
           "posX": 0.5,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -429,30 +450,23 @@
           "posX": 0.5,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
           "offsetX": 0,
           "offsetY": 0
         }
       ]
     },
     {
-      "name": "AmusementsPanel",
-      "Components": [
+      "name": "AmusementsScrollablePane",
+      "Components":[
         {
-          "name": "WindowBox",
-          "type": "Vanilla/FrameWindow",
-          "active": "False",
-          "closeEnabled": "True",
-          "callback": "setAmusementsConstructionActive",
-          "parameter": "False",
-          "titleEnabled": "True",
-          "title": "ATRACCIONES",
-          "font": "Carnevalee Freakshow-22",
+          "name": "ScrollablePaneBox",
+          "type": "TaharezLook/ScrollablePane",
+          "font": "DejaVuSans-10",
           "Hijos": [
             {
               "name": "ConstructPatitosButton"
             },
-            
             {
               "name": "TextPricePatitos"
             },
@@ -469,8 +483,35 @@
               "name": "TextPriceLanzadera"
             }
           ],
+          "posX": 0.0,
+          "posY": 0.0,
+          "sizeX": 500,
+          "sizeY": 60,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "AmusementsPanel",
+      "Components": [
+        {
+          "name": "FrameWindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "False",
+          "closeEnabled": "True",
+          "callback": "setAmusementsConstructionActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "ATRACCIONES",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "AmusementsScrollablePane"
+            }
+          ],
           "posX": 0.3,
-          "posY": 0.8,
+          "posY": 0.81,
           "sizeX": 500,
           "sizeY": 110,
           "offsetX": -100,
@@ -491,7 +532,7 @@
           "posX": 0.01,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -519,7 +560,31 @@
           "posX": 0.01,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "RestaurantsScrollablePane",
+      "Components":[
+        {
+          "name": "ScrollablePaneBox",
+          "type": "TaharezLook/ScrollablePane",
+          "font": "DejaVuSans-10",
+          "Hijos": [
+            {
+              "name": "ConstructBurguerButton"
+            },
+            {
+              "name": "TextPriceBurger"
+            }
+          ],
+          "posX": 0.0,
+          "posY": 0.0,
+          "sizeX": 500,
+          "sizeY": 60,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -529,7 +594,7 @@
       "name": "RestaurantsPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -540,17 +605,32 @@
           "font": "Carnevalee Freakshow-22",
           "Hijos": [
             {
-              "name": "ConstructBurguerButton"
-            },
-            {
-              "name": "TextPriceBurger"
+              "name": "RestaurantsScrollablePane"
             }
           ],
           "posX": 0.3,
-          "posY": 0.8,
+          "posY": 0.81,
           "sizeX": 500,
           "sizeY": 110,
           "offsetX": -100,
+          "offsetY": 0
+        }
+      ]
+    },
+        {
+      "name": "ToiletsScrollablePane",
+      "Components":[
+        {
+          "name": "ScrollablePaneBox",
+          "type": "TaharezLook/ScrollablePane",
+          "font": "DejaVuSans-10",
+          "Hijos": [
+          ],
+          "posX": 0.0,
+          "posY": 0.0,
+          "sizeX": 500,
+          "sizeY": 60,
+          "offsetX": 0,
           "offsetY": 0
         }
       ]
@@ -559,7 +639,7 @@
       "name": "ToiletsPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -569,9 +649,12 @@
           "title": "W.C",
           "font": "Carnevalee Freakshow-22",
           "Hijos": [
+            {
+              "name": "ToiletsScrollablePane"
+            }
           ],
           "posX": 0.3,
-          "posY": 0.8,
+          "posY": 0.81,
           "sizeX": 500,
           "sizeY": 100,
           "offsetX": -100,
@@ -664,7 +747,7 @@
     "name": "InfoPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -799,7 +882,7 @@
     "name": "NPCInfoPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "True",
           "closeEnabled": "True",

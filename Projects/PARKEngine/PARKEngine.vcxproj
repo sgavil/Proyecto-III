@@ -182,6 +182,7 @@
     <ClCompile Include="..\..\Src\PARKEngine\Component.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Entity.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\EntityFactory.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\FrameWindowBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\GameState.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\HUDManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\ImageBox.cpp" />
@@ -196,12 +197,12 @@
     <ClCompile Include="..\..\Src\PARKEngine\SceneManager.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\BackgroundImage.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\ProgressBar.cpp" />
+    <ClCompile Include="..\..\Src\PARKEngine\ScrollablePaneBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Terrain.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\TerrainCreator.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\TextBox.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Transform.cpp" />
     <ClCompile Include="..\..\Src\PARKEngine\Widget.cpp" />
-    <ClCompile Include="..\..\Src\PARKEngine\WindowBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PARKEngine\Animation.h" />
@@ -213,6 +214,7 @@
     <ClInclude Include="..\..\Src\PARKEngine\ComponentCreator.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Entity.h" />
     <ClInclude Include="..\..\Src\PARKEngine\EntityFactory.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\FrameWindowBox.h" />
     <ClInclude Include="..\..\Src\PARKEngine\GameState.h" />
     <ClInclude Include="..\..\Src\PARKEngine\HUDManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\ImageBox.h" />
@@ -233,13 +235,13 @@
     <ClInclude Include="..\..\Src\PARKEngine\SceneManager.h" />
     <ClInclude Include="..\..\Src\PARKEngine\BackgroundImage.h" />
     <ClInclude Include="..\..\Src\PARKEngine\ProgressBar.h" />
+    <ClInclude Include="..\..\Src\PARKEngine\ScrollablePaneBox.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Terrain.h" />
     <ClInclude Include="..\..\Src\PARKEngine\TerrainCreator.h" />
     <ClInclude Include="..\..\Src\PARKEngine\TextBox.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Transform.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Utils.h" />
     <ClInclude Include="..\..\Src\PARKEngine\Widget.h" />
-    <ClInclude Include="..\..\Src\PARKEngine\WindowBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

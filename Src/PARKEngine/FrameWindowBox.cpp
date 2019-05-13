@@ -1,27 +1,29 @@
-#include "WindowBox.h"
+#include "FrameWindowBox.h"
 #include "SceneManager.h"
 #include "Button.h"
 #include "TextBox.h"
 #include "ProgressBar.h"
 #include "ImageBox.h"
+#include "ScrollablePaneBox.h"
 #include "CallbackManager.h"
 
-WindowBox::WindowBox()
+FrameWindowBox::FrameWindowBox()
 {
-	type = "TaharezLook/StaticText";
+	type = "Vanilla/FrameWindow";
 }
 
-WindowBox::~WindowBox()
+FrameWindowBox::~FrameWindowBox()
 {
 }
 
-void WindowBox::load(json file)
+void FrameWindowBox::load(json file)
 {
 	Widget::load(file);
 
 	//Mover el panel
 	window->setProperty("DragMovingEnabled", "False");
 	window->setProperty("AutoRenderingSurface", "False");
+	window->setProperty("SizingEnabled", "False");
 
 	//Para las propiedades del boton de cerrar
 	string closeEnabled = file["closeEnabled"];
@@ -29,7 +31,7 @@ void WindowBox::load(json file)
 	if (closeEnabled == "True") {
 		addParameter(closeCallback, file["callback"]);
 		addParameter(closeCallbackBackParam, file["parameter"]);
-		window->getChildElement("__auto_closebutton__")->subscribeEvent(CEGUI::PushButton::EventClicked, &WindowBox::onClick, this);
+		window->getChildElement("__auto_closebutton__")->subscribeEvent(CEGUI::PushButton::EventClicked, &FrameWindowBox::onClick, this);
 	}
 
 	//Opciones para el titulo
@@ -54,7 +56,7 @@ void WindowBox::load(json file)
 		window->show();
 }
 
-void WindowBox::start()
+void FrameWindowBox::start()
 {
 	for (string s : hijos) {
 		Entity* e = SceneManager::instance()->currentState()->getEntity(s);
@@ -66,16 +68,18 @@ void WindowBox::start()
 			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<ProgressBar>()->getProgressBar());
 		else if (e->getComponent<ImageBox>() != nullptr)
 			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<ImageBox>()->getStaticImage());
+		else if (e->getComponent<ScrollablePaneBox>() != nullptr)
+			window->addChild(SceneManager::instance()->currentState()->getEntity(s)->getComponent<ScrollablePaneBox>()->getScrollablePane());
 	}
 }
 
-bool WindowBox::closeWindow(const CEGUI::EventArgs & e)
+bool FrameWindowBox::closeWindow(const CEGUI::EventArgs & e)
 {
 	window->hide();
 	return true;
 }
 
-bool WindowBox::onClick(const CEGUI::EventArgs& e)
+bool FrameWindowBox::onClick(const CEGUI::EventArgs& e)
 {
 	CallbackManager::instance()->getCallback(closeCallback)(closeCallbackBackParam);
 	return true;
