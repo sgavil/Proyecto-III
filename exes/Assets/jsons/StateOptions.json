@@ -40,6 +40,112 @@
         }
       ]
     },
+	{
+      "name": "SubirVolumenText",
+      "Components": 
+      [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "Jura-18",
+          "text": " Volumen efectos",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "F0000000",
+            "topRight": "F0000000",
+            "botLeft": "F0000000",
+            "botRight": "F0000000"
+          },
+          "posX": -0.40,
+          "posY": -0.1,
+          "sizeX": 300,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+	{
+      "name": "VolumeEffects",
+      "Components": [
+        {
+          "name": "FrameWindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "True",
+          "closeEnabled": "False",
+          "parameter": "False",
+          "titleEnabled": "False",
+          "title": "SubirEfectos",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "SubirVolumenText"
+            }
+          ],
+          "posX": 0.410,
+          "posY": 0,
+          "sizeX": 170,
+          "sizeY": 100,
+          "offsetX": -10,
+          "offsetY": 0
+        }
+      ]
+    },
+	{
+      "name": "SubirMusicText",
+      "Components": 
+      [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "Jura-18",
+          "text": " Volumen musica",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor":
+          {
+            "topLeft": "F0000000",
+            "topRight": "F0000000",
+            "botLeft": "F0000000",
+            "botRight": "F0000000"
+          },
+          "posX": -0.40,
+          "posY": -0.1,
+          "sizeX": 300,
+          "sizeY": 50,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+	{
+      "name": "VolumeMusica",
+      "Components": [
+        {
+          "name": "FrameWindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "True",
+          "closeEnabled": "False",
+          "parameter": "False",
+          "titleEnabled": "False",
+          "title": "SubirEfectos",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "SubirMusicText"
+            }
+          ],
+          "posX": 0.410,
+          "posY": 0.3,
+          "sizeX": 170,
+          "sizeY": 100,
+          "offsetX": -10,
+          "offsetY": 0
+        }
+      ]
+    },
     {
       "name": "UpEffectsVolumeButton",
       "Components": [
@@ -103,7 +209,7 @@
               "botRight": "FFFFFFFF"
            },
           "posX": 0.47,
-          "posY": 0.3,
+          "posY": 0.5,
           "sizeX": 50,
           "sizeY": 50,
           "offsetX": 0,
@@ -129,7 +235,7 @@
           "offsetY": 0
         }
       ]
-    },
+    },	
     {
       "name": "UpMusicVolumeButton",
       "Components": [
@@ -141,7 +247,7 @@
           "parameter": "+",
           "text": "+",
           "posX": 0.55,
-          "posY": 0.3,
+          "posY": 0.5,
           "sizeX": 50,
           "sizeY": 50,
           "offsetX": 0,
@@ -160,7 +266,7 @@
           "parameter": "-",
           "text": "-",
           "posX": 0.39,
-          "posY": 0.3,
+          "posY": 0.5,
           "sizeX": 50,
           "sizeY": 50,
           "offsetX": 0,
