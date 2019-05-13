@@ -14,7 +14,7 @@ public:
 		return datos->bName == datos->bName;
 	}
 	//El tipo ornament no tiene ni entrada ni salida, su cola es de 0 y no cambia valores de necesidades
-	enum BuildingType { Ornament, Amusement, Restaurant, Toilet };
+	enum BuildingType { Ornament, Amusement, Restaurant, Toilet, other };
 private:
 	//int price_;
 	////Estos son los valores que un edificio modifica de un NPC

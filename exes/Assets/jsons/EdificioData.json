@@ -235,6 +235,29 @@
                 "Duration": 5,
                 "Capacity": 2
             }
+        },
+		 {
+            "parameters":
+            {
+                "bName": "Entrada",
+                "Type": 4,
+                "Tam":
+                {
+                  "x": 3,
+                  "y": 8
+                },
+                "Height": 20,
+                "Entry":
+                {
+                  "x": 2,
+                  "y": 0
+                },
+                "Exit":
+                {
+                  "x": 2,
+                  "y": 1
+                }
+            }
         }
     ]
 }

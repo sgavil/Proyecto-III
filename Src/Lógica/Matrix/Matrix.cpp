@@ -39,6 +39,10 @@ void Matrix::load(json file)
 	nSize_.y = nodeSize["y"];
 	nSize_.z = nodeSize["z"];
 
+	json Entry = matrixFile["EntryCoord"];
+	entX = Entry["x"];
+	entY = Entry["y"];
+
 	mSize_.x = matrixFile["rows"];
 	mSize_.y = matrixFile["cols"];
 
@@ -72,7 +76,7 @@ void Matrix::start()
 		}
 	}
 
-	entrance_ = matrix_.at(0).at(0)->getComponent<Node>();
+	entrance_ = matrix_.at(entX).at(entY)->getComponent<Node>();
 
 }
 
