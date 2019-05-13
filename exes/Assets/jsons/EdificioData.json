@@ -207,7 +207,7 @@
 		 {
             "parameters":
             {
-                "bName": "HotDog",
+                "bName": "HotDogTruck",
                 "Price": 250,
                 "LockedPrice": 800,
                 "Locked": false,
