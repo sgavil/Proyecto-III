@@ -293,7 +293,7 @@
       }
     }    
   ],
-  "Burguer": 
+  "HotDogTruck": 
   [
     {
       "name": "Transform"
@@ -311,7 +311,7 @@
       "name": "Edificio",
       "parameters":
       {
-        "bName": "Burguer",
+        "bName": "HotDogTruck",
 		 "Type": 2
       }
     }    
