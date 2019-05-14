@@ -43,6 +43,8 @@ private:
 	std::queue<Entity*> cola;
 	std::list<Entity*> rideing;
 
+	std::list<Entity*> nodes_;
+
 	Datos* datos;
 
 public:
@@ -62,6 +64,8 @@ public:
 	void load(json file);
 
 	//GETTERS
+	std::list<Entity*> getNodes() { return nodes_; };
+
 	int getPrice() { return datos->price_; };
 	//Dice si la cola del edificio está llena o no
 	bool isFull() { return (cola.size() > datos->maxCola_); };
@@ -101,8 +105,7 @@ public:
 	//El parametro d es en segundos y automaticamente lo pasa a milisegundos que es como trabaja internamente
 	void setDuration(int D) { datos->duration_ = D * 1000; };
 
-	
-
+	void setNodes(std::list<Entity*> n) { nodes_ = n; };
 	void setEntryNode(Node* e) { EntryNode = e; };
 	void setExitNode(Node* e) { ExitNode = e; };
 private:

@@ -14,7 +14,7 @@
 #include "BureaucracyManager.h"
 
 
-ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false)
+ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false), deleteActive_(false)
 {
 }
 
@@ -57,7 +57,7 @@ void ConstructionMode::update(unsigned int time)
 
 bool ConstructionMode::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
+	if (!deleteActive_ && InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
 	{
 		CEGUI::Window* w = CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse();
 		if (canConst_ && w->getName() == "StatePlay") {
@@ -69,6 +69,9 @@ bool ConstructionMode::handleEvent(unsigned int time)
 			MessageInfo m(CANNOT_BUILD, entity_);
 			send(&m);			
 		}
+	}
+	else if (deleteActive_ && InputManager::getSingletonPtr()->isKeyDown("DeleteBuilding")) {
+		deleteBuilding();
 	}
 	if (InputManager::getSingletonPtr()->isKeyDown("FinishConstruct")) {
 		deactivateThisConstruction();
@@ -227,6 +230,7 @@ void ConstructionMode::setBuilding()
 	MessageInfo m(CREATED_BUILDING, buildingEntity_);
 	send(&m);
 
+	buildingEntity_->getComponent<Edificio>()->setNodes(std::list<Entity*>(nodes_));
 	setNodesType();
 	set = true;
 	setNodeMaterial(false, true);
@@ -314,6 +318,20 @@ void ConstructionMode::setNodeMaterial(bool enable, bool can)
 		}
 	}
 
+}
+
+
+void ConstructionMode::deleteBuilding() {
+	pair<Entity*, Ogre::Vector3> nodeAndPos = OgreManager::instance()->raycastToMouse("Node");
+	if (nodeAndPos.first != nullptr) {
+		cout << nodeAndPos.first->getComponent<Transform>()->getPosition().y << endl;
+		nodeAndPos.first->getComponent<Transform>()->setPosition(Ogre::Vector3(0, 1000, 0));
+		cout << nodeAndPos.first->getComponent<Transform>()->getPosition().y << endl;
+
+		for (Entity* e : nodeAndPos.first->getComponent<Edificio>()->getNodes()) {
+			e->getComponent<Node>()->setType(Node::NodeType::Empty);
+		}
+	}
 }
 
 

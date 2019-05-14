@@ -117,15 +117,15 @@ Ogre::TextureManager * OgreManager::getTextureManager()
 	return &Ogre::TextureManager::getSingleton();
 }
 
-std::pair<Entity*, Ogre::Vector3> OgreManager::raycastToMouse()
+std::pair<Entity*, Ogre::Vector3> OgreManager::raycastToMouse(std::string ignoreEntityName)
 {
 	return raycast(HUDManager::instance()->getMouseCursor().getPosition().d_x /
 		float(OgreManager::instance()->getWindow()->getWidth()),
 		HUDManager::instance()->getMouseCursor().getPosition().d_y /
-		float(OgreManager::instance()->getWindow()->getHeight()));
+		float(OgreManager::instance()->getWindow()->getHeight()), ignoreEntityName);
 }
 
-std::pair<Entity*, Ogre::Vector3> OgreManager::raycast(float screenX, float screenY)
+std::pair<Entity*, Ogre::Vector3> OgreManager::raycast(float screenX, float screenY, std::string ignoreEntityName)
 {
 	Ogre::RaySceneQuery* m_pray_scene_query = sceneMgr_->createRayQuery(Ogre::Ray(), sceneMgr_->WORLD_GEOMETRY_TYPE_MASK);
 	if (nullptr == m_pray_scene_query) return (std::pair<Entity* ,Ogre::Vector3>(nullptr,Ogre::Vector3::ZERO));
@@ -166,9 +166,11 @@ std::pair<Entity*, Ogre::Vector3> OgreManager::raycast(float screenX, float scre
 			// get the entity to check
 			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
 			Entity* en = getEntityFromNode(pentity->getParentSceneNode());
-			std::pair<Entity*, Ogre::Vector3> pair_(en,ray.getPoint(query_result[qr_idx].distance));
-			//pentity->setVisible(false);
-			return pair_;
+			if (ignoreEntityName == "" || (ignoreEntityName != "" && en->getName() != ignoreEntityName)) {
+				std::pair<Entity*, Ogre::Vector3> pair_(en, ray.getPoint(query_result[qr_idx].distance));
+				//pentity->setVisible(false);
+				return pair_;
+			}
 		}
 	}
 
