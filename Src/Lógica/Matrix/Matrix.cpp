@@ -75,9 +75,6 @@ void Matrix::start()
 			matrix_.at(i).at(j)->start();
 		}
 	}
-
-	entrance_ = matrix_.at(entX).at(entY)->getComponent<Node>();
-
 }
 
 void Matrix::createMatrix()// (json matrixInfo)
@@ -92,6 +89,8 @@ void Matrix::createMatrix()// (json matrixInfo)
 			matrix_[i].push_back(e);
 		}
 	}
+
+	entrance_ = matrix_.at(entY).at(entX)->getComponent<Node>();
 }
 
 Vector3 Matrix::getPosIni()

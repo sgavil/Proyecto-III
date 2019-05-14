@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Lógica\BureaucracyManager.cpp" />
+    <ClCompile Include="..\..\Src\Lógica\NPCManager.cpp" />
     <ClCompile Include="..\..\Src\Lógica\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\..\Src\Lógica\ConstructionMode.cpp" />
     <ClCompile Include="..\..\Src\Lógica\DatosEdificio.cpp" />
@@ -32,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h" />
+    <ClInclude Include="..\..\Src\Lógica\NPCManager.h" />
     <ClInclude Include="..\..\Src\Lógica\ThirdPersonCamera.h" />
     <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h" />
     <ClInclude Include="..\..\Src\Lógica\DatosEdificio.h" />

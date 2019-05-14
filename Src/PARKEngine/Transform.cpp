@@ -82,8 +82,7 @@ void Transform::rotate(Quaternion q, REF_SYSTEM refSys)
 
 void Transform::notifyChange()
 {
-	Message* m = new Message(MessageId::TRANSFORM_CHANGED);
-	send(m);
+	send(&TransformChanged(TRANSFORM_CHANGED, this));
 }
 
 void Transform::scale(Vector3 factor)

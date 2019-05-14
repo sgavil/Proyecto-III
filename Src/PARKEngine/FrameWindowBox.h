@@ -18,6 +18,8 @@ public:
 
 	virtual void save(json& file) {};
 
+	virtual std::vector<std::string> getChildren() { return hijos; };
+
 
 private:
 	std::string text;

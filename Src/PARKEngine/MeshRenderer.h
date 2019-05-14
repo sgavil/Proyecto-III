@@ -1,7 +1,6 @@
 #pragma once
 #include "Component.h"
 
-class Transform;
 class Ogre::SceneNode;
 class Message;
 class OgreManager;
@@ -40,7 +39,6 @@ public:
 
 protected:
 	friend class OgreManager;
-	Transform * transform_ = nullptr;
 	Ogre::SceneNode* node_;
 
 	//Devuelve el nodo de Ogre

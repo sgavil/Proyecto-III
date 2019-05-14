@@ -18,7 +18,7 @@ void ThirdPersonCamera::start()
 	cam_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Camera>()[0]->getComponent<Camera>();
 	camTransform_ = cam_->getBrotherComponent<Transform>();
 	camRigid_= cam_->getBrotherComponent<Rigidbody>();
-	camTransform_->yaw(0, REF_SYSTEM::GLOBAL);
+	camTransform_->yaw(-45, REF_SYSTEM::GLOBAL);
 	camRigid_->setActive(false);
 }
 

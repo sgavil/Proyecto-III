@@ -1105,7 +1105,7 @@
             "botLeft": "FFFF0000",
             "botRight": "FFFF0000"
           },
-          "posX": 0.8,
+          "posX": 0.42,
           "posY": 0.005,
           "sizeX": 400,
           "sizeY": 75,
@@ -1130,7 +1130,7 @@
             "botLeft": "FFFF0000",
             "botRight": "FFFF0000"
           },
-          "posX": 0.78,
+          "posX": 0.4,
           "posY": 0.06,
           "sizeX": 400,
           "sizeY": 75,
@@ -1155,6 +1155,20 @@
         },
         {
           "name": "FirstPersonCamera",
+          "Listeners": [
+            {
+              "name": "BureauCrazyManager"
+            }
+          ]
+        }
+      ]
+    },
+	{
+      "name": "NPCManager",
+      "Components": [
+        {
+          "name": "NPCManager",
+          "enterTime": 5,
           "Listeners": [
             {
               "name": "BureauCrazyManager"

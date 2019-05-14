@@ -25,7 +25,7 @@ void NPC::start()
 	node_ = prevNode_ = initialNode;
 	//Set position to it (coming outside the park)
 	Vector3 pos = initialNode->getBrotherComponent<Transform>()->getPosition();
-	getBrotherComponent<Transform>()->setPosition(pos + Vector3(-200, 10, 0));
+	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 100));
 }
 
 std::string NPC::getInfo()

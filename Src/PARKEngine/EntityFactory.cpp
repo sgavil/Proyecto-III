@@ -83,6 +83,12 @@ Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 		if (comp.find("parameters") != comp.end())
 			c->load(comp["parameters"]);
 	}
+
+	//Registramos a todos los componentes como listeners
+	for (Component* c : entity->getComponents())
+		for (Component* c2 : entity->getComponents())
+			if (c != c2)
+				c->registerListener(c2);
 	
 	return entity;
 }
