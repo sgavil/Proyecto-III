@@ -96,10 +96,6 @@
         "visible" : false
       }
     },
-	{
-		 "name": "Rigidbody",
-		 "mass": 0
-	},
     {
       "name": "Node"
     }
@@ -271,7 +267,6 @@
         "visible" : true
       }
     },
-    
     {
       "name": "Edificio",
       "parameters":
@@ -285,30 +280,7 @@
 	  "mass": 0
 	}    
   ],
-  "Lanzadera": 
-  [
-    {
-      "name": "Transform"
-    },
-    {
-      "name": "MeshRenderer",
-      "parameters":
-      {
-        "mesh": "Lanzadera.mesh",
-        "material": "MaterialLanzadera",
-        "visible" : true
-      }
-    },
-    
-    {
-      "name": "Edificio",
-      "parameters":
-      {
-        "bName": "Lanzadera",
-		    "Type": 2
-      }
-    }    
-  ],
+
   "HotDogTruck": 
   [
     {
@@ -330,7 +302,11 @@
         "bName": "HotDogTruck",
 		 "Type": 2
       }
-    }    
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}     
   ],
   "Entrada": 
   [
@@ -353,6 +329,10 @@
         "bName": "Entrada",
 		"Type": 4
       }
-    }    
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}     
   ]
 }

@@ -1,12 +1,6 @@
 #include "ConstructionMode.h"
 
-#include "PARKEngine/SceneManager.h"
-#include "PARKEngine/InputManager.h"
-#include "PARKEngine/OgreManager.h"
-#include "PARKEngine/Entity.h"
-#include "PARKEngine/Transform.h"
-#include "PARKEngine/Button.h"
-#include "PARKEngine/MeshRenderer.h"
+#include "PARKEngine/PARKEngine.h"
 #include "Matrix/Matrix.h"
 #include "Matrix/Node.h"
 #include <string>
@@ -99,6 +93,9 @@ void ConstructionMode::buildInMatrix(int i, int j, std::string name)
 
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(x, build_->getHeight(), z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
+	Rigidbody* buildingRigid = buildingEntity_->getComponent<Rigidbody>();
+	if(buildingRigid != nullptr)
+		buildingRigid->start();
 
 	//Modificar el tipo de nodos de la matriz
 	for (int x = i; x < build_->getTamX() + i; x++) {
@@ -223,6 +220,9 @@ void ConstructionMode::setBuilding()
 	buildingEntity_->setActive(true);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
+	Rigidbody* buildingRigid = buildingEntity_->getComponent<Rigidbody>();
+	if (buildingRigid != nullptr)
+		buildingRigid->start();
 
 	MessageInfo m(CREATED_BUILDING, buildingEntity_);
 	send(&m);
