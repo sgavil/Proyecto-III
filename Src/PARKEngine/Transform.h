@@ -57,7 +57,6 @@ public:
 	Vector3 up() { return up_; };
 
 
-
 	//Debug information
 	virtual std::string getInfo();
 
@@ -86,6 +85,8 @@ protected:
 	void updateAxis();
 	//Avisa a los componentes de la misma entidad de que han cambiado sus atributos
 	void notifyChange();
+
+
 
 };
 

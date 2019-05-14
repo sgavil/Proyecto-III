@@ -16,12 +16,6 @@
 
 
 
-
-// Bootstrap CEGUI::System with an OgreRenderer object that uses the
-// default Ogre rendering window as the default output surface, an Ogre based
-// ResourceProvider, and an Ogre based ImageCodec.
-   //CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem();
-
 std::unique_ptr<OgreManager> OgreManager::instance_;
 
 
@@ -90,7 +84,7 @@ void OgreManager::render(unsigned int deltaTime)
 	sceneMgr_->_updateSceneGraph(camera_);
 	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);	
 	OIS::Mouse* mouse =  InputManager::getSingletonPtr()->getMouse();
-	//std::cout << CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition().d_x << std::endl;
+	
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(mouse->getMouseState().X.rel
 		, mouse->getMouseState().Y.rel );
 
@@ -212,12 +206,14 @@ void OgreManager::initWindow(std::string initFileJson)
 #endif
 }
 
-float OgreManager::getWindowSize(int i)
+float OgreManager::getWindowSizeX()
 {
-	if (i == 0)
-		return viewport_->getActualWidth();
-	else
-		return viewport_->getActualHeight();
+	return viewport_->getActualWidth();
+}
+
+float OgreManager::getWindowSizeY()
+{
+	return viewport_->getActualHeight();
 }
 
 Ogre::Camera* OgreManager::createCamera(std::string name, float NearClipDist, float FarClipDist, bool autoAspectRatio, float AspectRatio)
