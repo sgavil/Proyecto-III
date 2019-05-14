@@ -197,7 +197,11 @@
         "bName": "Patitos",
 		    "Type": 1
       }
-    }
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}
   ],
   "Lanzadera": 
    [
@@ -220,7 +224,11 @@
         "bName": "Lanzadera",
 		    "Type": 2
       }
-    }
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}
   ],
   "Burguer": 
   [
@@ -243,7 +251,11 @@
         "bName": "Burguer",
 		    "Type": 2
       }
-    }    
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}    
   ],
   "Noria": 
   [
@@ -267,7 +279,11 @@
         "bName": "Noria",
 		    "Type": 2
       }
-    }    
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}    
   ],
   "Lanzadera": 
   [

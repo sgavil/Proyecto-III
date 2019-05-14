@@ -83,6 +83,14 @@ public:
 	//Sets rigidbody's position
 	virtual void setRestitution(float restitution);
 
+	//Freeze position/rotation
+	//Allows the rigidbody to move only in the specified axis
+	virtual void setLinearFactor(Vector3 axis);
+	//Freezes rotation in the given axis
+	virtual void setAngularFactor(Vector3 axis);
+
+	virtual void activate();
+
 	//Returns a string with indented information of the rigidbody
 	virtual virtual std::string getInfo();
 

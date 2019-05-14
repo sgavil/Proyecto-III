@@ -36,8 +36,6 @@ std::string NPC::getInfo()
 	return s;
 }
 
-//TODO: mostrar las necesidades visualmente
-
 
 void NPC::update(unsigned int time)
 {

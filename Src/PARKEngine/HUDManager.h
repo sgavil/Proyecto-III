@@ -32,6 +32,8 @@ public:
 
 	void setActiveWindow(std::string state);
 
+	void setMouseCursor(Vector2 pos);
+
 	
 	CEGUI::Window* createWidget(std::string name, std::string type, float posX, float posY, float offX, float offY, float tamX, float tamY/*, std::string txt, bool(T::* func)(const CEGUI::EventArgs&), T* obj*/)
 	{

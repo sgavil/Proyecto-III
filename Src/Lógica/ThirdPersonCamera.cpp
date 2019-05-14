@@ -35,12 +35,16 @@ void ThirdPersonCamera::receive(Message * msg)
 	{
 	case THIRD_PERSON_CAMERA:
 	{
+		camRigid_->setActive(false);
 		//Update position
 		camTransform_->setPosition(Vector3(0, 500, 500));
 		camTransform_->pitch(-45);
 		//Update rigidbody position
 		camRigid_->setTransform(camTransform_);
-		camRigid_->setActive(false);
+
+		//Show cursor
+		HUDManager::instance()->getMouseCursor().show();
+		HUDManager::instance()->setMouseCursor(Vector2(0.5, 0.5));
 
 		//Switch components
 		getBrotherComponent<FirstPersonCamera>()->setActive(false);
@@ -58,7 +62,7 @@ bool ThirdPersonCamera::handleEvent(unsigned int time)
 	float stdIncr = ((float)time / 2);
 	//Pillamos la info del ratón y de la ventana
 	Vector2 mouse = { (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs, (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs };
-	Vector2 windowSize = { OgreManager::instance()->getWindowSize(0),  OgreManager::instance()->getWindowSize(1) };
+	Vector2 windowSize = { OgreManager::instance()->getWindowSizeX(),  OgreManager::instance()->getWindowSizeY() };
 
 	//Incremento de la posición
 	Vector3 delta = { 0,0,0 };
