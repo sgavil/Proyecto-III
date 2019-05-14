@@ -1090,6 +1090,56 @@
       ]
     },
     {
+      "name": "TextTimer",
+      "Components": [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "Carnevalee Freakshow-40",
+          "text": "Tiempo de juego: ",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.8,
+          "posY": 0.005,
+          "sizeX": 400,
+          "sizeY": 75,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextNextTax",
+      "Components": [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-14",
+          "text": "Sig. Impuesto:  ",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.78,
+          "posY": 0.06,
+          "sizeX": 400,
+          "sizeY": 75,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "CameraManager",
       "Components": [
         {
