@@ -32,13 +32,16 @@ void FirstPersonCamera::receive(Message * msg)
 	{
 	case FIRST_PERSON_CAMERA:
 	{
+		//Restringimos el movimiento de la cámara
+		camRigid_->setAngularFactor(Vector3(0, 1, 0));
+		camRigid_->setLinearFactor(Vector3(1, 0, 1));
+
 		//Update position
-		camTransform_->setPosition(Vector3(0, 10, 0));
+		camTransform_->setPosition(Vector3(0, 20, 0));
 		camTransform_->pitch(45);
 		//Update rigidbody position
 		camRigid_->setTransform(camTransform_);
 		camRigid_->setActive(true);
-		camRigid_->clearForces();
 
 		//Hide cursor
 		HUDManager::instance()->getMouseCursor().hide();
@@ -53,6 +56,7 @@ void FirstPersonCamera::receive(Message * msg)
 		break;
 	}
 }
+
 
 bool FirstPersonCamera::handleEvent(unsigned int time)
 {
@@ -85,18 +89,19 @@ bool FirstPersonCamera::handleEvent(unsigned int time)
 
 		//Movimiento en las 4 direcciones
 		if (InputManager::getSingletonPtr()->isKeyDown("MoveForwards"))
-			vel += (camTransform_->forward() * stdIncr * 10);
+			vel += (camTransform_->forward() * stdIncr * 20);
 		else if (InputManager::getSingletonPtr()->isKeyDown("MoveBack"))
-			vel += (camTransform_->forward() * stdIncr * -10);
+			vel += (camTransform_->forward() * stdIncr * -20);
 		if (InputManager::getSingletonPtr()->isKeyDown("MoveLeft"))
-			vel += (camTransform_->right() * stdIncr * -10);
+			vel += (camTransform_->right() * stdIncr * -20);
 		else if (InputManager::getSingletonPtr()->isKeyDown("MoveRight"))
-		    vel += (camTransform_->right() * stdIncr * 10);
+		    vel += (camTransform_->right() * stdIncr * 20);
 
 		////Salto
 		//if (InputManager::getSingletonPtr()->isKeyDown("Jump"))
 		//	camRigid_->setLinearVelocity(Vector3(0,stdIncr * 10,0));
 
+		camRigid_->activate();
 		camRigid_->setLinearVelocity(vel);
 	}	
 	

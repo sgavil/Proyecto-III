@@ -16,7 +16,13 @@
         },
         {
           "name": "Rigidbody",
-          "mass": 10
+          "mass": 10,
+		  "dimensions":
+		  {
+			"x":5,
+			"y":10,
+			"z":5
+		  }
         }
       ]
     },
