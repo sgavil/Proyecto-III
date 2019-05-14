@@ -302,7 +302,11 @@
         "bName": "Lanzadera",
 		    "Type": 2
       }
-    }    
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}
   ],
   "HotDogTruck": 
   [
