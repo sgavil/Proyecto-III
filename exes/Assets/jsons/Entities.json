@@ -285,7 +285,7 @@
 	  "mass": 0
 	}    
   ],
-  "Lanzadera": 
+  "WCPortatil": 
   [
     {
       "name": "Transform"
@@ -294,8 +294,8 @@
       "name": "MeshRenderer",
       "parameters":
       {
-        "mesh": "Lanzadera.mesh",
-        "material": "MaterialLanzadera",
+        "mesh": "WCPortatil.mesh",
+        "material": "MaterialWCPortatil",
         "visible" : true
       }
     },

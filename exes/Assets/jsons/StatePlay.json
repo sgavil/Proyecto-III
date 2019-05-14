@@ -182,6 +182,51 @@
       ]
     },
     {
+      "name": "ConstructWCPortatilButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "DejaVuSans-10",
+          "callback": "construct",
+          "parameter": "WCPortatil",
+          "text": "WC PORTATIL",
+          "posX": 0.01,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 30,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextPriceWCPortatil",
+      "Components": [
+        {
+          "name": "PriceTextBox",
+          "bName": "Road",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "25 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 15,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "ConstructPanel",
       "Components": [
         {
@@ -666,6 +711,12 @@
           "type": "TaharezLook/ScrollablePane",
           "font": "DejaVuSans-10",
           "Hijos": [
+            {
+              "name" : "ConstructWCPortatilButton"
+            },
+            {
+              "name" : "TextPriceWCPortatil"
+            }
           ],
           "posX": 0.0,
           "posY": 0.0,
