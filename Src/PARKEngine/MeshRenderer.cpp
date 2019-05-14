@@ -17,7 +17,6 @@ MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 {
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
 	node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
-	//node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setVisible(visible);
 }
@@ -27,7 +26,7 @@ void MeshRenderer::load(json file)
 	std::string meshName;
 	addParameter(meshName, file["mesh"]);
 
-//	std::string meshName = file["mesh"];
+
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
 		node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
 
@@ -98,5 +97,6 @@ void MeshRenderer::receive(Message* msg)
 		node_->setPosition(transform_->getPosition());
 		node_->setOrientation(transform_->getRotation());
 		node_->setScale(transform_->getScale());
+
 	}
 }
