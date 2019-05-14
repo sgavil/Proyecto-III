@@ -11,10 +11,11 @@
 #include "Matrix/Node.h"
 #include <string>
 #include "Edificio.h"
+#include <PARKEngine/Rigidbody.h>
 #include "BureaucracyManager.h"
 
 
-ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false), deleteActive_(false)
+ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false), deleteActive_(true)
 {
 }
 
@@ -324,9 +325,7 @@ void ConstructionMode::setNodeMaterial(bool enable, bool can)
 void ConstructionMode::deleteBuilding() {
 	pair<Entity*, Ogre::Vector3> nodeAndPos = OgreManager::instance()->raycastToMouse("Node");
 	if (nodeAndPos.first != nullptr) {
-		cout << nodeAndPos.first->getComponent<Transform>()->getPosition().y << endl;
 		nodeAndPos.first->getComponent<Transform>()->setPosition(Ogre::Vector3(0, 1000, 0));
-		cout << nodeAndPos.first->getComponent<Transform>()->getPosition().y << endl;
 
 		for (Entity* e : nodeAndPos.first->getComponent<Edificio>()->getNodes()) {
 			e->getComponent<Node>()->setType(Node::NodeType::Empty);
