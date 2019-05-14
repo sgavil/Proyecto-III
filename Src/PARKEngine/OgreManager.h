@@ -43,8 +43,10 @@ public:
 	//Lanza un rayo desde la cámara hacia la posición de la pantalla indicada y devuelve la entidad con la que colisiona y el punto exacto
 	std::pair<Entity*, Ogre::Vector3> raycast(float screenX = 0.5, float screenY = 0.5, std::string ignoreEntityName = "");
 
-	//Devuelve las dimensiones de la ventana (0 = Anchura, 1 = Altura)
-	float getWindowSize(int i);
+	//Devuelve las anchura del viewport
+	float getWindowSizeX();
+	//Devuelve las altura del viewport
+	float getWindowSizeY();
 
 private:
 	//Clases amigas: necesitan acceder a los managers de Ogre

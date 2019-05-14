@@ -61,6 +61,12 @@ CEGUI::MouseCursor& HUDManager::getMouseCursor()
 	return CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor();
 }
 
+void HUDManager::setMouseCursor(Vector2 pos)
+{
+	Vector2 windowSize = { OgreManager::instance()->getWindowSizeX(), OgreManager::instance()->getWindowSizeY() };
+	CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(windowSize.x * pos.x, windowSize.y * pos.y);
+
+}
 void HUDManager::addWindow(std::string state)
 {
 	CEGUI::Window* newWindow = windowMgr->createWindow("DefaultWindow", state);

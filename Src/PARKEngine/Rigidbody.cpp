@@ -76,6 +76,7 @@ void Rigidbody::update(unsigned int time)
 
 void Rigidbody::addForce(Vector3 force)
 {
+	std::cout << "Calling addForce" << std::endl;
 	rigid_->applyCentralImpulse(btVector3(force.x, force.y, force.z));
 }
 
@@ -197,6 +198,21 @@ float Rigidbody::getRestitution()
 void Rigidbody::setRestitution(float restitution)
 {
 	rigid_->setRestitution(restitution);
+}
+
+void Rigidbody::setLinearFactor(Vector3 axis)
+{
+	rigid_->setLinearFactor(btVector3(axis.x, axis.y, axis.z));
+}
+
+void Rigidbody::setAngularFactor(Vector3 axis)
+{
+	rigid_->setAngularFactor(btVector3(axis.x, axis.y, axis.z));
+}
+
+void Rigidbody::activate()
+{
+	rigid_->activate();
 }
 
 btTransform Rigidbody::getBtTransform()

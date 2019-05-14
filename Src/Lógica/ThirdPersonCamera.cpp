@@ -19,6 +19,9 @@ void ThirdPersonCamera::start()
 	camTransform_ = cam_->getBrotherComponent<Transform>();
 	camRigid_= cam_->getBrotherComponent<Rigidbody>();
 	camTransform_->yaw(0, REF_SYSTEM::GLOBAL);
+	//Restringimos el movimiento de la cámara
+	//camRigid_->setLinearFactor(Vector3(1, 0, 1));
+	camRigid_->setAngularFactor(Vector3(0, 1, 0));
 	camRigid_->setActive(false);
 }
 
@@ -42,6 +45,10 @@ void ThirdPersonCamera::receive(Message * msg)
 		camRigid_->setTransform(camTransform_);
 		camRigid_->setActive(false);
 
+		//Show cursor
+		HUDManager::instance()->getMouseCursor().show();
+		HUDManager::instance()->setMouseCursor(Vector2(0.5, 0.5));
+
 		//Switch components
 		getBrotherComponent<FirstPersonCamera>()->setActive(false);
 		setActive(true);
@@ -58,7 +65,7 @@ bool ThirdPersonCamera::handleEvent(unsigned int time)
 	float stdIncr = ((float)time / 2);
 	//Pillamos la info del ratón y de la ventana
 	Vector2 mouse = { (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs, (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs };
-	Vector2 windowSize = { OgreManager::instance()->getWindowSize(0),  OgreManager::instance()->getWindowSize(1) };
+	Vector2 windowSize = { OgreManager::instance()->getWindowSizeX(),  OgreManager::instance()->getWindowSizeY() };
 
 	//Incremento de la posición
 	Vector3 delta = { 0,0,0 };
