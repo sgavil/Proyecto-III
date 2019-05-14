@@ -307,10 +307,52 @@
         "bName": "Lanzadera",
 		    "Type": 2
       }
+    }    
+  ],
+  "HotDogTruck": 
+  [
+    {
+      "name": "Transform"
     },
-	{
-	  "name": "Rigidbody",
-	  "mass": 0
-	}    
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "HotDog.mesh",
+        "material": "HotDogMaterial",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "HotDogTruck",
+		 "Type": 2
+      }
+    }    
+  ],
+  "Entrada": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Entrada.mesh",
+        "material": "EntradaMaterial",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "Entrada",
+		"Type": 4
+      }
+    }    
   ]
 }

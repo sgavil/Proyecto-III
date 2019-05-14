@@ -5,19 +5,19 @@
       "Components": [
         {
           "name": "Camera"
-        },  
+        },
         {
           "name": "Transform",
           "position": {
             "x": 0,
             "y": 500,
             "z": 500
-         }
+          }
         },
-		{
-		 "name": "Rigidbody",
-		 "mass": 10
-		}
+        {
+          "name": "Rigidbody",
+          "mass": 10
+        }
       ]
     },
 
@@ -79,10 +79,10 @@
       ]
     },
     {
-    "name": "ToolsPanel",
+      "name": "ToolsPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "True",
           "closeEnabled": "False",
@@ -185,7 +185,7 @@
       "name": "ConstructPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -230,7 +230,7 @@
           "posX": 0.01,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -238,8 +238,7 @@
     },
     {
       "name": "TextPriceRoad",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "PriceTextBox",
           "bName": "Road",
@@ -248,8 +247,7 @@
           "text": "1000 $",
           "alignText": "Centre",
           "backgroundEnabled": "False",
-          "textColor":
-          {
+          "textColor": {
             "topLeft": "FFFF0000",
             "topRight": "FFFF0000",
             "botLeft": "FFFF0000",
@@ -258,7 +256,31 @@
           "posX": 0.01,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "RoadsScrollablePane",
+      "Components": [
+        {
+          "name": "ScrollablePaneBox",
+          "type": "TaharezLook/ScrollablePane",
+          "font": "DejaVuSans-10",
+          "Hijos": [
+            {
+              "name": "ConstructRoadButton"
+            },
+            {
+              "name": "TextPriceRoad"
+            }
+          ],
+          "posX": 0.0,
+          "posY": 0.0,
+          "sizeX": 500,
+          "sizeY": 60,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -268,7 +290,7 @@
       "name": "RoadsPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -279,14 +301,11 @@
           "font": "Carnevalee Freakshow-22",
           "Hijos": [
             {
-              "name": "ConstructRoadButton"
-            },
-            {
-              "name": "TextPriceRoad"
+              "name": "RoadsScrollablePane"
             }
           ],
           "posX": 0.3,
-          "posY": 0.8,
+          "posY": 0.81,
           "sizeX": 500,
           "sizeY": 110,
           "offsetX": -100,
@@ -307,7 +326,7 @@
           "posX": 0.01,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -315,8 +334,7 @@
     },
     {
       "name": "TextPricePatitos",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "PriceTextBox",
           "bName": "Patitos",
@@ -325,8 +343,7 @@
           "text": "1000 $",
           "alignText": "Centre",
           "backgroundEnabled": "False",
-          "textColor":
-          {
+          "textColor": {
             "topLeft": "FFFF0000",
             "topRight": "FFFF0000",
             "botLeft": "FFFF0000",
@@ -335,7 +352,7 @@
           "posX": 0.01,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -354,7 +371,7 @@
           "posX": 0.255,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -362,8 +379,7 @@
     },
     {
       "name": "TextPriceNoria",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "PriceTextBox",
           "bName": "Noria",
@@ -372,8 +388,7 @@
           "text": "1000 $",
           "alignText": "Centre",
           "backgroundEnabled": "False",
-          "textColor":
-          {
+          "textColor": {
             "topLeft": "FFFF0000",
             "topRight": "FFFF0000",
             "botLeft": "FFFF0000",
@@ -382,7 +397,7 @@
           "posX": 0.255,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -401,7 +416,7 @@
           "posX": 0.5,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -409,8 +424,7 @@
     },
     {
       "name": "TextPriceLanzadera",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "PriceTextBox",
           "bName": "Lanzadera",
@@ -419,8 +433,7 @@
           "text": "700 $",
           "alignText": "Centre",
           "backgroundEnabled": "False",
-          "textColor":
-          {
+          "textColor": {
             "topLeft": "FFFF0000",
             "topRight": "FFFF0000",
             "botLeft": "FFFF0000",
@@ -429,30 +442,23 @@
           "posX": 0.5,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
           "offsetX": 0,
           "offsetY": 0
         }
       ]
     },
     {
-      "name": "AmusementsPanel",
+      "name": "AmusementsScrollablePane",
       "Components": [
         {
-          "name": "WindowBox",
-          "type": "Vanilla/FrameWindow",
-          "active": "False",
-          "closeEnabled": "True",
-          "callback": "setAmusementsConstructionActive",
-          "parameter": "False",
-          "titleEnabled": "True",
-          "title": "ATRACCIONES",
-          "font": "Carnevalee Freakshow-22",
+          "name": "ScrollablePaneBox",
+          "type": "TaharezLook/ScrollablePane",
+          "font": "DejaVuSans-10",
           "Hijos": [
             {
               "name": "ConstructPatitosButton"
             },
-            
             {
               "name": "TextPricePatitos"
             },
@@ -469,8 +475,35 @@
               "name": "TextPriceLanzadera"
             }
           ],
+          "posX": 0.0,
+          "posY": 0.0,
+          "sizeX": 500,
+          "sizeY": 60,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "AmusementsPanel",
+      "Components": [
+        {
+          "name": "FrameWindowBox",
+          "type": "Vanilla/FrameWindow",
+          "active": "False",
+          "closeEnabled": "True",
+          "callback": "setAmusementsConstructionActive",
+          "parameter": "False",
+          "titleEnabled": "True",
+          "title": "ATRACCIONES",
+          "font": "Carnevalee Freakshow-22",
+          "Hijos": [
+            {
+              "name": "AmusementsScrollablePane"
+            }
+          ],
           "posX": 0.3,
-          "posY": 0.8,
+          "posY": 0.81,
           "sizeX": 500,
           "sizeY": 110,
           "offsetX": -100,
@@ -491,7 +524,52 @@
           "posX": 0.01,
           "posY": 0.05,
           "sizeX": 120,
-          "sizeY": 40,
+          "sizeY": 30,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ConstructHotDogTruckButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "DejaVuSans-10",
+          "callback": "construct",
+          "parameter": "HotDogTruck",
+          "text": "HOTDOGTRUCK",
+          "posX": 0.255,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 30,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextPriceHotDogTruck",
+      "Components": [
+        {
+          "name": "PriceTextBox",
+          "bName": "HotDogTruck",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "1000 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.255,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 15,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -499,8 +577,7 @@
     },
     {
       "name": "TextPriceBurger",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "PriceTextBox",
           "bName": "Burguer",
@@ -509,8 +586,7 @@
           "text": "1000 $",
           "alignText": "Centre",
           "backgroundEnabled": "False",
-          "textColor":
-          {
+          "textColor": {
             "topLeft": "FFFF0000",
             "topRight": "FFFF0000",
             "botLeft": "FFFF0000",
@@ -519,7 +595,37 @@
           "posX": 0.01,
           "posY": 0.7,
           "sizeX": 120,
-          "sizeY": 20,
+          "sizeY": 15,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "RestaurantsScrollablePane",
+      "Components": [
+        {
+          "name": "ScrollablePaneBox",
+          "type": "TaharezLook/ScrollablePane",
+          "font": "DejaVuSans-10",
+          "Hijos": [
+            {
+              "name": "ConstructBurguerButton"
+            },
+            {
+              "name": "TextPriceBurger"
+            },
+			{
+              "name": "ConstructHotDogTruckButton"
+            },
+            {
+              "name": "TextPriceHotDogTruck"
+            }
+          ],
+          "posX": 0.0,
+          "posY": 0.0,
+          "sizeX": 500,
+          "sizeY": 60,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -529,7 +635,7 @@
       "name": "RestaurantsPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -540,14 +646,11 @@
           "font": "Carnevalee Freakshow-22",
           "Hijos": [
             {
-              "name": "ConstructBurguerButton"
-            },
-            {
-              "name": "TextPriceBurger"
+              "name": "RestaurantsScrollablePane"
             }
           ],
           "posX": 0.3,
-          "posY": 0.8,
+          "posY": 0.81,
           "sizeX": 500,
           "sizeY": 110,
           "offsetX": -100,
@@ -556,10 +659,28 @@
       ]
     },
     {
+      "name": "ToiletsScrollablePane",
+      "Components": [
+        {
+          "name": "ScrollablePaneBox",
+          "type": "TaharezLook/ScrollablePane",
+          "font": "DejaVuSans-10",
+          "Hijos": [
+          ],
+          "posX": 0.0,
+          "posY": 0.0,
+          "sizeX": 500,
+          "sizeY": 60,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "ToiletsPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -569,9 +690,12 @@
           "title": "W.C",
           "font": "Carnevalee Freakshow-22",
           "Hijos": [
+            {
+              "name": "ToiletsScrollablePane"
+            }
           ],
           "posX": 0.3,
-          "posY": 0.8,
+          "posY": 0.81,
           "sizeX": 500,
           "sizeY": 100,
           "offsetX": -100,
@@ -581,8 +705,7 @@
     },
     {
       "name": "TextDinero",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "TextBox",
           "type": "Vanilla/StaticText",
@@ -590,8 +713,7 @@
           "text": "Dinero: 143",
           "alignText": "Left",
           "backgroundEnabled": "False",
-          "textColor":
-          {
+          "textColor": {
             "topLeft": "FFFF0000",
             "topRight": "FFFF0000",
             "botLeft": "FFFF0000",
@@ -608,8 +730,7 @@
     },
     {
       "name": "InfoDinero",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "TextBox",
           "type": "Vanilla/StaticText",
@@ -617,8 +738,7 @@
           "text": "Dinero actual: 2000 $",
           "alignText": "Left",
           "backgroundEnabled": "False",
-          "textColor":
-          {
+          "textColor": {
             "topLeft": "FFFF0000",
             "topRight": "FFFF0000",
             "botLeft": "FFFF0000",
@@ -635,8 +755,7 @@
     },
     {
       "name": "InfoNumPersonas",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "TextBox",
           "type": "Vanilla/StaticText",
@@ -644,8 +763,7 @@
           "text": "Turistas Actuales: 15",
           "alignText": "Left",
           "backgroundEnabled": "False",
-          "textColor":
-          {
+          "textColor": {
             "topLeft": "FFFF0000",
             "topRight": "FFFF0000",
             "botLeft": "FFFF0000",
@@ -661,10 +779,10 @@
       ]
     },
     {
-    "name": "InfoPanel",
+      "name": "InfoPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "False",
           "closeEnabled": "True",
@@ -692,8 +810,7 @@
     },
     {
       "name": "FunImage",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "ImageBox",
           "type": "Vanilla/StaticImage",
@@ -727,8 +844,7 @@
     },
     {
       "name": "HungerImage",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "ImageBox",
           "type": "Vanilla/StaticImage",
@@ -762,8 +878,7 @@
     },
     {
       "name": "PeePeeImage",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "ImageBox",
           "type": "Vanilla/StaticImage",
@@ -796,10 +911,10 @@
       ]
     },
     {
-    "name": "NPCInfoPanel",
+      "name": "NPCInfoPanel",
       "Components": [
         {
-          "name": "WindowBox",
+          "name": "FrameWindowBox",
           "type": "Vanilla/FrameWindow",
           "active": "True",
           "closeEnabled": "True",
@@ -839,8 +954,7 @@
     },
     {
       "name": "ReproductorAudio",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "Reproductor"
         }
@@ -860,7 +974,7 @@
         }
       ]
     },
-	{
+    {
       "name": "ConstructionMode",
       "Components": [
         {
@@ -871,13 +985,13 @@
             }
           ],
           "BuildingsNames": [
-			  "Empty",
-			  "Road",
-			  "Toilet",
-			  "Patitos",
-			  "Burguer",
-			  "EntryRoad",
-			  "ExitRoad"
+            "Empty",
+            "Road",
+            "Toilet",
+            "Patitos",
+            "Burguer",
+            "EntryRoad",
+            "ExitRoad"
           ]
         }
       ]
@@ -887,60 +1001,57 @@
       "Components": [
         {
           "name": "Matrix",
-		  "file": "Matrix.json"
+          "file": "Matrix.json"
         }
       ]
     },
     {
       "name": "BureauCrazyManager",
-      "Components": 
-      [
+      "Components": [
         {
           "name": "BureauCrazyManager",
-          "Taxes":
-          [
+          "Taxes": [
             {
               "Type": "ELECTRIC",
               "Id": 0,
-              "Amount" : 7
+              "Amount": 7
             },
             {
               "Type": "MAINTEINANCE",
               "Id": 1,
-              "Amount" : 15
+              "Amount": 15
             }
           ],
-          "BankRuptcy":
-          {
+          "BankRuptcy": {
             "ruptcyMaxTime": 7,
             "floorRuptcyMoney": -40,
             "InitialTime2Tax": 180,
-            "ActualMoney" : 1500,
-            "InitVisitors" : 3
+            "ActualMoney": 1500,
+            "InitVisitors": 3
           }
         }
       ]
     },
-	{
+    {
       "name": "CameraManager",
       "Components": [
         {
           "name": "ThirdPersonCamera",
-		  "maxHeigth": 1000,
-		  "minHeigth": 20,
-		  "borders": 0.02,
-		  "Listeners": [
-		   {
-		      "name": "BureauCrazyManager"
-	       }
+          "maxHeigth": 1000,
+          "minHeigth": 20,
+          "borders": 0.02,
+          "Listeners": [
+            {
+              "name": "BureauCrazyManager"
+            }
           ]
         },
-		{
+        {
           "name": "FirstPersonCamera",
-		  "Listeners": [
-		   {
-		      "name": "BureauCrazyManager"
-	       }
+          "Listeners": [
+            {
+              "name": "BureauCrazyManager"
+            }
           ]
         }
       ]

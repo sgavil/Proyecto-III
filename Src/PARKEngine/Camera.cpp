@@ -63,32 +63,4 @@ void Camera::receive(Message* msg)
 
 void Camera::save(json& file)
 {
-	////guardar el nombre de la entidad en caso de que no exista
-	//bool found = false;
-	//json entidad;
-	//for (const auto& obj : file["Entities"]) {
-	//	if(obj["name"]==entity_->getName()){
-	//		found = !found;	
-	//		entidad = obj;
-	//		break;
-	//	}
-	//}
-	//if(!found)
-	//file.push_back(json::object_t::value_type("name", entity_->getName()));
-
-	////Inserte componente en la entidad, y si aún no hay ninguno, crear el array de componentes
-	//else{	
-
-	//	auto it = entidad.find("Components");
-	//	if (it == entidad.end()) {
-	//		//Creamos el array componentes
-	//		entidad.push_back("Components");
-	//		json componentes = json::array();
-	//		componentes.push_back(json::object_t::value_type("name", entity_->getName()));
-	//		entidad["Components"].push_back(componentes);
-	//	}
-	//	else {
-	//		entidad["Components"].push_back(json::object_t::value_type("name", entity_->getName()));
-	//	}
-	//}
 }

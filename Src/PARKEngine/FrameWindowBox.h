@@ -4,12 +4,12 @@
 
 using namespace std;
 
-class WindowBox : public Widget
+class FrameWindowBox : public Widget
 {
 
 public:
-	WindowBox();
-	~WindowBox();
+	FrameWindowBox();
+	~FrameWindowBox();
 
 
 	void load(json file);
@@ -30,4 +30,4 @@ private:
 	bool onClick(const CEGUI::EventArgs & e);
 };
 
-REGISTER_TYPE(WindowBox)
+REGISTER_TYPE(FrameWindowBox)

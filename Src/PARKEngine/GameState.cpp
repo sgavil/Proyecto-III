@@ -15,14 +15,13 @@ GameState::GameState(std::string stateID)
 
 }
 
-
+	
 GameState::~GameState()
 {
-	/*json j;
-	j.push_back("Entities");
+	json j;
 	for (auto p : scene) { p->save(j); }
 	std::ofstream file("prueba.json");
-	file << j;*/
+	file << j;
 	auto it = scene.begin();
 	while (it != scene.end())
 	{
