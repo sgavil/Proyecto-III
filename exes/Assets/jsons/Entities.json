@@ -280,7 +280,30 @@
 	  "mass": 0
 	}    
   ],
-
+  "WCPortatil": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "WCPortatil.mesh",
+        "material": "MaterialWCPortatil",
+        "visible" : true
+      }
+    },
+    
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "Lanzadera",
+		    "Type": 2
+      }
+    }    
+  ],
   "HotDogTruck": 
   [
     {
