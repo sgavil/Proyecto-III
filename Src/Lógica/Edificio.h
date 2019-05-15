@@ -36,7 +36,9 @@ private:
 	//Ogre::Vector2 exit;
 
 	Node* EntryNode;
+	Entity* EntryEntity;
 	Node* ExitNode;
+	Entity* ExitEntity;
 
 	BuildingType type_; //El tipo d ela atracción
 
@@ -89,7 +91,9 @@ public:
 	Ogre::Vector2 getEntry() { return datos->entry; };
 	Ogre::Vector2 getExit() { return datos->exit; };
 	Node* getEntryNode() { return EntryNode; };
+	Entity* getEntryEntity() { return EntryEntity; };
 	Node* getExitNode() { return ExitNode; };
+	Entity* getExitEntity() { return ExitEntity; };
 
 	int getHeight() { return datos->height_; };
 
@@ -107,7 +111,9 @@ public:
 
 	void setNodes(std::list<Entity*> n) { nodes_ = n; };
 	void setEntryNode(Node* e) { EntryNode = e; };
+	void setEntryEntity(Entity* e) { EntryEntity = e; }
 	void setExitNode(Node* e) { ExitNode = e; };
+	void setExitEntity(Entity* e) { ExitEntity = e; }
 private:
 	//Es privado porque solo se debe establecer al Establecer de json la atracción y no en ejecución
 	void setType(BuildingType t) { type_ = t; };

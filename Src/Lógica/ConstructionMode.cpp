@@ -15,7 +15,7 @@
 #include "BureaucracyManager.h"
 
 
-ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false), deleteActive_(true)
+ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false), deleteActive_(false)
 {
 }
 
@@ -105,14 +105,18 @@ void ConstructionMode::buildInMatrix(int i, int j, std::string name)
 	buildingEntity_->getComponent<MeshRenderer>()->start();
 
 	//Modificar el tipo de nodos de la matriz
+	std::list<Entity*> n;
 	for (int x = i; x < build_->getTamX() + i; x++) {
 		for (int z = j; z < build_->getTamY() + j; z++) {
+			n.push_back(m->getEntityNode(x, z));
 			if (name == "Road")
 				m->getEntityNode(x, z)->getComponent<Node>()->setType(Node::NodeType::Road);
 			else
 				m->getEntityNode(x, z)->getComponent<Node>()->setType(Node::NodeType::Building);
 		}
 	}
+	build_->setNodes(std::list<Entity*>(n));
+
 
 	// Poner la entrada y la salida
 	if (build_->getType() != Edificio::BuildingType::Ornament)
@@ -278,11 +282,13 @@ void ConstructionMode::createEntryExitRoad(string roadName)
 	if (roadName == "EntryRoad")
 	{
 		node->setType(Node::NodeType::EntryRoad);
+		build_->setEntryEntity(e);
 		build_->setEntryNode(node);
 	}
 	else
 	{
 		node->setType(Node::NodeType::ExitRoad);
+		build_->setExitEntity(e);
 		build_->setExitNode(node);
 	}
 	ePos = Ogre::Vector3(x, e->getComponent<Edificio>()->getHeight(), z);
@@ -325,7 +331,22 @@ void ConstructionMode::setNodeMaterial(bool enable, bool can)
 void ConstructionMode::deleteBuilding() {
 	pair<Entity*, Ogre::Vector3> nodeAndPos = OgreManager::instance()->raycastToMouse("Node");
 	if (nodeAndPos.first != nullptr) {
-		nodeAndPos.first->getComponent<Transform>()->setPosition(Ogre::Vector3(0, 1000, 0));
+		Edificio* ed = nodeAndPos.first->getComponent<Edificio>();
+		Ogre::Vector3 pos(0, -1000, 0);
+		if (ed->getNodes().front()->getComponent<Node>()->getType() == Node::NodeType::Building) {
+			nodeAndPos.first->getComponent<Rigidbody>()->setPosition(pos);
+
+			ed->getEntryEntity()->getComponent<Transform>()->setPosition(pos);
+			ed->getEntryEntity()->getComponent<MeshRenderer>()->start();
+			ed->getEntryNode()->setType(Node::NodeType::Empty);
+
+			ed->getExitEntity()->getComponent<Transform>()->setPosition(pos);
+			ed->getExitEntity()->getComponent<MeshRenderer>()->start();
+			ed->getExitNode()->setType(Node::NodeType::Empty);
+		}
+		else
+			nodeAndPos.first->getComponent<Transform>()->setPosition(pos);
+		nodeAndPos.first->getComponent<MeshRenderer>()->start();
 
 		for (Entity* e : nodeAndPos.first->getComponent<Edificio>()->getNodes()) {
 			e->getComponent<Node>()->setType(Node::NodeType::Empty);
