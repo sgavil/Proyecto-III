@@ -2,6 +2,7 @@
 #include "PARKEngine/PARKEngine.h"
 #include "Matrix/Matrix.h"
 #include "ThirdPersonCamera.h"
+#include "Matrix\Node.h"
 
 
 FirstPersonCamera::FirstPersonCamera(): camTransform_(nullptr), camRigid_(nullptr)
@@ -20,6 +21,9 @@ void FirstPersonCamera::start()
 	camTransform_ = cam_->getBrotherComponent<Transform>();
 	camRigid_ = cam_->getBrotherComponent<Rigidbody>();
 	setActive(false);
+
+	entrance_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Matrix>()[0]
+		->getComponent<Matrix>()->getEntrance()->getBrotherComponent<Transform>()->getPosition();
 }
 
 void FirstPersonCamera::load(json file)
@@ -37,7 +41,7 @@ void FirstPersonCamera::receive(Message * msg)
 		camRigid_->setLinearFactor(Vector3(1, 0, 1));
 
 		//Update position
-		camTransform_->setPosition(Vector3(0, 20, 0));
+		camTransform_->setPosition(entrance_ + Vector3(0, 20, 0));
 		camTransform_->pitch(45);
 		//Update rigidbody position
 		camRigid_->setTransform(camTransform_);

@@ -25,6 +25,8 @@ protected:
 	Camera * cam_;
 	Transform* camTransform_;
 	Rigidbody* camRigid_;
+
+	Vector3 entrance_;
 };
 
 REGISTER_TYPE(FirstPersonCamera)
