@@ -835,6 +835,31 @@
         }
       ]
     },
+	{
+      "name": "infoNumPersonasTotales_",
+      "Components": [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "Jura-18",
+          "text": "Visitantes Totales Del Parque: 0",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.05,
+          "posY": 0.2,
+          "sizeX": 400,
+          "sizeY": 75,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
     {
       "name": "InfoPanel",
       "Components": [
@@ -854,6 +879,9 @@
             },
             {
               "name": "InfoNumPersonas"
+            },
+			{
+              "name": "infoNumPersonasTotales_"
             }
           ],
           "posX": 0.3,
