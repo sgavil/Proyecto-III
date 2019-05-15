@@ -1,10 +1,5 @@
 #pragma once
-#include <vector>
 #include <PARKEngine/Component.h>
-#include <queue>
-#include <string>
-#include <PARKEngine/ResourceManager.h>
-#include <map>
 
 struct Datos
 {

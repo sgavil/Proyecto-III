@@ -1,6 +1,5 @@
 #pragma once
 #include "PARKEngine/Component.h"
-#include <vector>
 
 class Camera;
 class Transform;

@@ -1,8 +1,5 @@
 #pragma once
 #include <PARKEngine/Component.h>
-#include <queue>
-#include <string>
-#include <PARKEngine/ResourceManager.h>
 #include "DatosEdificio.h"
 
 class Node;

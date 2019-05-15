@@ -1,7 +1,5 @@
 #pragma once
 #include "Widget.h"
-#include "HUDManager.h"
-
 using namespace std;
 
 class ScrollablePaneBox : public Widget

@@ -1,8 +1,6 @@
 #pragma once
 #include "Edificio.h"
 #include "IndexPQ.h"
-#include <stack>
-#include <string>
 
 class Node;
 class Matrix;

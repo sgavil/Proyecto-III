@@ -5,6 +5,8 @@
 #include <list>
 #include <iostream>
 #include <map>
+#include <queue>
+#include <stack>
 
 
 //... COMO REDECLARACIONES DE OTROS TIPOS DE DATOS--->

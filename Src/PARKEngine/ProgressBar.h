@@ -1,8 +1,6 @@
 #pragma once
 #include "Widget.h"
 
-
-class BureauCrazyManager;
 class ProgressBar : public Widget
 {
 
