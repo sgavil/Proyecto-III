@@ -76,7 +76,6 @@ void Rigidbody::update(unsigned int time)
 
 void Rigidbody::addForce(Vector3 force)
 {
-	std::cout << "Calling addForce" << std::endl;
 	rigid_->applyCentralImpulse(btVector3(force.x, force.y, force.z));
 }
 

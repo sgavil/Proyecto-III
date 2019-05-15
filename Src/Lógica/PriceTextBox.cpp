@@ -1,6 +1,7 @@
 #include "PriceTextBox.h"
-#include "SceneManager.h"
-#include <Lógica/DatosEdificio.h>
+
+#include "PARKEngine/PARKManagers.h"
+#include "DatosEdificio.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 

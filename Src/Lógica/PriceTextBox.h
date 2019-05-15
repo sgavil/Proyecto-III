@@ -1,7 +1,6 @@
 #pragma once
-#include "TextBox.h"
-#include "HUDManager.h"
-#include <Lógica/BureaucracyManager.h>
+#include "PARKEngine/TextBox.h"
+#include "BureaucracyManager.h"
 
 class DatosEdificio;
 struct Datos;

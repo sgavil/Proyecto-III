@@ -49,6 +49,9 @@
     <ClCompile Include="..\..\Src\Lógica\NPCManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\PriceTextBox.cpp">
+      <Filter>Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\NPC.h">
@@ -84,6 +87,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\NPCManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\PriceTextBox.h">
+      <Filter>Componentes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

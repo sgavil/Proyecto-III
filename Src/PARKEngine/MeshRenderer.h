@@ -19,8 +19,6 @@ public:
 
 	virtual void load(json file);
 
-	virtual void render(unsigned int time) {};
-	virtual bool handleEvent(unsigned int time) { return false; };
 	virtual void receive(Message* msg);
 
 	virtual void save(json& file) {};

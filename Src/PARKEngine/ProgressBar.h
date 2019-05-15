@@ -1,6 +1,5 @@
 #pragma once
 #include "Widget.h"
-#include "HUDManager.h"
 
 
 class BureauCrazyManager;

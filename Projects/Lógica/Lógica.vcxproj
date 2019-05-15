@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\Lógica\BureaucracyManager.cpp" />
     <ClCompile Include="..\..\Src\Lógica\NPCManager.cpp" />
+    <ClCompile Include="..\..\Src\Lógica\PriceTextBox.cpp" />
     <ClCompile Include="..\..\Src\Lógica\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\..\Src\Lógica\ConstructionMode.cpp" />
     <ClCompile Include="..\..\Src\Lógica\DatosEdificio.cpp" />
@@ -34,6 +35,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\BureaucracyManager.h" />
     <ClInclude Include="..\..\Src\Lógica\NPCManager.h" />
+    <ClInclude Include="..\..\Src\Lógica\PriceTextBox.h" />
     <ClInclude Include="..\..\Src\Lógica\ThirdPersonCamera.h" />
     <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h" />
     <ClInclude Include="..\..\Src\Lógica\DatosEdificio.h" />
@@ -50,7 +52,7 @@
     <ProjectGuid>{E8F42C5E-E9A0-4735-BBDB-B405FDF65574}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Main</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
