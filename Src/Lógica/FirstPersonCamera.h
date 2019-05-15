@@ -26,6 +26,7 @@ protected:
 	Rigidbody* camRigid_;
 
 	Vector3 entrance_;
+	bool changedCamera_;
 };
 
 REGISTER_TYPE(FirstPersonCamera)

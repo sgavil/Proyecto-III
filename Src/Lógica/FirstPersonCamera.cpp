@@ -5,7 +5,7 @@
 #include "Matrix\Node.h"
 
 
-FirstPersonCamera::FirstPersonCamera(): camTransform_(nullptr), camRigid_(nullptr)
+FirstPersonCamera::FirstPersonCamera(): camTransform_(nullptr), camRigid_(nullptr), changedCamera_(false)
 {
 }
 
@@ -76,14 +76,21 @@ bool FirstPersonCamera::handleEvent(unsigned int time)
 	//Change camera perspective (Third / first person)
 	if (InputManager::getSingletonPtr()->isKeyDown("ChangeCamera"))
 	{
-		send(new Message(MessageId::THIRD_PERSON_CAMERA));
-		return true;
+		if (!changedCamera_)
+		{
+			changedCamera_ = true;
+			send(new Message(MessageId::THIRD_PERSON_CAMERA));
+			return true;
+		}
+
 	}
 
 
 	//First person
 	else
 	{
+		changedCamera_ = false;
+
 		Vector3 vel = { 0,0,0 };
 
 		//Rotaciones con el ratón

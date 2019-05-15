@@ -40,6 +40,7 @@ protected:
 	//Fraction of the screen used to move the camera
 	float borders_;
 
+	bool changedCamera_;
 	bool rotating_;
 
 	Vector3 defaultPos_;

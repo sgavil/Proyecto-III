@@ -3,7 +3,7 @@
 #include "Matrix/Matrix.h"
 #include "FirstPersonCamera.h"
 
-ThirdPersonCamera::ThirdPersonCamera(): camTransform_(nullptr), camRigid_(nullptr), rotating_(false), borders_(0)
+ThirdPersonCamera::ThirdPersonCamera(): camTransform_(nullptr), camRigid_(nullptr), rotating_(false), changedCamera_(false), borders_(0)
 {
 }
 
@@ -76,14 +76,20 @@ bool ThirdPersonCamera::handleEvent(unsigned int time)
 	//Change camera perspective (Third / first person)
 	if (InputManager::getSingletonPtr()->isKeyDown("ChangeCamera"))
 	{
-		send(new Message(MessageId::FIRST_PERSON_CAMERA));
-		return true;
+		if(!changedCamera_)
+		{
+			changedCamera_ = true;
+			send(new Message(MessageId::FIRST_PERSON_CAMERA));
+			return true;
+		}
 	}
 
 
 	//Third person
 	else
 	{
+		changedCamera_ = false;
+
 		//ADELANTE/ATRÁS
 		if (mouse.y < windowSize.y * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveForwards"))
 			delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * stdIncr;
@@ -111,6 +117,7 @@ bool ThirdPersonCamera::handleEvent(unsigned int time)
 			orbit(90);
 		else
 			rotating_ = false;
+
 	}
 
 	//Move the camera
