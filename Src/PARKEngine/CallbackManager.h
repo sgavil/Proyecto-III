@@ -19,11 +19,11 @@ private:
 	bool EffectVolumeChange(std::string vol);
 	bool MusicVolumeChange(std::string vol);
 
-	//Callbacks para la construccion
+	// Callbacks para la construccion
 	bool construct(std::string buildName);
 	bool setDeleteBuildingActive(std::string s);
 
-	//Callbacks para activar y desactivar paneles
+	// Callbacks para activar y desactivar paneles
 	bool setToolsPanelActive(std::string boolean);
 	bool setConstructPanelActive(std::string boolean);
 	bool setRoadConstructionActive(std::string boolean);
@@ -36,7 +36,7 @@ public:
 	static CallbackManager* instance();
 	
 	template<typename T>
-	void addCallback(std::string keyName, bool(T::* cb)(std::string), T * obj);
+	void addCallback(std::string keyName, bool(T::* cb)(std::string), T* obj);
 
 	std::function<void(std::string)> getCallback(std::string name);
 

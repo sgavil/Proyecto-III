@@ -90,8 +90,8 @@ bool CallbackManager::onChangeState(std::string state)
 	SceneManager::instance()->changeState(state);
 	if(state == "StatePlay")
 	{
-		/*AudioManager::instance()->STOP_SOUND("Menu");
-		AudioManager::instance()->PLAY_SONG("MainTheme");	*/
+		AudioManager::instance()->STOP_SOUND("Menu");
+		AudioManager::instance()->PLAY_SONG("MainTheme");
 	}
 		
 	return true;
