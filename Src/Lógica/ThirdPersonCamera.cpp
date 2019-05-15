@@ -21,6 +21,8 @@ void ThirdPersonCamera::start()
 
 
 	cam_->lookAt(Vector3(0, 0, 0));
+	camTransform_->yaw(-45, REF_SYSTEM::GLOBAL);
+
 	camRigid_->setActive(false);
 }
 
