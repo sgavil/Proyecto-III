@@ -5,14 +5,21 @@
 
 class Component;
 class Entity;
+class BackgroundImage;
+class MeshRenderer;
+class SceneManager;
 
 class GameState
 {
-private:
-	Ogre::SceneNode* stateNode;
-
 protected:
+	Ogre::SceneNode* stateNode;
 	std::list<Component*> scene; // Componentes de la escena
+
+	Ogre::SceneNode* getStateNode();
+
+	friend class MeshRenderer;
+	friend class BackgroundImage;
+	friend class SceneManager;
 
 public:
 	GameState(std::string stateID);
@@ -52,6 +59,4 @@ public:
 
 	// �> Devuelve la escena
 	std::list<Component*> getScene();
-
-	Ogre::SceneNode* getStateNode();
 };

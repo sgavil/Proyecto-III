@@ -1,5 +1,6 @@
 #include "DatosEdificio.h"
 #include "PriceTextBox.h"
+#include "PARKEngine/ResourceManager.h"
 
 DatosEdificio::DatosEdificio()
 {

@@ -5,6 +5,7 @@ namespace FMOD
 {
 	class System;
 	class Sound;
+	class Channel;
 };
 
 struct FMOD_VECTOR;

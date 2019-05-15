@@ -2,6 +2,7 @@
 
 #include <PARKEngine/Entity.h>
 #include <PARKEngine/Transform.h>
+#include <PARKEngine/AudioManager.h>
 
 
 Reproductor::Reproductor()

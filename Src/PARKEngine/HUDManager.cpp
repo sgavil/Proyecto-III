@@ -1,6 +1,7 @@
 #include "HUDManager.h"
 #include "SceneManager.h"
 #include "OgreManager.h"
+#include "ResourceManager.h"
 #include "OgreIncludes.h"
 #include "OgreManager.h"
 #include <CEGUI/CEGUI.h>

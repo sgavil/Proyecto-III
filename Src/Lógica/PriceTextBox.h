@@ -1,7 +1,7 @@
 #pragma once
 #include "PARKEngine/TextBox.h"
-#include "BureaucracyManager.h"
 
+class BureauCrazyManager;
 class DatosEdificio;
 struct Datos;
 class PriceTextBox : public TextBox

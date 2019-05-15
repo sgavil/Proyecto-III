@@ -1,10 +1,5 @@
 #pragma once
-
-//CEGUI
-#include "ResourceManager.h"
-
-#include <memory>
-#include <map>
+#include "Utils.h"
 
 class OgreManager;
 

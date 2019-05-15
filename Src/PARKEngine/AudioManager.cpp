@@ -2,8 +2,6 @@
 #include <fmod.hpp>
 #include <fmod_errors.h>
 #include <fmod.h>
-
-
 #include "ResourceManager.h"
 
 std::unique_ptr<AudioManager> AudioManager::instance_;
