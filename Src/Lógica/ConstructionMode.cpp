@@ -5,12 +5,13 @@
 #include "Matrix/Node.h"
 #include <string>
 #include "Edificio.h"
+#include <PARKEngine/Rigidbody.h>
 #include "BureaucracyManager.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 
-ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false)
+ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false), deleteActive_(false)
 {
 }
 
@@ -30,6 +31,7 @@ void ConstructionMode::load(json file)
 void ConstructionMode::start()
 {
 	matrixEntity_ = SceneManager::instance()->currentState()->getEntity("Matrix");
+	SceneManager::instance()->currentState()->getEntity("TextDelete")->getComponent<TextBox>()->getStaticText()->hide();
 }
 
 void ConstructionMode::update(unsigned int time)
@@ -53,7 +55,7 @@ void ConstructionMode::update(unsigned int time)
 
 bool ConstructionMode::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
+	if (!deleteActive_ && InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
 	{
 		//TODO: wtf is this
 		CEGUI::Window* w = CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse();
@@ -66,6 +68,9 @@ bool ConstructionMode::handleEvent(unsigned int time)
 			MessageInfo m(CANNOT_BUILD, entity_);
 			send(&m);			
 		}
+	}
+	else if (deleteActive_ && InputManager::getSingletonPtr()->isKeyDown("DeleteBuilding")) {
+		deleteBuilding();
 	}
 	if (InputManager::getSingletonPtr()->isKeyDown("FinishConstruct")) {
 		deactivateThisConstruction();
@@ -101,14 +106,18 @@ void ConstructionMode::buildInMatrix(int i, int j, std::string name)
 		buildingRigid->start();
 
 	//Modificar el tipo de nodos de la matriz
+	std::list<Entity*> n;
 	for (int x = i; x < build_->getTamX() + i; x++) {
 		for (int z = j; z < build_->getTamY() + j; z++) {
+			n.push_back(m->getEntityNode(x, z));
 			if (name == "Road")
 				m->getEntityNode(x, z)->getComponent<Node>()->setType(Node::NodeType::Road);
 			else
 				m->getEntityNode(x, z)->getComponent<Node>()->setType(Node::NodeType::Building);
 		}
 	}
+	build_->setNodes(std::list<Entity*>(n));
+
 
 	// Poner la entrada y la salida
 	if (build_->getType() != Edificio::BuildingType::Ornament)
@@ -230,6 +239,7 @@ void ConstructionMode::setBuilding()
 	MessageInfo m(CREATED_BUILDING, buildingEntity_);
 	send(&m);
 
+	buildingEntity_->getComponent<Edificio>()->setNodes(std::list<Entity*>(nodes_));
 	setNodesType();
 	set = true;
 	setNodeMaterial(false, true);
@@ -276,11 +286,13 @@ void ConstructionMode::createEntryExitRoad(string roadName)
 	if (roadName == "EntryRoad")
 	{
 		node->setType(Node::NodeType::EntryRoad);
+		build_->setEntryEntity(e);
 		build_->setEntryNode(node);
 	}
 	else
 	{
 		node->setType(Node::NodeType::ExitRoad);
+		build_->setExitEntity(e);
 		build_->setExitNode(node);
 	}
 	ePos = Ogre::Vector3(x, e->getComponent<Edificio>()->getHeight(), z);
@@ -317,6 +329,33 @@ void ConstructionMode::setNodeMaterial(bool enable, bool can)
 		}
 	}
 
+}
+
+
+void ConstructionMode::deleteBuilding() {
+	pair<Entity*, Ogre::Vector3> nodeAndPos = OgreManager::instance()->raycastToMouse("Node");
+	if (nodeAndPos.first != nullptr) {
+		Edificio* ed = nodeAndPos.first->getComponent<Edificio>();
+		Ogre::Vector3 pos(0, -1000, 0);
+		if (ed->getNodes().front()->getComponent<Node>()->getType() == Node::NodeType::Building) {
+			nodeAndPos.first->getComponent<Rigidbody>()->setPosition(pos);
+
+			ed->getEntryEntity()->getComponent<Transform>()->setPosition(pos);
+			ed->getEntryEntity()->getComponent<MeshRenderer>()->start();
+			ed->getEntryNode()->setType(Node::NodeType::Empty);
+
+			ed->getExitEntity()->getComponent<Transform>()->setPosition(pos);
+			ed->getExitEntity()->getComponent<MeshRenderer>()->start();
+			ed->getExitNode()->setType(Node::NodeType::Empty);
+		}
+		else
+			nodeAndPos.first->getComponent<Transform>()->setPosition(pos);
+		nodeAndPos.first->getComponent<MeshRenderer>()->start();
+
+		for (Entity* e : nodeAndPos.first->getComponent<Edificio>()->getNodes()) {
+			e->getComponent<Node>()->setType(Node::NodeType::Empty);
+		}
+	}
 }
 
 

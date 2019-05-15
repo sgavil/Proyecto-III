@@ -15,12 +15,14 @@ public:
 	Stat(std::string name, float value, float maxVal, float exigency, bool decreases)
 	{
 		name_ = name;
-		if (name == "Hunger")
-			restorer_ = Edificio::BuildingType::Restaurant;
+		if (name == "Fun")
+			restorer_ = Edificio::BuildingType::Amusement;
 		else if (name == "Peepee")
 			restorer_ = Edificio::BuildingType::Toilet;
-		else if (name == "Fun")
-			restorer_ = Edificio::BuildingType::Amusement;
+		else if (name == "Hunger")
+			restorer_ = Edificio::BuildingType::Restaurant;
+
+		
 		value_ = value;
 		MAX_VALUE = maxVal;
 		exigency_ = exigency;

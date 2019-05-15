@@ -53,6 +53,10 @@
 			"key": "MB_Left"
 		},
 		{
+			"Id": "DeleteBuilding",
+			"key": "MB_Left"
+		},
+		{
 			"Id": "SelectNPC",
 			"key": "MB_Left"
 		},

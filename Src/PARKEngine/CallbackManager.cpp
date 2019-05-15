@@ -8,6 +8,7 @@
 #include "SceneManager.h"
 #include "AudioManager.h"
 #include "TextBox.h"
+#include <CEGUI/Window.h>
 #include "FrameWindowBox.h"
 
 using namespace std::placeholders;
@@ -50,6 +51,7 @@ void CallbackManager::initCallbacks()
 	addCallback("onChangeState", &CallbackManager::onChangeState, this);
 	addCallback("onExit", &CallbackManager::onExit, this);
 	addCallback("construct", &CallbackManager::construct, this);
+	addCallback("setDeleteBuildingActive", &CallbackManager::setDeleteBuildingActive, this);
 	addCallback("EffectVolumeChange", &CallbackManager::EffectVolumeChange, this);
 	addCallback("MusicVolumeChange", &CallbackManager::MusicVolumeChange, this);
 
@@ -126,6 +128,18 @@ bool CallbackManager::construct(std::string buildName)
 			constructionMode->construct(buildName);
 		}
 	}
+	return true;
+}
+
+bool CallbackManager::setDeleteBuildingActive(std::string s)
+{
+	ConstructionMode* constructionMode = SceneManager::instance()->currentState()->getEntity("ConstructionMode")->getComponent<ConstructionMode>();
+	constructionMode->setDeleteActive(!constructionMode->getDeleteActice());
+	if (constructionMode->getDeleteActice())
+		SceneManager::instance()->currentState()->getEntity("TextDelete")->getComponent<TextBox>()->getStaticText()->show();
+	else
+		SceneManager::instance()->currentState()->getEntity("TextDelete")->getComponent<TextBox>()->getStaticText()->hide();
+
 	return true;
 }
 
