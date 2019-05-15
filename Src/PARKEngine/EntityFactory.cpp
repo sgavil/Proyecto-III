@@ -30,7 +30,7 @@ void EntityFactory::registerType(std::string creatorName, BaseCreator* pCreator)
 }
 
 
-std::vector<Entity*> EntityFactory::createEntities(std::string stateID,GameState* currState)
+std::vector<Entity*> EntityFactory::createEntities(std::string stateID, GameState* currState)
 {
 	json file = ResourceManager::instance()->getJsonByKey(stateID + ".json");
 
