@@ -31,6 +31,7 @@ void ConstructionMode::load(json file)
 void ConstructionMode::start()
 {
 	matrixEntity_ = SceneManager::instance()->currentState()->getEntity("Matrix");
+	SceneManager::instance()->currentState()->getEntity("TextDelete")->getComponent<TextBox>()->getStaticText()->hide();
 }
 
 void ConstructionMode::update(unsigned int time)
