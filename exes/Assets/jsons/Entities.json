@@ -361,5 +361,86 @@
 	  "name": "Rigidbody",
 	  "mass": 0
 	}     
+  ],
+  "Muro": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "Murito.mesh",
+        "material": "Murito",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "Muro",
+		"Type": 4
+      }
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}     
+  ],
+  "Esquina": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "esquina.mesh",
+        "material": "esquinaTextura",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "Esquina",
+		"Type": 4
+      }
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}     
+  ],
+   "MuroHorz": 
+  [
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "MeshRenderer",
+      "parameters":
+      {
+        "mesh": "MuroHorz.mesh",
+        "material": "Murito",
+        "visible" : true
+      }
+    },
+    {
+      "name": "Edificio",
+      "parameters":
+      {
+        "bName": "MuroHorz",
+		"Type": 4
+      }
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}     
   ]
 }
