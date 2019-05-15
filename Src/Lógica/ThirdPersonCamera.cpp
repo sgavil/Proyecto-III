@@ -85,15 +85,15 @@ bool ThirdPersonCamera::handleEvent(unsigned int time)
 	else
 	{
 		//ADELANTE/ATRÁS
-		if (mouse.y < windowSize.y * borders_)
+		if (mouse.y < windowSize.y * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveForwards"))
 			delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * stdIncr;
-		else if (mouse.y > windowSize.y - windowSize.y * borders_)
+		else if (mouse.y > windowSize.y - windowSize.y * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveBack"))
 			delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -stdIncr;
 
 		//IZQUIERDA/DERECHA
-		if (mouse.x < windowSize.x * borders_)
+		if (mouse.x < windowSize.x * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveLeft"))
 			delta += camTransform_->right() * -stdIncr;
-		else if (mouse.x > windowSize.x - windowSize.x * borders_)
+		else if (mouse.x > windowSize.x - windowSize.x * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveRight"))
 			delta += camTransform_->right() * stdIncr;
 
 		//Rueda del ratón para hacer zoom (no se como se pone esto en el archivo del input porque no son teclas como tales)
