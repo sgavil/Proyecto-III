@@ -119,7 +119,7 @@ bool CallbackManager::construct(std::string buildName)
 	DatosEdificio* datosEdificio = SceneManager::instance()->currentState()->getEntity("DatosEdificios")->getComponent<DatosEdificio>();
 	if (bureauCrazyManager_->getActualMoney() >= datosEdificio->getPrice(buildName)) {
 		if (datosEdificio->getLocked(buildName)) {
-			bureauCrazyManager_->setActualMoney(-datosEdificio->getPrice(buildName));
+			bureauCrazyManager_->addMoney(-datosEdificio->getPrice(buildName));
 			datosEdificio->setLocked(buildName, false);
 		}
 		else {

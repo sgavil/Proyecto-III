@@ -817,7 +817,7 @@
           "name": "TextBox",
           "type": "Vanilla/StaticText",
           "font": "Jura-18",
-          "text": "Turistas Actuales: 15",
+          "text": "Visitantes Actuales: 0",
           "alignText": "Left",
           "backgroundEnabled": "False",
           "textColor": {
@@ -1083,8 +1083,8 @@
             "ruptcyMaxTime": 7,
             "floorRuptcyMoney": -40,
             "InitialTime2Tax": 180,
-            "ActualMoney": 1500,
-            "InitVisitors": 3
+            "ActualMoney": 10000,
+            "InitVisitors": 0
           }
         }
       ]

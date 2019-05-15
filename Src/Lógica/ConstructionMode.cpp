@@ -236,7 +236,7 @@ void ConstructionMode::setBuilding()
 	nodes_.clear();
 	canConst_ = false;
 
-	bureauCrazyManager_->setActualMoney(-build_->getPrice());
+	bureauCrazyManager_->addMoney(-build_->getPrice());
 
 
 	if (build_->getType() != Edificio::BuildingType::Ornament) {
