@@ -218,7 +218,7 @@
       "parameters":
       {
         "bName": "Lanzadera",
-		    "Type": 2
+		    "Type": 1
       }
     },
 	{
@@ -299,8 +299,8 @@
       "name": "Edificio",
       "parameters":
       {
-        "bName": "Lanzadera",
-		    "Type": 2
+        "bName": "WCPortatil",
+		"Type": 3
       }
     },
 	{
