@@ -8,6 +8,7 @@
 #include "SceneManager.h"
 #include "AudioManager.h"
 #include "TextBox.h"
+#include <CEGUI/Window.h>
 #include "FrameWindowBox.h"
 
 using namespace std::placeholders;
@@ -134,6 +135,10 @@ bool CallbackManager::setDeleteBuildingActive(std::string s)
 {
 	ConstructionMode* constructionMode = SceneManager::instance()->currentState()->getEntity("ConstructionMode")->getComponent<ConstructionMode>();
 	constructionMode->setDeleteActive(!constructionMode->getDeleteActice());
+	if (constructionMode->getDeleteActice())
+		SceneManager::instance()->currentState()->getEntity("TextDelete")->getComponent<TextBox>()->getStaticText()->show();
+	else
+		SceneManager::instance()->currentState()->getEntity("TextDelete")->getComponent<TextBox>()->getStaticText()->hide();
 
 	return true;
 }
