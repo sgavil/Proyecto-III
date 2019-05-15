@@ -18,7 +18,9 @@ void ThirdPersonCamera::start()
 	cam_ = SceneManager::instance()->currentState()->getEntitiesWithComponent<Camera>()[0]->getComponent<Camera>();
 	camTransform_ = cam_->getBrotherComponent<Transform>();
 	camRigid_= cam_->getBrotherComponent<Rigidbody>();
-	camTransform_->yaw(-45, REF_SYSTEM::GLOBAL);
+
+
+	cam_->lookAt(Vector3(0, 0, 0));
 	camRigid_->setActive(false);
 }
 
@@ -38,13 +40,12 @@ void ThirdPersonCamera::receive(Message * msg)
 		camRigid_->setActive(false);
 		//Update position
 		camTransform_->setPosition(Vector3(0, 500, 500));
-		camTransform_->pitch(-45);
+		cam_->lookAt(Vector3(0, 0, 0));
 		//Update rigidbody position
 		camRigid_->setTransform(camTransform_);
 
 		//Show cursor
-		HUDManager::instance()->getMouseCursor().show();
-		HUDManager::instance()->setMouseCursor(Vector2(0.5, 0.5));
+		HUDManager::instance()->showMouseCursor();
 
 		//Switch components
 		getBrotherComponent<FirstPersonCamera>()->setActive(false);

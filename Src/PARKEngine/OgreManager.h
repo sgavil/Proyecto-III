@@ -19,6 +19,7 @@ namespace Ogre
 	class ResourceGroupManager;
 	class TextureManager;
 	class FileSystemLayer;
+	class AnimationState;
 };
 
 class TerrainGenerator;

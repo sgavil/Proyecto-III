@@ -1,7 +1,6 @@
 #pragma once
 #include "Component.h"
-
-#include <OgreAnimationState.h>
+#include "OgreManager.h"
 
 class Animation : public Component
 {

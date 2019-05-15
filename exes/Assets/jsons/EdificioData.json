@@ -85,11 +85,11 @@
               "Price": 25,
               "LockedPrice": 0,
               "Locked": false,
-              "Type": 1,
-              "PeePee": 5,
+              "Type": 3,
+              "PeePee": 15,
               "Hungry": 0,
               "Fun": 0,
-              "Tam_Cola": 1,
+              "Tam_Cola": 4,
               "Tam":
               {
                 "x": 1,
@@ -117,10 +117,10 @@
               "Price": 400,
               "LockedPrice": 1200,
               "Locked": true,
-              "Type": 2,
+              "Type": 1,
               "PeePee": 0,
-              "Hungry": 10,
-              "Fun": 0,
+              "Hungry": 0,
+              "Fun": 20,
               "Tam_Cola": 5,
               "Tam":
               {
@@ -149,10 +149,10 @@
             "Price": 500,
             "LockedPrice": 700,
             "Locked": false,
-            "Type": 2,
-            "PeePee": 0,
-            "Hungry": 10,
-            "Fun": 0,
+            "Type": 1,
+            "PeePee": -5,
+            "Hungry": 0,
+            "Fun": 20,
             "Tam_Cola": 5,
             "Tam":
             {

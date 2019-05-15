@@ -16,25 +16,6 @@ public:
 	//El tipo ornament no tiene ni entrada ni salida, su cola es de 0 y no cambia valores de necesidades
 	enum BuildingType { Ornament, Amusement, Restaurant, Toilet, other };
 private:
-	//int price_;
-	////Estos son los valores que un edificio modifica de un NPC
-	////si estos son negativos disminuiran la necesidad del NPC
-	////en caso de ser nulos no afectan y positivo la aumenta
-	//int PeePeeRestore_;
-	//int HungryRestore_;
-	//int funRestore_;
-
-	//std::string bName; //Nombre de la atracción
-	//int maxCola_; //Tamaño máximo de la cola, si esta está llena no se podrá acceder a ella
-	//int duration_; //En milisegundos, La de Ornament debe ser 0
-	//int actDuration_;
-	//int capacity_; //La de ornament debe ser 0
-
-	//Ogre::Vector2 tam;
-	//int height_;
-	//Ogre::Vector2 entry;
-	//Ogre::Vector2 exit;
-
 	Node* EntryNode;
 	Node* ExitNode;
 
@@ -50,10 +31,8 @@ public:
 	~Edificio();
 
 	//Actualización del componente
-	virtual void render(unsigned int time) {};
+	virtual void start();
 	virtual void update(unsigned int time);
-	virtual bool handleEvent(unsigned int time) { return false; };
-	virtual void receive(Message* msg) {};
 
 	bool encolar(Entity* e);
 	void montar();

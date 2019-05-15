@@ -2,6 +2,8 @@
 #include "SceneManager.h"
 #include "CallbackManager.h"
 #include "InputManager.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 Button::Button() : callbackParam("")
 {

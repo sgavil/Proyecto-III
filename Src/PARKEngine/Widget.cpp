@@ -1,4 +1,7 @@
 #include "Widget.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
+#include "SceneManager.h"
 
 Widget::Widget()
 {
@@ -42,4 +45,28 @@ void Widget::setText(std::string s)
 void Widget::setFont(std::string s)
 {
 	window->setFont(s);
+}
+
+void Widget::hide()
+{
+	window->hide();
+}
+
+void Widget::show()
+{
+	window->show();
+}
+
+void Widget::setProperty(std::string name, std::string value)
+{
+	window->setProperty(name, value);
+}
+
+Widget * Widget::getChildElement(std::string name)
+{
+	CEGUI::NamedElement* element =  window->getChildElement(name);
+	Entity* e = SceneManager::instance()->currentState()->getEntity(name);
+	if (element != nullptr && e->getComponent<Widget>() != nullptr)
+		return e->getComponent<Widget>();
+	return nullptr;
 }

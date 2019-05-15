@@ -44,8 +44,7 @@ void FirstPersonCamera::receive(Message * msg)
 		camRigid_->setActive(true);
 
 		//Hide cursor
-		HUDManager::instance()->getMouseCursor().hide();
-		HUDManager::instance()->setMouseCursor(Vector2(0.5, 0.5));
+		HUDManager::instance()->hideMouseCursor();
 		
 		//Switch components
 		getBrotherComponent<ThirdPersonCamera>()->setActive(false);

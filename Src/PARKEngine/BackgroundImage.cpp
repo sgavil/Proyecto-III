@@ -1,8 +1,10 @@
 #include "BackgroundImage.h"
+
 #include "OgreIncludes.h"
 #include "OgreManager.h"
 #include "EntityFactory.h"
 #include "GameState.h"
+#include "HUDManager.h"
 
 BackgroundImage::BackgroundImage()
 {

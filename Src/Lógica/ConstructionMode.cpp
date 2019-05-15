@@ -6,6 +6,8 @@
 #include <string>
 #include "Edificio.h"
 #include "BureaucracyManager.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 
 ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false)
@@ -53,6 +55,7 @@ bool ConstructionMode::handleEvent(unsigned int time)
 {
 	if (InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
 	{
+		//TODO: wtf is this
 		CEGUI::Window* w = CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse();
 		if (canConst_ && w->getName() == "StatePlay") {
 			setBuilding();

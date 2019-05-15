@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include <OgreAnimationState.h>
 
 Animation::Animation() 
 {

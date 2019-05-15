@@ -4,7 +4,7 @@
 #include <Lógica/BureaucracyManager.h>
 
 class DatosEdificio;
-class Datos;
+struct Datos;
 class PriceTextBox : public TextBox
 {
 

@@ -1,4 +1,6 @@
 #include "ProgressBar.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 ProgressBar::ProgressBar(): progressBar_(nullptr)
 {
@@ -16,4 +18,9 @@ void ProgressBar::load(json file)
 	progressBar_ = static_cast<CEGUI::ProgressBar*>(window);
 	string color = file["BarColor"];
 	progressBar_->setProperty("EnabledColour", color);
+}
+
+void ProgressBar::setProgress(float progress)
+{
+	progressBar_->setProgress(progress);
 }

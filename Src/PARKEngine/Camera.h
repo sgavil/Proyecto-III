@@ -1,7 +1,5 @@
 #pragma once
 #include "Component.h"
-#include <OISKeyboard.h>
-#include <OISMouse.h>
 
 class Transform;
 class Ogre::Camera;
@@ -20,6 +18,8 @@ public:
 	virtual void receive(Message* msg);
 
 	virtual void save(json& file);
+
+	virtual void lookAt(Vector3 pos);
 protected:
 	//Pointer to the transform component
 	Transform* transform_;

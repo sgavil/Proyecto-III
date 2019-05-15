@@ -2,11 +2,23 @@
 
 //CEGUI
 #include "ResourceManager.h"
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 #include <memory>
 #include <map>
+
+class OgreManager;
+
+//Espacio de nombres de CEGUI (predeclaraciones)
+namespace CEGUI
+{
+	class WindowManager;
+	class Window;
+	class MouseCursor;
+	class PushButton;
+	class EventArgs;
+	class ProgressBar;
+	class PushButton;
+}
 
 class HUDManager
 {
@@ -24,32 +36,26 @@ public:
 	CEGUI::Window* activeWindow;
 	void init();
 
-	//Returns mouse cursor
-	CEGUI::MouseCursor& getMouseCursor();
-
 	void addWindow(std::string state);
 	void changeWindow(std::string state);
 
 	void setActiveWindow(std::string state);
 
-	void setMouseCursor(Vector2 pos);
+	//Wrappers
+	void showMouseCursor();
+	void hideMouseCursor();
 
 	
-	CEGUI::Window* createWidget(std::string name, std::string type, float posX, float posY, float offX, float offY, float tamX, float tamY/*, std::string txt, bool(T::* func)(const CEGUI::EventArgs&), T* obj*/)
-	{
-		CEGUI::Window* widget = windowMgr->createWindow(type, name);
+	CEGUI::Window* createWidget(std::string name, std::string type, float posX, float posY, float offX, float offY, float tamX, float tamY/*, std::string txt, bool(T::* func)(const CEGUI::EventArgs&), T* obj*/);
 
-		widget->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offX), CEGUI::UDim(posY, offY)));
-		widget->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
-		//widgtet->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(func, obj));
-
-		activeWindow->addChild(widget);
-
-		return widget;
-	}
 
 	//void createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text);
 
 
 	~HUDManager();
+private:
+	friend class OgreManager;
+
+	//Returns mouse cursor
+	CEGUI::MouseCursor& getMouseCursor();
 };

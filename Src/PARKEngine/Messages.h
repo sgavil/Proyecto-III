@@ -18,6 +18,7 @@ enum MessageId {
 	NPC_IN,
 	NPC_OUT,
 	NPC_SELECTED,
+	NPC_ENTERED_ATTRACTION,
 	ATRACCTION_FULL,
 	ATRACCION_EMPTY,
 	THEMEPARK_EMPTY,
@@ -97,6 +98,15 @@ struct NPCSelected : public Message {
 		Message(mType, size), selected_(selected) {
 	}
 	NPC* selected_;
+};
+
+class Edificio;
+struct NPCEnteredAttraction : public Message {
+	NPCEnteredAttraction(MessageId mType, NPC* npc, Edificio* attraction, header_t_ size = sizeof(Message)) :
+		Message(mType, size), npc_(npc), attraction_(attraction) {
+	}
+	NPC* npc_;
+	Edificio* attraction_;
 };
 
 //Es muy posible que para varios mensajes haya que hacer un struct para mandar al receptor algo mas que el tipo de mensaje, y por tanto

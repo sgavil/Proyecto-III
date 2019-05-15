@@ -135,9 +135,9 @@ bool CallbackManager::setToolsPanelActive(std::string boolean)
 {
 	FrameWindowBox* w = SceneManager::instance()->currentState()->getEntity("ToolsPanel")->getComponent<FrameWindowBox>();
 	if (boolean == "True")
-		w->getWindow()->show();
+		w->show();
 	else
-		w->getWindow()->hide();
+		w->hide();
 
 	return true;
 }
@@ -147,11 +147,11 @@ bool CallbackManager::setConstructPanelActive(std::string boolean)
 {
 	FrameWindowBox* w = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<FrameWindowBox>();
 	if (boolean == "True") {
-		w->getWindow()->show();
+		w->show();
 		setToolsPanelActive("False");
 	}
 	else {
-		w->getWindow()->hide();
+		w->hide();
 		setToolsPanelActive("True");
 	}
 
@@ -163,11 +163,11 @@ bool CallbackManager::setInfoPanelActive(std::string boolean)
 {
 	FrameWindowBox* w = SceneManager::instance()->currentState()->getEntity("InfoPanel")->getComponent<FrameWindowBox>();
 	if (boolean == "True") {
-		w->getWindow()->show();
+		w->show();
 		setToolsPanelActive("False");
 	}
 	else {
-		w->getWindow()->hide();
+		w->hide();
 		setToolsPanelActive("True");
 	}
 
@@ -178,10 +178,10 @@ bool CallbackManager::setNPCInfoPanelActive(std::string boolean)
 {
 	FrameWindowBox* w = SceneManager::instance()->currentState()->getEntity("NPCInfoPanel")->getComponent<FrameWindowBox>();
 	if (boolean == "True") {
-		w->getWindow()->show();
+		w->show();
 	}
 	else {
-		w->getWindow()->hide();
+		w->hide();
 	}
 
 	return true;
@@ -193,12 +193,12 @@ bool CallbackManager::setRoadConstructionActive(std::string boolean)
 	FrameWindowBox* w = SceneManager::instance()->currentState()->getEntity("RoadsPanel")->getComponent<FrameWindowBox>();
 	FrameWindowBox* c = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<FrameWindowBox>();
 	if (boolean == "True") {
-		w->getWindow()->show();
-		c->getWindow()->hide();
+		w->show();
+		c->hide();
 	}
 	else {
-		w->getWindow()->hide();
-		c->getWindow()->show();
+		w->hide();
+		c->show();
 	}
 
 	return true;
@@ -210,12 +210,12 @@ bool CallbackManager::setAmusementsConstructionActive(std::string boolean)
 	FrameWindowBox* w = SceneManager::instance()->currentState()->getEntity("AmusementsPanel")->getComponent<FrameWindowBox>();
 	FrameWindowBox* c = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<FrameWindowBox>();
 	if (boolean == "True") {
-		w->getWindow()->show();
-		c->getWindow()->hide();
+		w->show();
+		c->hide();
 	}
 	else {
-		w->getWindow()->hide();
-		c->getWindow()->show();
+		w->hide();
+		c->show();
 	}
 
 	return true;
@@ -227,12 +227,12 @@ bool CallbackManager::setRestaurantsConstructionActive(std::string boolean)
 	FrameWindowBox* w = SceneManager::instance()->currentState()->getEntity("RestaurantsPanel")->getComponent<FrameWindowBox>();
 	FrameWindowBox* c = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<FrameWindowBox>();
 	if (boolean == "True") {
-		w->getWindow()->show();
-		c->getWindow()->hide();
+		w->show();
+		c->hide();
 	}
 	else {
-		w->getWindow()->hide();
-		c->getWindow()->show();
+		w->hide();
+		c->show();
 	}
 
 	return true;
@@ -244,12 +244,12 @@ bool CallbackManager::setToiletsConstructionActive(std::string boolean)
 	FrameWindowBox* w = SceneManager::instance()->currentState()->getEntity("ToiletsPanel")->getComponent<FrameWindowBox>();
 	FrameWindowBox* c = SceneManager::instance()->currentState()->getEntity("ConstructPanel")->getComponent<FrameWindowBox>();
 	if (boolean == "True") {
-		w->getWindow()->show();
-		c->getWindow()->hide();
+		w->show();
+		c->hide();
 	}
 	else {
-		w->getWindow()->hide();
-		c->getWindow()->show();
+		w->hide();
+		c->show();
 	}
 
 	return true;
