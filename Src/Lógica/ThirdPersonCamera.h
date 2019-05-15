@@ -42,6 +42,8 @@ protected:
 	float borders_;
 
 	bool rotating_;
+
+	Vector3 defaultPos_;
 };
 
 REGISTER_TYPE(ThirdPersonCamera)
