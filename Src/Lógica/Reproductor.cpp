@@ -28,6 +28,10 @@ void Reproductor::receive(Message * msg)
 	{
 		AudioManager::instance()->PLAY_2D_SOUND("Start");
 	}
+	case NPC_IN:
+	{
+		AudioManager::instance()->PLAY_2D_SOUND("NPCIn");
+	}
 	default:
 		break;
 	};
