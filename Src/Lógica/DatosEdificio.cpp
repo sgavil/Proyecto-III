@@ -19,40 +19,24 @@ void DatosEdificio::load(json file)
 
 		json jsonAux = jsonAux2["parameters"];
 
-		if(jsonAux.find("Price") != jsonAux.end())
-			addParameter(aux->price_, jsonAux["Price"]);
-		if (jsonAux.find("LockedPrice") != jsonAux.end())
-			addParameter(aux->LockedPrice_, jsonAux["LockedPrice"]);
-		if (jsonAux.find("Locked") != jsonAux.end())
-			addParameter(aux->Locked_, jsonAux["Locked"]);
+		addParameter(aux->price_, jsonAux["Price"]);
+		addParameter(aux->LockedPrice_, jsonAux["LockedPrice"]);
+		addParameter(aux->Locked_, jsonAux["Locked"]);
 
-		if (jsonAux.find("PeePee") != jsonAux.end())
-			addParameter(aux->PeePeeRestore_, jsonAux["PeePee"]);
-		if (jsonAux.find("Hungry") != jsonAux.end())
-			addParameter(aux->HungryRestore_, jsonAux["Hungry"]);
-		if (jsonAux.find("Fun") != jsonAux.end())
-			addParameter(aux->funRestore_, jsonAux["Fun"]);
+		addParameter(aux->PeePeeRestore_, jsonAux["PeePee"]);
+		addParameter(aux->HungryRestore_, jsonAux["Hungry"]);
+		addParameter(aux->funRestore_, jsonAux["Fun"]);
 
-		if (jsonAux.find("Tam_Cola") != jsonAux.end())
-			addParameter(aux->maxCola_, jsonAux["Tam_Cola"]);
+		addParameter(aux->maxCola_, jsonAux["Tam_Cola"]);
 
-		if (jsonAux.find("Tam") != jsonAux.end())
-			addParameter(aux->tam.x, jsonAux["Tam"]["x"]);
-		if (jsonAux.find("Tam") != jsonAux.end())
-			addParameter(aux->tam.y, jsonAux["Tam"]["y"]);
+		addParameter(aux->tam.x, jsonAux["Tam"]["x"]);
+		addParameter(aux->tam.y, jsonAux["Tam"]["y"]);
+		addParameter(aux->height_, jsonAux["Height"]);
 
-		if (jsonAux.find("Height") != jsonAux.end())
-			addParameter(aux->height_, jsonAux["Height"]);
-
-		if (jsonAux.find("Entry") != jsonAux.end())
-			addParameter(aux->entry.x, jsonAux["Entry"]["x"]);
-		if (jsonAux.find("Entry") != jsonAux.end())
-			addParameter(aux->entry.y, jsonAux["Entry"]["y"]);
-
-		if (jsonAux.find("Exit") != jsonAux.end())
-			addParameter(aux->exit.x, jsonAux["Exit"]["x"]);
-		if (jsonAux.find("Exit") != jsonAux.end())
-			addParameter(aux->exit.y, jsonAux["Exit"]["y"]);
+		addParameter(aux->entry.x, jsonAux["Entry"]["x"]);
+		addParameter(aux->entry.y, jsonAux["Entry"]["y"]);
+		addParameter(aux->exit.x, jsonAux["Exit"]["x"]);
+		addParameter(aux->exit.y, jsonAux["Exit"]["y"]);
 
 		if (jsonAux.find("Duration") != jsonAux.end()) {
 			if (addParameter(aux->duration_, jsonAux["Duration"]))
@@ -62,10 +46,8 @@ void DatosEdificio::load(json file)
 			}
 		}
 
-		if (jsonAux.find("Capacity") != jsonAux.end())
-			addParameter(aux->capacity_, jsonAux["Capacity"]);
-		if (jsonAux.find("bName") != jsonAux.end())
-			addParameter(aux->bName, jsonAux["bName"]);
+		addParameter(aux->capacity_, jsonAux["Capacity"]);
+		addParameter(aux->bName, jsonAux["bName"]);
 
 
 		datos_.insert(std::make_pair(aux->bName, aux));

@@ -17,6 +17,8 @@ public:
 
 	virtual void save(json& file) {};
 
+	virtual void setProgress(float progress);
+
 	CEGUI::ProgressBar* getProgressBar() { return progressBar_; };
 
 private:

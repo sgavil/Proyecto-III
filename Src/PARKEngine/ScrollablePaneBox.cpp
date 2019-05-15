@@ -5,6 +5,8 @@
 #include "ProgressBar.h"
 #include "ImageBox.h"
 #include "CallbackManager.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 ScrollablePaneBox::ScrollablePaneBox()
 {

@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.h"
-#include "HUDManager.h"
 
 class BackgroundImage : public Component
 {

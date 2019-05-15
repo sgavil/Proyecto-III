@@ -13,6 +13,9 @@
 #include <CEGUI/CEGUI.h>
 #include <SDL_video.h>
 
+#include <OISKeyboard.h>
+#include <OISMouse.h>
+
 
 Camera::Camera()
 {
@@ -30,10 +33,11 @@ void Camera::start()
 		camera_ = OgreManager::instance()->getCamera();
 	//Create a new one
 	else
-		camera_ = OgreManager::instance()->createCamera("Camera", 5, 50000, true);
+		camera_ = OgreManager::instance()->createCamera(getEntity()->getName(), 5, 50000, true);
 
 	camNode_ = (Ogre::SceneNode*)camera_->getParentNode();
 	camera_->getViewport()->setClearEveryFrame(true);
+
 	//Initialises it 
 	transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
@@ -41,10 +45,9 @@ void Camera::start()
 	//Initialise camNode
 	else
 	{
-		Vector3 pos = transform_->getPosition();
+		Vector3 pos = transform_->getPosition(); Quaternion orientation = transform_->getRotation();
 		camNode_->setPosition(pos);
-		camNode_->lookAt(Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
-		transform_->setRotation(camNode_->getOrientation());
+		camNode_->setOrientation(orientation);
 	}
 }
 
@@ -63,4 +66,10 @@ void Camera::receive(Message* msg)
 
 void Camera::save(json& file)
 {
+}
+
+void Camera::lookAt(Vector3 pos)
+{
+	camNode_->lookAt(pos, Ogre::Node::TS_WORLD);
+	transform_->setRotation(camNode_->getOrientation());
 }

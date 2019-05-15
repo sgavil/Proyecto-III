@@ -1,18 +1,14 @@
 #include "ConstructionMode.h"
 
-#include "PARKEngine/SceneManager.h"
-#include "PARKEngine/InputManager.h"
-#include "PARKEngine/OgreManager.h"
-#include "PARKEngine/Entity.h"
-#include "PARKEngine/Transform.h"
-#include "PARKEngine/Button.h"
-#include "PARKEngine/MeshRenderer.h"
+#include "PARKEngine/PARKEngine.h"
 #include "Matrix/Matrix.h"
 #include "Matrix/Node.h"
 #include <string>
 #include "Edificio.h"
 #include <PARKEngine/Rigidbody.h>
 #include "BureaucracyManager.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 
 ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullptr), buildingEntity_(nullptr), canConst_(false), constructActive_(false), deleteActive_(false)
@@ -60,6 +56,7 @@ bool ConstructionMode::handleEvent(unsigned int time)
 {
 	if (!deleteActive_ && InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
 	{
+		//TODO: wtf is this
 		CEGUI::Window* w = CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse();
 		if (canConst_ && w->getName() == "StatePlay") {
 			setBuilding();
@@ -103,6 +100,9 @@ void ConstructionMode::buildInMatrix(int i, int j, std::string name)
 
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(x, build_->getHeight(), z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
+	Rigidbody* buildingRigid = buildingEntity_->getComponent<Rigidbody>();
+	if(buildingRigid != nullptr)
+		buildingRigid->start();
 
 	//Modificar el tipo de nodos de la matriz
 	std::list<Entity*> n;
@@ -231,6 +231,9 @@ void ConstructionMode::setBuilding()
 	buildingEntity_->setActive(true);
 	buildingEntity_->getComponent<Transform>()->setPosition(Ogre::Vector3(pos.x, pos.y, pos.z));
 	buildingEntity_->getComponent<MeshRenderer>()->start();
+	Rigidbody* buildingRigid = buildingEntity_->getComponent<Rigidbody>();
+	if (buildingRigid != nullptr)
+		buildingRigid->start();
 
 	MessageInfo m(CREATED_BUILDING, buildingEntity_);
 	send(&m);
@@ -242,7 +245,7 @@ void ConstructionMode::setBuilding()
 	nodes_.clear();
 	canConst_ = false;
 
-	bureauCrazyManager_->setActualMoney(-build_->getPrice());
+	bureauCrazyManager_->addMoney(-build_->getPrice());
 
 
 	if (build_->getType() != Edificio::BuildingType::Ornament) {

@@ -7,6 +7,7 @@
 #include "Matrix/Node.h"
 #include "PARKEngine/PARKComponents.h"
 #include <PARKEngine/SceneManager.h>
+#include "BureauCracyManager.h"
 
 
 
@@ -17,6 +18,15 @@ Edificio::Edificio()
 
 Edificio::~Edificio()
 {
+}
+
+void Edificio::start()
+{
+	BureauCrazyManager* crazyMan = SceneManager::instance()->currentState()->getEntitiesWithComponent<BureauCrazyManager>()[0]->getComponent<BureauCrazyManager>();
+	if (crazyMan != nullptr)
+		registerListener((Listener*)crazyMan);
+	else
+		std::cout << "LACKING BUREAUCRAZY MANAGER" << std::endl;
 }
 
 void Edificio::update(unsigned int time)
@@ -53,6 +63,9 @@ void Edificio::montar()
 			e->getComponent<NPC>()->enterAttraction();
 			rideing.push_back(cola.front());
 			cola.pop();
+
+			//Mandamos el mensaje
+			send(&NPCEnteredAttraction(NPC_ENTERED_ATTRACTION, e->getComponent<NPC>(), this));
 		}
 	}
 }

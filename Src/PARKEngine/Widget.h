@@ -26,10 +26,17 @@ public:
 
 	virtual void save(json& file) {};
 
-	CEGUI::Window* getWindow() { return window; };
 
+	//Wrappers
 	void setText(std::string s);
 	void setFont(std::string s);
+
+	virtual void hide();
+	virtual void show();
+
+	virtual void setProperty(std::string name, std::string value);
+
+	virtual Widget* getChildElement(std::string name);
 };
 
 REGISTER_TYPE(Widget)

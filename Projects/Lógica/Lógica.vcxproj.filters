@@ -46,6 +46,9 @@
     <ClCompile Include="..\..\Src\Lógica\ThirdPersonCamera.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\NPCManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Lógica\NPC.h">
@@ -78,6 +81,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\ThirdPersonCamera.h">
       <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\NPCManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

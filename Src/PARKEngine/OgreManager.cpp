@@ -14,6 +14,10 @@
 #include <iostream>
 #include "SDL.h"
 
+//CEGUI
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
+
 
 
 std::unique_ptr<OgreManager> OgreManager::instance_;

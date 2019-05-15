@@ -15,12 +15,10 @@ enum MessageId {
 	RIGIDBODY_CHANGED,
 	FIRST_PERSON_CAMERA,
 	THIRD_PERSON_CAMERA,
-	CITIZEN_OUT,
-	CITIZEN_HUNGRY,
-	CITIZEN_BORED,
-	CITIZEN_HAPPY,
-	CITICEN_IN,
-	CITICEN_DIRTY,
+	NPC_IN,
+	NPC_OUT,
+	NPC_SELECTED,
+	NPC_ENTERED_ATTRACTION,
 	ATRACCTION_FULL,
 	ATRACCION_EMPTY,
 	THEMEPARK_EMPTY,
@@ -84,6 +82,31 @@ struct BuildingUnlocked : public Message {
 		Message(mType, size), edificio_(edificio) {
 	}
 	Edificio* edificio_;
+};
+
+class Transform;
+struct TransformChanged : public Message {
+	TransformChanged(MessageId mType, Transform* transform, header_t_ size = sizeof(Message)) :
+		Message(mType, size), transform_(transform) {
+	}
+	Transform* transform_;
+};
+
+class NPC;
+struct NPCSelected : public Message {
+	NPCSelected(MessageId mType, NPC* selected, header_t_ size = sizeof(Message)) :
+		Message(mType, size), selected_(selected) {
+	}
+	NPC* selected_;
+};
+
+class Edificio;
+struct NPCEnteredAttraction : public Message {
+	NPCEnteredAttraction(MessageId mType, NPC* npc, Edificio* attraction, header_t_ size = sizeof(Message)) :
+		Message(mType, size), npc_(npc), attraction_(attraction) {
+	}
+	NPC* npc_;
+	Edificio* attraction_;
 };
 
 //Es muy posible que para varios mensajes haya que hacer un struct para mandar al receptor algo mas que el tipo de mensaje, y por tanto

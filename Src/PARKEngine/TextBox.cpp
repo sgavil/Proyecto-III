@@ -1,4 +1,6 @@
 #include "TextBox.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 TextBox::TextBox()
 {

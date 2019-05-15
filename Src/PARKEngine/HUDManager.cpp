@@ -3,6 +3,8 @@
 #include "OgreManager.h"
 #include "OgreIncludes.h"
 #include "OgreManager.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 
 using namespace std::placeholders;
@@ -55,18 +57,11 @@ void HUDManager::init()
 	windowMgr = CEGUI::WindowManager::getSingletonPtr();		// Obtenemos la ventana de renderizado
 }
 
-
-CEGUI::MouseCursor& HUDManager::getMouseCursor()
+CEGUI::MouseCursor & HUDManager::getMouseCursor()
 {
 	return CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor();
 }
 
-void HUDManager::setMouseCursor(Vector2 pos)
-{
-	Vector2 windowSize = { OgreManager::instance()->getWindowSizeX(), OgreManager::instance()->getWindowSizeY() };
-	CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(windowSize.x * pos.x, windowSize.y * pos.y);
-
-}
 void HUDManager::addWindow(std::string state)
 {
 	CEGUI::Window* newWindow = windowMgr->createWindow("DefaultWindow", state);
@@ -98,6 +93,28 @@ void HUDManager::setActiveWindow(std::string state)
 	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(activeWindow); // establece que sets de gui se muestra en el contexto actual, puede cambiarse de uno a otro.
 }
 
+void HUDManager::showMouseCursor()
+{
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().show();
+}
+
+void HUDManager::hideMouseCursor()
+{
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().hide();
+}
+
+CEGUI::Window* HUDManager::createWidget(std::string name, std::string type, float posX, float posY, float offX, float offY, float tamX, float tamY/*, std::string txt, bool(T::* func)(const CEGUI::EventArgs&), T* obj*/)
+{
+	CEGUI::Window* widget = windowMgr->createWindow(type, name);
+
+	widget->setPosition(CEGUI::UVector2(CEGUI::UDim(posX, offX), CEGUI::UDim(posY, offY)));
+	widget->setSize(CEGUI::USize(CEGUI::UDim(0, tamX), CEGUI::UDim(0, tamY)));
+	//widgtet->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(func, obj));
+
+	activeWindow->addChild(widget);
+
+	return widget;
+}
 
 
 /*void HUDManager::createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text)

@@ -6,6 +6,8 @@
 #include "ImageBox.h"
 #include "ScrollablePaneBox.h"
 #include "CallbackManager.h"
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 FrameWindowBox::FrameWindowBox()
 {

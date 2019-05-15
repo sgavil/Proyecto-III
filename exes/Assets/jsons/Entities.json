@@ -7,8 +7,8 @@
 		 {
 			"position": {
 				"x": 0,
-				"y": 1000,
-				"z": 1000
+				"y": 10,
+				"z": 0
 			},
 			"scale":{
 				"x":2.5,
@@ -96,10 +96,6 @@
         "visible" : false
       }
     },
-	{
-		 "name": "Rigidbody",
-		 "mass": 0
-	},
     {
       "name": "Node"
     }
@@ -271,7 +267,6 @@
         "visible" : true
       }
     },
-    
     {
       "name": "Edificio",
       "parameters":
@@ -285,7 +280,7 @@
 	  "mass": 0
 	}    
   ],
-  "Lanzadera": 
+  "WCPortatil": 
   [
     {
       "name": "Transform"
@@ -294,8 +289,8 @@
       "name": "MeshRenderer",
       "parameters":
       {
-        "mesh": "Lanzadera.mesh",
-        "material": "MaterialLanzadera",
+        "mesh": "WCPortatil.mesh",
+        "material": "MaterialWCPortatil",
         "visible" : true
       }
     },
@@ -307,7 +302,11 @@
         "bName": "Lanzadera",
 		    "Type": 2
       }
-    }    
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}
   ],
   "HotDogTruck": 
   [
@@ -330,7 +329,11 @@
         "bName": "HotDogTruck",
 		 "Type": 2
       }
-    }    
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}     
   ],
   "Entrada": 
   [
@@ -353,6 +356,10 @@
         "bName": "Entrada",
 		"Type": 4
       }
-    }    
+    },
+	{
+	  "name": "Rigidbody",
+	  "mass": 0
+	}     
   ]
 }

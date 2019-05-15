@@ -16,7 +16,13 @@
         },
         {
           "name": "Rigidbody",
-          "mass": 10
+          "mass": 10,
+		  "dimensions":
+		  {
+			"x":5,
+			"y":10,
+			"z":5
+		  }
         }
       ]
     },
@@ -176,6 +182,51 @@
           "posY": 0.05,
           "sizeX": 120,
           "sizeY": 40,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "ConstructWCPortatilButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "DejaVuSans-10",
+          "callback": "construct",
+          "parameter": "WCPortatil",
+          "text": "WC PORTATIL",
+          "posX": 0.01,
+          "posY": 0.05,
+          "sizeX": 120,
+          "sizeY": 30,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextPriceWCPortatil",
+      "Components": [
+        {
+          "name": "PriceTextBox",
+          "bName": "Road",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "25 $",
+          "alignText": "Centre",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.7,
+          "sizeX": 120,
+          "sizeY": 15,
           "offsetX": 0,
           "offsetY": 0
         }
@@ -666,6 +717,12 @@
           "type": "TaharezLook/ScrollablePane",
           "font": "DejaVuSans-10",
           "Hijos": [
+            {
+              "name" : "ConstructWCPortatilButton"
+            },
+            {
+              "name" : "TextPriceWCPortatil"
+            }
           ],
           "posX": 0.0,
           "posY": 0.0,
@@ -760,7 +817,7 @@
           "name": "TextBox",
           "type": "Vanilla/StaticText",
           "font": "Jura-18",
-          "text": "Turistas Actuales: 15",
+          "text": "Visitantes Actuales: 0",
           "alignText": "Left",
           "backgroundEnabled": "False",
           "textColor": {
@@ -1026,9 +1083,59 @@
             "ruptcyMaxTime": 7,
             "floorRuptcyMoney": -40,
             "InitialTime2Tax": 180,
-            "ActualMoney": 1500,
-            "InitVisitors": 3
+            "ActualMoney": 10000,
+            "InitVisitors": 0
           }
+        }
+      ]
+    },
+    {
+      "name": "TextTimer",
+      "Components": [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "Carnevalee Freakshow-40",
+          "text": "Tiempo de juego: ",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.42,
+          "posY": 0.005,
+          "sizeX": 400,
+          "sizeY": 75,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "TextNextTax",
+      "Components": [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-14",
+          "text": "Sig. Impuesto:  ",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.4,
+          "posY": 0.06,
+          "sizeX": 400,
+          "sizeY": 75,
+          "offsetX": 0,
+          "offsetY": 0
         }
       ]
     },
@@ -1048,6 +1155,20 @@
         },
         {
           "name": "FirstPersonCamera",
+          "Listeners": [
+            {
+              "name": "BureauCrazyManager"
+            }
+          ]
+        }
+      ]
+    },
+	{
+      "name": "NPCManager",
+      "Components": [
+        {
+          "name": "NPCManager",
+          "enterTime": 5,
           "Listeners": [
             {
               "name": "BureauCrazyManager"

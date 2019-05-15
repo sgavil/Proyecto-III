@@ -9,7 +9,7 @@
 #include <iostream>
 #include "GameState.h"
 
-MeshRenderer::MeshRenderer(): node_(nullptr), transform_(nullptr)
+MeshRenderer::MeshRenderer(): node_(nullptr)
 {
 }
 
@@ -17,7 +17,6 @@ MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 {
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
 	node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
-	//node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setVisible(visible);
 }
@@ -27,7 +26,7 @@ void MeshRenderer::load(json file)
 	std::string meshName;
 	addParameter(meshName, file["mesh"]);
 
-//	std::string meshName = file["mesh"];
+
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
 		node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
 
@@ -49,7 +48,7 @@ MeshRenderer::~MeshRenderer()
 
 void MeshRenderer::start()
 {
-	transform_ = entity_->getComponent<Transform>();
+	Transform* transform_ = entity_->getComponent<Transform>();
 	if (transform_ == nullptr)
 		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
 	else
@@ -95,8 +94,11 @@ void MeshRenderer::receive(Message* msg)
 {
 	if (msg->mType_ == MessageId::TRANSFORM_CHANGED)
 	{
-		node_->setPosition(transform_->getPosition());
-		node_->setOrientation(transform_->getRotation());
-		node_->setScale(transform_->getScale());
+		TransformChanged* transChanged = static_cast<TransformChanged*>(msg);
+		Transform* t = transChanged->transform_;
+
+		node_->setPosition(t->getPosition());
+		node_->setOrientation(t->getRotation());
+		node_->setScale(t->getScale());
 	}
 }

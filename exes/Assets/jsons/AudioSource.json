@@ -31,6 +31,13 @@
 			"loopCount": 0,
 			"Volume": 1,
 			"Pan": 0
+		},
+		{
+			"Id": "money3d",
+			"rute": "Assets\\Audio\\Money.wav",
+			"loopCount": 0,
+			"Volume": 1,
+			"Pan": 0
 		}
 	],
 	"Songs":
