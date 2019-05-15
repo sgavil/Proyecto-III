@@ -84,7 +84,7 @@
           {
               "bName": "WCPortatil",
               "Price": 25,
-			  "EntryCost": 10,
+			  "EntryCost": 5,
               "LockedPrice": 0,
               "Locked": false,
               "Type": 3,
