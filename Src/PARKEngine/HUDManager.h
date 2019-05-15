@@ -28,28 +28,28 @@ private:
 	std::map<std::string, CEGUI::Window*> windows;
 
 	CEGUI::WindowManager* windowMgr;
+
+	CEGUI::Window* activeWindow;
 	
 	HUDManager();
 
 public:	
 	static HUDManager* instance();
-	CEGUI::Window* activeWindow;
+
 	void init();
 
 	void addWindow(std::string state);
 	void changeWindow(std::string state);
 
+	CEGUI::Window* getActiveWindow();
 	void setActiveWindow(std::string state);
 
-	//Wrappers
+	// Wrappers
 	void showMouseCursor();
 	void hideMouseCursor();
 
 	
-	CEGUI::Window* createWidget(std::string name, std::string type, float posX, float posY, float offX, float offY, float tamX, float tamY/*, std::string txt, bool(T::* func)(const CEGUI::EventArgs&), T* obj*/);
-
-
-	//void createText(float posX, float posY, float offsetX, float offsetY, float tamX, float tamY, std::string text);
+	CEGUI::Window* createWidget(std::string name, std::string type, float posX, float posY, float offX, float offY, float tamX, float tamY);
 
 
 	~HUDManager();

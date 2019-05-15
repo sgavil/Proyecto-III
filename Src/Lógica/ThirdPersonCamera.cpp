@@ -32,7 +32,7 @@ void ThirdPersonCamera::load(json file)
 	addParameter(borders_, file["borders"]);
 }
 
-void ThirdPersonCamera::receive(Message * msg)
+void ThirdPersonCamera::receive(Message* msg)
 {
 	switch (msg->mType_)
 	{
