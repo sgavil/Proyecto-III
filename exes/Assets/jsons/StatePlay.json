@@ -908,7 +908,7 @@
           "font": "DejaVuSans-10",
           "imageName": "burgerIcon.png",
           "posX": 0.01,
-          "posY": 0.375,
+          "posY": 0.3,
           "sizeX": 20,
           "sizeY": 20,
           "offsetX": 0,
@@ -925,7 +925,7 @@
           "font": "Carnevalee Freakshow-32",
           "BarColor": "FFFF3535",
           "posX": 0.2,
-          "posY": 0.375,
+          "posY": 0.3,
           "sizeX": 110,
           "sizeY": 20,
           "offsetX": 0,
@@ -942,7 +942,7 @@
           "font": "DejaVuSans-10",
           "imageName": "toiletIcon.png",
           "posX": 0.01,
-          "posY": 0.7,
+          "posY": 0.55,
           "sizeX": 20,
           "sizeY": 20,
           "offsetX": 0,
@@ -959,8 +959,33 @@
           "font": "Carnevalee Freakshow-32",
           "BarColor": "FF3578FF",
           "posX": 0.2,
-          "posY": 0.7,
+          "posY": 0.55,
           "sizeX": 110,
+          "sizeY": 20,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+	 {
+      "name": "LastAttractionText",
+      "Components": [
+        {
+          "name": "TextBox",
+          "type": "Vanilla/StaticText",
+          "font": "DejaVuSans-10",
+          "text": "Viene de: ",
+          "alignText": "Left",
+          "backgroundEnabled": "False",
+          "textColor": {
+            "topLeft": "FFFF0000",
+            "topRight": "FFFF0000",
+            "botLeft": "FFFF0000",
+            "botRight": "FFFF0000"
+          },
+          "posX": 0.01,
+          "posY": 0.8,
+          "sizeX": 159,
           "sizeY": 20,
           "offsetX": 0,
           "offsetY": 0
@@ -998,12 +1023,15 @@
             },
             {
               "name": "PeePeeImage"
-            }
+            },
+			{
+			  "name": "LastAttractionText"
+			}
           ],
           "posX": 0.75,
           "posY": 0.05,
           "sizeX": 160,
-          "sizeY": 120,
+          "sizeY": 140,
           "offsetX": 0,
           "offsetY": 0
         }

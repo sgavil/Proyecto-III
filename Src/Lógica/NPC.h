@@ -83,11 +83,11 @@ class NPC : public Component
 {
 public:
 	NPC();
-	~NPC();
+	virtual ~NPC();
 
 	//Load and start methods
-	void load(json file);
-	void start();
+	virtual void load(json file);
+	virtual void start();
 
 	//Generic methods
 	virtual void update(unsigned int time);
@@ -96,24 +96,27 @@ public:
 	virtual std::string getInfo();
 
 	//Set current node
-	void setNode(Node* node);
+	virtual void setNode(Node* node);
 	//Gets current node
-	Node* getNode();
+	virtual Node* getNode();
 
 	//Looks for a certain bulding 
-	void lookForBuildings();
+	virtual void lookForBuildings();
 	//Walks by without a destiny
-	void deambulate(unsigned int time);
+	virtual void deambulate(unsigned int time);
 	//Saca al NPC de la atracción
-	void getOutofAttraction();
+	virtual void getOutofAttraction();
 
 	//GETTERS
-	Stat getFun() { return fun_; };
-	Stat getHunger() { return hunger_; };
-	Stat getPeepee() { return peepee_; };
+	virtual Stat getFun() { return fun_; };
+	virtual Stat getHunger() { return hunger_; };
+	virtual Stat getPeepee() { return peepee_; };
 
 	//Entra en la atracción
-	void enterAttraction();
+	virtual void enterAttraction();
+
+	//Nombre de la última atracción visitada
+	virtual std::string getLastAttraction() { return lastAttraction_; };
 
 
 private:
@@ -184,6 +187,8 @@ private:
 	const Stat& lowerStat();
 	//Se pone a esperar en la cola
 	void enterQueue();
+
+	std::string lastAttraction_;
 
 };
 

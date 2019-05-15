@@ -8,7 +8,7 @@
 #include <cmath>
 
 //TODO: rotar los NPC en función de la dirección a la que van
-NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr), isInQueue_(false)
+NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr), isInQueue_(false), lastAttraction_("N/A")
 {
 }
 
@@ -121,6 +121,7 @@ void NPC::enterAttraction()
 {
 	isInBuilding_ = true;
 	isInQueue_ = false;
+	lastAttraction_ = actualBuilding_->getEntity()->getName();
 }
 
 Edificio* NPC::getBuilding(Node* eNode)
