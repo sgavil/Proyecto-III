@@ -1010,6 +1010,25 @@
       ]
     },
     {
+      "name": "DeleteBuildingButton",
+      "Components": [
+        {
+          "name": "Button",
+          "type": "Vanilla/Button",
+          "font": "DejaVuSans-10",
+          "callback": "setDeleteBuildingActive",
+          "parameter": "",
+          "text": "DESTRUIR",
+          "posX": 0.1,
+          "posY": 0.85,
+          "sizeX": 80,
+          "sizeY": 30,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      ]
+    },
+    {
       "name": "ReproductorAudio",
       "Components": [
         {

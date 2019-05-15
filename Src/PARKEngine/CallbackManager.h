@@ -21,6 +21,7 @@ private:
 
 	//Callbacks para la construccion
 	bool construct(std::string buildName);
+	bool setDeleteBuildingActive(std::string s);
 
 	//Callbacks para activar y desactivar paneles
 	bool setToolsPanelActive(std::string boolean);

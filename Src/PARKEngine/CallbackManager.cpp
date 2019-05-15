@@ -50,6 +50,7 @@ void CallbackManager::initCallbacks()
 	addCallback("onChangeState", &CallbackManager::onChangeState, this);
 	addCallback("onExit", &CallbackManager::onExit, this);
 	addCallback("construct", &CallbackManager::construct, this);
+	addCallback("setDeleteBuildingActive", &CallbackManager::setDeleteBuildingActive, this);
 	addCallback("EffectVolumeChange", &CallbackManager::EffectVolumeChange, this);
 	addCallback("MusicVolumeChange", &CallbackManager::MusicVolumeChange, this);
 
@@ -126,6 +127,14 @@ bool CallbackManager::construct(std::string buildName)
 			constructionMode->construct(buildName);
 		}
 	}
+	return true;
+}
+
+bool CallbackManager::setDeleteBuildingActive(std::string s)
+{
+	ConstructionMode* constructionMode = SceneManager::instance()->currentState()->getEntity("ConstructionMode")->getComponent<ConstructionMode>();
+	constructionMode->setDeleteActive(!constructionMode->getDeleteActice());
+
 	return true;
 }
 

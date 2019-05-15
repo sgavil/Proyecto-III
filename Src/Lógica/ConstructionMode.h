@@ -28,7 +28,8 @@ public:
 	void construct(string bName);
 	void deactivateThisConstruction();
 
-	bool setDeleteActive(bool b) { deleteActive_ = b; };
+	bool getDeleteActice() { return deleteActive_; };
+	void setDeleteActive(bool b) { deleteActive_ = b; };
 
 private:
 	bool constructActive_;
