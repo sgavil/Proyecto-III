@@ -51,6 +51,7 @@
             {
                 "bName": "Patitos",
                 "Price": 200,
+				"EntryCost": 30,
                 "LockedPrice": 600,
                 "Locked": false,
                 "Type": 1,
@@ -83,6 +84,7 @@
           {
               "bName": "WCPortatil",
               "Price": 25,
+			  "EntryCost": 10,
               "LockedPrice": 0,
               "Locked": false,
               "Type": 3,
@@ -115,6 +117,7 @@
             {
               "bName": "Noria",
               "Price": 400,
+			  "EntryCost": 50,
               "LockedPrice": 1200,
               "Locked": true,
               "Type": 1,
@@ -147,6 +150,7 @@
           {
             "bName": "Lanzadera",
             "Price": 500,
+			"EntryCost": 60,
             "LockedPrice": 700,
             "Locked": false,
             "Type": 1,
@@ -179,6 +183,7 @@
             {
                 "bName": "Burguer",
                 "Price": 200,
+				"EntryCost": 25,
                 "LockedPrice": 600,
                 "Locked": false,
                 "Type": 2,
@@ -211,6 +216,7 @@
             {
                 "bName": "HotDogTruck",
                 "Price": 250,
+				"EntryCost": 25,
                 "LockedPrice": 800,
                 "Locked": false,
                 "Type": 2,

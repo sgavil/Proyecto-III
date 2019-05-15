@@ -20,6 +20,7 @@ void DatosEdificio::load(json file)
 		json jsonAux = jsonAux2["parameters"];
 
 		addParameter(aux->price_, jsonAux["Price"]);
+		addParameter(aux->entryCost_, jsonAux["EntryCost"]);
 		addParameter(aux->LockedPrice_, jsonAux["LockedPrice"]);
 		addParameter(aux->Locked_, jsonAux["Locked"]);
 

@@ -15,6 +15,8 @@ struct Datos
 	int price_;
 	int LockedPrice_;
 	bool Locked_;
+
+	int entryCost_;
 	//Estos son los valores que un edificio modifica de un NPC
 	//si estos son negativos disminuiran la necesidad del NPC
 	//en caso de ser nulos no afectan y positivo la aumenta

@@ -48,6 +48,7 @@ public:
 	std::list<Entity*> getNodes() { return nodes_; };
 
 	int getPrice() { return datos->price_; };
+	int getEntryCost() { return datos->entryCost_; };
 	//Dice si la cola del edificio está llena o no
 	bool isFull() { return (cola.size() > datos->maxCola_); };
 
