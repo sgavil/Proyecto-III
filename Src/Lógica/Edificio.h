@@ -17,12 +17,16 @@ public:
 	enum BuildingType { Ornament, Amusement, Restaurant, Toilet, other };
 private:
 	Node* EntryNode;
+	Entity* EntryEntity;
 	Node* ExitNode;
+	Entity* ExitEntity;
 
 	BuildingType type_; //El tipo d ela atracción
 
 	std::queue<Entity*> cola;
 	std::list<Entity*> rideing;
+
+	std::list<Entity*> nodes_;
 
 	Datos* datos;
 
@@ -41,6 +45,8 @@ public:
 	void load(json file);
 
 	//GETTERS
+	std::list<Entity*> getNodes() { return nodes_; };
+
 	int getPrice() { return datos->price_; };
 	int getEntryCost() { return datos->entryCost_; };
 	//Dice si la cola del edificio está llena o no
@@ -65,7 +71,9 @@ public:
 	Ogre::Vector2 getEntry() { return datos->entry; };
 	Ogre::Vector2 getExit() { return datos->exit; };
 	Node* getEntryNode() { return EntryNode; };
+	Entity* getEntryEntity() { return EntryEntity; };
 	Node* getExitNode() { return ExitNode; };
+	Entity* getExitEntity() { return ExitEntity; };
 
 	int getHeight() { return datos->height_; };
 
@@ -81,10 +89,11 @@ public:
 	//El parametro d es en segundos y automaticamente lo pasa a milisegundos que es como trabaja internamente
 	void setDuration(int D) { datos->duration_ = D * 1000; };
 
-	
-
+	void setNodes(std::list<Entity*> n) { nodes_ = n; };
 	void setEntryNode(Node* e) { EntryNode = e; };
+	void setEntryEntity(Entity* e) { EntryEntity = e; }
 	void setExitNode(Node* e) { ExitNode = e; };
+	void setExitEntity(Entity* e) { ExitEntity = e; }
 private:
 	//Es privado porque solo se debe establecer al Establecer de json la atracción y no en ejecución
 	void setType(BuildingType t) { type_ = t; };

@@ -106,6 +106,7 @@ bool GameState::removeEntity(std::string name)
 		else
 			it++;
 	}
+
 	return found;
 }
 

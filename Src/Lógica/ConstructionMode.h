@@ -28,6 +28,9 @@ public:
 	void construct(string bName);
 	void deactivateThisConstruction();
 
+	bool getDeleteActice() { return deleteActive_; };
+	void setDeleteActive(bool b) { deleteActive_ = b; };
+
 private:
 	bool constructActive_;
 	bool canConst_;
@@ -52,6 +55,10 @@ private:
 	void createEntryExitRoad(string roadName);
 	void setEntryExit();
 	void setNodeMaterial(bool enable, bool can);
+
+	//Para eliminar edificios
+	bool deleteActive_;
+	void deleteBuilding();
 };
 
 REGISTER_TYPE(ConstructionMode)
