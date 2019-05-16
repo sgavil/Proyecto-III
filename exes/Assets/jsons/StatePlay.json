@@ -1271,8 +1271,7 @@
           "enterTime": 5,
           "Listeners": [
             {
-              "name": "BureauCrazyManager",
-			  "name": "Reproductor"
+              "name": "BureauCrazyManager"
             }
           ]
         }

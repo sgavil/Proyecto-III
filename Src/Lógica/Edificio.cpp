@@ -8,6 +8,7 @@
 #include "PARKEngine/PARKComponents.h"
 #include <PARKEngine/SceneManager.h>
 #include "BureauCracyManager.h"
+#include "PARKMessages.h"
 
 
 

@@ -2,6 +2,7 @@
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 #include "SceneManager.h"
+#include "Entity.h"
 
 Widget::Widget()
 {

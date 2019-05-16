@@ -7,6 +7,7 @@
 #include "Edificio.h"
 #include <PARKEngine/Rigidbody.h>
 #include "BureaucracyManager.h"
+#include "ParkMessages.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 

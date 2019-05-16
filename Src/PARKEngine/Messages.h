@@ -1,33 +1,31 @@
 #pragma once
 #include <stdint.h>
 #include <vector>
-#include <PARKEngine/Entity.h>
-
-
 
 //En este mismo fichero están las clases de Listener y Emitter para que no haya que incluir 3 ficheros, con este sera
 //suficiente ya que todo su contenido tiene que ver con mensajes y su forma de envio
 
 enum MessageId {
-	GAME_START,
-	GAME_OVER,
 	TRANSFORM_CHANGED,
 	RIGIDBODY_CHANGED,
+
+	//A partir de aquí, estos mensajes deberían ir en la lógica del juego y no en este archivo
+	GAME_START,
+
+	//Cámara
 	FIRST_PERSON_CAMERA,
 	THIRD_PERSON_CAMERA,
+
+	//NPCs
 	NPC_IN,
 	NPC_OUT,
 	NPC_SELECTED,
 	NPC_ENTERED_ATTRACTION,
-	ATRACCTION_FULL,
-	ATRACCION_EMPTY,
-	THEMEPARK_EMPTY,
-	THEMEPARK_FULL,
+
+	//Construcciones
 	CREATED_BUILDING,
 	CANNOT_BUILD,
 	DESTROYED_BUILDING,
-
-
 
 	//Relacionados con la burocracia
 	BANKRUPTCY,
@@ -41,11 +39,14 @@ enum MessageId {
 	IS_BUILDING_UNLOCKED,
 	BUILDING_NOT_UNLOCKED,
 	BUILDING_UNLOCKED,
-
 };
 
 typedef uint16_t header_t_;
 
+
+class Transform;
+
+//Mensaje por defecto del que se puede heredar para introducir más información
 struct Message {
 	Message(MessageId mType, header_t_ size = sizeof(Message)) :
 		size_(size), mType_(mType) {
@@ -54,59 +55,11 @@ struct Message {
 	uint8_t mType_;
 };
 
-struct MessageInfo : public Message {
-	MessageInfo(MessageId mType, Entity* mEntity, header_t_ size = sizeof(Message)) : 
-		mEntity_(mEntity), Message(mType, size) {
-	}
-	Entity* mEntity_;
-};
-
-class Edificio;
-
-struct IsBuildingUnlocked : public Message {
-	IsBuildingUnlocked(MessageId mType, Edificio* edificio, header_t_ size = sizeof(Message)) :
-		 Message(mType, size) , edificio_(edificio){
-	}
-	Edificio* edificio_;
-};
-
-struct BuildingNotUnlocked : public Message {
-	BuildingNotUnlocked(MessageId mType, Edificio* edificio, header_t_ size = sizeof(Message)) :
-		Message(mType, size), edificio_(edificio) {
-	}
-	Edificio* edificio_;
-};
-
-struct BuildingUnlocked : public Message {
-	BuildingUnlocked(MessageId mType, Edificio* edificio, header_t_ size = sizeof(Message)) :
-		Message(mType, size), edificio_(edificio) {
-	}
-	Edificio* edificio_;
-};
-
-class Transform;
 struct TransformChanged : public Message {
 	TransformChanged(MessageId mType, Transform* transform, header_t_ size = sizeof(Message)) :
 		Message(mType, size), transform_(transform) {
 	}
 	Transform* transform_;
-};
-
-class NPC;
-struct NPCSelected : public Message {
-	NPCSelected(MessageId mType, NPC* selected, header_t_ size = sizeof(Message)) :
-		Message(mType, size), selected_(selected) {
-	}
-	NPC* selected_;
-};
-
-class Edificio;
-struct NPCEnteredAttraction : public Message {
-	NPCEnteredAttraction(MessageId mType, NPC* npc, Edificio* attraction, header_t_ size = sizeof(Message)) :
-		Message(mType, size), npc_(npc), attraction_(attraction) {
-	}
-	NPC* npc_;
-	Edificio* attraction_;
 };
 
 //Es muy posible que para varios mensajes haya que hacer un struct para mandar al receptor algo mas que el tipo de mensaje, y por tanto

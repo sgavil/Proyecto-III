@@ -14,6 +14,12 @@
     <Filter Include="Managers">
       <UniqueIdentifier>{fac31122-4c05-48fd-8e8f-bae6d69a7990}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Componentes\Construction">
+      <UniqueIdentifier>{59e26f8f-f9b7-4cd2-a1fb-f46b5c62ce94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Componentes\Cameras">
+      <UniqueIdentifier>{483d67be-6889-481b-8d79-9aac0f807a83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Lógica\NPC.cpp">
@@ -28,22 +34,7 @@
     <ClCompile Include="..\..\Src\Lógica\Matrix\Node.cpp">
       <Filter>Componentes\Matrix</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Lógica\ConstructionMode.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Lógica\Edificio.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Lógica\Reproductor.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Lógica\DatosEdificio.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Lógica\FirstPersonCamera.cpp">
-      <Filter>Componentes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Lógica\ThirdPersonCamera.cpp">
       <Filter>Componentes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Lógica\NPCManager.cpp">
@@ -51,6 +42,21 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Lógica\PriceTextBox.cpp">
       <Filter>Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\ConstructionMode.cpp">
+      <Filter>Componentes\Construction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\Edificio.cpp">
+      <Filter>Componentes\Construction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\DatosEdificio.cpp">
+      <Filter>Componentes\Construction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\ThirdPersonCamera.cpp">
+      <Filter>Componentes\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Lógica\FirstPersonCamera.cpp">
+      <Filter>Componentes\Cameras</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,22 +73,7 @@
     <ClInclude Include="..\..\Src\Lógica\Matrix\Node.h">
       <Filter>Componentes\Matrix</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Lógica\Edificio.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\Reproductor.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Lógica\DatosEdificio.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Lógica\FirstPersonCamera.h">
-      <Filter>Componentes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Lógica\ThirdPersonCamera.h">
       <Filter>Componentes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\NPCManager.h">
@@ -90,6 +81,22 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Lógica\PriceTextBox.h">
       <Filter>Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\PARKMessages.h" />
+    <ClInclude Include="..\..\Src\Lógica\ConstructionMode.h">
+      <Filter>Componentes\Construction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\Edificio.h">
+      <Filter>Componentes\Construction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\DatosEdificio.h">
+      <Filter>Componentes\Construction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\ThirdPersonCamera.h">
+      <Filter>Componentes\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Lógica\FirstPersonCamera.h">
+      <Filter>Componentes\Cameras</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

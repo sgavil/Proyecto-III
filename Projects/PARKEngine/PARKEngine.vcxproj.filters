@@ -17,9 +17,6 @@
     <Filter Include="Components">
       <UniqueIdentifier>{c861ca7e-e8cd-42df-acd7-4c97df049dbb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Factory">
-      <UniqueIdentifier>{9cbda19c-f37a-4c22-9e64-7266cce1f2da}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Others">
       <UniqueIdentifier>{9a46dc28-1e52-429f-b4f6-8abd7bd21058}</UniqueIdentifier>
     </Filter>
@@ -29,9 +26,6 @@
       <Filter>Foundation</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\PARKEngine\GameState.cpp">
-      <Filter>Foundation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\PARKEngine\Messages.cpp">
       <Filter>Foundation</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\PARKEngine\Button.cpp">
@@ -51,9 +45,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\PARKEngine\Transform.cpp">
       <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\PARKEngine\EntityFactory.cpp">
-      <Filter>Factory</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\PARKEngine\InputManager.cpp">
       <Filter>Managers</Filter>
@@ -109,6 +100,9 @@
     <ClCompile Include="..\..\Src\PARKEngine\ScrollablePaneBox.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\PARKEngine\EntityFactory.cpp">
+      <Filter>Foundation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\PARKEngine\Entity.h">
@@ -137,12 +131,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\Transform.h">
       <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\PARKEngine\ComponentCreator.h">
-      <Filter>Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\PARKEngine\EntityFactory.h">
-      <Filter>Factory</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\OgreIncludes.h">
       <Filter>Includes</Filter>
@@ -218,6 +206,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\PARKEngine\ScrollablePaneBox.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\ComponentCreator.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\PARKEngine\EntityFactory.h">
+      <Filter>Foundation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

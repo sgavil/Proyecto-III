@@ -7,6 +7,7 @@
 #include "CallbackManager.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
+#include "Entity.h"
 
 ScrollablePaneBox::ScrollablePaneBox()
 {
