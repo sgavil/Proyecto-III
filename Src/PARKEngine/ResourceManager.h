@@ -9,8 +9,6 @@ public:
 	static void initInstance();
 	static ResourceManager* instance();
 
-	void initializeResources();
-
 	std::vector<std::string> getFontsPaths() { return fontsPaths; };
 	std::vector<std::string> getSchemesPaths() { return schemesPaths; };
 

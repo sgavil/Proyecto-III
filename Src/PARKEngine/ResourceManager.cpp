@@ -16,28 +16,7 @@ std::unique_ptr<ResourceManager> ResourceManager::instance_;
 
 ResourceManager::ResourceManager()
 {
-
-}
-
-ResourceManager::~ResourceManager()
-{
-	instance_.release();
-}
-
-void ResourceManager::initInstance()
-{
-	//Creamos la instancia
-	if (instance_.get() == nullptr)
-		instance_.reset(new ResourceManager());
-}
-
-ResourceManager * ResourceManager::instance()
-{
-	return instance_.get();
-}
-
-void ResourceManager::initializeResources()
-{
+	//INITIALISES ALL RESOURCES
 	Ogre::ConfigFile cf;
 
 	Ogre::FileSystemLayer* mFSLayer = OgreManager::instance()->createFileSystemLayer("cfLayerSystem");
@@ -45,7 +24,7 @@ void ResourceManager::initializeResources()
 	Ogre::String resourcesPath = mFSLayer->getConfigFilePath("resources.cfg");
 
 	std::string jsonPath;
-	
+
 	if (Ogre::FileSystemLayer::fileExists(resourcesPath))
 		cf.load(resourcesPath);
 
@@ -87,9 +66,24 @@ void ResourceManager::initializeResources()
 	loadFonts(jsonPath);
 	loadSchemes(jsonPath);
 	loadJsonsFiles(jsonPath);
-
 }
 
+ResourceManager::~ResourceManager()
+{
+	instance_.release();
+}
+
+void ResourceManager::initInstance()
+{
+	//Creamos la instancia
+	if (instance_.get() == nullptr)
+		instance_.reset(new ResourceManager());
+}
+
+ResourceManager * ResourceManager::instance()
+{
+	return instance_.get();
+}
 
 
 json ResourceManager::getJsonByKey(const std::string & key)

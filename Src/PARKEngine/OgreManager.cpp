@@ -50,7 +50,7 @@ OgreManager::OgreManager(std::string initFileJson):plane_(nullptr), camera_(null
 	root_->setRenderSystem(*(root_->getAvailableRenderers().begin()));
 	root_->initialise(false);
 
-	ResourceManager::instance()->initializeResources();
+	ResourceManager::initInstance();
 
 	sceneMgr_ = root_->createSceneManager();
 
