@@ -56,7 +56,7 @@ void ConstructionMode::update(unsigned int time)
 
 bool ConstructionMode::handleEvent(unsigned int time)
 {
-	if (!deleteActive_ && InputManager::getSingletonPtr()->isKeyDown("ConstructBuilding"))
+	if (!deleteActive_ && InputManager::instance()->isKeyDown("ConstructBuilding"))
 	{
 		//TODO: wtf is this
 		CEGUI::Window* w = CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse();
@@ -70,13 +70,13 @@ bool ConstructionMode::handleEvent(unsigned int time)
 			send(&m);			
 		}
 	}
-	else if (deleteActive_ && InputManager::getSingletonPtr()->isKeyDown("DeleteBuilding")) {
+	else if (deleteActive_ && InputManager::instance()->isKeyDown("DeleteBuilding")) {
 		deleteBuilding();
 	}
-	if (InputManager::getSingletonPtr()->isKeyDown("FinishConstruct")) {
+	if (InputManager::instance()->isKeyDown("FinishConstruct")) {
 		deactivateThisConstruction();
 	}
-	if (InputManager::getSingletonPtr()->isKeyDown("ExitConstruct")) {
+	if (InputManager::instance()->isKeyDown("ExitConstruct")) {
 		deactivateThisConstruction();
 	}
 

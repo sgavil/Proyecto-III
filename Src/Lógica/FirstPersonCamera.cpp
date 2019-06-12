@@ -108,7 +108,7 @@ bool FirstPersonCamera::handleEvent(unsigned int time)
 		    vel += (camTransform_->right() * stdIncr * 20);
 
 		////Salto
-		//if (InputManager::getSingletonPtr()->isKeyDown("Jump"))
+		//if (InputManager::instance()->isKeyDown("Jump"))
 		//	camRigid_->setLinearVelocity(Vector3(0,stdIncr * 10,0));
 
 		camRigid_->activate();
