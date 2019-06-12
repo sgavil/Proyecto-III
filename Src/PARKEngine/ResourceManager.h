@@ -6,6 +6,7 @@ class ResourceManager
 public:
 	~ResourceManager();
 
+	static void initInstance();
 	static ResourceManager* instance();
 
 	void initializeResources();

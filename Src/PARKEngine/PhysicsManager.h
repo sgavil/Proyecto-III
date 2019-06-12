@@ -19,12 +19,10 @@ class btDiscreteDynamicsWorld;
 class PhysicsManager
 {
 public:
-
+	//Inicializa la instancia
+	static void initInstance();
 	//Devuelve la instancia
 	static PhysicsManager* instance();
-
-	//Inicializa el sistema de físicas
-	void init();
 
 	//Actualiza el sistema
 	void stepSimulation(unsigned int time);
@@ -37,8 +35,6 @@ public:
 
 	//Añade un rigidbody al mundo físico
 	void addRigidBody(btRigidBody* rigid);
-
-
 
 	//Destructora
 	~PhysicsManager();

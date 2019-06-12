@@ -6,49 +6,10 @@
 #include "Utils.h"
 #include "OgreManager.h"
 
-InputManager *InputManager::mInputManager;
+InputManager *InputManager::instance_;
 
-InputManager::InputManager(void) :
-	mMouse(0),
-	mKeyboard(0),
-	mInputSystem(0) {
-}
-
-InputManager::~InputManager(void) {
-	if (mInputSystem) {
-		if (mMouse) {
-			mInputSystem->destroyInputObject(mMouse);
-			mMouse = 0;
-		}
-		if (mKeyboard) {
-			mInputSystem->destroyInputObject(mKeyboard);
-			mKeyboard = 0;
-		}
-
-		if (mJoysticks.size() > 0) {
-			itJoystick = mJoysticks.begin();
-			itJoystickEnd = mJoysticks.end();
-			for (; itJoystick != itJoystickEnd; ++itJoystick) {
-				mInputSystem->destroyInputObject(*itJoystick);
-			}
-
-			mJoysticks.clear();
-		}
-
-		// If you use OIS1.0RC1 or above, uncomment this line
-		// and comment the line below it
-		mInputSystem->destroyInputSystem(mInputSystem);
-		//mInputSystem->destroyInputSystem();
-		mInputSystem = 0;
-
-		// Clear Listeners
-		mKeyListeners.clear();
-		mMouseListeners.clear();
-		mJoystickListeners.clear();
-	}
-}
-
-void InputManager::initialise() {
+InputManager::InputManager() :mMouse(0),mKeyboard(0),mInputSystem(0) 
+{
 	Ogre::RenderWindow *renderWindow = OgreManager::instance()->getWindow();
 	if (!mInputSystem) {
 		// Setup basic variables
@@ -107,7 +68,52 @@ void InputManager::initialise() {
 	}
 }
 
-void InputManager::capture(void) {
+void InputManager::initInstance()
+{
+	if (instance_ == nullptr)
+		instance_ = new InputManager();	
+}
+
+InputManager* InputManager::instance() 
+{
+	return instance_;
+}
+
+InputManager::~InputManager() {
+	if (mInputSystem) {
+		if (mMouse) {
+			mInputSystem->destroyInputObject(mMouse);
+			mMouse = 0;
+		}
+		if (mKeyboard) {
+			mInputSystem->destroyInputObject(mKeyboard);
+			mKeyboard = 0;
+		}
+
+		if (mJoysticks.size() > 0) {
+			itJoystick = mJoysticks.begin();
+			itJoystickEnd = mJoysticks.end();
+			for (; itJoystick != itJoystickEnd; ++itJoystick) {
+				mInputSystem->destroyInputObject(*itJoystick);
+			}
+
+			mJoysticks.clear();
+		}
+
+		// If you use OIS1.0RC1 or above, uncomment this line
+		// and comment the line below it
+		mInputSystem->destroyInputSystem(mInputSystem);
+		//mInputSystem->destroyInputSystem();
+		mInputSystem = 0;
+
+		// Clear Listeners
+		mKeyListeners.clear();
+		mMouseListeners.clear();
+		mJoystickListeners.clear();
+	}
+}
+
+void InputManager::capture() {
 	// Need to capture / update each device every frame
 	if (mMouse) {
 		mMouse->capture();
@@ -424,13 +430,7 @@ bool InputManager::buttonReleased(const OIS::JoyStickEvent &e, int button) {
 }
 
 
-InputManager* InputManager::getSingletonPtr(void) {
-	if (!mInputManager) {
-		mInputManager = new InputManager();
-	}
 
-	return mInputManager;
-}
 
 OIS::KeyCode InputManager::getAsKeyCode(std::string str)
 {

@@ -36,7 +36,7 @@ void Button::load(json file)
 
 bool Button::handleEvent(unsigned int time)
 {
-	if (InputManager::getSingletonPtr()->isKeyDown("Ray"))
+	if (InputManager::instance()->isKeyDown("Ray"))
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
 	else
 	{

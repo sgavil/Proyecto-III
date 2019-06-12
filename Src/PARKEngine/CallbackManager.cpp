@@ -24,12 +24,16 @@ CallbackManager::~CallbackManager()
 {
 }
 
-CallbackManager* CallbackManager::instance()
+void CallbackManager::initInstance()
 {
-	//Devuelve la instancia si exise, si no crea una nueva
+	//Crea una instancia nueva
 	if (instance_.get() == nullptr)
 		instance_.reset(new CallbackManager());
+}
 
+CallbackManager* CallbackManager::instance()
+{
+	//Devuelve la instancia
 	return instance_.get();
 }
 

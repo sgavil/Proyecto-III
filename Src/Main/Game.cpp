@@ -9,21 +9,21 @@
 
 Game::Game(std::string basicConfig):exit(false)
 {
-	ogreManager_ = OgreManager::instance(basicConfig);
+	//Inicializamos singletons
+	OgreManager::initInstance(basicConfig);
+	InputManager::initInstance();
+	HUDManager::initInstance();
+	AudioManager::initInstance();
+	SceneManager::initInstance(&exit);
+	PhysicsManager::initInstance();
 
-	inputManager_ = InputManager::getSingletonPtr();
-	inputManager_->initialise();
-
+	//Cogemos las instancias en las variables
+	ogreManager_ = OgreManager::instance();
+	inputManager_ = InputManager::instance();
 	hudManager_ = HUDManager::instance();
-	hudManager_->init();
-
 	audioManager_ = AudioManager::instance();
-
 	sceneManager_ = SceneManager::instance();
-	sceneManager_->setExit(&exit);
-
 	physicsManager_ = PhysicsManager::instance();
-	physicsManager_->init();
 }
 
 Game::~Game()
@@ -34,6 +34,8 @@ Game::~Game()
 		delete sceneManager_;
 	if (audioManager_ != nullptr)
 		delete audioManager_;
+	if (hudManager_ != nullptr)
+		delete hudManager_;
 	if (inputManager_ != nullptr)
 		delete inputManager_;
 	if (ogreManager_ != nullptr)
@@ -44,10 +46,10 @@ void Game::start()
 {
 	sceneManager_->changeState("StateMainMenu");
 
-	AudioManager::instance()->READ_JSON_SOUNDS("AudioSource.json");
+	audioManager_->READ_JSON_SOUNDS("AudioSource.json");
 	//AudioManager::instance()->PLAY_2D_SOUND("cochecitos");
-	AudioManager::instance()->PLAY_SONG("Menu");
-	InputManager::getSingletonPtr()->addMappingValues("Input.json");
+	audioManager_->PLAY_SONG("Menu");
+	inputManager_->addMappingValues("Input.json");
 }
 
 void Game::run()
@@ -60,7 +62,7 @@ void Game::run()
 	{
 		//Llama al update, handleInput y render de la escena activa
 		sceneManager_->currentState()->update(deltaTime);
-		InputManager::getSingletonPtr()->capture();
+		inputManager_->capture();
 		sceneManager_->currentState()->handleInput(deltaTime);
 		ogreManager_->render(deltaTime);
 

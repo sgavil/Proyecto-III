@@ -15,30 +15,15 @@ std::unique_ptr<HUDManager> HUDManager::instance_;
 
 HUDManager::HUDManager()
 {
-	
-}
-
-
-HUDManager* HUDManager::instance()
-{
-	//Devuelve la instancia si exise, si no crea una nueva
-	if (instance_.get() == nullptr)
-		instance_.reset(new HUDManager());
-
-	return instance_.get();
-}
-
-void HUDManager::init() 
-{
 	//Carga de CEGUI y configurado automatico con elementos de OGRE
 	CEGUI::OgreRenderer& myRenderer = CEGUI::OgreRenderer::bootstrapSystem(*static_cast<Ogre::RenderTarget*>(OgreManager::instance()->getWindow()));
 
-	for (std::string s : ResourceManager::instance()->getSchemesPaths()) 
+	for (std::string s : ResourceManager::instance()->getSchemesPaths())
 	{
 		CEGUI::SchemeManager::getSingleton().createFromFile(s);
 	}
 
-	for (std::string s : ResourceManager::instance()->getFontsPaths()) 
+	for (std::string s : ResourceManager::instance()->getFontsPaths())
 	{
 		CEGUI::FontManager::getSingleton().createFromFile(s);
 	}
@@ -50,6 +35,19 @@ void HUDManager::init()
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
 
 	windowMgr = CEGUI::WindowManager::getSingletonPtr();
+}
+
+
+void HUDManager::initInstance()
+{
+	//Crea una instancia nueva
+	if (instance_.get() == nullptr)
+		instance_.reset(new HUDManager());
+}
+
+HUDManager* HUDManager::instance()
+{
+	return instance_.get();
 }
 
 

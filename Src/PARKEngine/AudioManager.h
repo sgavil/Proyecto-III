@@ -51,9 +51,11 @@ class AudioManager
 	std::map<std::string, FMOD::Channel*> SoundsChannels_;
 
 public:
+	//"Constructora" de la instancia
+	static void initInstance(float doppler = 1.0f, float rolloff = 1.0f);
 
 	//"Constructora" de la instancia
-	static AudioManager* instance(float doppler = 1.0f, float rolloff = 1.0f);
+	static AudioManager* instance();
 
 private:
 	//Constructora, le llegan los parametros del mundo que afecta a cualquier entidad con sonido 3D

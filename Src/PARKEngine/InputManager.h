@@ -6,10 +6,13 @@
 
 class InputManager : public OIS::KeyListener, public OIS::MouseListener, public OIS::JoyStickListener {
 public:
-	virtual ~InputManager(void);
+	static void initInstance();
+	static InputManager* instance();
 
-	void initialise();
-	void capture(void);
+
+	virtual ~InputManager();
+
+	void capture();
 	bool isKeyDown(std::string accion);
 
 	void addKeyListener(OIS::KeyListener *keyListener, const std::string& instanceName);
@@ -41,11 +44,10 @@ public:
 
 	int getNumOfJoysticks(void);
 
-	static InputManager* getSingletonPtr(void);
+
 private:
 	InputManager(void);
 	InputManager(const InputManager&) { }
-	InputManager & operator = (const InputManager&);
 
 	bool keyPressed(const OIS::KeyEvent &e);
 	bool keyReleased(const OIS::KeyEvent &e);
@@ -86,6 +88,6 @@ private:
 	std::map<std::string, OIS::KeyCode> KeyboardMapping;
 	std::map<std::string, OIS::MouseButtonID> MouseMapping;
 
-	static InputManager *mInputManager;
+	static InputManager *instance_;
 };
 #endif

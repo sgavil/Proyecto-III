@@ -11,20 +11,6 @@ std::vector<btCollisionShape*> PhysicsManager::shapes = std::vector<btCollisionS
 
 PhysicsManager::PhysicsManager()
 {
-}
-
-
-PhysicsManager * PhysicsManager::instance()
-{
-	//Devuelve la instancia si exise, si no crea una nueva
-	if (instance_.get() == nullptr)
-		instance_.reset(new PhysicsManager());
-
-	return instance_.get();
-}
-
-void PhysicsManager::init()
-{
 	// collision configuration contains default setup for memory , collision setup . Advanced users can create their own configuration
 	collisionConfiguration = new btDefaultCollisionConfiguration();
 
@@ -43,6 +29,21 @@ void PhysicsManager::init()
 	//Gravedad
 	dynamicsWorld->setGravity(btVector3(DEFAULT_GRAVITY.x, DEFAULT_GRAVITY.y, DEFAULT_GRAVITY.z));
 }
+
+
+void PhysicsManager::initInstance()
+{
+	//Devuelve la instancia si exise, si no crea una nueva
+	if (instance_.get() == nullptr)
+		instance_.reset(new PhysicsManager());
+}
+
+PhysicsManager * PhysicsManager::instance()
+{
+	//Devuelve la instancia
+	return instance_.get();
+}
+
 
 void PhysicsManager::stepSimulation(unsigned int time)
 {

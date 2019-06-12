@@ -66,15 +66,15 @@ bool FirstPersonCamera::handleEvent(unsigned int time)
 	//Standard increment (for camera transfomations)
 	float stdIncr = ((float)time / 2);
 	//Pillamos la info del ratón y de la ventana
-	Vector2 mouseAbs = { (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs, (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs };
-	Vector2 mouseRel = { (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().X.rel, (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.rel };
+	Vector2 mouseAbs = { (float)InputManager::instance()->getMouse()->getMouseState().X.abs, (float)InputManager::instance()->getMouse()->getMouseState().Y.abs };
+	Vector2 mouseRel = { (float)InputManager::instance()->getMouse()->getMouseState().X.rel, (float)InputManager::instance()->getMouse()->getMouseState().Y.rel };
 	Vector2 windowSize = { OgreManager::instance()->getWindowSizeX(), OgreManager::instance()->getWindowSizeY() };
 
 	//Incremento de la posición
 	Vector3 delta = { 0,0,0 };
 
 	//Change camera perspective (Third / first person)
-	if (InputManager::getSingletonPtr()->isKeyDown("ChangeCamera"))
+	if (InputManager::instance()->isKeyDown("ChangeCamera"))
 	{
 		if (!changedCamera_)
 		{
@@ -98,13 +98,13 @@ bool FirstPersonCamera::handleEvent(unsigned int time)
 		camRigid_->setTransform(camTransform_);
 
 		//Movimiento en las 4 direcciones
-		if (InputManager::getSingletonPtr()->isKeyDown("MoveForwards"))
+		if (InputManager::instance()->isKeyDown("MoveForwards"))
 			vel += (camTransform_->forward() * stdIncr * 20);
-		else if (InputManager::getSingletonPtr()->isKeyDown("MoveBack"))
+		else if (InputManager::instance()->isKeyDown("MoveBack"))
 			vel += (camTransform_->forward() * stdIncr * -20);
-		if (InputManager::getSingletonPtr()->isKeyDown("MoveLeft"))
+		if (InputManager::instance()->isKeyDown("MoveLeft"))
 			vel += (camTransform_->right() * stdIncr * -20);
-		else if (InputManager::getSingletonPtr()->isKeyDown("MoveRight"))
+		else if (InputManager::instance()->isKeyDown("MoveRight"))
 		    vel += (camTransform_->right() * stdIncr * 20);
 
 		////Salto

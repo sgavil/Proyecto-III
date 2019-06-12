@@ -67,14 +67,14 @@ bool ThirdPersonCamera::handleEvent(unsigned int time)
 	//Standard increment (for camera transfomations)
 	float stdIncr = ((float)time / 2);
 	//Pillamos la info del ratón y de la ventana
-	Vector2 mouse = { (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().X.abs, (float)InputManager::getSingletonPtr()->getMouse()->getMouseState().Y.abs };
+	Vector2 mouse = { (float)InputManager::instance()->getMouse()->getMouseState().X.abs, (float)InputManager::instance()->getMouse()->getMouseState().Y.abs };
 	Vector2 windowSize = { OgreManager::instance()->getWindowSizeX(),  OgreManager::instance()->getWindowSizeY() };
 
 	//Incremento de la posición
 	Vector3 delta = { 0,0,0 };
 
 	//Change camera perspective (Third / first person)
-	if (InputManager::getSingletonPtr()->isKeyDown("ChangeCamera"))
+	if (InputManager::instance()->isKeyDown("ChangeCamera"))
 	{
 		if(!changedCamera_)
 		{
@@ -91,29 +91,29 @@ bool ThirdPersonCamera::handleEvent(unsigned int time)
 		changedCamera_ = false;
 
 		//ADELANTE/ATRÁS
-		if (mouse.y < windowSize.y * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveForwards"))
+		if (mouse.y < windowSize.y * borders_ || InputManager::instance()->isKeyDown("MoveForwards"))
 			delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * stdIncr;
-		else if (mouse.y > windowSize.y - windowSize.y * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveBack"))
+		else if (mouse.y > windowSize.y - windowSize.y * borders_ || InputManager::instance()->isKeyDown("MoveBack"))
 			delta += Vector3::UNIT_Y.crossProduct(camTransform_->right()) * -stdIncr;
 
 		//IZQUIERDA/DERECHA
-		if (mouse.x < windowSize.x * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveLeft"))
+		if (mouse.x < windowSize.x * borders_ || InputManager::instance()->isKeyDown("MoveLeft"))
 			delta += camTransform_->right() * -stdIncr;
-		else if (mouse.x > windowSize.x - windowSize.x * borders_ || InputManager::getSingletonPtr()->isKeyDown("MoveRight"))
+		else if (mouse.x > windowSize.x - windowSize.x * borders_ || InputManager::instance()->isKeyDown("MoveRight"))
 			delta += camTransform_->right() * stdIncr;
 
 		//Rueda del ratón para hacer zoom (no se como se pone esto en el archivo del input porque no son teclas como tales)
 		//ZOOM IN/OUT
-		if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel > 0)
+		if (InputManager::instance()->getMouse()->getMouseState().Z.rel > 0)
 			delta += camTransform_->forward() * stdIncr * 1.5; //TODO: poner un parámetro de sensibilidad
 
-		else if (InputManager::getSingletonPtr()->getMouse()->getMouseState().Z.rel < 0)
+		else if (InputManager::instance()->getMouse()->getMouseState().Z.rel < 0)
 			delta += camTransform_->forward() * stdIncr * -1.5;
 
 		//ROTACIONES
-		if (InputManager::getSingletonPtr()->isKeyDown("RotateLeft"))
+		if (InputManager::instance()->isKeyDown("RotateLeft"))
 			orbit(-90);
-		else if (InputManager::getSingletonPtr()->isKeyDown("RotateRight"))
+		else if (InputManager::instance()->isKeyDown("RotateRight"))
 			orbit(90);
 		else
 			rotating_ = false;

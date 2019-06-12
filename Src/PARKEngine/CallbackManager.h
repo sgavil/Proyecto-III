@@ -5,6 +5,17 @@
 
 class CallbackManager
 {
+public:
+	static void initInstance();
+	static CallbackManager* instance();
+
+	template<typename T>
+	void addCallback(std::string keyName, bool(T::* cb)(std::string), T* obj);
+
+	std::function<void(std::string)> getCallback(std::string name);
+
+	~CallbackManager();
+
 private:
 	static std::unique_ptr<CallbackManager> instance_;
 
@@ -32,13 +43,4 @@ private:
 	bool setToiletsConstructionActive(std::string boolean);
 	bool setInfoPanelActive(std::string boolean);
 	bool setNPCInfoPanelActive(std::string boolean);
-public:
-	static CallbackManager* instance();
-	
-	template<typename T>
-	void addCallback(std::string keyName, bool(T::* cb)(std::string), T* obj);
-
-	std::function<void(std::string)> getCallback(std::string name);
-
-	~CallbackManager();
 };

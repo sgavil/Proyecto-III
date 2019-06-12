@@ -24,12 +24,15 @@ ResourceManager::~ResourceManager()
 	instance_.release();
 }
 
-ResourceManager * ResourceManager::instance()
+void ResourceManager::initInstance()
 {
-
+	//Creamos la instancia
 	if (instance_.get() == nullptr)
 		instance_.reset(new ResourceManager());
+}
 
+ResourceManager * ResourceManager::instance()
+{
 	return instance_.get();
 }
 

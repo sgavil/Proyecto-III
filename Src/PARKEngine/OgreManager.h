@@ -29,7 +29,7 @@ class OgreManager
 {
 public:
 	//"Constructora" de la instancia
-	static OgreManager* instance(std::string initFileJson);
+	static void initInstance(std::string initFileJson);
 
 	//Devuelve la instancia
 	static OgreManager* instance();

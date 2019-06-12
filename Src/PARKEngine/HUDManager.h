@@ -17,21 +17,11 @@ namespace CEGUI
 
 class HUDManager
 {
-private:
-	static std::unique_ptr<HUDManager> instance_;
-
-	std::map<std::string, CEGUI::Window*> windows;
-
-	CEGUI::WindowManager* windowMgr;
-
-	CEGUI::Window* activeWindow;
-	
-	HUDManager();
-
 public:	
+	static void initInstance();
+
 	static HUDManager* instance();
 
-	void init();
 
 	void addWindow(std::string state);
 	void changeWindow(std::string state);
@@ -50,6 +40,15 @@ public:
 	~HUDManager();
 private:
 	friend class OgreManager;
+
+	static std::unique_ptr<HUDManager> instance_;
+
+	std::map<std::string, CEGUI::Window*> windows;
+	CEGUI::WindowManager* windowMgr;
+	CEGUI::Window* activeWindow;
+
+
+	HUDManager();
 
 	//Returns mouse cursor
 	CEGUI::MouseCursor& getMouseCursor();

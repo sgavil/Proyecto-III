@@ -6,12 +6,17 @@
 
 std::unique_ptr<AudioManager> AudioManager::instance_;
 
-AudioManager * AudioManager::instance(float doppler, float rolloff)
+
+void AudioManager::initInstance(float doppler, float rolloff)
 {
 	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_.get() == nullptr)
 		instance_.reset(new AudioManager(doppler, rolloff));
+}
 
+AudioManager * AudioManager::instance()
+{
+	//Devuelve la instancia
 	return instance_.get();
 }
 

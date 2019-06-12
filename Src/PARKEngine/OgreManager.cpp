@@ -25,21 +25,15 @@ std::unique_ptr<OgreManager> OgreManager::instance_;
 
 
 
-OgreManager * OgreManager::instance(std::string initFileJson)
+void OgreManager::initInstance(std::string initFileJson)
 {
 	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_.get() == nullptr)
 		instance_.reset(new OgreManager(initFileJson));
-
-	return instance_.get();
 }
 
 OgreManager * OgreManager::instance()
 {
-	//Devuelve la instancia si exise, si no crea una nueva
-	if (instance_.get() == nullptr)
-		std::cout << "ERROR: OGRE INSTANCE HAS NOT BEEN INITIALISED PROPERLY" << std::endl;
-
 	return instance_.get();
 }
 
@@ -87,7 +81,7 @@ void OgreManager::render(unsigned int deltaTime)
 {
 	sceneMgr_->_updateSceneGraph(camera_);
 	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);	
-	OIS::Mouse* mouse =  InputManager::getSingletonPtr()->getMouse();
+	OIS::Mouse* mouse =  InputManager::instance()->getMouse();
 	
 	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(mouse->getMouseState().X.rel
 		, mouse->getMouseState().Y.rel );

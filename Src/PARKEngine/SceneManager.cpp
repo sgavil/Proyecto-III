@@ -4,15 +4,29 @@
 
 std::unique_ptr<SceneManager> SceneManager::instance_;
 
+
+void SceneManager::initInstance(bool* ex)
+{
+	if (instance_.get() == nullptr)
+		instance_.reset(new SceneManager(ex));
+}
+
+SceneManager* SceneManager::instance()
+{
+	return instance_.get();
+}
+
+SceneManager::SceneManager(bool* ex)
+{
+	exit = ex;
+}
+
+
 void SceneManager::disableOtherStatesNodes()
 {
 	for (auto s = states.begin(); s != states.end(); s++) {
 		(*s).second->getStateNode()->setVisible((*s).second == currentState_);
 	}
-}
-
-SceneManager::SceneManager()
-{
 }
 
 SceneManager::~SceneManager()
@@ -31,14 +45,6 @@ SceneManager::~SceneManager()
 	instance_.release();
 }
 			
-
-SceneManager* SceneManager::instance()
-{
-	if (instance_.get() == nullptr)
-		instance_.reset(new SceneManager());
-
-	return instance_.get();
-}
 
 GameState* SceneManager::currentState()
 {
