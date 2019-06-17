@@ -334,27 +334,45 @@ void ConstructionMode::setNodeMaterial(bool enable, bool can)
 
 
 void ConstructionMode::deleteBuilding() {
+	//Obtenemos el nodo y posición del raton
 	pair<Entity*, Ogre::Vector3> nodeAndPos = OgreManager::instance()->raycastToMouse("Node");
+
+	//Si la entidad no es nullPRT
 	if (nodeAndPos.first != nullptr) {
+		//Obtenemos la componente edificio
 		Edificio* ed = nodeAndPos.first->getComponent<Edificio>();
-		Ogre::Vector3 pos(0, -1000, 0);
-		if (ed->getNodes().front()->getComponent<Node>()->getType() == Node::NodeType::Building) {
-			nodeAndPos.first->getComponent<Rigidbody>()->setPosition(pos);
 
-			ed->getEntryEntity()->getComponent<Transform>()->setPosition(pos);
-			ed->getEntryEntity()->getComponent<MeshRenderer>()->start();
-			ed->getEntryNode()->setType(Node::NodeType::Empty);
-
-			ed->getExitEntity()->getComponent<Transform>()->setPosition(pos);
-			ed->getExitEntity()->getComponent<MeshRenderer>()->start();
-			ed->getExitNode()->setType(Node::NodeType::Empty);
+		if (ed == nullptr
+			|| ed->getBuildingName() == "ExitRoad"
+			|| ed->getBuildingName() == "EntryRoad"
+			|| ed->getBuildingName() == "Muro"
+			|| ed->getBuildingName() == "MuroHorz"
+			|| ed->getBuildingName() == "Esquina"
+			|| ed->getBuildingName() == "Entrada"
+			) {
+			//No hacemos nada
 		}
-		else
-			nodeAndPos.first->getComponent<Transform>()->setPosition(pos);
-		nodeAndPos.first->getComponent<MeshRenderer>()->start();
+		else {
 
-		for (Entity* e : nodeAndPos.first->getComponent<Edificio>()->getNodes()) {
-			e->getComponent<Node>()->setType(Node::NodeType::Empty);
+			Ogre::Vector3 pos(0, -1000, 0);
+			if (ed->getNodes().front()->getComponent<Node>()->getType() == Node::NodeType::Building) {
+				nodeAndPos.first->getComponent<Rigidbody>()->setPosition(pos);
+
+				ed->getEntryEntity()->getComponent<Transform>()->setPosition(pos);
+				ed->getEntryEntity()->getComponent<MeshRenderer>()->start();
+				ed->getEntryNode()->setType(Node::NodeType::Empty);
+
+				ed->getExitEntity()->getComponent<Transform>()->setPosition(pos);
+				ed->getExitEntity()->getComponent<MeshRenderer>()->start();
+				ed->getExitNode()->setType(Node::NodeType::Empty);
+			}
+			else
+				nodeAndPos.first->getComponent<Transform>()->setPosition(pos);
+			nodeAndPos.first->getComponent<MeshRenderer>()->start();
+
+			for (Entity* e : nodeAndPos.first->getComponent<Edificio>()->getNodes()) {
+				e->getComponent<Node>()->setType(Node::NodeType::Empty);
+			}
 		}
 	}
 }
