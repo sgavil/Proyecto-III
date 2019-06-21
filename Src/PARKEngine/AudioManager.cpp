@@ -44,11 +44,7 @@ AudioManager::~AudioManager()
 
 void AudioManager::FMOD_OK_ERROR_CHECK()
 {
-	if (result_ != FMOD_OK)
-	{
-		std::cout << "FMOD error!" << result_ << FMOD_ErrorString(result_);
-		exit(-1);
-	}
+	assert(result_ == FMOD_OK);
 }
 
 void AudioManager::ADD_2D_SOUND(std::string fileName, std::string id, int loopCount, float volume, float pan)

@@ -48,19 +48,16 @@ void Rigidbody::start()
 
 	//Set position
 	transform_ = entity_->getComponent<Transform>();
-	if (transform_ == nullptr)
-		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
-	else
-	{
-		rigid_->setUserPointer(transform_);
+	assert(transform_ != nullptr);
+	rigid_->setUserPointer(transform_);
+	
 
-		//Colocamos en un inicio al rigidbody en el lugar del Transform de la entidad
-		btTransform trans;
-		trans.setIdentity();
-		trans.setOrigin(btVector3(transform_->getPosition().x, transform_->getPosition().y, transform_->getPosition().z));
-		
-		rigid_->setWorldTransform(trans);
-	}
+	//Colocamos en un inicio al rigidbody en el lugar del Transform de la entidad
+	btTransform trans;
+	trans.setIdentity();
+	trans.setOrigin(btVector3(transform_->getPosition().x, transform_->getPosition().y, transform_->getPosition().z));
+
+	rigid_->setWorldTransform(trans);
 }
 
 Rigidbody::~Rigidbody()

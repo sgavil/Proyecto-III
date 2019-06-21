@@ -40,15 +40,12 @@ void Camera::start()
 
 	//Initialises it 
 	transform_ = entity_->getComponent<Transform>();
-	if (transform_ == nullptr)
-		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
+	assert(transform_ != nullptr);
+
 	//Initialise camNode
-	else
-	{
-		Vector3 pos = transform_->getPosition(); Quaternion orientation = transform_->getRotation();
-		camNode_->setPosition(pos);
-		camNode_->setOrientation(orientation);
-	}
+	Vector3 pos = transform_->getPosition(); Quaternion orientation = transform_->getRotation();
+	camNode_->setPosition(pos);
+	camNode_->setOrientation(orientation);
 }
 
 void Camera::update(unsigned int time)

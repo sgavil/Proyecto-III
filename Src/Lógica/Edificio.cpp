@@ -24,10 +24,8 @@ Edificio::~Edificio()
 void Edificio::start()
 {
 	BureauCrazyManager* crazyMan = SceneManager::instance()->currentState()->getEntitiesWithComponent<BureauCrazyManager>()[0]->getComponent<BureauCrazyManager>();
-	if (crazyMan != nullptr)
-		registerListener((Listener*)crazyMan);
-	else
-		std::cout << "LACKING BUREAUCRAZY MANAGER" << std::endl;
+	assert(crazyMan != nullptr);
+	registerListener((Listener*)crazyMan);
 }
 
 void Edificio::update(unsigned int time)

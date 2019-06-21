@@ -30,7 +30,6 @@ void NPC::start()
 
 std::string NPC::getInfo()
 {
-	//std::cout <<  << std::endl;
 	std::string s = entity_->getName() + "\n" + fun_.name_ + ": " + std::to_string(getFun().value_) + "\n" +
 		hunger_.name_ + ": " + std::to_string(getHunger().value_) + "\n " + peepee_.name_ + ": " + std::to_string(getPeepee().value_) + "\n";
 	return s;

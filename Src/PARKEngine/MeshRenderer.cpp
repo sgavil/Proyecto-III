@@ -49,14 +49,13 @@ MeshRenderer::~MeshRenderer()
 void MeshRenderer::start()
 {
 	Transform* transform_ = entity_->getComponent<Transform>();
-	if (transform_ == nullptr)
-		std::cout << "ERROR: ENTITY " + entity_->getName() + " IS LACKING TRANSFORM COMPONENT" << std::endl;
-	else
-	{
-		node_->setPosition(transform_->getPosition());
-		node_->setOrientation(transform_->getRotation());
-		node_->setScale(transform_->getScale());
-	}
+	assert(transform_ != nullptr);
+
+	//Set initial values
+	node_->setPosition(transform_->getPosition());
+	node_->setOrientation(transform_->getRotation());
+	node_->setScale(transform_->getScale());
+	//Update node
 	node_->_update(false, false);
 }
 
@@ -72,10 +71,8 @@ void MeshRenderer::setVisible(bool b)
 
 void MeshRenderer::setMaterial(std::string materialName)
 {
-	if (!node_->getAttachedObjects().empty())
-		((Ogre::Entity*)node_->getAttachedObject(0))->setMaterialName(materialName);
-	else
-		std::cout << "CAN'T ASSIGN MATERIAL, LACKING OGRE ENTITY" << std::endl;
+	assert(!node_->getAttachedObjects().empty());
+	((Ogre::Entity*)node_->getAttachedObject(0))->setMaterialName(materialName);
 }
 
 std::string MeshRenderer::getMaterial()
