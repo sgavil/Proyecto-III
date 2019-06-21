@@ -47,6 +47,7 @@ void HUDManager::initInstance()
 
 HUDManager* HUDManager::instance()
 {
+	assert(instance_.get() != nullptr);
 	return instance_.get();
 }
 

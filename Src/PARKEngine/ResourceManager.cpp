@@ -19,7 +19,8 @@ ResourceManager::ResourceManager()
 	//INITIALISES ALL RESOURCES
 	Ogre::ConfigFile cf;
 
-	Ogre::FileSystemLayer* mFSLayer = OgreManager::instance()->createFileSystemLayer("cfLayerSystem");
+	Ogre::FileSystemLayer* mFSLayer = OGRE_NEW Ogre::FileSystemLayer("cfLayerSystem");
+
 	//Este metodo ya agrega '_d' si se compila en debug
 	Ogre::String resourcesPath = mFSLayer->getConfigFilePath("resources.cfg");
 
@@ -53,15 +54,11 @@ ResourceManager::ResourceManager()
 			arch = auxPath + Ogre::FileSystemLayer::resolveBundlePath(i->second);
 
 			//Va agregando las ubicaciones definidas en el cfg
-			OgreManager::instance()->getResourceGroupManager()->addResourceLocation(arch, type, sec);
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
 		}
 	}
+	OGRE_DELETE mFSLayer;
 
-	OgreManager::instance()->getTextureManager()->setDefaultNumMipmaps(5);
-
-	OgreManager::instance()->getResourceGroupManager()->initialiseAllResourceGroups();
-
-	OgreManager::instance()->deleteFileSystemLayer(mFSLayer);
 
 	loadFonts(jsonPath);
 	loadSchemes(jsonPath);
@@ -82,6 +79,7 @@ void ResourceManager::initInstance()
 
 ResourceManager * ResourceManager::instance()
 {
+	assert(instance_.get() != nullptr);
 	return instance_.get();
 }
 

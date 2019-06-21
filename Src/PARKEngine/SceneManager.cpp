@@ -13,6 +13,7 @@ void SceneManager::initInstance(bool* ex)
 
 SceneManager* SceneManager::instance()
 {
+	assert(instance_.get() != nullptr);
 	return instance_.get();
 }
 

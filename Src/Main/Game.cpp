@@ -11,7 +11,7 @@ Game::Game(std::string basicConfig):exit(false)
 {
 	//Inicializamos singletons
 	OgreManager::initInstance(basicConfig);
-	//ResourceManager::initInstance(); -> se hace en el OgreManager
+	//ResourceManager::initInstance();// -> se hace en el OgreManager
 	InputManager::initInstance();
 	HUDManager::initInstance();
 	AudioManager::initInstance();

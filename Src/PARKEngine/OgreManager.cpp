@@ -34,6 +34,7 @@ void OgreManager::initInstance(std::string initFileJson)
 
 OgreManager * OgreManager::instance()
 {
+	assert(instance_.get() != nullptr);
 	return instance_.get();
 }
 
@@ -50,12 +51,16 @@ OgreManager::OgreManager(std::string initFileJson):plane_(nullptr), camera_(null
 	root_->setRenderSystem(*(root_->getAvailableRenderers().begin()));
 	root_->initialise(false);
 
+	//Inicializa el ResourceManager
 	ResourceManager::initInstance();
+
+	//Esto antes estaba en el ResourceManager
+	getTextureManager()->setDefaultNumMipmaps(5);
+	getResourceGroupManager()->initialiseAllResourceGroups();
 
 	sceneMgr_ = root_->createSceneManager();
 
 	initWindow(initFileJson);		
-
 
 	//Inicialización de ventana de SDL que se una a la de Ogre
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -169,10 +174,6 @@ std::pair<Entity*, Ogre::Vector3> OgreManager::raycast(float screenX, float scre
 	return (std::pair<Entity*, Ogre::Vector3>(nullptr, Ogre::Vector3::ZERO));
 }
 
-Ogre::FileSystemLayer * OgreManager::createFileSystemLayer(std::string cfLayerSystem)
-{
-	return OGRE_NEW Ogre::FileSystemLayer(cfLayerSystem);
-}
 
 void OgreManager::initWindow(std::string initFileJson)
 {

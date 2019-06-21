@@ -104,8 +104,6 @@ private:
 	//RECURSOS
 	//Initialises window
 	void initWindow(std::string initFileJson);
-	//Crea el sistema de archivos
-	Ogre::FileSystemLayer* createFileSystemLayer(std::string cfLayerSystem);
 	//Elimina el sistema de archivos
 	void deleteFileSystemLayer(Ogre::FileSystemLayer* fsLayer);
 

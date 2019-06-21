@@ -34,6 +34,7 @@ void CallbackManager::initInstance()
 CallbackManager* CallbackManager::instance()
 {
 	//Devuelve la instancia
+	assert(instance_.get() != nullptr);
 	return instance_.get();
 }
 

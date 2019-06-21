@@ -17,6 +17,7 @@ void AudioManager::initInstance(float doppler, float rolloff)
 AudioManager * AudioManager::instance()
 {
 	//Devuelve la instancia
+	assert(instance_.get() != nullptr);
 	return instance_.get();
 }
 

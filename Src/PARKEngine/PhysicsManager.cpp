@@ -41,6 +41,7 @@ void PhysicsManager::initInstance()
 PhysicsManager * PhysicsManager::instance()
 {
 	//Devuelve la instancia
+	assert(instance_.get() != nullptr);
 	return instance_.get();
 }
 

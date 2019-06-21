@@ -76,6 +76,7 @@ void InputManager::initInstance()
 
 InputManager* InputManager::instance() 
 {
+	assert(instance_ != nullptr);
 	return instance_;
 }
 
