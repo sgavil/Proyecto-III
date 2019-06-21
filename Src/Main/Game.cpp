@@ -12,9 +12,9 @@ Game::Game(std::string basicConfig):exit(false)
 	//Inicializamos singletons
 	OgreManager::initInstance(basicConfig);
 	//ResourceManager::initInstance();// -> se hace en el OgreManager
-	InputManager::initInstance();
+	InputManager::initInstance("Input.json");
 	HUDManager::initInstance();
-	AudioManager::initInstance();
+	AudioManager::initInstance("AudioSource.json");
 	SceneManager::initInstance(&exit);
 	PhysicsManager::initInstance();
 	CallbackManager::initInstance();
@@ -46,13 +46,15 @@ Game::~Game()
 
 void Game::start()
 {
+	//Añadimos todos los estados
 	sceneManager_->addState("StateMainMenu");
+	sceneManager_->addState("StateOptions");
+	sceneManager_->addState("StatePlay");
+
+	//Cambiamos al actual
 	sceneManager_->changeState("StateMainMenu");
 
-	audioManager_->READ_JSON_SOUNDS("AudioSource.json");
-	//AudioManager::instance()->PLAY_2D_SOUND("cochecitos");
-	audioManager_->PLAY_SONG("Menu");
-	inputManager_->addMappingValues("Input.json");
+	//audioManager_->PLAY_SONG("Menu");
 }
 
 void Game::run()

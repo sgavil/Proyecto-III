@@ -92,8 +92,11 @@ bool CallbackManager::onExit(std::string null)
 
 bool CallbackManager::onChangeState(std::string state)
 {
-	SceneManager::instance()->addState(state);
+	//Asumimos que hemos añadido todos los estados al principio
 	SceneManager::instance()->changeState(state);
+
+	//La musiquita está bien hasta que llevas escuchándola 3 horas
+#if !_DEBUG
 	if(state == "StatePlay")
 	{
 		AudioManager::instance()->STOP_SOUND("Menu");
@@ -104,7 +107,8 @@ bool CallbackManager::onChangeState(std::string state)
 		AudioManager::instance()->STOP_SOUND("MainTheme");
 		AudioManager::instance()->PLAY_SONG("Menu");
 	}
-		
+#endif
+	
 	return true;
 }
 

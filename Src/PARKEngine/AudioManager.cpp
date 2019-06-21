@@ -7,11 +7,11 @@
 std::unique_ptr<AudioManager> AudioManager::instance_;
 
 
-void AudioManager::initInstance(float doppler, float rolloff)
+void AudioManager::initInstance(std::string audioSourceFile, float doppler, float rolloff)
 {
 	//Devuelve la instancia si exise, si no crea una nueva
 	if (instance_.get() == nullptr)
-		instance_.reset(new AudioManager(doppler, rolloff));
+		instance_.reset(new AudioManager(audioSourceFile, doppler, rolloff));
 }
 
 AudioManager * AudioManager::instance()
@@ -23,13 +23,15 @@ AudioManager * AudioManager::instance()
 
 
 //Constructora, le llegan los parametros del mundo que afecta a cualquier entidad con sonido 3D
-AudioManager::AudioManager(float doppler, float rolloff) : doppler_(doppler), rolloff_(rolloff)
+AudioManager::AudioManager(std::string audioSourceFile, float doppler, float rolloff) : doppler_(doppler), rolloff_(rolloff)
 {
 	result_ = FMOD::System_Create(&system_);
 	FMOD_OK_ERROR_CHECK();
 	result_ = system_->init(512, FMOD_INIT_NORMAL, 0);    // Initialize FMOD.
 	FMOD_OK_ERROR_CHECK();
 	system_->set3DSettings(doppler_, 1.0, rolloff_);
+
+	READ_JSON_SOUNDS(audioSourceFile);
 }
 
 AudioManager::~AudioManager()

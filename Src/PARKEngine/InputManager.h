@@ -6,7 +6,7 @@
 
 class InputManager : public OIS::KeyListener, public OIS::MouseListener, public OIS::JoyStickListener {
 public:
-	static void initInstance();
+	static void initInstance(std::string inputFile);
 	static InputManager* instance();
 
 
@@ -46,7 +46,7 @@ public:
 
 
 private:
-	InputManager(void);
+	InputManager(std::string inputFile);
 	InputManager(const InputManager&) { }
 
 	bool keyPressed(const OIS::KeyEvent &e);

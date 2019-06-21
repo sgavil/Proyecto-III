@@ -43,7 +43,7 @@ void MeshRenderer::load(json file)
 
 MeshRenderer::~MeshRenderer()
 {
-	
+	OgreManager::instance()->getSceneManager()->destroySceneNode(node_);
 }
 
 void MeshRenderer::start()

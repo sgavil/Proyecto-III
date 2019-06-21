@@ -52,14 +52,14 @@ class AudioManager
 
 public:
 	//"Constructora" de la instancia
-	static void initInstance(float doppler = 1.0f, float rolloff = 1.0f);
+	static void initInstance(std::string audioSourceFile, float doppler = 1.0f, float rolloff = 1.0f);
 
 	//"Constructora" de la instancia
 	static AudioManager* instance();
 
 private:
 	//Constructora, le llegan los parametros del mundo que afecta a cualquier entidad con sonido 3D
-	AudioManager(float doppler = 1.0f, float rolloff = 1.0f);
+	AudioManager(std::string audioSourceFile, float doppler = 1.0f, float rolloff = 1.0f);
 	
 
 	static std::unique_ptr<AudioManager> instance_;

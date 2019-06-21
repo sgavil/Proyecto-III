@@ -16,31 +16,14 @@ GameState::GameState(std::string stateID): id(stateID)
 	
 GameState::~GameState()
 {
-	json j;
-	for (auto p : scene) { p->save(j); }
-	std::ofstream file("prueba.json");
-	file << j;
-	auto it = scene.begin();
-	while (it != scene.end())
-	{
-		Entity* e = (*it)->getEntity();
-		Entity* aux = (*it)->getEntity();
-
-		while (it != scene.end() && &e != nullptr && e == aux) {
-			delete (*it);
-			++it;
-			if(it != scene.end())
-				aux = (*it)->getEntity();
-		}
-		delete e;
-		e = nullptr;
-	}
-	
+	//Borra todas las entidades de la escena
+	for (Entity* e : entities)
+		removeEntity(e);
 }
 
 void GameState::start()
 {
-	for (Component* c : scene)
+	for (Component* c : components)
 		if (c->isActive())
 			c->start();
 }
@@ -49,14 +32,23 @@ void GameState::update(unsigned int time)
 {
 	PhysicsManager::instance()->stepSimulation(time); //FÍSICA
 
-	for (Component* c : scene)
+	//Actualizamos las entidades
+	for (Component* c : components)
 		if(c->isActive())
 			c->update(time); 
+
+	//Borramos las que lo hayan solicitado
+	for (Entity* e : removedEntities)
+		removeEntity(e);
+	removedEntities.clear();
+
+	//InputManager::instance()->capture();
 }
 
 void GameState::render(unsigned int time)
 {
-	for (Component* c : scene)
+	//OgreManager::instance()->render(time);
+	for (Component* c : components)
 		if (c->isActive())
 			c->render(time);
 }
@@ -65,8 +57,8 @@ bool GameState::handleInput(unsigned int time)
 {
 	bool handled = false;
 
-	std::list<Component*>::iterator it = scene.begin();
-	while (it != scene.end() && !handled) {
+	std::list<Component*>::iterator it = components.begin();
+	while (it != components.end() && !handled) {
 		if ((*it)->isActive())
 			handled = (*it)->handleEvent(time);
 		it++;
@@ -77,8 +69,11 @@ bool GameState::handleInput(unsigned int time)
 
 void GameState::addEntity(Entity* e)
 {
+	//Añadimos la entidad...
+	entities.push_back(e);
+	//Y sus componentes
 	for (Component* c : e->getComponents()) 
-		scene.push_back(c);
+		components.push_back(c);
 }
 
 void GameState::addEntities(std::vector<Entity*> ent)
@@ -87,46 +82,56 @@ void GameState::addEntities(std::vector<Entity*> ent)
 		addEntity(e);
 }
 
+
 bool GameState::removeEntity(std::string name)
 {
-	bool found = false;
+	//Cogemos la entidad
+	Entity* e = getEntity(name);
 
-	std::list<Component*>::iterator it = scene.begin();
-	// Eliminamos todos los componentes con esa entidad
-	while (it != scene.end())
+	if (e == nullptr) //Si no está, devolvemos false
+		return false;
+
+	//La borraremos luego
+	removedEntities.push_back(e);
+	return true;
+}
+
+void GameState::removeEntity(Entity* e)
+{
+	//Borramos todos sus componentes...
+	for (Component* c : e->getComponents())
 	{
-		if ((*it)->getEntity()->getName() == name)
-		{
-			it = scene.erase(it);
-			found = true;
-		}
-			
-		else
-			it++;
+		components.remove(c); //Lo quitamos de la escena
+		e->delComponent(c); //Se lo quitamos a la entidad
+		delete c; //Lo eliminamos
+		c = nullptr;
 	}
 
-	return found;
+	//La borramos a ella
+	entities.remove(e);
+	delete e;
+	e = nullptr;
 }
 
 Entity* GameState::getEntity(std::string name)
 {
 	Entity* e = nullptr;
-	std::list<Component*>::iterator it = scene.begin();
+	std::list<Entity*>::iterator it = entities.begin();
 
 	// Buscamos al primer componente que tenga esa entidad
-	while (it != scene.end() && e == nullptr)
+	while (it != entities.end() && e == nullptr)
 	{
-		if ((*it)->getEntity()->getName() == name)
-			e = (*it)->getEntity();
+		if ((*it)->getName() == name)
+			e = (*it);
 		it++;
 	}
 
 	return e;
 }
 
-std::list<Component*> GameState::getScene()
+std::list<Component*> GameState::getComponents()
 {
-	return scene;
+	return components;
 }
 
 Ogre::SceneNode * GameState::getStateNode()

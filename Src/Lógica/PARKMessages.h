@@ -41,6 +41,14 @@ struct NPCSelected : public Message {
 	NPC* selected_;
 };
 
+//Un NPC se va del parque
+struct NPCOut : public Message {
+	NPCOut(MessageId mType, NPC* npc, header_t_ size = sizeof(Message)) :
+		Message(mType, size), npc_(npc) {
+	}
+	NPC* npc_;
+};
+
 //Cierto NPC ha entrado en cierta atracción
 struct NPCEnteredAttraction : public Message {
 	NPCEnteredAttraction(MessageId mType, NPC* npc, Edificio* attraction, header_t_ size = sizeof(Message)) :

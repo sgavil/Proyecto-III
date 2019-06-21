@@ -13,10 +13,15 @@ class GameState
 {
 protected:
 	Ogre::SceneNode* stateNode;
-	std::list<Component*> scene; // Componentes de la escena
+	std::list<Component*> components; // Componentes de la escena
+	std::list<Entity*> entities; // Entidades de la escena
+	std::list<Entity*> removedEntities; //Entidades que se han eliminado en el tick actual
 	std::string id; //Nombre de la escena
 
 	Ogre::SceneNode* getStateNode();
+
+	//Elimina la entidad y sus componentes definitivamente
+	void removeEntity(Entity* e);
 
 	friend class MeshRenderer;
 	friend class BackgroundImage;
@@ -39,6 +44,10 @@ public:
 	void addEntities(std::vector<Entity*> ent);
 
 	// �> Elimina una entidad de la escena. Devuelve 'true' si estaba en la escena, 'false' e.o.c
+	/*
+		El borrado de entidades se retrasa hasta que termine el update actual para así no causar
+		problemas al recorrer componentes que ya han sido borrados
+	*/
 	bool removeEntity(std::string name);
 
 	// �> Devuelve una entidad de la escena
@@ -50,7 +59,7 @@ public:
 	{
 		std::vector<Entity*> v;
 		//Busca el componente
-		for (Component* c : scene) {
+		for (Component* c : components) {
 			T* component = dynamic_cast<T*>(c);
 			if (component != nullptr)
 				v.push_back(component->getEntity());
@@ -59,7 +68,7 @@ public:
 	};
 
 	// �> Devuelve la escena
-	std::list<Component*> getScene();
+	std::list<Component*> getComponents();
 
 	//Devuelve el nombre
 	std::string getID() { return id; };

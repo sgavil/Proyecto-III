@@ -8,7 +8,7 @@
 
 InputManager *InputManager::instance_;
 
-InputManager::InputManager() :mMouse(0),mKeyboard(0),mInputSystem(0) 
+InputManager::InputManager(std::string inputFile) :mMouse(0),mKeyboard(0),mInputSystem(0) 
 {
 	Ogre::RenderWindow *renderWindow = OgreManager::instance()->getWindow();
 	if (!mInputSystem) {
@@ -66,12 +66,13 @@ InputManager::InputManager() :mMouse(0),mKeyboard(0),mInputSystem(0)
 			}
 		}
 	}
+	addMappingValues(inputFile);
 }
 
-void InputManager::initInstance()
+void InputManager::initInstance(std::string inputFile)
 {
 	if (instance_ == nullptr)
-		instance_ = new InputManager();	
+		instance_ = new InputManager(inputFile);	
 }
 
 InputManager* InputManager::instance() 
