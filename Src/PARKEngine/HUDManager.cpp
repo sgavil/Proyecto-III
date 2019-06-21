@@ -67,6 +67,16 @@ void HUDManager::hideMouseCursor()
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().hide();
 }
 
+bool HUDManager::injectMouseMove(float deltaX, float deltaY)
+{
+	return CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(deltaX, deltaY);
+}
+
+bool HUDManager::injectTimePulse(float timeElapsed)
+{
+	return CEGUI::System::getSingleton().injectTimePulse(timeElapsed);
+}
+
 
 void HUDManager::addWindow(std::string state)
 {

@@ -29,9 +29,15 @@ public:
 	CEGUI::Window* getActiveWindow();
 	void setActiveWindow(std::string state);
 
-	// Wrappers
+	//WRAPPERS
+	//Enseña/oculta cursor
 	void showMouseCursor();
 	void hideMouseCursor();
+
+	//Mueve el ratón
+	bool injectMouseMove(float deltaX, float deltaY);
+
+	bool injectTimePulse(float timeElapsed);
 
 	
 	CEGUI::Window* createWidget(std::string name, std::string type, float posX, float posY, float offX, float offY, float tamX, float tamY);

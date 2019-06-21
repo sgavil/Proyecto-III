@@ -19,7 +19,6 @@
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 
-
 std::unique_ptr<OgreManager> OgreManager::instance_;
 
 
@@ -88,10 +87,10 @@ void OgreManager::render(unsigned int deltaTime)
 	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);	
 	OIS::Mouse* mouse =  InputManager::instance()->getMouse();
 	
-	CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(mouse->getMouseState().X.rel
+	HUDManager::instance()->injectMouseMove(mouse->getMouseState().X.rel
 		, mouse->getMouseState().Y.rel );
 
-	CEGUI::System::getSingleton().injectTimePulse(deltaTime / 1000.0f);
+	HUDManager::instance()->injectTimePulse(deltaTime / 1000.0f);
 }
 
 Ogre::SceneManager * OgreManager::getSceneManager()
