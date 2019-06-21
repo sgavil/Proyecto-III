@@ -14,6 +14,7 @@ class GameState
 protected:
 	Ogre::SceneNode* stateNode;
 	std::list<Component*> scene; // Componentes de la escena
+	std::string id; //Nombre de la escena
 
 	Ogre::SceneNode* getStateNode();
 
@@ -59,4 +60,7 @@ public:
 
 	// �> Devuelve la escena
 	std::list<Component*> getScene();
+
+	//Devuelve el nombre
+	std::string getID() { return id; };
 };

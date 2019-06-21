@@ -6,13 +6,11 @@
 #include "Button.h"
 #include "OgreIncludes.h"
 
-GameState::GameState(std::string stateID)
+GameState::GameState(std::string stateID): id(stateID)
 {
 	stateNode = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 
-	addEntities(EntityFactory::Instance()->createEntities(stateID,this));
-
-
+	addEntities(EntityFactory::Instance()->createEntities(this));
 }
 
 	

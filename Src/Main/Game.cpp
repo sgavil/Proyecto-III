@@ -46,6 +46,7 @@ Game::~Game()
 
 void Game::start()
 {
+	sceneManager_->addState("StateMainMenu");
 	sceneManager_->changeState("StateMainMenu");
 
 	audioManager_->READ_JSON_SOUNDS("AudioSource.json");

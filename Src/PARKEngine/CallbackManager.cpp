@@ -92,11 +92,17 @@ bool CallbackManager::onExit(std::string null)
 
 bool CallbackManager::onChangeState(std::string state)
 {
+	SceneManager::instance()->addState(state);
 	SceneManager::instance()->changeState(state);
 	if(state == "StatePlay")
 	{
 		AudioManager::instance()->STOP_SOUND("Menu");
 		AudioManager::instance()->PLAY_SONG("MainTheme");
+	}
+	else if (state == "StateMainMenu")
+	{
+		AudioManager::instance()->STOP_SOUND("MainTheme");
+		AudioManager::instance()->PLAY_SONG("Menu");
 	}
 		
 	return true;

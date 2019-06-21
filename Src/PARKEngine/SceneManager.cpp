@@ -54,12 +54,24 @@ GameState* SceneManager::currentState()
 
 GameState* SceneManager::addState(std::string stateID)
 {
-	GameState* state = new GameState(stateID);
-	currentState_ = state;
-	state->start();
+	GameState* state = nullptr;
 
-	states.insert(std::pair<std::string, GameState*>(stateID, state));
+	//Solo lo añadimos si no está ya
+	auto it = states.find(stateID);
+	if(it == states.end())
+	{
+		//Primero añadimos una ventana y creamos el estado
+		HUDManager::instance()->addWindow(stateID);
+		HUDManager::instance()->changeWindow(stateID);
+		state = new GameState(stateID);
 
+		//Añadimos el estado
+		states.insert(std::pair<std::string, GameState*>(stateID, state));
+
+		//Volvemos a la ventana en la que estábamos
+		if(currentState_ != nullptr)
+			HUDManager::instance()->changeWindow(currentState_->getID());
+	}
 	return state;
 }
 
@@ -68,11 +80,9 @@ void SceneManager::changeState(std::string stateID)
 	HUDManager::instance()->changeWindow(stateID);
 
 	auto it = states.find(stateID);
-
-	if (it == states.end())
-		currentState_ = addState(stateID);
-	else
-		currentState_ = it->second;
+	assert(it != states.end());
+	currentState_ = it->second;
+	currentState_->start();
 
 	disableOtherStatesNodes();
 }

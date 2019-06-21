@@ -88,9 +88,7 @@ void HUDManager::addWindow(std::string state)
 void HUDManager::changeWindow(std::string state)
 {
 	auto it = windows.find(state);
-
-	if (it == windows.end())
-		addWindow(state);
+	assert(it != windows.end());
 		
 	setActiveWindow(state);
 }

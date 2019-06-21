@@ -37,7 +37,7 @@ public:
 	static void registerType(std::string creatorName, BaseCreator* pCreator);
 
 	// ·> Crea las entidades de una escena leyendo de su archivo json correspondiente
-	std::vector<Entity*> createEntities(std::string stateID,GameState* currState);
+	std::vector<Entity*> createEntities(GameState* currState);
 
 	// ·> Crea una entidad con los componentes correspondientes de su prefab
 	Entity* createEntityFromBlueprint(std::string name);
