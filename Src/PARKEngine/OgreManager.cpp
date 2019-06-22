@@ -59,6 +59,7 @@ OgreManager::OgreManager(std::string initFileJson):plane_(nullptr), camera_(null
 
 	sceneMgr_ = root_->createSceneManager();
 
+	//std::cout << "InitFileJson : " << initFileJson << std::endl;
 	initWindow(initFileJson);		
 
 	//Inicialización de ventana de SDL que se una a la de Ogre
@@ -177,8 +178,16 @@ std::pair<Entity*, Ogre::Vector3> OgreManager::raycast(float screenX, float scre
 void OgreManager::initWindow(std::string initFileJson)
 {
 	json initFile = ResourceManager::instance()->getJsonByKey(initFileJson);
-	window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false);
-	window_->setFullscreen(initFile["fullScreen"], initFile["Width"], initFile["Height"]);
+
+	if (initFile != nullptr){
+		window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false);
+		window_->setFullscreen(initFile["fullScreen"], initFile["Width"], initFile["Height"]);
+	}
+	else {
+		window_ = root_->createRenderWindow("PARK - No InitAplication File Found", 720, 480, false);
+		window_->setFullscreen(false, 720, 480);
+	}
+
 	window_->setActive(true);
 	window_->setAutoUpdated(true);
 	window_->setDeactivateOnFocusChange(false);
