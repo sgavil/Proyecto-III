@@ -33,6 +33,7 @@ void EntityFactory::registerType(std::string creatorName, BaseCreator* pCreator)
 std::vector<Entity*> EntityFactory::createEntities(GameState* currState)
 {
 	json file = ResourceManager::instance()->getJsonByKey(currState->getID() + ".json");
+	assert(file != nullptr);
 
 	currentlyCreatingState = currState;
 
@@ -74,14 +75,20 @@ Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 	entity->setName(name);
 
 	json blueprints = ResourceManager::instance()->getJsonByKey("Entities.json");
+	assert(blueprints != nullptr);
 
 	for (json comp : blueprints[name])
 	{
+		//create component nos devolver el componente si existe o nullptr en caso contrario
 		Component* c = createComponent(comp["name"]);
-		entity->addComponent(c);
 
-		if (comp.find("parameters") != comp.end())
-			c->load(comp["parameters"]);
+		//Si existe añadimos el componente a la entidad, en caso contrario no hace nada.
+		if (c != nullptr) {
+			entity->addComponent(c);
+
+			if (comp.find("parameters") != comp.end())
+				c->load(comp["parameters"]);
+		}
 	}
 
 	//Registramos a todos los componentes como listeners
@@ -103,9 +110,13 @@ Component* EntityFactory::createComponent(std::string name)
 {
 	auto it = creators().find(name);
 
-	BaseCreator* compCreator = it->second;
-
-	return compCreator->createComponent();
+	//RECU
+	//Si no encuentra el componente
+	if (it == creators().end()) return nullptr;
+	else {
+		BaseCreator* compCreator = it->second;
+		return compCreator->createComponent();
+	}
 }
 
 std::map<std::string, BaseCreator*>& EntityFactory::creators()
