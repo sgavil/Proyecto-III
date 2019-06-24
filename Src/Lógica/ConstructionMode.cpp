@@ -352,27 +352,27 @@ void ConstructionMode::deleteBuilding() {
 			) {
 			//No hacemos nada
 		}
-		else {
-
-			Ogre::Vector3 pos(0, -1000, 0);
+		else
+		{
+			//Not a road
 			if (ed->getNodes().front()->getComponent<Node>()->getType() == Node::NodeType::Building) {
-				nodeAndPos.first->getComponent<Rigidbody>()->setPosition(pos);
-
-				ed->getEntryEntity()->getComponent<Transform>()->setPosition(pos);
-				ed->getEntryEntity()->getComponent<MeshRenderer>()->start();
+				//Set entry & exit nodes to empty
 				ed->getEntryNode()->setType(Node::NodeType::Empty);
-
-				ed->getExitEntity()->getComponent<Transform>()->setPosition(pos);
-				ed->getExitEntity()->getComponent<MeshRenderer>()->start();
 				ed->getExitNode()->setType(Node::NodeType::Empty);
-			}
-			else
-				nodeAndPos.first->getComponent<Transform>()->setPosition(pos);
-			nodeAndPos.first->getComponent<MeshRenderer>()->start();
+				//Delete them
+				SceneManager::instance()->currentState()->removeEntity(ed->getEntryEntity());
+				SceneManager::instance()->currentState()->removeEntity(ed->getExitEntity());
 
+			}
+
+			//Set building nodes to empty
 			for (Entity* e : nodeAndPos.first->getComponent<Edificio>()->getNodes()) {
+				std::cout << "Saludos desde " << "{" << e->getComponent<Node>()->getMatrixPos().x << "," << e->getComponent<Node>()->getMatrixPos().y << "}"  << std::endl;
 				e->getComponent<Node>()->setType(Node::NodeType::Empty);
 			}
+				
+			//Delete the building
+			SceneManager::instance()->currentState()->removeEntity(nodeAndPos.first);
 		}
 	}
 }

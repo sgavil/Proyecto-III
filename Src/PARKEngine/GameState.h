@@ -21,7 +21,7 @@ protected:
 	Ogre::SceneNode* getStateNode();
 
 	//Elimina la entidad y sus componentes definitivamente
-	void removeEntity(Entity* e);
+	void removeHard(Entity* e);
 
 	friend class MeshRenderer;
 	friend class BackgroundImage;
@@ -48,7 +48,8 @@ public:
 		El borrado de entidades se retrasa hasta que termine el update actual para así no causar
 		problemas al recorrer componentes que ya han sido borrados
 	*/
-	bool removeEntity(std::string name);
+	bool removeEntity(std::string name); //Por nombre
+	bool removeEntity(Entity* e); //Por puntero
 
 	// �> Devuelve una entidad de la escena
 	Entity* getEntity(std::string name);

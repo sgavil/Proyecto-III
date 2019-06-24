@@ -39,7 +39,7 @@ void GameState::update(unsigned int time)
 
 	//Borramos las que lo hayan solicitado
 	for (Entity* e : removedEntities)
-		removeEntity(e);
+		removeHard(e);
 	removedEntities.clear();
 
 	//InputManager::instance()->capture();
@@ -96,7 +96,19 @@ bool GameState::removeEntity(std::string name)
 	return true;
 }
 
-void GameState::removeEntity(Entity* e)
+bool GameState::removeEntity(Entity* e)
+{
+	//Comprobamos que de verdad esté
+	std::list<Entity*>::iterator it = std::find(entities.begin(), entities.end(), e);
+	if (it == entities.end())
+		return false;
+
+	//La borraremos luego
+	removedEntities.push_back(e);
+	return true;
+}
+
+void GameState::removeHard(Entity* e)
 {
 	//Borramos todos sus componentes...
 	for (Component* c : e->getComponents())

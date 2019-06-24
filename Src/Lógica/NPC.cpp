@@ -160,7 +160,7 @@ void NPC::exitPARK()
 {
 	hasPath = true;
 	speed_ *= 1.5;
-	SceneManager::instance()->currentState()->removeEntity(entity_->getName());
+	SceneManager::instance()->currentState()->removeEntity(entity_);
 	//movements.push(matrix_->getEntrance());
 }
 
