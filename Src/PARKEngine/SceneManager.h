@@ -25,6 +25,9 @@ public:
 	// ·> Cambia de estado por el indicado por parámetro. En caso de no existir, lo crea
 	void changeState(std::string stateID);
 
+	// -> Remove state
+	bool removeState(std::string stateID);
+
 private:
 	static std::unique_ptr<SceneManager> instance_; // Singleton
 

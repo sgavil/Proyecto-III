@@ -86,3 +86,18 @@ void SceneManager::changeState(std::string stateID)
 
 	disableOtherStatesNodes();
 }
+
+bool SceneManager::removeState(std::string stateID) {
+	//Generamos un iterador para que busque el estado deseado
+	auto it = states.find(stateID);
+
+	//Si no lo ha encontrado (Posición final)
+	if (it == states.end())
+		return false;
+	else {
+		delete it->second;
+		states.erase(it);
+		return true;
+	}
+
+}
