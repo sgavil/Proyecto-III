@@ -3,7 +3,7 @@
 #include "Entity.h"
 #include "Transform.h"
 
-
+#include "SceneManager.h"
 #include "OgreIncludes.h"
 #include "OgreManager.h"
 #include <iostream>
@@ -16,7 +16,8 @@ MeshRenderer::MeshRenderer(): node_(nullptr)
 MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 {
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
-	node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
+	node_ = SceneManager::instance()->currentState()->getStateNode()->createChildSceneNode();
+	//node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setVisible(visible);
 }
