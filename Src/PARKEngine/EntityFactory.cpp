@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "ResourceManager.h"
 #include "GameState.h"
+#include "SceneManager.h"
 
 std::unique_ptr<EntityFactory> EntityFactory::instance_;
 
@@ -30,15 +31,19 @@ void EntityFactory::registerType(std::string creatorName, BaseCreator* pCreator)
 }
 
 
-std::vector<Entity*> EntityFactory::createEntities(GameState* currState)
+std::vector<Entity*> EntityFactory::createEntities(std::string ID)
 {
-	json file = ResourceManager::instance()->getJsonByKey(currState->getID() + ".json");
+	//Carga el archivo con los datos del tipo de estado solicitado
+	json file = ResourceManager::instance()->getJsonByKey(ID + ".json");
 	assert(file != nullptr);
 
-	currentlyCreatingState = currState;
+	//Almacena el nombre del GameState que estamos construyendo.
+	//currentlyCreatingState = currState;
 
 	std::vector<Entity*> entities;
 	std::map<std::string, Component*> dic;
+
+	
 	for (json ent : file["Entities"])
 	{
 		Entity* entity = new Entity();
@@ -74,6 +79,8 @@ Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 	Entity* entity = new Entity();
 	entity->setName(name);
 
+	std::cout << "Creando Entidad: " << entity->getName() << std::endl;
+
 	json blueprints = ResourceManager::instance()->getJsonByKey("Entities.json");
 	assert(blueprints != nullptr);
 
@@ -100,10 +107,12 @@ Entity* EntityFactory::createEntityFromBlueprint(std::string name)
 	return entity;
 }
 
+/*
 GameState * EntityFactory::get_currentState()
 {
 	return currentlyCreatingState;
 }
+*/
 
 
 Component* EntityFactory::createComponent(std::string name)

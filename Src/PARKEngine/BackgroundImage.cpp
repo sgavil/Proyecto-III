@@ -3,6 +3,7 @@
 #include "OgreIncludes.h"
 #include "OgreManager.h"
 #include "EntityFactory.h"
+#include "SceneManager.h"
 #include "GameState.h"
 #include "HUDManager.h"
 
@@ -39,6 +40,7 @@ void BackgroundImage::load(json file)
 	aabInf.setInfinite();
 	rect->setBoundingBox(aabInf);
 
-	Ogre::SceneNode* node = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
+	//Ogre::SceneNode* node = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
+	Ogre::SceneNode* node = SceneManager::instance()->buildingState()->getStateNode()->createChildSceneNode();
 	node->attachObject(rect);
 }

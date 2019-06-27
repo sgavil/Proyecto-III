@@ -19,6 +19,11 @@ public:
 	// ·> Devuelve el estado activo actualmente
 	GameState* currentState();
 
+	// -> Devuelve el estado en construcción. Para los load de los componentes.
+	void resetBuildStatePointer();
+	void buildingStateType(GameState* state);
+	GameState* buildingState();
+
 	// ·> Crea y añade un nuevo estado al SceneManager
 	GameState* addState(std::string stateID);
 
@@ -34,6 +39,7 @@ private:
 	std::map <std::string, GameState*> states; // Estados del juego
 
 	GameState* currentState_; // Estado activo
+	GameState* buildingState_; // Estado en construcción
 
 	bool* exit;
 

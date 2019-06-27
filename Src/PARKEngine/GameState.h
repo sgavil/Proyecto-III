@@ -50,6 +50,9 @@ public:
 	*/
 	bool removeEntity(std::string name);
 
+	// 
+	void info();
+
 	// �> Devuelve una entidad de la escena
 	Entity* getEntity(std::string name);
 

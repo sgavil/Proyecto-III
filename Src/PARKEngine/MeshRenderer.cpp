@@ -9,15 +9,15 @@
 #include <iostream>
 #include "GameState.h"
 
-MeshRenderer::MeshRenderer(): node_(nullptr)
+MeshRenderer::MeshRenderer():node_(nullptr)
 {
+	//node_ = SceneManager::instance()->currentState()->getStateNode()->createChildSceneNode();
 }
 
 MeshRenderer::MeshRenderer(std::string meshName, bool visible)
 {
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
-	node_ = SceneManager::instance()->currentState()->getStateNode()->createChildSceneNode();
-	//node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
+	//node_ = SceneManager::instance()->currentState()->getStateNode()->createChildSceneNode();
 	node_->attachObject(ogreEntity);
 	node_->setVisible(visible);
 }
@@ -29,9 +29,12 @@ void MeshRenderer::load(json file)
 
 
 	Ogre::Entity* ogreEntity = OgreManager::instance()->getSceneManager()->createEntity(meshName);
-		node_ = EntityFactory::Instance()->get_currentState()->getStateNode()->createChildSceneNode();
 
-	//node_ = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode(); //AQUI TIENE QUE COLGAR DEL NODO SCENA
+	//Cuando es un nodo funciona perfectamente
+	//Node se inicializa cuando hacemos LOAD.
+	if(meshName == "Node.mesh") node_ = SceneManager::instance()->buildingState()->getStateNode()->createChildSceneNode();
+	else node_ = SceneManager::instance()->currentState()->getStateNode()->createChildSceneNode();
+	
 	node_->attachObject(ogreEntity);
 
 	std::string material;

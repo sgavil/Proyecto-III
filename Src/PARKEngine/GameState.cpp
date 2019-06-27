@@ -8,17 +8,24 @@
 
 GameState::GameState(std::string stateID): id(stateID)
 {
+	//Pedimos a Ogre que cree un nuevo nodo hijo de la raiz para este nuevo estado
 	stateNode = OgreManager::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
+	//Borramos información anterior del puntero que usaran los componentes si existiera
+	SceneManager::instance()->resetBuildStatePointer();
+	//Guarda en el SceneManager el estado que se esta creando en el momento...
+	//Para que el entityFactory al cargar (load) los componente cuelgen de él.
+	//Y las llamadas sean a SceneManager y no a una variable local de EntityFactory
+	SceneManager::instance()->buildingStateType(this);
 
-	addEntities(EntityFactory::Instance()->createEntities(this));
+	addEntities(EntityFactory::Instance()->createEntities(id));
 }
 
 	
 GameState::~GameState()
 {
 	//Borra todas las entidades de la escena
-	for (Entity* e : entities)
-		removeEntity(e);
+	//for (Entity* e : entities)
+		//removeEntity(e);
 }
 
 void GameState::start()
@@ -136,5 +143,23 @@ std::list<Component*> GameState::getComponents()
 
 Ogre::SceneNode * GameState::getStateNode()
 {
+	//std::cout << "--getStateNode Called--" << std::endl;
+	//info();
 	return stateNode;
+}
+
+void GameState::info() {
+	std::cout << " * ID: " << id << std::endl;
+	std::cout << " * StateNode: ";
+	if (stateNode == nullptr) std::cout << " NULLPTR " << std::endl;
+	else std::cout << stateNode->getName() << std::endl;
+	std::cout << " - ENTITY LIST w/ Components - " << std::endl;
+	for (Entity* e : entities) { 
+		std::cout << " * " << e->getName() << std::endl; 
+		for (Component* c : e->getComponents()) {
+			std::cout << "  + " << c->getInfo() << std::endl;
+		}
+	}
+	std::cout << std::endl;
+
 }
