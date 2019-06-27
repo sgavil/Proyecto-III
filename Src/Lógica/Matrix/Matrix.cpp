@@ -14,7 +14,7 @@ Matrix::~Matrix()
 {
 }
 
-std::string Matrix::getInfo()
+std::string Matrix::getDetailedInfo()
 {
 	std::string s = "Matrix Current State: \n";
 	for (int i = 0; i < matrix_.size(); i++)

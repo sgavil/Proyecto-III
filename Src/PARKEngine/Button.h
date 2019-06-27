@@ -24,6 +24,9 @@ public:
 
 	virtual void save(json& file) {};
 
+	//Info
+	virtual std::string getInfo() { return "Button"; }
+
 	//Getter
 	std::string getCallback() { return callback; };
 	CEGUI::PushButton* getPushButton() { return pushButton; };

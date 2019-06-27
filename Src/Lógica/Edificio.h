@@ -43,6 +43,7 @@ public:
 
 	//GETTERS
 	std::list<Entity*> getNodes() { return nodes_; };
+	virtual std::string getInfo() { return "Edificio"; };
 
 	int getPrice() { return datos->price_; };
 	int getEntryCost() { return datos->entryCost_; };

@@ -14,6 +14,8 @@ public:
 
 	virtual void save(json& file) {};
 
+	//Info
+	virtual std::string getInfo() { return "ProgressBar"; }
 	virtual void setProgress(float progress);
 
 	CEGUI::ProgressBar* getProgressBar() { return progressBar_; };

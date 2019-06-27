@@ -71,6 +71,7 @@ public:
 	int getDuration(std::string s) { return  findData(s)->duration_; };
 	int getActDuration(std::string s) { return  findData(s)->actDuration_; };
 	int getCapacity(std::string s) { return  findData(s)->capacity_; };
+	virtual std::string getInfo() { return "DatosEdificio"; };
 
 };
 REGISTER_TYPE(DatosEdificio)

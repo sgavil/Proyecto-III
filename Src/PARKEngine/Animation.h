@@ -14,6 +14,9 @@ public:
 
 	virtual void save(json& file) {};
 
+	//Info
+	virtual std::string getInfo() { return "Animation"; }
+
 	void changeAnimation(std::string anim);
 
 	void disableAnimation();

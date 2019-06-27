@@ -30,6 +30,8 @@ public:
 
 	bool getDeleteActice() { return deleteActive_; };
 	void setDeleteActive(bool b) { deleteActive_ = b; };
+	
+	virtual std::string getInfo() { return "ConstructionMode"; };
 
 private:
 	bool constructActive_;

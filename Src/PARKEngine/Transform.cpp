@@ -121,7 +121,11 @@ void Transform::updateAxis()
 	notifyChange();
 }
 
-std::string Transform::getInfo()
+std::string Transform::getInfo() {
+	return "Transform -> More on getDetailedInfo()";
+}
+
+std::string Transform::getDetailedInfo()
 {
 	std::string s = " ~~ Transform of Entity '" + entity_->getName() + "' ~~ \n Position: {" +
 		std::to_string(getPosition().x) + ", " + std::to_string(getPosition().y) + ", " + std::to_string(getPosition().z) + "} \n Rotation: {" +

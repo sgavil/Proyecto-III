@@ -10,6 +10,7 @@ public:
 	~Terrain();
 
 	virtual void load(json file);
+	std::string getInfo() { return "Terrain"; }
 
 	virtual void save(json& file) {};
 

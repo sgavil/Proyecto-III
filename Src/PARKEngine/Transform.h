@@ -59,6 +59,7 @@ public:
 
 	//Debug information
 	virtual std::string getInfo();
+	virtual std::string getDetailedInfo();
 
 	virtual void save(json& file) {};
 

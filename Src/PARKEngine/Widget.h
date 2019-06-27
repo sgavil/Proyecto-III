@@ -16,6 +16,7 @@ public:
 	~Widget();
 
 	virtual void load(json file);
+	virtual std::string getInfo() { return "widget"; };
 
 	//Métodos principales
 	virtual void render(unsigned int time) {}

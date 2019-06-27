@@ -24,6 +24,8 @@ public:
 	NodeType getType();
 	void setType(NodeType t);
 
+	virtual std::string getInfo() { return "Node"; };
+
 private:
 	Ogre::Vector2 posMatrix_;
 	NodeType nodeType_;

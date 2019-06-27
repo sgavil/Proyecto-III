@@ -14,6 +14,7 @@ public:
 	virtual void receive(Message* msg);
 
 	virtual void load(json file) {};
+	virtual std::string getInfo() { return "Reproductor"; };
 };
 
 REGISTER_TYPE(Reproductor)

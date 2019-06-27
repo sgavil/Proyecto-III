@@ -14,6 +14,8 @@ public:
 
 	virtual void save(json& file) {};
 
+	virtual std::string getInfo() { return "TextBox"; }
+
 	void centreText(std::string s);
 	void setBackgroundVisible(string boolean);
 	void setColorText(string topLeft, string topRight, string botLeft, string botRight);

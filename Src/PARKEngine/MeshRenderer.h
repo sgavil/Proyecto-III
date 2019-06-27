@@ -23,6 +23,8 @@ public:
 
 	virtual void save(json& file) {};
 
+	//Info
+	virtual std::string getInfo() { return "MeshRenderer"; }
 
 
 	//Vuelve visible/invisible el renderer

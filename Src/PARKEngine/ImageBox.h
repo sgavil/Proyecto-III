@@ -13,6 +13,8 @@ public:
 	virtual void receive(Message* msg) {};
 
 	virtual void save(json& file) {};
+	//Info
+	virtual std::string getInfo() { return "ImageBox"; }
 
 	CEGUI::Window* getStaticImage() { return staticImage_; };
 

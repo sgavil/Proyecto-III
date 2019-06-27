@@ -16,6 +16,8 @@ public:
 	virtual void receive(Message* msg) {};
 
 	virtual void save(json& file) {};
+	//Info
+	virtual std::string getInfo() { return "FrameWindowBox"; }
 
 	virtual std::vector<std::string> getChildren() { return hijos; };
 

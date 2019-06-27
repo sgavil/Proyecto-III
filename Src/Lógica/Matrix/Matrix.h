@@ -16,7 +16,8 @@ public:
 	virtual void load(json file);
 
 	//Returns a string with matrix info
-	virtual std::string getInfo();
+	virtual std::string getDetailedInfo();
+	virtual std::string getInfo() { return "Matrix -> More on getDetailedInfo()"; };
 
 	//Devuelve la matriz de nodos
 	vector<vector<Entity*>> getMatrix();

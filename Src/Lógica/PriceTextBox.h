@@ -20,6 +20,8 @@ public:
 
 	void changeTextPrice();
 
+	virtual std::string getInfo() { return "PriceTextBox"; };
+
 private:
 	std::string buildName_;
 	DatosEdificio* datosEdificio_;

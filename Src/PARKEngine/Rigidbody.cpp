@@ -235,8 +235,11 @@ void Rigidbody::updateTransform()
 		trans.getRotation().getY(), trans.getRotation().getZ()));
 }
 
+std::string Rigidbody::getInfo() {
+	return "RigidBody -> More on getDetailedInfo()";
+}
 
-std::string Rigidbody::getInfo()
+std::string Rigidbody::getDetailedInfo()
 {
 	Vector3 min, max;
 	getAABB(min, max);

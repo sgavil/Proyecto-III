@@ -91,7 +91,8 @@ public:
 	virtual void update(unsigned int time);
 
 	//Returns a string with indented information of the NPC
-	virtual std::string getInfo();
+	virtual std::string getDetailedInfo();
+	virtual std::string getInfo() { return "NPC -> More on getDetailedInfo()"; };
 
 	//Set current node
 	virtual void setNode(Node* node);

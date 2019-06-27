@@ -18,6 +18,7 @@ public:
 
 	virtual void receive(Message * msg);
 	virtual bool handleEvent(unsigned int time);
+	virtual std::string getInfo() { return "FirstPersonCamera"; };
 
 protected:
 	//References to Camera's components

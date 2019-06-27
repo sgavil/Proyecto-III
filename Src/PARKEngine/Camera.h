@@ -18,6 +18,8 @@ public:
 	virtual void receive(Message* msg);
 
 	virtual void save(json& file);
+	//Info
+	virtual std::string getInfo() { return "Camera"; }
 
 	virtual void lookAt(Vector3 pos);
 protected:

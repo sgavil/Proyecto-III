@@ -92,7 +92,8 @@ public:
 	virtual void activate();
 
 	//Returns a string with indented information of the rigidbody
-	virtual virtual std::string getInfo();
+	virtual std::string getInfo();
+	virtual virtual std::string getDetailedInfo();
 
 
 protected:

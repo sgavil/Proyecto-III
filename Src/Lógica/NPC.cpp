@@ -28,7 +28,7 @@ void NPC::start()
 	getBrotherComponent<Transform>()->setPosition(pos + Vector3(0, 10, 100));
 }
 
-std::string NPC::getInfo()
+std::string NPC::getDetailedInfo()
 {
 	std::string s = entity_->getName() + "\n" + fun_.name_ + ": " + std::to_string(getFun().value_) + "\n" +
 		hunger_.name_ + ": " + std::to_string(getHunger().value_) + "\n " + peepee_.name_ + ": " + std::to_string(getPeepee().value_) + "\n";
