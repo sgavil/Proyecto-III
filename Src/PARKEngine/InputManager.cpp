@@ -24,6 +24,24 @@ InputManager::InputManager(std::string inputFile) :mMouse(0),mKeyboard(0),mInput
 		windowHndStr << (unsigned int)windowHnd;
 		paramList.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
 
+
+		/*
+		// DESCOMENTAR PARA QUITAR EXCLUSIVIDAD DE RATÓN, TECLADO, JOYSTICK A LA VENTANA
+		// UNCOMMENT TO SET NON-EXCLUSIVE MODE TO INPUT DEVICES
+		//mouse
+		paramList.insert(std::make_pair("w32_mouse", "DISCL_FOREGROUND"));
+		paramList.insert(std::make_pair("w32_mouse", "DISCL_NONEXCLUSIVE"));
+
+		//keyboard
+		paramList.insert(std::make_pair("w32_keyboard", "DISCL_FOREGROUND"));
+		paramList.insert(std::make_pair("w32_keyboard", "DISCL_NONEXCLUSIVE"));
+		paramList.insert(std::make_pair("w32_keyboard", "DISCL_NOWINKEY"));
+
+		//joystick/gamepad
+		paramList.insert(std::make_pair("w32_joystick", "DISCL_FOREGROUND"));
+		paramList.insert(std::make_pair("w32_joystick", "DISCL_NONEXCLUSIVE"));
+		*/
+
 		// Create inputsystem
 		mInputSystem = OIS::InputManager::createInputSystem(paramList);
 
