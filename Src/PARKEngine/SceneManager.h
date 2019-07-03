@@ -33,6 +33,10 @@ public:
 	// -> Remove state
 	bool removeState(std::string stateID);
 
+	// -> Control de flujo del estado play
+	bool hasExitPlay();
+	void resetExitedPlay();
+
 private:
 	static std::unique_ptr<SceneManager> instance_; // Singleton
 
@@ -41,7 +45,11 @@ private:
 	GameState* currentState_; // Estado activo
 	GameState* buildingState_; // Estado en construcción
 
+	bool exitedPlayState;
+
 	bool* exit;
+
+	void debugInfo(std::string msg, std::string stateID);
 
 	void disableOtherStatesNodes();
 };

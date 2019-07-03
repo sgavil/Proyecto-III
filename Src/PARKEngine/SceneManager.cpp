@@ -19,6 +19,7 @@ SceneManager* SceneManager::instance()
 
 SceneManager::SceneManager(bool* ex)
 {
+	exitedPlayState = false;
 	exit = ex;
 }
 
@@ -39,8 +40,6 @@ SceneManager::~SceneManager()
 		(*it).second = nullptr;
 		++it;
 	}
-	
-	//it = states.erase(it);
 		
 	states.clear();
 	instance_.release();
@@ -106,18 +105,27 @@ GameState* SceneManager::addState(std::string stateID)
 	//el estado y cargado sobre el los componentes
 	resetBuildStatePointer();
 
+	debugInfo("AddState", stateID);
+
 	//devolvemos el nuevo estado creado
 	return state;
 }
 
 void SceneManager::changeState(std::string stateID)
 {
+
+	if (currentState_ != nullptr && currentState_->getID() == "StatePlay" && stateID != "StatePlay") {
+		exitedPlayState = true;
+	}
+
 	HUDManager::instance()->changeWindow(stateID);
 
 	auto it = states.find(stateID);
 	assert(it != states.end());
 	currentState_ = it->second;
 	currentState_->start();
+
+	debugInfo("changeState", stateID);
 
 	disableOtherStatesNodes();
 }
@@ -135,4 +143,24 @@ bool SceneManager::removeState(std::string stateID) {
 		return true;
 	}
 
+	debugInfo("removeState", stateID);
+}
+
+bool SceneManager::hasExitPlay() {
+	return exitedPlayState;
+}
+
+void SceneManager::resetExitedPlay() {
+	exitedPlayState = false;
+}
+
+void SceneManager::debugInfo(std::string msg, std::string stateID) {
+	std::map <std::string, GameState*> statesAux;
+
+	std::cout << "|||| Scene Manager Debug Info ||||" << std::endl;
+	if (msg.size() != 0) std::cout << "Called from method: " << msg << " using stateID: " << stateID << std::endl;
+
+	if (currentState_ != nullptr) std::cout << "Current State: " << currentState_->getID() << std::endl;
+	else std::cout << "Current State: NULLPTR" << std::endl;
+	std::cout << "States Map size: " << states.size() << std::endl;
 }
