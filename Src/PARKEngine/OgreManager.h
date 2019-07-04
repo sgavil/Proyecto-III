@@ -101,6 +101,9 @@ private:
 	unsigned long gethWnd() { return hWnd; }
 
 
+	//Recu
+	void messagePump();
+
 	//RECURSOS
 	//Initialises window
 	void initWindow(std::string initFileJson);

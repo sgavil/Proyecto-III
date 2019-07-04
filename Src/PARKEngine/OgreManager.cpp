@@ -6,6 +6,8 @@
 #include "Utils.h"
 #include "TerrainCreator.h"
 #include "MeshRenderer.h"
+#include "windows.h"
+//#include "OgreWindowEventUtilities.h"
 
 //OGRE
 #include "OgreIncludes.h"
@@ -20,9 +22,6 @@
 
 
 std::unique_ptr<OgreManager> OgreManager::instance_;
-
-
-
 
 void OgreManager::initInstance(std::string initFileJson)
 {
@@ -82,16 +81,33 @@ OgreManager::~OgreManager()
 	instance_.release();
 }
 
+
+void OgreManager::messagePump() {
+	MSG  msg;
+	while (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+}
+
 void OgreManager::render(unsigned int deltaTime)
 {
-	sceneMgr_->_updateSceneGraph(camera_);
-	root_->renderOneFrame((Ogre::Real)deltaTime / 1000);	
-	OIS::Mouse* mouse =  InputManager::instance()->getMouse();
+	if (window_->isActive()) {
+		messagePump();
+		sceneMgr_->_updateSceneGraph(camera_);
+		root_->renderOneFrame((Ogre::Real)deltaTime / 1000);	
+		OIS::Mouse* mouse =  InputManager::instance()->getMouse();
 	
-	HUDManager::instance()->injectMouseMove(mouse->getMouseState().X.rel
-		, mouse->getMouseState().Y.rel );
+		HUDManager::instance()->injectMouseMove(mouse->getMouseState().X.rel
+			, mouse->getMouseState().Y.rel );
 
-	HUDManager::instance()->injectTimePulse(deltaTime / 1000.0f);
+		HUDManager::instance()->injectTimePulse(deltaTime / 1000.0f);
+	}
+	else {
+		messagePump();
+		root_->clearEventTimes();
+	}
 }
 
 Ogre::SceneManager * OgreManager::getSceneManager()
@@ -179,18 +195,24 @@ void OgreManager::initWindow(std::string initFileJson)
 {
 	json initFile = ResourceManager::instance()->getJsonByKey(initFileJson);
 
+	Ogre::NameValuePairList options;
+	//options["left"] = "0";
+	//options["top"] = "0";
+	options["border"] = "none";
+	options["monitorIndex"] = "0";
+
 	if (initFile != nullptr){
-		window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false);
+		window_ = root_->createRenderWindow(initFile["WindowName"], initFile["Width"], initFile["Height"], false, &options);
 		window_->setFullscreen(initFile["fullScreen"], initFile["Width"], initFile["Height"]);
 	}
 	else {
-		window_ = root_->createRenderWindow("PARK - No InitAplication File Found", 720, 480, false);
+		window_ = root_->createRenderWindow("PARK - No InitAplication File Found", 720, 480, false, &options);
 		window_->setFullscreen(false, 720, 480);
 	}
 
-	window_->setActive(true);
-	window_->setAutoUpdated(true);
-	window_->setDeactivateOnFocusChange(false);
+	//window_->setActive(true);
+	//window_->setAutoUpdated(true);
+	//window_->setDeactivateOnFocusChange(false);
 
 	sceneMgr_->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
 
