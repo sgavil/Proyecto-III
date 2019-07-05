@@ -14,6 +14,7 @@ NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNod
 
 NPC::~NPC()
 {
+	std::cout << "Destructora de NPC" << std::endl;
 }
 void NPC::start()
 {
@@ -160,6 +161,7 @@ void NPC::exitPARK()
 {
 	hasPath = true;
 	speed_ *= 1.5;
+	//Revisar esto, si se a abierto el panel de información del NPC y decide marcharse del parque hará petar el juego.
 	SceneManager::instance()->currentState()->removeEntity(entity_->getName());
 	//movements.push(matrix_->getEntrance());
 }

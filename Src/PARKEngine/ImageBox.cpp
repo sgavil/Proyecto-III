@@ -9,6 +9,7 @@ ImageBox::ImageBox()
 
 ImageBox::~ImageBox()
 {
+	std::cout << "Destructora de ImageBox" << std::endl;
 }
 
 void ImageBox::load(json file)

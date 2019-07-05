@@ -33,6 +33,7 @@ void SceneManager::disableOtherStatesNodes()
 
 SceneManager::~SceneManager()
 {
+	std::cout << "Destructora de SceneManager" << std::endl;
 	auto it = states.begin();
 	while (it != states.end())
 	{

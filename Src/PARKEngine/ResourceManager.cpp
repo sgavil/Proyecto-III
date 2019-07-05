@@ -67,6 +67,7 @@ ResourceManager::ResourceManager()
 
 ResourceManager::~ResourceManager()
 {
+	std::cout << "Destructora de ResourceManager" << std::endl;
 	instance_.release();
 }
 

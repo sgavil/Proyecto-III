@@ -36,6 +36,7 @@ AudioManager::AudioManager(std::string audioSourceFile, float doppler, float rol
 
 AudioManager::~AudioManager()
 {
+	std::cout << "Destructora de AudioManager" << std::endl;
 	result_ = system_->release();
 	FMOD_OK_ERROR_CHECK();
 

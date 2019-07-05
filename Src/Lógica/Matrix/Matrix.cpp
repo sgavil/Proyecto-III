@@ -12,6 +12,7 @@ Matrix::Matrix()
 
 Matrix::~Matrix()
 {
+	std::cout << "Destructora de Matrix" << std::endl;
 }
 
 std::string Matrix::getDetailedInfo()

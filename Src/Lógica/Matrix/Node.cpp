@@ -6,6 +6,7 @@ Node::Node() : posMatrix_({ 0, 0 }), nodeType_(NodeType::Empty)
 
 Node::~Node()
 {
+	std::cout << "Destructora de Node" << std::endl;
 }
 
 void Node::load(json file)

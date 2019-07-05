@@ -12,6 +12,7 @@ FirstPersonCamera::FirstPersonCamera(): camTransform_(nullptr), camRigid_(nullpt
 
 FirstPersonCamera::~FirstPersonCamera()
 {
+	std::cout << "Destructora de FirstPersonCamera" << std::endl;
 }
 
 void FirstPersonCamera::start()

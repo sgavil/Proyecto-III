@@ -8,6 +8,7 @@ Animation::Animation()
 
 Animation::~Animation()
 {
+	std::cout << "Destructora de Animation" << std::endl;
 }
 
 void Animation::update(unsigned int time)

@@ -23,9 +23,10 @@ GameState::GameState(std::string stateID): id(stateID)
 	
 GameState::~GameState()
 {
+	std::cout << "Destructora de GameState: " << id << std::endl;
+	std::cout << "Entidades en entities: " << entities.size() << std::endl;
 	//Borra todas las entidades de la escena
-	//for (Entity* e : entities)
-		//removeEntity(e);
+	removeAllEntities();
 }
 
 void GameState::start()
@@ -48,8 +49,6 @@ void GameState::update(unsigned int time)
 	for (Entity* e : removedEntities)
 		removeEntity(e);
 	removedEntities.clear();
-
-	//InputManager::instance()->capture();
 }
 
 void GameState::render(unsigned int time)
@@ -87,6 +86,32 @@ void GameState::addEntities(std::vector<Entity*> ent)
 {
 	for (Entity* e : ent)
 		addEntity(e);
+}
+
+bool GameState::removeAllEntities() {
+	for (Entity* e : entities) {
+		/*
+		std::cout << "Clearing components from entity: " << e->getName() << std::endl;
+		for (Component* c : e->getComponents())
+		{
+			std::cout << "Removing component: " << e->getName() << std::endl;
+			components.remove(c); //Lo quitamos de la escena
+			e->delComponent(c); //Se lo quitamos a la entidad
+			delete c; //Lo eliminamos
+			c = nullptr;
+		}
+		*/
+		removedEntities.push_back(e);
+	}
+
+	for (Entity* e : removedEntities) {
+		removeEntity(e);
+	}
+
+	removedEntities.clear();
+	entities.clear();
+
+	return true;
 }
 
 

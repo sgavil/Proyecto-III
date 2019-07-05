@@ -125,4 +125,5 @@ CEGUI::Window* HUDManager::createWidget(std::string name, std::string type, floa
 
 HUDManager::~HUDManager()
 {
+	std::cout << "Destructora de HUDManager" << std::endl;
 }

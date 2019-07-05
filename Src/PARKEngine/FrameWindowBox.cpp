@@ -17,6 +17,7 @@ FrameWindowBox::FrameWindowBox()
 
 FrameWindowBox::~FrameWindowBox()
 {
+	std::cout << "Destructora de FrameWindowBox" << std::endl;
 }
 
 void FrameWindowBox::load(json file)

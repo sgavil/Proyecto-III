@@ -9,6 +9,7 @@ TextBox::TextBox()
 
 TextBox::~TextBox()
 {
+	std::cout << "Destructora de TextBox: " << text << std::endl;
 }
 
 void TextBox::load(json file)

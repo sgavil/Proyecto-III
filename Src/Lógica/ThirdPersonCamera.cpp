@@ -10,6 +10,7 @@ ThirdPersonCamera::ThirdPersonCamera(): camTransform_(nullptr), camRigid_(nullpt
 
 ThirdPersonCamera::~ThirdPersonCamera()
 {
+	std::cout << "Destructora de ThirdPersonCamera" << std::endl;
 }
 
 void ThirdPersonCamera::start()

@@ -13,6 +13,7 @@ BackgroundImage::BackgroundImage()
 
 BackgroundImage::~BackgroundImage()
 {
+	std::cout << "Destructora de BackgroundImage" << std::endl;
 }
 
 void BackgroundImage::load(json file)

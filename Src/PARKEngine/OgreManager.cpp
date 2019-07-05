@@ -71,10 +71,13 @@ OgreManager::OgreManager(std::string initFileJson):plane_(nullptr), camera_(null
 
 OgreManager::~OgreManager()
 {
+	std::cout << "Destructora de OgreManager" << std::endl;
 	CEGUI::System::destroy();
 	
-	if (root_ != nullptr)
+	if (root_ != nullptr){
+		std::cout << "Deleting Ogre root_. This takes a while, please wait" << std::endl;
 		delete root_;
+	}
 	if (plane_ != nullptr)
 		delete plane_;
 
@@ -94,7 +97,7 @@ void OgreManager::messagePump() {
 void OgreManager::render(unsigned int deltaTime)
 {
 	if (window_->isActive()) {
-		messagePump();
+		messagePump();	//Importante para detectar llamadas del sistema operativo sobre la ventana (redimensionado, foco, minimizar, etc)
 		sceneMgr_->_updateSceneGraph(camera_);
 		root_->renderOneFrame((Ogre::Real)deltaTime / 1000);	
 		OIS::Mouse* mouse =  InputManager::instance()->getMouse();
@@ -195,6 +198,7 @@ void OgreManager::initWindow(std::string initFileJson)
 {
 	json initFile = ResourceManager::instance()->getJsonByKey(initFileJson);
 
+	//Ventana
 	Ogre::NameValuePairList options;
 	//options["left"] = "0";
 	//options["top"] = "0";
@@ -210,12 +214,8 @@ void OgreManager::initWindow(std::string initFileJson)
 		window_->setFullscreen(false, 720, 480);
 	}
 
-	//window_->setActive(true);
-	//window_->setAutoUpdated(true);
-	//window_->setDeactivateOnFocusChange(false);
-
+	//LUZ
 	sceneMgr_->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
-
 	Vector3 lightdir(0.55, -0.3, 0.75);
 	lightdir.normalise();
 
@@ -225,6 +225,7 @@ void OgreManager::initWindow(std::string initFileJson)
 	light_->setDiffuseColour(Ogre::ColourValue::White);
 	light_->setSpecularColour(Ogre::ColourValue(240 / 255, 240 / 255, 188 / 255));
 
+	//Plano Skyplane
 	plane_ = new Ogre::Plane();
 	plane_->d = 1000;
 	plane_->normal = Vector3::NEGATIVE_UNIT_Y;
@@ -269,7 +270,6 @@ Ogre::Camera* OgreManager::createCamera(std::string name, float NearClipDist, fl
 
 	return camera_;
 }
-
 
 Ogre::Entity * OgreManager::createPlane(std::string name, std::string MaterialName, float width, float height, int Xsegments, int Ysegments, Ogre::SceneNode* FatherNode)
 {

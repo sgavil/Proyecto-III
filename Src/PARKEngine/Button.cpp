@@ -12,6 +12,7 @@ Button::Button() : callbackParam("")
 
 Button::~Button()
 {
+	//std::cout << "Destructora de Button" << std::endl;
 }
 
 void Button::load(json file)

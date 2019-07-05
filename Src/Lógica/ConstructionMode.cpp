@@ -18,6 +18,7 @@ ConstructionMode::ConstructionMode() : matrixEntity_(nullptr), nodeEntity_(nullp
 
 ConstructionMode::~ConstructionMode()
 {
+	std::cout << "Destructora de ConstructionMode" << std::endl;
 }
 
 void ConstructionMode::load(json file)

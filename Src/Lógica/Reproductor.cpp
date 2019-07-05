@@ -13,6 +13,7 @@ Reproductor::Reproductor()
 
 Reproductor::~Reproductor()
 {
+	std::cout << "Destructora de Reproductor" << std::endl;
 }
 
 void Reproductor::receive(Message * msg)

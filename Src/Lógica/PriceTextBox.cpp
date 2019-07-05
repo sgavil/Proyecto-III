@@ -13,6 +13,7 @@ PriceTextBox::PriceTextBox()
 
 PriceTextBox::~PriceTextBox()
 {
+	std::cout << "Destructora de PriceTextBox" << std::endl;
 }
 
 void PriceTextBox::load(json file)

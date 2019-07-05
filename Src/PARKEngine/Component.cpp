@@ -17,4 +17,5 @@ void Component::releaseEntity()
 
 Component::~Component()
 {
+	//std::cout << "Destructora de Component" << std::endl;
 }

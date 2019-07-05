@@ -9,6 +9,7 @@ ProgressBar::ProgressBar(): progressBar_(nullptr)
 
 ProgressBar::~ProgressBar()
 {
+	std::cout << "Destructora de ProgressBar" << std::endl;
 }
 
 void ProgressBar::load(json file)

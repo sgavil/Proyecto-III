@@ -138,5 +138,6 @@ std::string Transform::getDetailedInfo()
 
 Transform::~Transform()
 {
+	std::cout << "Destructora de Transform" << std::endl;
 }
 

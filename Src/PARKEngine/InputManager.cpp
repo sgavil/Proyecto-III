@@ -100,6 +100,7 @@ InputManager* InputManager::instance()
 }
 
 InputManager::~InputManager() {
+	std::cout << "Destructora de InputManager" << std::endl;
 	if (mInputSystem) {
 		if (mMouse) {
 			mInputSystem->destroyInputObject(mMouse);

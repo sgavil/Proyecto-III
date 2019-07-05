@@ -10,6 +10,7 @@ Widget::Widget()
 
 Widget::~Widget()
 {
+	//std::cout << "Destructora de Widget" << std::endl;
 }
 
 void Widget::load(json file)

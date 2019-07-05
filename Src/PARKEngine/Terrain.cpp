@@ -20,5 +20,6 @@ void Terrain::load(json file)
 
 Terrain::~Terrain()
 {
+	std::cout << "Destructora de Terrain" << std::endl;
 	delete terrainCreator_;
 }

@@ -13,6 +13,7 @@ EntityFactory::EntityFactory()
 
 EntityFactory::~EntityFactory()
 {
+	std::cout << "Destructora de EntityFactory" << std::endl;
 }
 
 

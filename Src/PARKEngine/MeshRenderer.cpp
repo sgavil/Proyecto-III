@@ -47,6 +47,7 @@ void MeshRenderer::load(json file)
 
 MeshRenderer::~MeshRenderer()
 {
+	std::cout << "Destructora de MeshRenderer" << std::endl;
 	OgreManager::instance()->getSceneManager()->destroySceneNode(node_);
 }
 

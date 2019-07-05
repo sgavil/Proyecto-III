@@ -187,6 +187,7 @@ void PhysicsManager::addRigidBody(btRigidBody * rigid)
 
 PhysicsManager::~PhysicsManager()
 {
+	std::cout << "Destructora de PhysicsManager" << std::endl;
 	if (instance_ != nullptr) {
 		cleanupPhysics();
 

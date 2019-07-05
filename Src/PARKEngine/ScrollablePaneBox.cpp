@@ -16,6 +16,7 @@ ScrollablePaneBox::ScrollablePaneBox()
 
 ScrollablePaneBox::~ScrollablePaneBox()
 {
+	std::cout << "Destructora de ScrollablePaneBox" << std::endl;
 }
 
 void ScrollablePaneBox::load(json file)

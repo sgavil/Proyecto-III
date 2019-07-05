@@ -44,6 +44,7 @@ TerrainGenerator::TerrainGenerator(Ogre::SceneManager * scnMgn, Ogre::Light * li
 
 TerrainGenerator::~TerrainGenerator()
 {
+	std::cout << "Destructora de TerrainGenerator" << std::endl;
 	OGRE_DELETE mTerrainGroup_;
 	OGRE_DELETE	mTerrainGlobals_;
 }

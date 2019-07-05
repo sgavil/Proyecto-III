@@ -22,6 +22,7 @@ protected:
 
 	//Elimina la entidad y sus componentes definitivamente
 	void removeEntity(Entity* e);
+	bool removeAllEntities();
 
 	friend class MeshRenderer;
 	friend class BackgroundImage;

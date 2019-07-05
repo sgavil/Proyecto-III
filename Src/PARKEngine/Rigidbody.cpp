@@ -62,6 +62,7 @@ void Rigidbody::start()
 
 Rigidbody::~Rigidbody()
 {
+	std::cout << "Destructora de RigidBody" << std::endl;
 	delete dims_;
 	dims_ = nullptr;
 }

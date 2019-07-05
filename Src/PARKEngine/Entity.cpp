@@ -51,5 +51,5 @@ void Entity::setActive(bool b)
 
 Entity::~Entity()
 {
-	
+	std::cout << "Destructora de Entity: " << name_ << std::endl;
 }

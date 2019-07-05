@@ -30,14 +30,13 @@ Game::Game(std::string basicConfig):exit(false)
 
 Game::~Game()
 {
+	std::cout << "Destructora de Game" << std::endl;
 	if (physicsManager_ != nullptr)
 		delete physicsManager_;
 	if (sceneManager_ != nullptr)
 		delete sceneManager_;
 	if (audioManager_ != nullptr)
 		delete audioManager_;
-	if (hudManager_ != nullptr)
-		delete hudManager_;
 	if (inputManager_ != nullptr)
 		delete inputManager_;
 	if (ogreManager_ != nullptr)
@@ -54,7 +53,7 @@ void Game::start()
 	//Cambiamos al actual
 	sceneManager_->changeState("StateMainMenu");
 
-	//audioManager_->PLAY_SONG("Menu");
+	audioManager_->PLAY_SONG("Menu");
 }
 
 void Game::run()

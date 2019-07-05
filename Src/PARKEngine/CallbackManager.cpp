@@ -22,6 +22,7 @@ CallbackManager::CallbackManager()
 }
 CallbackManager::~CallbackManager()
 {
+	std::cout << "Destructora de CallbackManager" << std::endl;
 }
 
 void CallbackManager::initInstance()

@@ -24,6 +24,7 @@ Camera::Camera()
 
 Camera::~Camera()
 {
+	std::cout << "Destructora de Camera" << std::endl;
 }
 
 void Camera::start()
