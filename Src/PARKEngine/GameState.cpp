@@ -90,17 +90,6 @@ void GameState::addEntities(std::vector<Entity*> ent)
 
 bool GameState::removeAllEntities() {
 	for (Entity* e : entities) {
-		/*
-		std::cout << "Clearing components from entity: " << e->getName() << std::endl;
-		for (Component* c : e->getComponents())
-		{
-			std::cout << "Removing component: " << e->getName() << std::endl;
-			components.remove(c); //Lo quitamos de la escena
-			e->delComponent(c); //Se lo quitamos a la entidad
-			delete c; //Lo eliminamos
-			c = nullptr;
-		}
-		*/
 		removedEntities.push_back(e);
 	}
 

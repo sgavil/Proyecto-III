@@ -117,6 +117,8 @@ public:
 	//Nombre de la última atracción visitada
 	virtual std::string getLastAttraction() { return lastAttraction_; };
 
+	bool leavesPark() { return isLeaving_; }
+
 
 private:
 	//ATRIBUTOS DE JSON
@@ -137,6 +139,8 @@ private:
 	bool isInBuilding_;
 	//Esperando para entrar en la cola
 	bool isInQueue_;
+	//Si se esta marchando del parque
+	bool isLeaving_;
 
 
 

@@ -8,7 +8,7 @@
 #include <cmath>
 
 //TODO: rotar los NPC en función de la dirección a la que van
-NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr), isInQueue_(false), lastAttraction_("N/A")
+NPC::NPC() :pq(0), hasPath(false), isInBuilding_(false), node_(nullptr), prevNode_(nullptr), nextNode_(nullptr), isInQueue_(false), lastAttraction_("N/A"), isLeaving_(false)
 {
 }
 
@@ -99,10 +99,9 @@ void NPC::followPath(unsigned int time)
 			else //TODO: esto se deja basura seguro
 			{
 				getBrotherComponent<MeshRenderer>()->setVisible(false);
-				entity_->setActive(false);
+				SceneManager::instance()->currentState()->removeEntity(getEntity()->getName()); //remove from scene
 			}
 				
-			//SceneManager::instance()->currentState()->removeEntity(getEntity()->getName()); //remove from scene
 		}
 	}
 }
@@ -159,11 +158,15 @@ void NPC::getOutofAttraction()
 
 void NPC::exitPARK()
 {
+	std::cout << "NPC::ExitPark() Invocado" << std::endl;
 	hasPath = true;
+	isLeaving_ = true;
+
+	//Borrar esto?
+	movements.push(matrix_->getEntrance());
+
 	speed_ *= 1.5;
-	//Revisar esto, si se a abierto el panel de información del NPC y decide marcharse del parque hará petar el juego.
-	SceneManager::instance()->currentState()->removeEntity(entity_->getName());
-	//movements.push(matrix_->getEntrance());
+	
 }
 
 void NPC::setNode(Node * node)
