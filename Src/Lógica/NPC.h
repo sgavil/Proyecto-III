@@ -119,6 +119,8 @@ public:
 
 	bool leavesPark() { return isLeaving_; }
 
+	bool isInQueue() { return isInQueue_; }
+
 
 private:
 	//ATRIBUTOS DE JSON
@@ -141,8 +143,6 @@ private:
 	bool isInQueue_;
 	//Si se esta marchando del parque
 	bool isLeaving_;
-
-
 
 	//Puntero a la matriz
 	Matrix* matrix_;
@@ -190,6 +190,7 @@ private:
 	const Stat& lowerStat();
 	//Se pone a esperar en la cola
 	void enterQueue();
+	
 
 	std::string lastAttraction_;
 

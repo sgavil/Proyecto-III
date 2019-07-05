@@ -46,6 +46,7 @@ void Edificio::update(unsigned int time)
 
 bool Edificio::encolar(Entity * e)
 {
+
 	if (cola.size() < datos->maxCola_)
 		cola.push(e);
 	else
@@ -57,6 +58,7 @@ void Edificio::montar()
 {
 	for (int i = 0; i < datos->capacity_; i++) {
 		if (!cola.empty()) {
+			//Sacamos un NPC de la cola
 			Entity* e = cola.front();
 			e->getComponent<MeshRenderer>()->setVisible(false);
 			e->getComponent<NPC>()->enterAttraction();

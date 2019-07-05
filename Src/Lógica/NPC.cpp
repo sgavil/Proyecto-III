@@ -57,7 +57,9 @@ void NPC::update(unsigned int time)
 		{
 			lookForBuildings();
 			//He can't reach the building he needs (get out of the park)
-			if (!hasPath)
+			//And its not in a queue (This prevents npc in queues to leave the park and with so crash the game)
+			//And not in a building
+			if (!hasPath && !isInQueue_ && !isInBuilding_)
 				exitPARK();
 		}
 
@@ -99,6 +101,7 @@ void NPC::followPath(unsigned int time)
 			else //TODO: esto se deja basura seguro
 			{
 				getBrotherComponent<MeshRenderer>()->setVisible(false);
+				entity_->setActive(false);
 				SceneManager::instance()->currentState()->removeEntity(getEntity()->getName()); //remove from scene
 			}
 				
@@ -161,8 +164,6 @@ void NPC::exitPARK()
 	std::cout << "NPC::ExitPark() Invocado" << std::endl;
 	hasPath = true;
 	isLeaving_ = true;
-
-	//Borrar esto?
 	movements.push(matrix_->getEntrance());
 
 	speed_ *= 1.5;
