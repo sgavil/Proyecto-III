@@ -13,7 +13,7 @@ Somos un grupo de 7 estudiantes la Universidad Complutense de Madrid
 | Córdoba, Alberto | albcor01 | albcor01@ucm.es |
 | de los Santos, Mario | MarioDeLosSantos | mdelos02@ucm.es |
 | Fernández, Raúl | raulfe06 | raulfe06@ucm.es |
-| Gavilán, Sergio | srgxv1 | sgavil01@ucm.es |
+| Gavilán, Sergio | sgavil | sgavil01@ucm.es |
 | Villar, Alejandro | xBlacKnife | alvill04@ucm.es |
 
 # Características del Motor 
@@ -38,6 +38,9 @@ _Videojuego creado utilizando este motor_
 P.A.R.K es un videojuego que tiene como objetivo crear un parque de atracciones para niños, cuidando tanto el aspecto económico de su gestión, como la satisfacción de sus visitantes permitiendo la creación de elementos tales como atracciones, caminos, estaciones de servicio...
 
 
+Captura de P.A.R.K:
+
+![PARKPReview](https://github.com/xBlacKnife/Proyecto-III/blob/master/PARK_img.jpg)
 
 
 
